@@ -1,6 +1,6 @@
 # Datasets
 
-FortiDragon includes comprehensive datasets and field mappings for various Fortinet products.
+FLASI includes comprehensive datasets and field mappings for various Fortinet products.
 
 ## Available Datasets
 

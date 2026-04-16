@@ -1,6 +1,6 @@
 # Fortigate
 
-This guide covers how to configure your Fortigate firewall to send syslog data to FortiDragon.
+This guide covers how to configure your Fortigate firewall to send syslog data to FLASI.
 
 ## Syslog Configuration
 

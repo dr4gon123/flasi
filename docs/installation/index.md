@@ -2,7 +2,7 @@
 
 Let's get this party started! 🤩
 
-FortiDragon uses a modular [architecture](../architecture.md) where each layer is independent. Choose the technologies that best fit your needs.
+FLASI uses a modular [architecture](../architecture.md) where each layer is independent. Choose the technologies that best fit your needs.
 
 
 ## Installation Flow
@@ -137,7 +137,7 @@ After completing installation, you'll have:
 ## Need Help?
 
 - 💬 **Community Support:** [Discord](https://discord.gg/9qn4enV)
-- 🐛 **Report Issues:** [GitHub Issues](https://github.com/enotspe/fortinet-2-elasticsearch/issues)
+- 🐛 **Report Issues:** [GitHub Issues](https://github.com/enotspe/flasi/issues)
 - 🗺️ **Future Plans:** [Roadmap](../roadmap.md)
 
 

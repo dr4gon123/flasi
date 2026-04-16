@@ -54,7 +54,7 @@
                                                 "root_selector": "",
                                                 "source": "url",
                                                 "type": "csv",
-                                                "url": "https://raw.githubusercontent.com/enotspe/fortinet-2-elasticsearch/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_traffic_7_6.csv",
+                                                "url": "https://raw.githubusercontent.com/enotspe/flasi/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_traffic_7_6.csv",
                                                 "url_options": {
                                                     "data": "",
                                                     "method": "GET"
@@ -167,7 +167,7 @@
                                                 "root_selector": "",
                                                 "source": "url",
                                                 "type": "csv",
-                                                "url": "https://raw.githubusercontent.com/enotspe/fortinet-2-elasticsearch/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_utm_7_6.csv",
+                                                "url": "https://raw.githubusercontent.com/enotspe/flasi/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_utm_7_6.csv",
                                                 "url_options": {
                                                     "data": "",
                                                     "method": "GET"
@@ -280,7 +280,7 @@
                                                 "root_selector": "",
                                                 "source": "url",
                                                 "type": "csv",
-                                                "url": "https://raw.githubusercontent.com/enotspe/fortinet-2-elasticsearch/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_event_7_6.csv",
+                                                "url": "https://raw.githubusercontent.com/enotspe/flasi/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_event_7_6.csv",
                                                 "url_options": {
                                                     "data": "",
                                                     "method": "GET"

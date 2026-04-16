@@ -1,6 +1,6 @@
 # ELK
 
-Elasticsearch configuration for FortiDragon — index templates, ingest pipelines, Kibana dashboards, and tooling to deploy them.
+Elasticsearch configuration for FLASI — index templates, ingest pipelines, Kibana dashboards, and tooling to deploy them.
 
 ## Folder structure
 

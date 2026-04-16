@@ -2,7 +2,7 @@
 
 We got a script!!!! 🎉
 
-FortiDragon provides an automated script to set up all necessary Elasticsearch components.
+FLASI provides an automated script to set up all necessary Elasticsearch components.
 
 ## Prerequisites
 
@@ -15,8 +15,8 @@ FortiDragon provides an automated script to set up all necessary Elasticsearch c
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/enotspe/fortinet-2-elasticsearch.git
-   cd fortinet-2-elasticsearch/ELK
+   git clone https://github.com/enotspe/flasi.git
+   cd flasi/ELK
    ```
 
 2. **Configure your environment**:

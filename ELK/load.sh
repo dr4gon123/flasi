@@ -52,7 +52,7 @@ VERBOSE="${VERBOSE:-false}"
 # END OF CONFIGURATION SECTION
 # ============================================================================
 
-echo "Welcome to the FortiDragon!"
+echo "Welcome to FLASI!"
 echo -e "\nThe best analytics tool for threat hunting with Fortinet logs"
 
 echo -e "\nHere's what this script does:"

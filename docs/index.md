@@ -1,10 +1,10 @@
 # Home
 
 <div align="center">
-    <img src="assets/logos/logo_with_name_small.jpg" alt="FortiDragon" />
+    <img src="assets/logos/logo_with_name_small.jpg" alt="FLASI" />
 </div>
 
-Welcome to **FortiDragon**! 
+Welcome to **FLASI**! 
 
 So you want to take your ~~Fortinet~~ firewalls logs (both Fortinet and Palo Alto) to ~~Elasticsearch~~ Victoria Logs, Elasticsearch and others??? You have come to the right place!!! 👍
 
@@ -12,7 +12,7 @@ We are the best analytics plataform for firewall logs. No kidding!!!
 
 ## How it all began
 
-We actually use FortiDragon on our day to day operations for threat hunting, so we understand all the painpoints of a security analyst. After 10+ years experience with Fortinet and Palo Alto we could not find a solution that could extract all the juice out of our logs. We tried several SIEMs along the way and found out that firewall logs are just a checkmark on their datasheets. Full parsing and performance tuning for such volume of logs was not carefully considered by any SIEM vendor. Finally we decided we needed to build a solution ourselves having some core principles: flexibility, performance and cost. That is why FortiDragon is by far the best option out there.
+We actually use FLASI on our day to day operations for threat hunting, so we understand all the painpoints of a security analyst. After 10+ years experience with Fortinet and Palo Alto we could not find a solution that could extract all the juice out of our logs. We tried several SIEMs along the way and found out that firewall logs are just a checkmark on their datasheets. Full parsing and performance tuning for such volume of logs was not carefully considered by any SIEM vendor. Finally we decided we needed to build a solution ourselves having some core principles: flexibility, performance and cost. That is why FLASI is by far the best option out there.
 
 ## Requeriments
 
@@ -33,7 +33,7 @@ More important than what you need is what you dont need.
 
 If you feel related to the previous statements, we got you covered.
 
-If you are Splunk, QRadar, or [Elastic Serverless](https://www.elastic.co/pricing/serverless-search) users, you are welcome to stay and make a [contribution](engage.md#help-us-grow) to support FortiDragon. You will get more value out of your 💵 here.
+If you are Splunk, QRadar, or [Elastic Serverless](https://www.elastic.co/pricing/serverless-search) users, you are welcome to stay and make a [contribution](engage.md#help-us-grow) to support FLASI. You will get more value out of your 💵 here.
 
 ## The Challenge
 
@@ -99,7 +99,7 @@ Splunk charges per GB ingested. Elastic Serverless makes you cry when you see th
 
 Until now.
 
-## FortiDragon Difference
+## FLASI Difference
 
 We had one core constraint: **No money.** 💰🚫
 
@@ -150,7 +150,7 @@ That's why we made it **super simple** to spin up:
 
 ## Installation
 
-Ready to get started? Check out our [Installation Guide](installation/index.md) to begin your FortiDragon journey!
+Ready to get started? Check out our [Installation Guide](installation/index.md) to begin your FLASI journey!
 
 
 ## Authors
@@ -165,9 +165,9 @@ Current maintenance and development [@enotspe](https://github.com/enotspe) 🐉
 
 ## Support the Project
 
-If FortiDragon helps you:
+If FLASI helps you:
 
-- 💰 [Make a donation](https://www.paypal.com/paypalme/fortidragon). You are already saving a lot of money by using FortiDragon!
-- ⭐ [Star the repository](https://github.com/enotspe/fortinet-2-elasticsearch)
+- 💰 [Make a donation](https://www.paypal.com/paypalme/fortidragon). You are already saving a lot of money by using FLASI!
+- ⭐ [Star the repository](https://github.com/enotspe/flasi)
 - 📢 Share with colleagues
 - 🤝 [Contribute](engage.md/#areas-for-contribution)
