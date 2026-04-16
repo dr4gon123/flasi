@@ -1,6 +1,6 @@
 # Vector
 
-This page covers Vector configuration for FortiDragon, based on the existing vector documentation.
+This page covers Vector configuration for FLASI, based on the existing vector documentation.
 
 ## Install as a service
 
@@ -8,7 +8,7 @@ There are many ways for [installing Vector](https://vector.dev/docs/setup/instal
 
 ## Load multiple confif files
 
-We have split Vector config [files](https://github.com/dr4gon123/fortinet-2-elasticsearch/tree/main/vector) by plattaform, so FortiDragon Vector directory should look like:
+We have split Vector config [files](https://github.com/enotspe/flasi/tree/main/vector) by plattaform, so FLASI Vector directory should look like:
 
 ```
 /etc/vector/
@@ -52,7 +52,7 @@ sudo systemctl restart vector
 
 ## Environment Variables
 
-FortiDragon Vector config files uses envioremental variables for passing specific values for your setup. All variables have defaults values in the config files.
+FLASI Vector config files uses envioremental variables for passing specific values for your setup. All variables have defaults values in the config files.
 
 `INTERNAL_NETWORKS` is the only variable that must be set.
 

@@ -46,7 +46,7 @@ As we discussed previously on [The Challenge](index.md#the-challenge), we need t
 
 ### **The new ~~5~~ 4-tupple**
 
-Firewall [datasets](https://github.com/dr4gon123/fortinet-2-elasticsearch/tree/main/datasets/Fortinet/Fortigate/7.6/unique_fields) contain over 200 fields. We can't pivot on all of them.
+Firewall [datasets](https://github.com/enotspe/flasi/tree/main/datasets/Fortinet/Fortigate/7.6/unique_fields) contain over 200 fields. We can't pivot on all of them.
 
 We need to choose **core anchors** that become the foundation for our analysis.
 
@@ -351,6 +351,6 @@ Honestly? We don't know.
 
 We're a [solo](engage.md#help-us-grow) team working on this in our spare time because we're tired of the current state of security tooling. Some of these features might take months. Some might take years. Some might prove to be dead ends.
 
-But we're committed to the journey. Every commit gets us closer. Every contributor accelerates the timeline. Every user who deploys FortiDragon validates that this problem is worth solving.
+But we're committed to the journey. Every commit gets us closer. Every contributor accelerates the timeline. Every user who deploys FLASI validates that this problem is worth solving.
 
 **Want to make it go faster?** [Engage](engage.md), [help us grow](engage.md#help-us-grow), or just spread the word. 🚀
