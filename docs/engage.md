@@ -11,7 +11,7 @@ Feel free to ask about anything on the channel: support, questions, ideas, not o
 If FLASI helps you:
 
 - 💰 [Make a donation](https://www.paypal.com/paypalme/fortidragon). You are already saving a lot of money by using FLASI!
-- ⭐ [Star the repository](https://github.com/enotspe/flasi)
+- ⭐ [Star the repository](https://github.com/dr4gon123/flasi)
 - 📢 Share with colleagues
 - 🤝 [Contribute](#areas-for-contribution)
 
@@ -19,7 +19,7 @@ If FLASI helps you:
 
 If you find a bug or have a feature request:
 
-1. Check if the issue already exists in our [GitHub Issues](https://github.com/enotspe/flasi/issues)
+1. Check if the issue already exists in our [GitHub Issues](https://github.com/dr4gon123/flasi/issues)
 2. If not, create a new issue with:
    - Clear description of the problem or feature
    - Steps to reproduce (for bugs)
@@ -40,7 +40,7 @@ If you find a bug or have a feature request:
 
 1. Fork the repository
    ```bash
-   git clone https://github.com/enotspe/flasi.git
+   git clone https://github.com/dr4gon123/flasi.git
    cd flasi
    ```
 
