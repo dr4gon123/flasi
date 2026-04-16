@@ -6,7 +6,7 @@ Fetches unique_fields CSVs from the flores GitHub repository and generates
 Elasticsearch component templates that can be uploaded via API.
 
 Environment variables:
-  FLORES_REPO   - GitHub repo in "owner/name" format (default: enotspe/flores)
+  FLORES_REPO   - GitHub repo in "owner/name" format (default: dr4gon123/flores)
   FLORES_BRANCH - Branch to fetch from (default: main)
 """
 
@@ -19,7 +19,7 @@ import pandas as pd
 import requests
 
 
-FLORES_REPO = os.environ.get("FLORES_REPO", "enotspe/flores")
+FLORES_REPO = os.environ.get("FLORES_REPO", "dr4gon123/flores")
 FLORES_BRANCH = os.environ.get("FLORES_BRANCH", "main")
 
 GITHUB_API_BASE = f"https://api.github.com/repos/{FLORES_REPO}/contents"

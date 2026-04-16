@@ -137,7 +137,7 @@ After completing installation, you'll have:
 ## Need Help?
 
 - 💬 **Community Support:** [Discord](https://discord.gg/9qn4enV)
-- 🐛 **Report Issues:** [GitHub Issues](https://github.com/enotspe/flasi/issues)
+- 🐛 **Report Issues:** [GitHub Issues](https://github.com/dr4gon123/flasi/issues)
 - 🗺️ **Future Plans:** [Roadmap](../roadmap.md)
 
 

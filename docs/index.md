@@ -155,11 +155,11 @@ Ready to get started? Check out our [Installation Guide](installation/index.md) 
 
 ## Authors
 
-Logstash pipelines and Elasticsearch config [@hoat23](https://github.com/hoat23) and [@enotspe](https://github.com/enotspe) 🐉
+Logstash pipelines and Elasticsearch config [@hoat23](https://github.com/hoat23) and [@dr4gon123](https://github.com/dr4gon123) 🐉
 
-Dataset analysis, Kibana and Grafana dashboards, Vector pipelines, Victoria Logs [@enotspe](https://github.com/enotspe) 🐉
+Dataset analysis, Kibana and Grafana dashboards, Vector pipelines, Victoria Logs [@dr4gon123](https://github.com/dr4gon123) 🐉
 
-Current maintenance and development [@enotspe](https://github.com/enotspe) 🐉
+Current maintenance and development [@dr4gon123](https://github.com/dr4gon123) 🐉
 
 ---
 
@@ -168,6 +168,6 @@ Current maintenance and development [@enotspe](https://github.com/enotspe) 🐉
 If FLASI helps you:
 
 - 💰 [Make a donation](https://www.paypal.com/paypalme/fortidragon). You are already saving a lot of money by using FLASI!
-- ⭐ [Star the repository](https://github.com/enotspe/flasi)
+- ⭐ [Star the repository](https://github.com/dr4gon123/flasi)
 - 📢 Share with colleagues
 - 🤝 [Contribute](engage.md/#areas-for-contribution)

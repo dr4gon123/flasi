@@ -5,13 +5,13 @@
   <h2><strong>The Best Analytics Platform for Firewall Logs</strong></h2>
 
   <h3>
-    <a href="https://enotspe.github.io/flasi/">📚 Full Documentation</a> •
-    <a href="https://enotspe.github.io/flasi/installation/">🚀 Installation</a> •
-    <a href="https://enotspe.github.io/flasi/roadmap/">🛣️ Roadmap</a>
+    <a href="https://dr4gon123.github.io/flasi/">📚 Full Documentation</a> •
+    <a href="https://dr4gon123.github.io/flasi/installation/">🚀 Installation</a> •
+    <a href="https://dr4gon123.github.io/flasi/roadmap/">🛣️ Roadmap</a>
   </h3>
   
   [![Discord](https://img.shields.io/discord/753104553846505552?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/9qn4enV)
-  [![GitHub stars](https://img.shields.io/github/stars/enotspe/flasi?style=social)](https://github.com/enotspe/flasi/stargazers)
+  [![GitHub stars](https://img.shields.io/github/stars/dr4gon123/flasi?style=social)](https://github.com/dr4gon123/flasi/stargazers)
   [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
   
 </div>
@@ -72,13 +72,13 @@ Mix and match: Every layer is swappable. Use what works for your environment.
 
 All detailed documentation has moved to our dedicated documentation site:
 
-### **[📚 https://enotspe.github.io/flasi/](https://enotspe.github.io/flasi/)**
+### **[📚 https://dr4gon123.github.io/flasi/](https://dr4gon123.github.io/flasi/)**
 
-- **[Installation Guide](https://enotspe.github.io/flasi/installation/)** - Step-by-step setup for all components
-- **[Architecture](https://enotspe.github.io/flasi/architecture/)** - How FLASI works under the hood
-- **[Dashboards](https://enotspe.github.io/flasi/dashboards/)** - Dashboard structure and usage
-- **[Roadmap](https://enotspe.github.io/flasi/roadmap/)** - What's next for FLASI
-- **[Engage](https://enotspe.github.io/flasi/engage/)** - Join the community
+- **[Installation Guide](https://dr4gon123.github.io/flasi/installation/)** - Step-by-step setup for all components
+- **[Architecture](https://dr4gon123.github.io/flasi/architecture/)** - How FLASI works under the hood
+- **[Dashboards](https://dr4gon123.github.io/flasi/dashboards/)** - Dashboard structure and usage
+- **[Roadmap](https://dr4gon123.github.io/flasi/roadmap/)** - What's next for FLASI
+- **[Engage](https://dr4gon123.github.io/flasi/engage/)** - Join the community
 
 ## 🎨 Dashboard Preview
 
@@ -103,17 +103,17 @@ All detailed documentation has moved to our dedicated documentation site:
 ### Get Help
 
 - 💬 [Join our Discord](https://discord.gg/9qn4enV) - Active community for questions and discussions
-- 📖 [Read the Docs](https://enotspe.github.io/flasi/) - Comprehensive guides
-- 🐛 [Report Issues](https://github.com/enotspe/flasi/issues) - Bug reports and feature requests
+- 📖 [Read the Docs](https://dr4gon123.github.io/flasi/) - Comprehensive guides
+- 🐛 [Report Issues](https://github.com/dr4gon123/flasi/issues) - Bug reports and feature requests
 
 ### Support the Project
 
 You're already saving thousands on SIEM costs. Consider giving back:
 
 - 💰 [Donate via PayPal](https://www.paypal.com/paypalme/fortidragon) - Support development
-- ⭐ [Star this repo](https://github.com/enotspe/flasi/stargazers) - Show your support
+- ⭐ [Star this repo](https://github.com/dr4gon123/flasi/stargazers) - Show your support
 - 📢 Share with colleagues - Spread the word
-- 🤝 [Contribute](https://enotspe.github.io/flasi/engage/#areas-for-contribution) - Code, docs, datasets
+- 🤝 [Contribute](https://dr4gon123.github.io/flasi/engage/#areas-for-contribution) - Code, docs, datasets
 
 ## 🗺️ Supported Platforms
 
@@ -147,6 +147,6 @@ Apache-2.0 license - See [LICENSE](LICENSE) for details
 
 ## 👥 Authors
 
-- Logstash pipelines, Elasticsearch config: [@hoat23](https://github.com/hoat23) & [@enotspe](https://github.com/enotspe)
-- Datasets, Kibana/Grafana dashboards, Vector pipelines, Victoria Logs: [@enotspe](https://github.com/enotspe)
-- Current maintenance and development: [@enotspe](https://github.com/enotspe)
+- Logstash pipelines, Elasticsearch config: [@hoat23](https://github.com/hoat23) & [@dr4gon123](https://github.com/dr4gon123)
+- Datasets, Kibana/Grafana dashboards, Vector pipelines, Victoria Logs: [@dr4gon123](https://github.com/dr4gon123)
+- Current maintenance and development: [@dr4gon123](https://github.com/dr4gon123)
