@@ -2,7 +2,7 @@
 
 ## Community and Support
 
-Join our community on [Discord](https://discord.gg/9qn4enV) 🤓.
+Join our community on [Discord](https://discord.gg/phKD42uFUH) 🤓.
 
 Feel free to ask about anything on the channel: support, questions, ideas, not only project related, but Fortinet, Palo Alto, networking, threat hunting, etc.
 
@@ -39,12 +39,14 @@ If you find a bug or have a feature request:
 ## Code Contributions
 
 1. Fork the repository
+
    ```bash
    git clone https://github.com/dr4gon123/flasi.git
    cd flasi
    ```
 
 2. Create a feature branch
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -57,5 +59,3 @@ If you find a bug or have a feature request:
     - Provide a clear description of your changes
     - Reference any related issues
     - Include screenshots for UI changes
-
-

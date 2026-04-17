@@ -10,7 +10,7 @@
     <a href="https://dr4gon123.github.io/flasi/roadmap/">🛣️ Roadmap</a>
   </h3>
   
-  [![Discord](https://img.shields.io/discord/753104553846505552?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/9qn4enV)
+  [![Discord](https://img.shields.io/discord/753104553846505552?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/phKD42uFUH)
   [![GitHub stars](https://img.shields.io/github/stars/dr4gon123/flasi?style=social)](https://github.com/dr4gon123/flasi/stargazers)
   [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
   
@@ -102,7 +102,7 @@ All detailed documentation has moved to our dedicated documentation site:
 
 ### Get Help
 
-- 💬 [Join our Discord](https://discord.gg/9qn4enV) - Active community for questions and discussions
+- 💬 [Join our Discord](https://discord.gg/phKD42uFUH) - Active community for questions and discussions
 - 📖 [Read the Docs](https://dr4gon123.github.io/flasi/) - Comprehensive guides
 - 🐛 [Report Issues](https://github.com/dr4gon123/flasi/issues) - Bug reports and feature requests
 
