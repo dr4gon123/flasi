@@ -36,7 +36,7 @@ sources:
 transforms:
   remap_pan:
     type: "remap"
-    inputs: ["syslog_panos"]
+    inputs: [ "syslog_panos" ]
     source: |
       # Rename syslog fields from "."
       .log.syslog.facility.name = del(.facility)
@@ -132,6 +132,8 @@ transforms:
 
       # source
       .source.ip = .panos.src
+      .source.address = [.panos.src , .panos.srcipv6 , .panos.ip]
+      .source.domain = .panos.src_host
       .source.port = to_int( string(.panos.sport) ?? "nonum" ) ?? null
       .source.mac = .panos.src_mac
       .source.nat.ip = .panos.natsrc
@@ -140,6 +142,14 @@ transforms:
       .source.user.group.name = .panos.dynusergroup_name
       .source.bytes = to_int( string(.panos.bytes_sent) ?? "nonum" ) ?? null
       .source.packets = to_int( string(.panos.pkts_sent) ?? "nonum" ) ?? null
+      .source.geo.country_name = .panos.srcloc
+      .source.geo.region_name = .panos.srcregion
+
+      # For Auth/UserID logs, source.ip comes from 'ip' field (not 'src')
+      #if is_null(.source.ip) {
+      #  .source.ip = .panos.ip ?? .panos.srcipv6
+      #}
+
 
       # Function to classify an IP address based on its type (IPv4 & IPv6)
       if ip_cidr_contains(["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "fc00::/7"], .source.ip) ?? false {
@@ -174,6 +184,8 @@ transforms:
 
       # destination
       .destination.ip = .panos.dst
+      .destination.address = .panos.dst
+      .destination.domain = .panos.dst_host
       .destination.port = to_int( string(.panos.dport) ?? "nonum" ) ?? null
       .destination.mac = .panos.dst_mac
       .destination.nat.ip = .panos.natdst
@@ -181,6 +193,7 @@ transforms:
       .destination.user.name = .panos.dstuser
       .destination.bytes = to_int( string(.panos.bytes_received) ?? "nonum" ) ?? null
       .destination.packets = to_int( string(.panos.pkts_received) ?? "nonum" ) ?? null
+      .destination.geo.country_name = .panos.dstloc
 
       # Function to classify an IP address based on its type (IPv4 & IPv6)
       if ip_cidr_contains(["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "fc00::/7"], .destination.ip) ?? false {
@@ -215,12 +228,16 @@ transforms:
 
       # PanOS duration is on seconds, and ECS specifies it should be on nanoseconds
       .event.duration = to_int(string(.panos.elapsed)?? "nonum") * 1000000000  ?? null
+      .event.created = .panos.receive_time
+      .event.start = .panos.start
 
       # observer
       .observer.egress.interface.name = .panos.outbound_if
       .observer.ingress.interface.name = .panos.inbound_if
       .observer.egress.zone.name = .panos.to
       .observer.ingress.zone.name = .panos.from
+      .observer.serial_number = .panos.serial
+      .observer.name = .panos.device_name
 
       # network
       .network.bytes = to_int( string(.panos.bytes) ?? "nonum" ) ?? null
@@ -228,6 +245,9 @@ transforms:
       .network.application = .panos.app
       .network.transport = to_string(.panos.proto) ?? null
       .network.transport_port = to_string(.network.transport)  + "/" + to_string(.destination.port)
+
+      # network.forwarded_ip (XFF proxy header)
+      .network.forwarded_ip = .panos.xff_ip
 
       .panos.characteristic_of_app = split(.panos.characteristic_of_app, ",") ?? [null]
 
@@ -268,8 +288,6 @@ transforms:
         .network.direction = "unknown"
       }
 
-
-
       # rule
       #.rule.id = .panos.policy_id
       .rule.name = .panos.rule
@@ -293,11 +311,54 @@ transforms:
         .file.name = .panos.misc
       } else if panos_values_array[3] == "url" {
         .url.original = .panos.misc
+        _parsed_url = parse_url(string(.url.original) ?? "") ?? {}
+        .url.domain = _parsed_url.host
+        .url.scheme = _parsed_url.scheme
+        .url.path = _parsed_url.path
+        .url.query = _parsed_url.query
       } 
 
       # file
       .file.type = .panos.filetype
       .file.hash.sha256 = .panos.filedigest
+
+      # email (Threat/Data Filtering logs)
+      .email.from.address = .panos.sender
+      .email.to.address = .panos.recipient
+      .email.subject = .panos.subject
+
+      # TLS (Decryption logs)
+      .tls.version = .panos.tls_version
+      .tls.cipher = .panos.tls_enc
+      .tls.client.server_name = .panos.sni
+      .tls.server.x509.subject.common_name = .panos.cn
+      .tls.server.x509.issuer.common_name = .panos.issuer_cn
+      .tls.server.x509.serial_number = .panos.cert_serial
+      .tls.server.x509.not_before = .panos.notbefore
+      .tls.server.x509.not_after = .panos.notafter
+
+      # host (GlobalProtect/HIP Match)
+      .host.hostname = .panos.machinename
+      .host.os.name = .panos.client_os ?? .panos.os
+      .host.os.version = .panos.client_os_ver
+
+      # user (Authentication/UserID logs)
+      .user.name = .panos.user
+
+      # error (GlobalProtect/Decryption logs)
+      .error.message = .panos.error
+      .error.code = .panos.error_code
+
+      # container/orchestration (K8s deployments)
+      .container.id = .panos.container_id
+      .orchestrator.resource.name = .panos.pod_name
+      .orchestrator.namespace = .panos.pod_namespace
+
+      # related.*
+      .related.ip = [.panos.src, .panos.dst, .panos.natsrc, .panos.natdst, .panos.xff_ip, .panos.srcipv6, .panos.ip]
+      .related.user = [.panos.srcuser, .panos.dstuser, .panos.user]
+      .related.hash = [.panos.filedigest]
+      .related.hosts = [.panos.src_host, .panos.dst_host, .panos.machinename]
 
       # delete null fields
       . = compact(.)
