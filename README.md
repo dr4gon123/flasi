@@ -1,7 +1,7 @@
 <div align="center">
   <img src="docs/assets/logos/logo_with_name_small.jpg" alt="FLASI Logo" />
 
-  <h1>FLASI</h1>
+  <h1>FLASI — Firewall Log Analytics for Security Insights</h1>
   <h2><strong>The Best Analytics Platform for Firewall Logs</strong></h2>
 
   <h3>
