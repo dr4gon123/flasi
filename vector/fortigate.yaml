@@ -36,7 +36,7 @@ sources:
 transforms:
   remap_kv:
     type: "remap"
-    inputs: ["syslog_fortigate"]
+    inputs: [ "syslog_fortigate" ]
     source: |
       # Rename syslog fields from "."
       .log.syslog.facility.name = del(.facility)
@@ -70,17 +70,17 @@ transforms:
     type: exclusive_route
     routes:
       - name: "traffic"
-        condition: '.fgt.type == "traffic"'
+        condition: ".fgt.type == \"traffic\""
       - name: "utm"
-        condition: '.fgt.type == "utm"'
+        condition: ".fgt.type == \"utm\""
       - name: "event"
-        condition: '.fgt.type == "event"'
+        condition: ".fgt.type == \"event\""
 
   remap_traffic:
     type: "remap"
-    inputs: ["route.traffic"]
+    inputs: [ "route.traffic" ]
     source: |
-
+      
       # Populate ECS fields
       # event
       .event.timezone = .fgt.tz
@@ -282,9 +282,9 @@ transforms:
 
   remap_utm:
     type: "remap"
-    inputs: ["route.utm"]
+    inputs: [ "route.utm" ]
     source: |
-
+      
       # Populate ECS fields
       # event
       .event.timezone = .fgt.tz
@@ -416,7 +416,7 @@ transforms:
       .network.community_id = community_id(source_ip: .source.ip, destination_ip: .destination.ip, source_port: .source.port, destination_port: .destination.port, protocol: .network.iana_number) ??  null
 
       ## network.direction
-      if ip_cidr_contains($INTERNAL_NETWORKS , .source.ip) ?? false {
+      if ip_cidr_contains(${INTERNAL_NETWORKS:-["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","fc00::/7"]} , .source.ip) ?? false {
           .source.isInternal = true
       } else if includes(["private", "loopback", "link_local", "multicast", "carrier_nat"], .source.ip_type) {
          .source.isInternal = true    
@@ -424,7 +424,7 @@ transforms:
           .source.isInternal = false
       }
 
-      if ip_cidr_contains($INTERNAL_NETWORKS , .destination.ip) ?? false {
+      if ip_cidr_contains(${INTERNAL_NETWORKS:-["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","fc00::/7"]} , .destination.ip) ?? false {
           .destination.isInternal = true
       } else if includes(["private", "loopback", "link_local", "multicast", "carrier_nat"], .destination.ip_type) {
           .destination.isInternal = true
@@ -496,9 +496,9 @@ transforms:
 
   remap_event:
     type: "remap"
-    inputs: ["route.event"]
+    inputs: [ "route.event" ]
     source: |
-
+      
       # Populate ECS fields
       # event
       .event.timezone = .fgt.tz
