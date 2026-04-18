@@ -32,6 +32,7 @@ jobs:
           bash -c "$(curl -L https://setup.vector.dev)"
           sudo apt-get install -y vector
           sudo chmod 777 /var/lib/vector
+          sudo cp vector/iana_number.csv /etc/vector/iana_number.csv
           vector --version
 
       - name: Validate configs
