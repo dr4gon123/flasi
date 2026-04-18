@@ -258,7 +258,7 @@ transforms:
       .network.community_id = community_id(source_ip: .source.ip, destination_ip: .destination.ip, source_port: .source.port, destination_port: .destination.port, protocol: .network.iana_number) ??  null
 
       ## network.direction
-      if ip_cidr_contains($INTERNAL_NETWORKS , .source.ip) ?? false {
+      if ip_cidr_contains(${INTERNAL_NETWORKS:-["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","fc00::/7"]} , .source.ip) ?? false {
           .source.isInternal = true
       } else if includes(["private", "loopback", "link_local", "multicast", "carrier_nat"], .source.ip_type) {
          .source.isInternal = true
@@ -266,7 +266,7 @@ transforms:
           .source.isInternal = false
       }
 
-      if ip_cidr_contains($INTERNAL_NETWORKS , .destination.ip) ?? false {
+      if ip_cidr_contains(${INTERNAL_NETWORKS:-["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","fc00::/7"]} , .destination.ip) ?? false {
           .destination.isInternal = true
       } else if includes(["private", "loopback", "link_local", "multicast", "carrier_nat"], .destination.ip_type) {
           .destination.isInternal = true
@@ -379,7 +379,6 @@ sinks:
       - remap_pan
     type: elasticsearch
     endpoints:
-      #- http://${VICTORIA_LOGS_HOSTNAME:-localhost}:${VICTORIA_LOGS_PORT:-9428}/insert/elasticsearch/
       - ${VICTORIA_LOGS_ENDPOINT:-http://localhost:9428}/insert/elasticsearch/
     api_version: v8
     compression: gzip
@@ -412,7 +411,6 @@ sinks:
       user: "${ELASTICSEARCH_USER:-elastic}"
       password: "${ELASTICSEARCH_PASS:-myelasticsearchpassword}"
     endpoints:
-      #- https://${ELASTICSEARCH_HOSTNAME:-localhost}:${ELASTICSEARCH_PORT:-9200}
       - ${ELASTICSEARCH_ENDPOINT:-https://localhost:9200}
     encoding:
       except_fields:
@@ -443,14 +441,12 @@ sinks:
 #      codec: "json"
 #    framing:
 #      method: "newline_delimited"
-##    uri: "http://${QUICKWIT_HOSTNAME:-localhost}:${QUICKWIT_PORT:-7280}/api/v1/logs-panos.{{panos.type}}/ingest"
 #    uri: "${QUICKWIT_ENDPOINT:-http://localhost:7280}/api/v1/logs-panos.{{panos.type}}/ingest"
 
 #  loki_panos:
 #    type: loki
 #    inputs:
 #      - remap_pan
-#    endpoint: https://${LOKI_HOSTNAME:-localhost}:${LOKI_PORT:-3100}
 #    endpoint: ${LOKI_endpoint:-https://localhost:3100}
 #    auth:
 #      strategy: "basic"
