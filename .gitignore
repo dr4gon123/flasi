@@ -3,4 +3,4 @@ site/
 .cache/
 CLAUDE.md
 ELK/ecs
-ELK/.env
+ELK/.env.worktrees/
