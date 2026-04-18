@@ -1,0 +1,60 @@
+name: Validate Vector Configs
+
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'File to validate (e.g. vector/panos.yaml). Leave empty to validate all.'
+        required: false
+        default: ''
+  push:
+    paths:
+      - 'vector/**.yaml'
+  pull_request:
+    paths:
+      - 'vector/**.yaml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get changed Vector YAML files
+        id: changed-files
+        if: github.event_name != 'workflow_dispatch'
+        uses: tj-actions/changed-files@v46
+        with:
+          files: 'vector/*.yaml'
+
+      - name: Install Vector
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.vector.dev | bash -s -- -y
+
+      - name: Validate configs
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ -n "${{ github.event.inputs.file }}" ]; then
+              files="${{ github.event.inputs.file }}"
+            else
+              files=$(ls vector/*.yaml)
+            fi
+          else
+            files="${{ steps.changed-files.outputs.all_changed_files }}"
+          fi
+
+          if [ -z "$files" ]; then
+            echo "No files to validate."
+            exit 0
+          fi
+
+          failed=0
+          for file in $files; do
+            echo "==> Validating $file"
+            if vector validate "$file"; then
+              echo "    PASS: $file"
+            else
+              echo "    FAIL: $file"
+              failed=1
+            fi
+          done
+          exit $failed
