@@ -34,7 +34,7 @@ sources:
 #      Keyword: "string"
 
 transforms:
-  remap_pan:
+  remap_panos:
     type: "remap"
     inputs: [ "syslog_panos" ]
     source: |
@@ -367,7 +367,7 @@ transforms:
 sinks:
   #  print:
   #   type: "console"
-  #   inputs: ["remap_pan"]
+  #   inputs: ["remap_panos"]
   #   encoding:
   #        #      codec: "raw_message"
   #     codec: "json"
@@ -376,7 +376,7 @@ sinks:
 
   vlogs_panos:
     inputs:
-      - remap_pan
+      - remap_panos
     type: elasticsearch
     endpoints:
       - ${VICTORIA_LOGS_ENDPOINT:-http://localhost:9428}/insert/elasticsearch/
@@ -405,7 +405,7 @@ sinks:
   elastic_panos:
     type: elasticsearch
     inputs:
-      - remap_pan
+      - remap_panos
     auth:
       strategy: "basic"
       user: "${ELASTICSEARCH_USER:-elastic}"
@@ -436,7 +436,7 @@ sinks:
 #    type: "http"
 #    method: "post"
 #    inputs:
-#      - remap_pan
+#      - remap_panos
 #    encoding:
 #      codec: "json"
 #    framing:
@@ -446,7 +446,7 @@ sinks:
 #  loki_panos:
 #    type: loki
 #    inputs:
-#      - remap_pan
+#      - remap_panos
 #    endpoint: ${LOKI_endpoint:-https://localhost:3100}
 #    auth:
 #      strategy: "basic"

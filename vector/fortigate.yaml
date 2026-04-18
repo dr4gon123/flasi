@@ -34,7 +34,7 @@ sources:
 #      Keyword: "string"
 
 transforms:
-  remap_kv:
+  remap_kv_fortigate:
     type: "remap"
     inputs: [ "syslog_fortigate" ]
     source: |
@@ -64,9 +64,9 @@ transforms:
       .fgt = parse_logfmt(.message) ?? {}
       #del(.message)
 
-  route:
+  route_fortigate:
     inputs:
-      - remap_kv
+      - remap_kv_fortigate
     type: exclusive_route
     routes:
       - name: "traffic"
@@ -76,9 +76,9 @@ transforms:
       - name: "event"
         condition: ".fgt.type == \"event\""
 
-  remap_traffic:
+  remap_fortigate_traffic:
     type: "remap"
-    inputs: [ "route.traffic" ]
+    inputs: [ "route_fortigate.traffic" ]
     source: |
       
       # Populate ECS fields
@@ -280,9 +280,9 @@ transforms:
       # delete null fields
       . = compact(.)
 
-  remap_utm:
+  remap_fortigate_utm:
     type: "remap"
-    inputs: [ "route.utm" ]
+    inputs: [ "route_fortigate.utm" ]
     source: |
       
       # Populate ECS fields
@@ -494,9 +494,9 @@ transforms:
       # delete null fields
       . = compact(.)
 
-  remap_event:
+  remap_fortigate_event:
     type: "remap"
-    inputs: [ "route.event" ]
+    inputs: [ "route_fortigate.event" ]
     source: |
       
       # Populate ECS fields
@@ -542,7 +542,7 @@ transforms:
 sinks:
   #  print:
   #   type: "console"
-  #   inputs: ["route._unmatched"]
+  #   inputs: ["route_fortigate._unmatched"]
   #   encoding:
   #        #      codec: "raw_message"
   #     codec: "json"
@@ -551,7 +551,7 @@ sinks:
 
   vlogs_fortigate_traffic:
     inputs:
-      - remap_traffic
+      - remap_fortigate_traffic
     type: elasticsearch
     endpoints:
       - ${VICTORIA_LOGS_ENDPOINT:-http://localhost:9428}/insert/elasticsearch/
@@ -579,10 +579,10 @@ sinks:
 
   vlogs_fortigate:
     inputs:
-      #- remap_traffic
-      - remap_utm
-      - remap_event
-      - route._unmatched
+      #- remap_fortigate_traffic
+      - remap_fortigate_utm
+      - remap_fortigate_event
+      - route_fortigate._unmatched
     type: elasticsearch
     endpoints:
       - ${VICTORIA_LOGS_ENDPOINT:-http://localhost:9428}/insert/elasticsearch/
@@ -611,9 +611,9 @@ sinks:
 #  elastic_fortigate:
 #    type: elasticsearch
 #    inputs:
-#      - remap_traffic
-#      - remap_utm
-#      - remap_event
+#      - remap_fortigate_traffic
+#      - remap_fortigate_utm
+#      - remap_fortigate_event
 #    auth:
 #      strategy: "basic"
 #      user: "${ELASTICSEARCH_USER:-elastic}"
@@ -644,9 +644,9 @@ sinks:
 #    type: "http"
 #    method: "post"
 #    inputs:
-#      - remap_traffic
-#      - remap_utm
-#      - remap_event
+#      - remap_fortigate_traffic
+#      - remap_fortigate_utm
+#      - remap_fortigate_event
 #    encoding:
 #      codec: "json"
 #    framing:
@@ -656,10 +656,10 @@ sinks:
 #  loki_fortigate:
 #    type: loki
 #    inputs:
-#      - remap_traffic
-#      - remap_utm
-#      - remap_event
-#      - route._unmatched
+#      - remap_fortigate_traffic
+#      - remap_fortigate_utm
+#      - remap_fortigate_event
+#      - route_fortigate._unmatched
 #    endpoint: ${LOKI_ENDPOINT:-http://localhost:3100}
 #    auth:
 #      strategy: "basic"
