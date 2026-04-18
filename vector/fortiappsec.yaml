@@ -18,21 +18,17 @@
 # Random Syslog-formatted logs
 sources:
 
-  syslog_fortiweb:
+  syslog_fortiappsec:
     type: "syslog"
     address: 0.0.0.0:${FORTIAPPSEC_SYSLOG_UDP_PORT:-6160}
     mode: "udp"
-    #type: "socket"
-    #address: 0.0.0.0:${FORTIWEB_SYSLOG_UDP_PORT:-6160}
-    #mode: "udp"
-
 
 transforms:
 
-  remap_fortiweb:
+  remap_fortiappsec:
     type: "remap"
-    inputs: ["syslog_fortiweb" ]
-    source: | 
+    inputs: [ "syslog_fortiappsec" ]
+    source: |
       # Rename syslog fields from "."
       .log.syslog.facility.name = del(.facility)
       .log.source.address = del(.source_ip)
@@ -43,12 +39,12 @@ transforms:
       .log.logger = del(.source_type)
       .log.syslog.procid = del(.procid)
       .log.syslog.appname = del(.appname)
-      
+
       # For Elasticsearch
       #.@timestamp = del(.timestamp) # not necessary https://vector.dev/docs/reference/configuration/sinks/elasticsearch/#mode
-     
-      #.log.syslog.appname = "fortiweb"
-      .observer.product = "FortiWeb"
+
+      #.log.syslog.appname = "fortiappsec"
+      .observer.product = "FortiAppSec"
       .observer.type = "waf"
       .observer.vendor = "Fortinet"
       .observer.hostname = .log.syslog.hostname
@@ -86,23 +82,23 @@ transforms:
       .event.code = .fwb.log_id
 
       .user_agent |= parse_user_agent(.user_agent.original) ?? {}
-     
+
       # delete null fields
       . = compact(.)
 
 sinks:
-#  print:
-#   type: "console"
-#   inputs: ["remap_fortiweb"]
-#   encoding:
-#        #      codec: "raw_message"
-#     codec: "json"
-#     json:
-#        pretty: true
- 
-  vlogs_fortiweb:
+  #  print:
+  #   type: "console"
+  #   inputs: ["remap_fortiappsec"]
+  #   encoding:
+  #        #      codec: "raw_message"
+  #     codec: "json"
+  #     json:
+  #        pretty: true
+
+  vlogs_fortiappsec:
     inputs:
-      - remap_fortiweb
+      - remap_fortiappsec
     type: elasticsearch
     endpoints:
       - ${VICTORIA_LOGS_ENDPOINT:-http://localhost:9428}/insert/elasticsearch/
@@ -118,6 +114,7 @@ sinks:
       headers:
         AccountID: "0"
         ProjectID: "0"
+
 #    ### For performance optimization. Vector works really well with defaults. Don't use it unless you really need to fine-tune yor ingest. 
 #    buffer:
 #    - type: memory
@@ -128,7 +125,7 @@ sinks:
 #      max_events: 1600 # default 1000
 #      timeout_secs: 5 # default 1
 
-#  elastic_fortiweb:
+#  elastic_fortiappsec:
 #    type: elasticsearch
 #    inputs:
 #      - remap_fortimail
@@ -146,7 +143,7 @@ sinks:
 #      action: "create"
 #    data_stream:
 #      type: "logs"
-#      dataset: "fortinet.fortiweb}"
+#      dataset: "fortinet.fortiappsec}"
 #      namespace: "default"
 #    ### For performance optimization. Vector works really well with defaults. Don't use it unless you really need to fine-tune yor ingest.
 #    buffer:
@@ -158,7 +155,7 @@ sinks:
 #      max_events: 1600 # default 1000
 #      timeout_secs: 5 # default 1
 
-#  quickwit_fortiweb:
+#  quickwit_fortiappsec:
 #    type: "http"
 #    method: "post"
 #    inputs:
@@ -167,9 +164,9 @@ sinks:
 #      codec: "json"
 #    framing:
 #      method: "newline_delimited"
-#    uri: "${QUICKWIT_ENDPOINT:-http://localhost:7280}/api/v1/logs-fortiweb/ingest"
+#    uri: "${QUICKWIT_ENDPOINT:-http://localhost:7280}/api/v1/logs-fortiappsec/ingest"
 
-#  loki_fortiweb:
+#  loki_fortiappsec:
 #    type: loki
 #    inputs:
 #      - remap_fortimail
@@ -197,4 +194,3 @@ sinks:
 #      #max_bytes:
 #      max_events: 1600 # default 1000
 #      timeout_secs: 5 # default 1
-
