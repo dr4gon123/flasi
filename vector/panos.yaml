@@ -339,7 +339,7 @@ transforms:
 
       # host (GlobalProtect/HIP Match)
       .host.hostname = .panos.machinename
-      .host.os.name = .panos.client_os ?? .panos.os
+      .host.os.name = [.panos.client_os , .panos.os ]
       .host.os.version = .panos.client_os_ver
 
       # user (Authentication/UserID logs)
