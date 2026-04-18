@@ -31,11 +31,10 @@ jobs:
         run: |
           bash -c "$(curl -L https://setup.vector.dev)"
           sudo apt-get install -y vector
+          sudo chmod 777 /var/lib/vector
           vector --version
 
       - name: Validate configs
-        env:
-          VECTOR_DATA_DIR: /tmp/vector-validate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             if [ -n "${{ github.event.inputs.file }}" ]; then
