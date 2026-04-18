@@ -34,6 +34,8 @@ jobs:
           vector --version
 
       - name: Validate configs
+        env:
+          VECTOR_DATA_DIR: /tmp/vector-validate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             if [ -n "${{ github.event.inputs.file }}" ]; then
@@ -52,6 +54,13 @@ jobs:
 
           failed=0
           for file in $files; do
+            # Skip partial configs that are not standalone pipelines
+            case "$file" in
+              vector/vector.yaml|vector/iana.yaml)
+                echo "    SKIP: $file (partial config, no sources)"
+                continue
+                ;;
+            esac
             echo "==> Validating $file"
             if vector validate "$file"; then
               echo "    PASS: $file"
