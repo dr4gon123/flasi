@@ -15,7 +15,7 @@ labels:
   "panos_device_name": "{{.panos.device_name}}"
   "panos_virtual_system": "{{.panos.virtual_system}}"
   "panos_type": "{{.panos.type}}"
-  #"panos_threat/content_type": "{{.panos.threat/content_type}}"  # invalid field path
+  "panos_subtype": "{{panos.subtype}}"
   #"network_direction": "{{.network.direction}}"
 #structured_metadata:
 # "source_ip": "{{source.ip}}"
