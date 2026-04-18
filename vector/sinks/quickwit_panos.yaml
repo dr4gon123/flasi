@@ -1,0 +1,9 @@
+type: "http"
+method: "post"
+inputs:
+  - remap_panos
+encoding:
+  codec: "json"
+framing:
+  method: "newline_delimited"
+uri: "${QUICKWIT_ENDPOINT:-http://localhost:7280}/api/v1/logs-panos.{{panos.type}}/ingest"
