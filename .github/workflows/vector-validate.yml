@@ -29,10 +29,8 @@ jobs:
 
       - name: Install Vector
         run: |
-          curl -fsSL https://apt.vector.dev/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/vector-archive-keyring.gpg
-          echo "deb [signed-by=/usr/share/keyrings/vector-archive-keyring.gpg] https://apt.vector.dev stable vector-0" \
-            | sudo tee /etc/apt/sources.list.d/vector.list
-          sudo apt-get update && sudo apt-get install -y vector
+          bash -c "$(curl -L https://setup.vector.dev)"
+          sudo apt-get install -y vector
           vector --version
 
       - name: Validate configs
