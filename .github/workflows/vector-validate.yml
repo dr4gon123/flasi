@@ -32,19 +32,21 @@ jobs:
           bash -c "$(curl -L https://setup.vector.dev)"
           sudo apt-get install -y vector
           sudo chmod 777 /var/lib/vector
-          sudo cp vector/iana_number.csv /etc/vector/iana_number.csv
           vector --version
 
       - name: Validate configs
+        working-directory: vector
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             if [ -n "${{ github.event.inputs.file }}" ]; then
-              files="${{ github.event.inputs.file }}"
+              # Strip optional vector/ prefix so the user can type either form
+              files=$(echo "${{ github.event.inputs.file }}" | sed 's|vector/||g')
             else
-              files=$(ls vector/*.yaml)
+              files=$(ls *.yaml)
             fi
           else
-            files="${{ steps.changed-files.outputs.all_changed_files }}"
+            # changed-files returns paths like vector/foo.yaml — strip the prefix
+            files=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | tr ' ' '\n' | sed 's|vector/||g' | tr '\n' ' ')
           fi
 
           if [ -z "$files" ]; then
@@ -56,15 +58,15 @@ jobs:
           for file in $files; do
             # Skip partial configs that are not standalone pipelines
             case "$file" in
-              vector/vector.yaml|vector/iana.yaml)
+              vector.yaml|iana.yaml)
                 echo "    SKIP: $file (partial config, no sources)"
                 continue
                 ;;
             esac
             # Files that reference the iana enrichment table must include iana.yaml
             case "$file" in
-              vector/fortigate.yaml|vector/panos.yaml)
-                extra="vector/iana.yaml"
+              fortigate.yaml|panos.yaml)
+                extra="iana.yaml"
                 ;;
               *)
                 extra=""

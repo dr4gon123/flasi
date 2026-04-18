@@ -19,7 +19,7 @@ enrichment_tables:
   iana_number:
     type: "file"
     file:
-      path: "/etc/vector/iana_number.csv"
+      path: "iana_number.csv"
       encoding:
         type: "csv"
     schema:
