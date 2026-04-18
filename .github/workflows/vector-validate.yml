@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       file:
-        description: 'File to validate (e.g. vector/panos.yaml). Leave empty to validate all.'
+        description: 'File to validate (e.g. vector/panos.yaml or vector/sinks/vlogs_panos.yaml). Leave empty to validate all. Sink files are mapped to their parent pipeline.'
         required: false
         default: ''
   push:
@@ -25,7 +25,7 @@ jobs:
         if: github.event_name != 'workflow_dispatch'
         uses: tj-actions/changed-files@v46
         with:
-          files: 'vector/*.yaml'
+          files: 'vector/**/*.yaml'
 
       - name: Install Vector
         run: |
@@ -45,7 +45,7 @@ jobs:
               files=$(ls *.yaml)
             fi
           else
-            # changed-files returns paths like vector/foo.yaml — strip the prefix
+            # changed-files returns paths like vector/foo.yaml or vector/sinks/bar.yaml — strip the vector/ prefix
             files=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | tr ' ' '\n' | sed 's|vector/||g' | tr '\n' ' ')
           fi
 
@@ -53,6 +53,23 @@ jobs:
             echo "No files to validate."
             exit 0
           fi
+
+          # Normalize: sink files (sinks/*_PIPELINE.yaml) map to their parent pipeline yaml.
+          # e.g. sinks/vlogs_panos.yaml → panos.yaml
+          normalized=""
+          for file in $files; do
+            case "$file" in
+              sinks/*)
+                pipeline=$(basename "$file" .yaml | sed 's/.*_//')
+                normalized="$normalized ${pipeline}.yaml"
+                ;;
+              *)
+                normalized="$normalized $file"
+                ;;
+            esac
+          done
+          # Deduplicate
+          files=$(echo "$normalized" | tr ' ' '\n' | sort -u | tr '\n' ' ')
 
           failed=0
           for file in $files; do
@@ -63,6 +80,9 @@ jobs:
                 continue
                 ;;
             esac
+
+            pipeline=$(basename "$file" .yaml)
+
             # Files that reference the iana enrichment table must include iana.yaml
             case "$file" in
               fortigate.yaml|panos.yaml)
@@ -72,12 +92,30 @@ jobs:
                 extra=""
                 ;;
             esac
+
             echo "==> Validating $file"
-            if vector validate --skip-healthchecks "$file" $extra; then
-              echo "    PASS: $file"
+
+            # Pipelines with split sinks (sinks/*_PIPELINE.yaml) require --config-dir
+            if ls sinks/*_${pipeline}.yaml 1>/dev/null 2>&1; then
+              tmpdir=$(mktemp -d)
+              cp "$file" "$tmpdir/"
+              [ -n "$extra" ] && cp "$extra" "$tmpdir/"
+              mkdir "$tmpdir/sinks"
+              cp sinks/*_${pipeline}.yaml "$tmpdir/sinks/"
+              if vector validate --skip-healthchecks --config-dir "$tmpdir"; then
+                echo "    PASS: $file (with split sinks)"
+              else
+                echo "    FAIL: $file"
+                failed=1
+              fi
+              rm -rf "$tmpdir"
             else
-              echo "    FAIL: $file"
-              failed=1
+              if vector validate --skip-healthchecks "$file" $extra; then
+                echo "    PASS: $file"
+              else
+                echo "    FAIL: $file"
+                failed=1
+              fi
             fi
           done
           exit $failed
