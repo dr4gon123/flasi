@@ -60,8 +60,17 @@ jobs:
                 continue
                 ;;
             esac
+            # Files that reference the iana enrichment table must include iana.yaml
+            case "$file" in
+              vector/fortigate.yaml|vector/panos.yaml)
+                extra="vector/iana.yaml"
+                ;;
+              *)
+                extra=""
+                ;;
+            esac
             echo "==> Validating $file"
-            if vector validate "$file"; then
+            if vector validate "$file" $extra; then
               echo "    PASS: $file"
             else
               echo "    FAIL: $file"
