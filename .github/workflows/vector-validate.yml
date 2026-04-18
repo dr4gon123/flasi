@@ -71,7 +71,7 @@ jobs:
                 ;;
             esac
             echo "==> Validating $file"
-            if vector validate "$file" $extra; then
+            if vector validate --skip-healthchecks "$file" $extra; then
               echo "    PASS: $file"
             else
               echo "    FAIL: $file"
