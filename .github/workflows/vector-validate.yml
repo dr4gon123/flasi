@@ -55,12 +55,13 @@ jobs:
           fi
 
           # Normalize: sink files (sinks/*_PIPELINE.yaml) map to their parent pipeline yaml.
-          # e.g. sinks/vlogs_panos.yaml → panos.yaml
+          # Strip the sink-type prefix (vlogs_, elastic_, etc.), then take up to the first
+          # remaining underscore. Handles multi-word sinks like vlogs_fortigate_traffic → fortigate.
           normalized=""
           for file in $files; do
             case "$file" in
               sinks/*)
-                pipeline=$(basename "$file" .yaml | sed 's/.*_//')
+                pipeline=$(basename "$file" .yaml | sed 's/^vlogs_//;s/^elastic_//;s/^quickwit_//;s/^loki_//;s/^prometheus_//;s/_.*$//')
                 normalized="$normalized ${pipeline}.yaml"
                 ;;
               *)

@@ -1,0 +1,34 @@
+type: loki
+inputs:
+  - remap_fortigate_traffic
+  - remap_fortigate_utm
+  - remap_fortigate_event
+  - route_fortigate._unmatched
+endpoint: ${LOKI_ENDPOINT:-http://localhost:3100}
+auth:
+  strategy: "basic"
+  user: "${LOKI_USER:-loki_user}"
+  password: "${LOKI_PASS:-mylokipassword}"
+encoding:
+  codec: "json"
+compression: "snappy"
+labels:
+  "product": "{{observer.product}}"
+  "type": "{{observer.type}}"
+  "vendor": "{{observer.vendor}}"
+  "syslog_hostname": "{{log.syslog.hostname}}"
+  "fgt_vdom": "{{fgt.vd}}"
+  "fgt_type": "{{fgt.type}}"
+  "fgt_subtype": "{{fgt.subtype}}"
+  #"fgt_policytype": "{{fgt.policytype}}"
+  #"fgt_eventtype": "{{fgt.eventtype}}"
+  #"network_direction": "{{network.direction}}"
+### For performance optimization. Vector works really well with defaults. Don't use it unless you really need to fine-tune yor ingest.
+buffer:
+  - type: memory
+    max_events: 12800 # default 500 https://www.elastic.co/docs/reference/fleet/es-output-settings#es-output-settings-performance-tuning-settings
+    #when_full: drop_newest #default block
+batch:
+  #max_bytes:
+  max_events: 1600 # default 1000
+  timeout_secs: 5 # default 1
