@@ -1,0 +1,11 @@
+type: "http"
+method: "post"
+inputs:
+  - remap_fortigate_traffic
+  - remap_fortigate_utm
+  - remap_fortigate_event
+encoding:
+  codec: "json"
+framing:
+  method: "newline_delimited"
+uri: "${QUICKWIT_ENDPOINT:-http://localhost:7280}/api/v1/logs-fortinet.fortigate.{{fgt.type}}/ingest"
