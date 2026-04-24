@@ -337,8 +337,10 @@ transforms:
       .tls.server.x509.not_before = .panos.notbefore
       .tls.server.x509.not_after = .panos.notafter
 
-      # host (GlobalProtect/HIP Match)
-      .host.hostname = .panos.machinename
+      # host 
+      parse_groks!(.panos.host, ["%{IP:_ip}" , "%{HOSTNAME:_hostname}" ])
+      .host.hostname = [.panos.src_host,.panos.machinename, _hostname]
+      .host.ip = _ip
       .host.os.name = [.panos.client_os , .panos.os ]
       .host.os.version = .panos.client_os_ver
 
@@ -355,10 +357,10 @@ transforms:
       .orchestrator.namespace = .panos.pod_namespace
 
       # related.*
-      .related.ip = [.panos.src, .panos.dst, .panos.natsrc, .panos.natdst, .panos.xff_ip, .panos.srcipv6, .panos.ip]
+      .related.ip = [.panos.src, .panos.dst, .panos.natsrc, .panos.natdst, .panos.xff_ip, .panos.srcipv6, .panos.ip, _ip]
       .related.user = [.panos.srcuser, .panos.dstuser, .panos.user]
       .related.hash = [.panos.filedigest]
-      .related.hosts = [.panos.src_host, .panos.dst_host, .panos.machinename]
+      .related.hosts = [.panos.src_host, .panos.dst_host, .panos.machinename, _hostname]
 
       # delete null fields
       . = compact(.)

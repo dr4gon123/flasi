@@ -185,8 +185,12 @@ transforms:
       .observer.egress.interface.name = .fgt.dstintf
       .observer.ingress.interface.name = .fgt.srcintf
 
-      .observer.egress.zone.name = string(.fgt.dstzone) ?? null
-      .observer.ingress.zone.name = string(.fgt.srczone) ?? null
+      .observer.egress.zone = string(.fgt.dstzone) ?? null
+      .observer.ingress.zone = string(.fgt.srczone) ?? null
+
+      .observer.serial_number = .fgt.devid
+      .log.level = .fgt.level
+      .message = string(.fgt.msg) ?? null
 
       #network
       #.network.bytes = to_int( string(.source.bytes) ?? "nonum" ) + to_int( string(.destination.bytes) ?? "nonum" ) ?? null
@@ -235,6 +239,12 @@ transforms:
       } else {
         .network.direction = "unknown"
       }
+
+      # geo
+      .source.geo.country_name = .fgt.srccountry
+      .source.geo.city_name = .fgt.srccity
+      .destination.geo.country_name = .fgt.dstcountry
+      .destination.geo.city_name = .fgt.dstcity
 
       # url
       .url.original = .fgt.url
@@ -389,8 +399,22 @@ transforms:
       .observer.egress.interface.name = string(.fgt.dstintf) ??  string(.fgt.dst_int) ?? null #VoIP uses dst_int instead of dstintf
       .observer.ingress.interface.name = string(.fgt.srcintf) ??  string(.fgt.src_int) ?? null #VoIP uses src_int instead of srcintf
 
-      .observer.egress.zone.name = string(.fgt.dstzone) ?? null
-      .observer.ingress.zone.name = string(.fgt.srczone) ?? null
+      .observer.egress.zone = string(.fgt.dstzone) ?? null
+      .observer.ingress.zone = string(.fgt.srczone) ?? null
+
+      .observer.serial_number = .fgt.devid
+      .log.level = .fgt.level
+      .message = string(.fgt.msg) ?? null
+
+      # geo
+      .source.geo.country_name = .fgt.srccountry
+      .destination.geo.country_name = .fgt.dstcountry
+
+      # threat
+      .threat.indicator.name = [.fgt.attack, .fgt.virus]
+      .threat.indicator.id = [.fgt.attackid, .fgt.virusid]
+      .threat.indicator.ip = .fgt.botnetip
+      .threat.indicator.url.domain = .fgt.botnetdomain
 
       # related
       .related.ip = [.fgt.srcip,.fgt.dstip,.fgt.botnetip,.fgt.ipaddr,.fgt.locip,.fgt.remip,.fgt.trueclntip]
@@ -460,6 +484,17 @@ transforms:
         }
       }
 
+      # network
+      .network.forwarded_ip = .fgt.forwardedfor
+      .event.reference = .fgt.ref
+
+      # email
+      .email.from.address = .fgt.from
+      .email.to.address = [.fgt.to, .fgt.recipient]
+      .email.cc.address = .fgt.cc
+      .email.sender.address = .fgt.sender
+      .email.subject = .fgt.subject
+
       # session.id
       .session.id = string(.fgt.sessionid) ?? string(.fgt.session_id) ?? null # VoIP uses session_id instead of sessionid
 
@@ -506,12 +541,17 @@ transforms:
       # fortinet duration is on seconds, and ECS specifies it should be on nanoseconds
       .event.duration = to_int(string(.fgt.duration)?? "nonum") * 1000000000  ?? null
 
+      .observer.serial_number = .fgt.devid
+      .log.level = .fgt.level
+      .message = string(.fgt.msg) ?? null
+
       # source
       .source.address = .fgt.saddr
       .source.ip = .fgt.srcip
       .source.mac = .fgt.srcmac
       .source.bytes = .fgt.sentbyte
       .source.port = to_int( string(.fgt.srcport) ?? "nonum") ?? null
+      .source.geo.country_name = .fgt.srccountry
 
       # destination
       .destination.address = .fgt.daddr
@@ -534,6 +574,9 @@ transforms:
       # user_agent
       .user_agent.original = .fgt.agent
       .user_agent |= parse_user_agent(.user_agent.original) ?? {}
+
+      # vulnerability
+      .vulnerability.id = string(.fgt.cveid) ?? null
 
       # delete null fields
       . = compact(.)
