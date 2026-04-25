@@ -93,10 +93,8 @@ def discover_versions():
 
 
 def fetch_csv(version, log_type):
-    """Fetch a unique_fields CSV for the given version and log_type."""
-    version_suffix = version.replace(".", "_")
-    filename = f"unique_log_fields_data_types_{log_type}_{version_suffix}.csv"
-    url = f"{RAW_BASE}/{version}/unique_fields/{filename}"
+    """Fetch a fields CSV for the given version and log_type."""
+    url = f"{RAW_BASE}/{version}/fields/{log_type}_fields.csv"
     resp = requests.get(url, timeout=30)
     resp.raise_for_status()
     return pd.read_csv(io.StringIO(resp.text))
