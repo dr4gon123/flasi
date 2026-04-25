@@ -6,18 +6,73 @@ This page covers Vector configuration for FLASI, based on the existing vector do
 
 There are many ways for [installing Vector](https://vector.dev/docs/setup/installation/). Normally, for a Linux environment, you will [install it as a service](https://vector.dev/docs/setup/installation/package-managers/yum/), so you may need to some adjustments for Vector to load multiple config files from a directory.
 
-## Load multiple confif files
+## Load multiple config files
 
-We have split Vector config [files](https://github.com/dr4gon123/flasi/tree/main/vector) by plattaform, so FLASI Vector directory should look like:
+We have split Vector config [files](https://github.com/dr4gon123/flasi/tree/main/vector) by platform, with pipelines (sources + transforms) in `vector/` and sinks in `vector/sinks/`.
+
+### Enabling and disabling configs
+
+The entire configuration is controlled by file extensions:
+
+- **`.yaml`** — file is **active** and loaded by Vector
+- **`.yaml.disabled`** — file is **ignored** by Vector
+
+To enable a file, rename it to end in `.yaml`. To disable it, rename it to end in `.yaml.disabled`. No YAML editing required.
+
+This applies to every file in both `vector/` and `vector/sinks/`.
+
+### Example: FortiGate-only deployment
+
+If you only receive FortiGate logs, disable every pipeline and sink for other platforms:
+
+```bash
+# Disable other platform pipelines
+mv /etc/vector/panos.yaml             /etc/vector/panos.yaml.disabled
+mv /etc/vector/fortiedr.yaml          /etc/vector/fortiedr.yaml.disabled
+mv /etc/vector/fortimail.yaml         /etc/vector/fortimail.yaml.disabled
+mv /etc/vector/fortiweb.yaml          /etc/vector/fortiweb.yaml.disabled
+mv /etc/vector/fortiappsec.yaml       /etc/vector/fortiappsec.yaml.disabled
+mv /etc/vector/cortex.yaml            /etc/vector/cortex.yaml.disabled
+
+# Disable matching sinks
+mv /etc/vector/sinks/vlogs_panos.yaml /etc/vector/sinks/vlogs_panos.yaml.disabled
+# ... repeat for any other non-FortiGate sinks
+```
+
+### Monitoring files
+
+`vector.yaml` (enables the Vector API) and the `*_monitoring.yaml` files are optional — they are only needed if you want to monitor Vector's own performance metrics. All other pipelines work without them.
+
+### Full directory layout
 
 ```
 /etc/vector/
-├── panos.yaml
-├── fortigate.yaml
+├── vector.yaml               # Optional: enables Vector API
+├── vector_monitoring.yaml    # Optional: Vector self-monitoring
+├── victoria_monitoring.yaml  # Optional: Victoria Logs monitoring
+├── fortigate.yaml            # FortiGate pipeline (source + transforms)
 ├── fortiedr.yaml
-└── fortiweb.yaml
-...
-└── vector.yaml
+├── fortimail.yaml
+├── fortiweb.yaml
+├── fortiappsec.yaml
+├── panos.yaml
+├── cortex.yaml
+├── iana.yaml
+├── iana_number.csv
+└── sinks/
+    ├── vlogs_fortigate.yaml              # ✅ Victoria Logs (enabled by default)
+    ├── vlogs_fortigate_traffic.yaml      # ✅ Victoria Logs
+    ├── vlogs_panos.yaml                  # ✅ Victoria Logs
+    ├── vlogs_fortiedr.yaml               # ✅ Victoria Logs
+    ├── vlogs_fortimail.yaml              # ✅ Victoria Logs
+    ├── vlogs_fortiweb.yaml               # ✅ Victoria Logs
+    ├── vlogs_fortiappsec.yaml            # ✅ Victoria Logs
+    ├── vlogs_cortex.yaml                 # ✅ Victoria Logs
+    ├── elastic_fortigate.yaml.disabled   # ❌ Elasticsearch (disabled)
+    ├── elastic_panos.yaml.disabled       # ❌ Elasticsearch (disabled)
+    ├── loki_fortigate.yaml.disabled      # ❌ Loki (disabled)
+    ├── quickwit_fortigate.yaml.disabled  # ❌ Quickwit (disabled)
+    └── ...
 ```
 
 However, Vector only loads `vector.yaml` by [default](https://vector.dev/docs/reference/configuration/#location). We need to make some adjustments on the service so it will load all files on the folder.
@@ -112,55 +167,29 @@ INTERNAL_NETWORKS=["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","fc00::/7"]
 
 ## Sinks
 
-Vector can send logs to multiple [sinks](https://vector.dev/docs/reference/configuration/sinks/)
+Vector can send logs to multiple [sinks](https://vector.dev/docs/reference/configuration/sinks/). FLASI ships sink configs for all supported [storages](../../architecture.md/#storage) in `vector/sinks/`, one file per datasource per backend.
 
-Configuration files have set all supported [storages](../../architecture.md/#storage).
+!!! info "Default state"
+    ✅ [Victoria Logs](../storage/victoria.md) sinks are **enabled** by default (`vlogs_*.yaml`)
 
-!!! warning "Sinks"
-    Comment in the ones you will use
+    ❌ [Elasticsearch](../storage/elasticsearch.md), [Loki](https://grafana.com/oss/loki/), and [Quickwit](https://quickwit.io/) sinks are **disabled** by default (`*.yaml.disabled`)
 
-    Comment out the ones you will not use
+To switch backends, enable the sinks you need and disable the rest by renaming files:
 
-!!! warning "Sinks"
-    ✅ By default, [Victoria Logs](../storage/victoria.md) is enabled
+```bash
+# Enable Elasticsearch for FortiGate
+mv /etc/vector/sinks/elastic_fortigate.yaml.disabled \
+   /etc/vector/sinks/elastic_fortigate.yaml
 
-    ❌ By default, [Elasticsearch](../storage/elasticsearch.md) is disabled.
+# Disable Victoria Logs for FortiGate
+mv /etc/vector/sinks/vlogs_fortigate.yaml \
+   /etc/vector/sinks/vlogs_fortigate.yaml.disabled
 
-```yaml
-sinks:
-  vlogs_fortigate_traffic:
-    inputs:
-      - remap_traffic
-    type: elasticsearch
-    endpoints:
-      - ${VICTORIA_LOGS_ENDPOINT:-http://localhost:9428}/insert/elasticsearch/
-    ...
-
-  vlogs_fortigate:
-    inputs:
-      #- remap_traffic
-      - remap_utm
-      - remap_event
-      - route._unmatched
-    type: elasticsearch
-    endpoints:
-      - ${VICTORIA_LOGS_ENDPOINT:-http://localhost:9428}/insert/elasticsearch/
-    ...
-
-#  elastic_fortigate:
-#    type: elasticsearch
-#    inputs:
-#      - remap_traffic
-#      - remap_utm
-#      - remap_event
-#    auth:
-#      strategy: "basic"
-#      user: "${ELASTICSEARCH_USER:-elastic}"
-#      password: "${ELASTICSEARCH_PASS:-myelasticsearchpassword}"
-#    endpoints:
-#      - ${ELASTICSEARCH_ENDPOINT:-https://localhost:9200}
-#    ...
+mv /etc/vector/sinks/vlogs_fortigate_traffic.yaml \
+   /etc/vector/sinks/vlogs_fortigate_traffic.yaml.disabled
 ```
+
+You can also send to **multiple backends simultaneously** — just enable more than one sink for the same datasource.
 
 ## Vector Buffering
 
