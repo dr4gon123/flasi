@@ -1,51 +1,25 @@
 # Datasets
 
-FLASI includes comprehensive datasets and field mappings for various Fortinet products.
+Field schema analysis for Fortinet and Palo Alto log sources has been migrated to two dedicated repositories.
 
-## Available Datasets
+## [FLORES](https://github.com/dr4gon123/flores) — FortiGate Log Reference Scraper
 
-### FortiGate Logs
+FLORES extracts FortiGate log field documentation from Fortinet's official Log Message Reference and transforms it into structured CSV datasets. It covers all three log types (Traffic, Event, UTM) across FortiOS major versions (7.2, 7.4, 7.6) and produces:
 
-The FortiGate datasets include field mappings for:
+- **Per-LOGID CSVs** — raw field tables scraped directly from Fortinet docs
+- **Consolidated field CSVs** — aggregated across all minor versions per log type
+- **ECS mappings** — FortiGate fields mapped to Elastic Common Schema targets
+- **Changelogs and field matrices** — tracking schema evolution between minor versions
 
-- **Traffic Logs**: Network traffic analysis with source/destination information
-- **Event Logs**: System events and administrative actions
-- **UTM Logs**: Unified Threat Management logs including:
-  - Antivirus detection
-  - Intrusion Prevention System (IPS)
-  - Web filtering
-  - DNS filtering
-  - Application control
+FLASI's `ELK/elasticsearch_mappings.py` fetches the consolidated CSVs from this repo to generate Elasticsearch component templates.
 
-### Field Mapping
+## [PALOS](https://github.com/dr4gon123/palos) — PAN-OS Log Scraper
 
-All FortiGate fields are mapped to Elastic Common Schema (ECS) format for standardization:
+PALOS extracts Palo Alto Networks PAN-OS syslog field documentation from the official docs site and transforms it into structured CSV datasets. It covers 17 log types (Traffic, Threat, URL Filtering, Decryption, GlobalProtect, and more) for PAN-OS 11.1+ and produces:
 
-- Source and destination IP addresses
-- Port information
-- Protocol details
-- Timestamps
-- Action taken (allow/deny/block)
-- Threat information
+- **Format CSVs** — the raw comma-separated format string as PAN-OS documents it, plus a snake_case variable name version
+- **Field CSVs** — the full field reference table with variable names extracted and normalized
+- **Consolidated matrices** — field × log type occurrence across all scraped types
+- **ECS mappings** — PAN-OS fields mapped to Elastic Common Schema targets
 
-## Dataset Structure
-
-```
-datasets/
-├── Fortinet/
-│   ├── 7.2/
-│   │   ├── unique_fields/
-│   │   └── elasticsearch_templates/
-│   ├── 7.4/
-│   └── 7.6/
-```
-
-## Using the Datasets
-
-The datasets are automatically processed when you run the installation scripts. They generate:
-
-1. **Elasticsearch templates** for proper field mapping
-2. **Index patterns** for Kibana visualization
-3. **Field enrichment** rules for better data analysis
-
-For more details on installation, see the [Installation Guide](../installation/index.md).
+Both repos include corrections for documentation inconsistencies in their respective vendor sources, catalogued in their `EDGE_CASES.md` / `ANALYSIS.md` files.
