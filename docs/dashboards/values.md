@@ -17,7 +17,7 @@ If you ever had to debug a [Fortianalyzer query](https://docs.fortinet.com/docum
 
 Every dashboard looks and feels the same.
 
-Noone should start "investigating" the dashobard itself, trying to find where things are.
+No one should start "investigating" the dashboard itself, trying to find where things are.
 
 Consistency isn't boring. It's respectful of people's cognitive load. And their retinas.
 

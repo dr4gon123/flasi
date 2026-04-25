@@ -27,10 +27,10 @@
 
 7. Save Integration
 
-## Deploy you policy.
+## Deploy your policy.
 - If you deployed Fleet-managed agent, just [apply your new policy to your agent](https://www.elastic.co/guide/en/fleet/current/agent-policy.html#apply-a-policy).
 
-- If you deployed standalone agent, [take your generated policy](https://www.elastic.co/guide/en/fleet/current/create-standalone-agent-policy.html) and modify your [elastic-agent.yml](https://www.elastic.co/guide/en/fleet/current/installation-layout.html) accordinly.
+- If you deployed standalone agent, [take your generated policy](https://www.elastic.co/guide/en/fleet/current/create-standalone-agent-policy.html) and modify your [elastic-agent.yml](https://www.elastic.co/guide/en/fleet/current/installation-layout.html) accordingly.
 
 You should end up with something like:
 
@@ -77,18 +77,18 @@ You should end up with something like:
     
     Make sure to set `LOAD_INGEST_PIPELINES` to `true`
 
-## Performance tunning settings
+## Performance tuning settings
 
 Firewalls are very chatty, so it may overflow UDP buffers on your host leading to dropping logs. 
 
 Modify your `Elasticsearch output settings` for `Optimized for throughput`.
 
-- If you deployed Fleet-managed agent, modify your Elaticsearch output `Perfomance Tunnig` setting for [`Throughput`](https://www.elastic.co/guide/en/fleet/current/es-output-settings.html#es-output-settings-performance-tuning-settings) directly under your [output configuration](https://www.elastic.co/guide/en/fleet/current/fleet-settings.html#output-settings).
-- If you deployed standalone agent, modify your Elaticsearch output preset setting for [`throughput`](https://www.elastic.co/guide/en/fleet/current/elasticsearch-output.html#output-elasticsearch-performance-tuning-settings) on your [elastic-agent.yml](https://www.elastic.co/guide/en/fleet/current/installation-layout.html) directly.
+- If you deployed Fleet-managed agent, modify your Elasticsearch output `Performance Tuning` setting for [`Throughput`](https://www.elastic.co/guide/en/fleet/current/es-output-settings.html#es-output-settings-performance-tuning-settings) directly under your [output configuration](https://www.elastic.co/guide/en/fleet/current/fleet-settings.html#output-settings).
+- If you deployed standalone agent, modify your Elasticsearch output preset setting for [`throughput`](https://www.elastic.co/guide/en/fleet/current/elasticsearch-output.html#output-elasticsearch-performance-tuning-settings) on your [elastic-agent.yml](https://www.elastic.co/guide/en/fleet/current/installation-layout.html) directly.
 
 Depending on your Events per Second (EPS) volume, you may need to increase performance tuning settings even further.
 
-- Run `watch -d "column -t cat /proc/net/snmp | grep -w Udp"` on your Elastic Agent host to check if you are dropping any logs.
+- Run `watch -d "cat /proc/net/snmp | column -t | grep -w Udp"` on your Elastic Agent host to check if you are dropping any logs.
 
 
 ## Next Steps

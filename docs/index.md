@@ -8,15 +8,15 @@ Welcome to **FLASI**!
 
 So you want to take your ~~Fortinet~~ firewalls logs (both Fortinet and Palo Alto) to ~~Elasticsearch~~ Victoria Logs, Elasticsearch and others??? You have come to the right place!!! 👍
 
-We are the best analytics plataform for firewall logs. No kidding!!!
+We are the best analytics platform for firewall logs. No kidding!!!
 
 ## How it all began
 
 We actually use FLASI on our day to day operations for threat hunting, so we understand all the painpoints of a security analyst. After 10+ years experience with Fortinet and Palo Alto we could not find a solution that could extract all the juice out of our logs. We tried several SIEMs along the way and found out that firewall logs are just a checkmark on their datasheets. Full parsing and performance tuning for such volume of logs was not carefully considered by any SIEM vendor. Finally we decided we needed to build a solution ourselves having some core principles: flexibility, performance and cost. That is why FLASI is by far the best option out there.
 
-## Requeriments
+## Requirements
 
-Lets build some ground together and make sure this prohect is right for you.
+Lets build some ground together and make sure this project is right for you.
 
 ### What you need
 - A firewall 🔥
@@ -27,7 +27,7 @@ Lets build some ground together and make sure this prohect is right for you.
 
 ### What you **DO NOT** need
 
-More important than what you need is what you dont need.
+More important than what you need is what you don't need.
 
 - Money💰🚫
 
@@ -66,7 +66,7 @@ Pattern: Sequential IP scan, 1 attempt every 30 seconds
 
 Missing some logs, and that behavioral pattern becomes invisible. The malware hides in your sampling gaps. The reconnaissance blends into the noise. The credential stuffing looks like innocent typos.
 
-This is why you **must log everything**. Thre are no "safe" connections, no irrelevant traffic. Just log UTM type logs is not serious. You dont need a SIEM to tell you that there was a hit on the IPS engine, you need a data analytics plataform to uncover correlations hidden on regular events.
+This is why you **must log everything**. There are no "safe" connections, no irrelevant traffic. Just log UTM type logs is not serious. You don't need a SIEM to tell you that there was a hit on the IPS engine, you need a data analytics platform to uncover correlations hidden on regular events.
 
 
 ## SIEM Cost Trap
@@ -170,4 +170,4 @@ If FLASI helps you:
 - 💰 [Make a donation](https://www.paypal.com/paypalme/fortidragon). You are already saving a lot of money by using FLASI!
 - ⭐ [Star the repository](https://github.com/dr4gon123/flasi)
 - 📢 Share with colleagues
-- 🤝 [Contribute](engage.md/#areas-for-contribution)
+- 🤝 [Contribute](engage.md#areas-for-contribution)

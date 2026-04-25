@@ -2,7 +2,7 @@
 
 Hopefully, our dashboards are very [intuitive](values.md) to use.
 
-They are intended for SOC analyst to use on threat hunting activities, fine tunning firewall policies, or any other activity that requires going deep into your data.
+They are intended for SOC analysts to use on threat hunting activities, fine-tuning firewall policies, or any other activity that requires going deep into your data.
 
 We tried to make dashboards look alike, not matter the vendor or dataset, so we provide a coherent user experience.
 
@@ -21,7 +21,7 @@ We expose all filters than affect the data displayed on the dashboard. This way,
 
 ![Navigation](../assets/dashboards/[Grafana] Fortigate Navigation Filters.png)
 
-We have also have a navigation bar to move between the different dashboards of the dataset:
+We also have a navigation bar to move between the different dashboards of the dataset:
 
 | Fortinet | Palo Alto |
 |---------|---------|
@@ -85,11 +85,11 @@ We try to explore its broadest: IP, network, user, etc.
 
 - On the top row, there is the timeline analysis.
 - On the middle row, there are total aggregated values: `count of logs over the whole time window`
-- On the bottom row, there are more advance metrics that unveil more subtle insights like: `unique count of destination IP per source IP`
+- On the bottom row, there are more advanced metrics that unveil more subtle insights like: `unique count of destination IP per source IP`
 
 ### Fortigate
 
-Fortinet offers a lot information about IP, besides just the IP address. We have split the analysis on 2 tabs
+Fortinet offers a lot of information about IP, besides just the IP address. We have split the analysis on 2 tabs
 
 - IP
 

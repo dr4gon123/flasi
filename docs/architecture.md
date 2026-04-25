@@ -2,7 +2,7 @@
 
 We have a modular architecture, each layer is independent from each other. 
 
-![Archiecture](assets/architecture.png)
+![Architecture](assets/architecture.png)
 
 So, what technology should you choose at each layer????
 
@@ -15,13 +15,13 @@ This is a little tricky, because we are not trying to establish comparisons base
 | ----------------- | ----------------- | ----------------- | ----------------- |
 | Centrally Managed | Yes. Paid plan    | Yes               | Yes. [Paid plan](https://www.datadoghq.com/product/observability-pipelines/)    |
 | Performance       | We were never able to go above 1k EPS. Above that threshold you need to make some [crazy tweaking](https://discuss.elastic.co/t/increase-udp-input-plugin-performance/130798). Probably because it is Java based. Anyway, it is not worth it. | Great. It has different [presets](https://www.elastic.co/guide/en/fleet/current/es-output-settings.html#es-output-settings-performance-tuning-settings) for different loads. | Great |
-| Language          | Good              | Limited to Elastic functions. Can not make comments on the code. | Great. It even has a [playground](https://playground.vrl.dev/). Very detailed logging for debbuging. |
+| Language          | Good              | Limited to Elastic functions. Can not make comments on the code. | Great. It even has a [playground](https://playground.vrl.dev/). Very detailed logging for debugging. |
 | **Conclusion**    | Migrate to Vector | Migrate to Vector | **Current development and maintenance** |
 
 !!! success "Our Recommendation"
     **Use Vector!**
     
-    It's fast, flexible, and powerfull. 
+    It's fast, flexible, and powerful. 
     
     We've migrated from Logstash and Elastic Agent to Vector.
 
@@ -73,15 +73,15 @@ This is a little tricky, because we are not trying to establish comparisons base
 | ----------------- | ----------------- | ----------------- | 
 | Multiple datasources | No | Yes | 
 | ES\|QL for Elasticsearch | Yes | No | 
-| Simplicity | Yes | Steap learning curve | 
-| Customization | Yes. Trough Vega | Super! | 
+| Simplicity | Yes | Steep learning curve | 
+| Customization | Yes. Through Vega | Super! | 
 | Cache | No | Yes | 
 | Snapshots | No | Yes | 
-| Colapsable Pannels | Yes | Yes |
-| Dynamic Pannels | No | Yes | 
+| Collapsable Panels | Yes | Yes |
+| Dynamic Panels | No | Yes | 
 | Filters | Yes | Yes | 
 | Reports | Yes. Paid | Yes. Paid | 
-| **Conclusion**    | Will keep suppoting it | **Current depevelopment and maintance** |
+| **Conclusion**    | Will keep supporting it | **Current development and maintenance** |
 
 !!! success "Chef's Recommendation"
     Using Victoria Logs? → **Use Grafana**

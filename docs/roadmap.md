@@ -38,7 +38,7 @@ A rule like
 
 really does not make any sense for network logs because **each individual log is almost worthless**.
 
-As we discussed previously on [The Challenge](index.md#the-challenge), we need to see the whole forest, not an specific tree. We need systems that understand context, learn baselines, and surface truly anomalous behavior.
+As we discussed previously on [The Challenge](index.md#the-challenge), we need to see the whole forest, not a specific tree. We need systems that understand context, learn baselines, and surface truly anomalous behavior.
 
 
 ## Dimensional Data Modeling
@@ -82,11 +82,11 @@ Instead of creating an exception for `10.0.5.42` on rule X because "`10.0.5.42` 
 - Which networks are for guests
 - Which assets are critical
 
-We need to fed with **context** our **dimensions**, then **ALL rules** automatically understand this context. No more whack-a-mole exception management. No more rules that break when you change infrastructure.
+We need to feed **context** into our **dimensions**, then **ALL rules** automatically understand this context. No more whack-a-mole exception management. No more rules that break when you change infrastructure.
 
 ### **Facts: Aggregated Security Metrics**
 
-Attackers can not hide the network. Even encrypted traffic leaves a trace.
+Attackers cannot hide in the network. Even encrypted traffic leaves a trace.
 
 **What is really *behavior* in the first place?** It is when you put together 2 or more events (logs) to somehow find some insight that would not be possible to spot by just observing each event independently.
 
@@ -193,14 +193,14 @@ Grain isn't just about time. It's also about entity scope:
 - Grain: "Communication between specific source and destination"
 - Catches: Anomalous behavior in established relationships
 
-Luckly we dont have to choose, we can aggregate at multiple grains.
+Luckily we don't have to choose, we can aggregate at multiple grains.
 
 
 ### **Finding Anomalies**
 
 [*Release the Kraken*](https://www.youtube.com/watch?v=38AYeNGjqg0)
 
-It is time to birng the Machine Learning power to the game to help us find anomalies at its broadest meaning. 
+It is time to bring the Machine Learning power to the game to help us find anomalies at its broadest meaning. 
 
 1. **Anomaly Detection** - Statistical and ML-based approaches
 2. **Baseline Comparison** - Individual baseline (is this host acting weird?) + Peer baseline (is this host different from similar hosts?)
@@ -268,7 +268,7 @@ The goal: **No more manual threshold tuning.** The system learns what's normal f
 
 ### Plan B: Metrics-First with Prometheus
 
-That all would not be a piece of cake, what it we can find a shortcut?
+That all would not be a piece of cake, what if we can find a shortcut?
 
 The leaner, more opinionated approach:
 
@@ -311,7 +311,7 @@ Integration with:
 
 ## Continuous Evolution
 
-We have not forget our day to day, we want to continuous improve what we have already built:
+We have not forgotten our day to day, we want to continuously improve what we have already built:
 
 - **More data sources** - Palo Alto Cortex, Vicarius, Windows Sysmon
 - **More dashboards** - Maybe a summary dashboard for your CISO who likes to do threat hunting in Power Point.

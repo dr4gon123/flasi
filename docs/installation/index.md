@@ -43,7 +43,7 @@ The ingestion layer receives syslog data, parses it, enriches it, and forwards i
 !!! success "Chef's Choice"
     **Use Vector**
     
-    It's fast, flexible, and powerfull.
+    It's fast, flexible, and powerful.
     
     We've migrated from Logstash and Elastic Agent to Vector.
 

@@ -24,7 +24,7 @@ Tired of expensive SIEMs that don't understand firewall logs?
 
 **FLASI** is a full-featured analytics platform that transforms Fortinet (FortiGate, FortiEDR, FortiMail, FortiWeb) and Palo Alto PAN-OS logs into actionable threat intelligence without breaking the bank.
 
-After 10+ years fighting with overpriced SIEMs that treat firewall logs as an leftover checkbox in a datasheet, we built the platform we always needed.
+After 10+ years fighting with overpriced SIEMs that treat firewall logs as a leftover checkbox in a datasheet, we built the platform we always needed.
 
 **No sampling. No filtering. Full visibility. Full behavioral analysis.**
 

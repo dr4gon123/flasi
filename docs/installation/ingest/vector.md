@@ -4,7 +4,7 @@ This page covers Vector configuration for FLASI, based on the existing vector do
 
 ## Install as a service
 
-There are many ways for [installing Vector](https://vector.dev/docs/setup/installation/). Normally, for a Linux environment, you will [install it as a service](https://vector.dev/docs/setup/installation/package-managers/yum/), so you may need to some adjustments for Vector to load multiple config files from a directory.
+There are many ways for [installing Vector](https://vector.dev/docs/setup/installation/). Normally, for a Linux environment, you will [install it as a service](https://vector.dev/docs/setup/installation/package-managers/yum/), so you may need to make some adjustments for Vector to load multiple config files from a directory.
 
 ## Load multiple config files
 
@@ -107,11 +107,11 @@ sudo systemctl restart vector
 
 ## Environment Variables
 
-FLASI Vector config files uses envioremental variables for passing specific values for your setup. All variables have defaults values in the config files.
+FLASI Vector config files use environmental variables for passing specific values for your setup. All variables have default values in the config files.
 
 `INTERNAL_NETWORKS` is the only variable that must be set.
 
-`INTERNAL_NETWORKS` is used for infering `network.direction` of connections.
+`INTERNAL_NETWORKS` is used for inferring `network.direction` of connections.
 
 `INTERNAL_NETWORKS` must have your local private network addresses scopes as well as your public facing network addresses scopes.
 
@@ -193,7 +193,7 @@ You can also send to **multiple backends simultaneously** — just enable more t
 
 ## Vector Buffering
 
-For production deployments, take into account every sink has a section that overrides Vector default values for [buffering](https://vector.dev/docs/architecture/buffering-model/) trying to mimic `Optimized for Throughput` Elastic Agent [settings](https://www.elastic.co/docs/reference/fleet/es-output-settings#es-output-settings-performance-tuning-settings). Vector works really well with defaults. Don't use this section unless you really need to fine-tune yor ingest.
+For production deployments, take into account every sink has a section that overrides Vector default values for [buffering](https://vector.dev/docs/architecture/buffering-model/) trying to mimic `Optimized for Throughput` Elastic Agent [settings](https://www.elastic.co/docs/reference/fleet/es-output-settings#es-output-settings-performance-tuning-settings). Vector works really well with defaults. Don't use this section unless you really need to fine-tune your ingest.
 
 ```yaml
     buffer:

@@ -22,8 +22,8 @@ echo HOSTNAME=\""$HOSTNAME"\" | sudo tee  -a /etc/default/logstash
 cd /usr/share/logstash
 sudo bin/logstash-plugin install logstash-filter-tld
 ```
-5. Copy [pipelines.yml](https://github.com/dr4gon123/flasi/blob/master/logstash/pipelines.yml) to your logstash folder.
-6. Copy [conf.d](https://github.com/dr4gon123/flasi/tree/master/logstash/conf.d) content to your conf.d folder.
+5. Copy [pipelines.yml](https://github.com/dr4gon123/flasi/blob/main/ELK/logstash%20(deprecated)/pipelines.yml) to your logstash folder.
+6. Copy [conf.d](https://github.com/dr4gon123/flasi/tree/main/ELK/logstash%20(deprecated)/conf.d) content to your conf.d folder.
 7. [Start logstash](https://www.elastic.co/guide/en/logstash/current/running-logstash.html)
 
 
@@ -51,7 +51,7 @@ graph LR;
 ### Input Syslog / KV
 
 Receives syslog logs and populates `data_stream` fields depending on udp port.
-You can also uncomment Fortianalyzer tags is you are using it for syslog forwarding. Fortianalyzer stamps its own date format to the log, so it needs to be treated different.
+You can also uncomment Fortianalyzer tags if you are using it for syslog forwarding. Fortianalyzer stamps its own date format to the log, so it needs to be treated different.
 
 Splits the original log into key-value pairs and sets the timestamp. Timezone is also obtained from the log itself if FortiOS v6.2+.
 
@@ -74,7 +74,7 @@ Populates several ECS fields based on other present fields.
 - `network.bytes` and `network.packets`.
 - `event.duration`. ⌛
 - `event.hour_of_day` and `event.day_of_week`. **These fields are not ECS official fields**.
-- Calcualtes `network.community_id` just for tcp/udp.
+- Calculates `network.community_id` just for tcp/udp.
 - Registered domain.
 - Url parsing.
 - `user_agent.*`.

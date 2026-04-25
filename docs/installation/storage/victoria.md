@@ -59,9 +59,9 @@ sudo chown victoria:victoria /usr/local/bin/victoria-logs-prod
 !!! info "UPGRADES"
     ℹ️ Repeat this step for upgrading Victoria Logs version
 
-### SELlinux permission
+### SELinux permission
 
-In case you run SELlinux, change SELlinux permission:
+In case you run SELinux, change SELinux permission:
 
 ```bash
 sudo restorecon -v /usr/local/bin/victoria-logs-prod
