@@ -1,9 +1,9 @@
 {
-    "apiVersion": "dashboard.grafana.app/v2beta1",
+    "apiVersion": "dashboard.grafana.app/v2",
     "kind": "Dashboard",
     "metadata": {
         "name": "mah8cq4",
-        "generation": 5,
+        "generation": 25,
         "creationTimestamp": "2025-11-25T17:24:16Z",
         "labels": {},
         "annotations": {}
@@ -13,27 +13,33 @@
             {
                 "kind": "AnnotationQuery",
                 "spec": {
-                    "builtIn": true,
+                    "query": {
+                        "kind": "DataQuery",
+                        "group": "grafana",
+                        "version": "v0",
+                        "spec": {},
+                        "labels": {
+                            "grafana.app/export-label": "grafana-1"
+                        }
+                    },
                     "enable": true,
                     "hide": true,
                     "iconColor": "rgba(0, 211, 255, 1)",
                     "name": "Annotations & Alerts",
-                    "query": {
-                        "group": "grafana",
-                        "kind": "DataQuery",
-                        "spec": {},
-                        "version": "v0"
-                    }
+                    "builtIn": true
                 }
             }
         ],
         "cursorSync": "Off",
-        "description": "",
         "editable": true,
         "elements": {
-            "panel-1": {
+            "panel-10": {
                 "kind": "Panel",
                 "spec": {
+                    "id": 10,
+                    "title": "",
+                    "description": "",
+                    "links": [],
                     "data": {
                         "kind": "QueryGroup",
                         "spec": {
@@ -41,10 +47,10 @@
                                 {
                                     "kind": "PanelQuery",
                                     "spec": {
-                                        "hidden": false,
                                         "query": {
-                                            "group": "yesoreyeram-infinity-datasource",
                                             "kind": "DataQuery",
+                                            "group": "yesoreyeram-infinity-datasource",
+                                            "version": "v0",
                                             "spec": {
                                                 "columns": [],
                                                 "filters": [],
@@ -54,24 +60,26 @@
                                                 "root_selector": "",
                                                 "source": "url",
                                                 "type": "csv",
-                                                "url": "https://raw.githubusercontent.com/dr4gon123/flasi/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_traffic_7_6.csv",
+                                                "url": "https://raw.githubusercontent.com/dr4gon123/flores/refs/heads/main/7.6/fields/traffic_fields.csv",
                                                 "url_options": {
                                                     "data": "",
                                                     "method": "GET"
                                                 }
                                             },
-                                            "version": "v0"
+                                            "labels": {
+                                                "grafana.app/export-label": "yesoreyeram-infinity-datasource-1"
+                                            }
                                         },
-                                        "refId": "A"
+                                        "refId": "A",
+                                        "hidden": false
                                     }
                                 }
                             ],
-                            "queryOptions": {},
                             "transformations": [
                                 {
-                                    "kind": "organize",
+                                    "kind": "Transformation",
+                                    "group": "organize",
                                     "spec": {
-                                        "id": "organize",
                                         "options": {
                                             "excludeByName": {},
                                             "includeByName": {},
@@ -83,20 +91,35 @@
                                         }
                                     }
                                 }
-                            ]
+                            ],
+                            "queryOptions": {}
                         }
                     },
-                    "description": "",
-                    "id": 1,
-                    "links": [],
-                    "title": "",
-                    "transparent": true,
                     "vizConfig": {
-                        "group": "table",
                         "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24556818486",
                         "spec": {
+                            "options": {
+                                "cellHeight": "sm",
+                                "showHeader": true,
+                                "sortBy": []
+                            },
                             "fieldConfig": {
                                 "defaults": {
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "value": 0,
+                                                "color": "green"
+                                            },
+                                            {
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
                                     "color": {
                                         "mode": "thresholds"
                                     },
@@ -111,24 +134,294 @@
                                                 "count"
                                             ]
                                         },
-                                        "inspect": false
+                                        "inspect": false,
+                                        "wrapText": true
+                                    }
+                                },
+                                "overrides": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Log Field Name"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 176
+                                            }
+                                        ]
                                     },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Data Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 114
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "transparent": true
+                }
+            },
+            "panel-12": {
+                "kind": "Panel",
+                "spec": {
+                    "id": 12,
+                    "title": "",
+                    "description": "",
+                    "links": [],
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "query": {
+                                            "kind": "DataQuery",
+                                            "group": "yesoreyeram-infinity-datasource",
+                                            "version": "v0",
+                                            "spec": {
+                                                "columns": [],
+                                                "filters": [],
+                                                "format": "table",
+                                                "global_query_id": "",
+                                                "parser": "backend",
+                                                "root_selector": "",
+                                                "source": "url",
+                                                "type": "csv",
+                                                "url": "https://raw.githubusercontent.com/dr4gon123/flores/refs/heads/main/7.6/ECS/event_ecs.csv",
+                                                "url_options": {
+                                                    "data": "",
+                                                    "method": "GET"
+                                                }
+                                            },
+                                            "labels": {
+                                                "grafana.app/export-label": "yesoreyeram-infinity-datasource-1"
+                                            }
+                                        },
+                                        "refId": "A",
+                                        "hidden": false
+                                    }
+                                }
+                            ],
+                            "transformations": [
+                                {
+                                    "kind": "Transformation",
+                                    "group": "organize",
+                                    "spec": {
+                                        "options": {
+                                            "excludeByName": {},
+                                            "includeByName": {},
+                                            "indexByName": {
+                                                "Data Type": 1,
+                                                "Description": 3,
+                                                "ECS Description": 7,
+                                                "ECS Field": 5,
+                                                "ECS Type": 6,
+                                                "Length": 2,
+                                                "Log Field Name": 0,
+                                                "Mapping Type": 4
+                                            },
+                                            "renameByName": {}
+                                        }
+                                    }
+                                }
+                            ],
+                            "queryOptions": {}
+                        }
+                    },
+                    "vizConfig": {
+                        "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24556818486",
+                        "spec": {
+                            "options": {
+                                "cellHeight": "sm",
+                                "showHeader": true,
+                                "sortBy": [
+                                    {
+                                        "desc": false,
+                                        "displayName": "Length"
+                                    }
+                                ]
+                            },
+                            "fieldConfig": {
+                                "defaults": {
                                     "thresholds": {
                                         "mode": "absolute",
                                         "steps": [
                                             {
-                                                "color": "green",
-                                                "value": 0
+                                                "value": 0,
+                                                "color": "green"
                                             },
                                             {
-                                                "color": "red",
-                                                "value": 80
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
+                                    "color": {
+                                        "mode": "thresholds"
+                                    },
+                                    "custom": {
+                                        "align": "auto",
+                                        "cellOptions": {
+                                            "type": "auto"
+                                        },
+                                        "filterable": true,
+                                        "footer": {
+                                            "reducers": [
+                                                "count"
+                                            ]
+                                        },
+                                        "inspect": false,
+                                        "wrapText": true
+                                    }
+                                },
+                                "overrides": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Log Field Name"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 161
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Data Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 102
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Length"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 98
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Mapping Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 130
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "ECS Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 98
                                             }
                                         ]
                                     }
-                                },
-                                "overrides": []
-                            },
+                                ]
+                            }
+                        }
+                    },
+                    "transparent": true
+                }
+            },
+            "panel-13": {
+                "kind": "Panel",
+                "spec": {
+                    "id": 13,
+                    "title": "",
+                    "description": "",
+                    "links": [],
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "query": {
+                                            "kind": "DataQuery",
+                                            "group": "yesoreyeram-infinity-datasource",
+                                            "version": "v0",
+                                            "spec": {
+                                                "columns": [],
+                                                "filters": [],
+                                                "format": "table",
+                                                "global_query_id": "",
+                                                "parser": "backend",
+                                                "root_selector": "",
+                                                "source": "url",
+                                                "type": "csv",
+                                                "url": "https://raw.githubusercontent.com/dr4gon123/flores/refs/heads/main/7.6/fields/event_fields.csv",
+                                                "url_options": {
+                                                    "data": "",
+                                                    "method": "GET"
+                                                }
+                                            },
+                                            "labels": {
+                                                "grafana.app/export-label": "yesoreyeram-infinity-datasource-1"
+                                            }
+                                        },
+                                        "refId": "A",
+                                        "hidden": false
+                                    }
+                                }
+                            ],
+                            "transformations": [
+                                {
+                                    "kind": "Transformation",
+                                    "group": "organize",
+                                    "spec": {
+                                        "options": {
+                                            "excludeByName": {},
+                                            "includeByName": {},
+                                            "indexByName": {
+                                                "Data Type": 1,
+                                                "Description": 2,
+                                                "Log Field Name": 0
+                                            },
+                                            "renameByName": {}
+                                        }
+                                    }
+                                }
+                            ],
+                            "queryOptions": {}
+                        }
+                    },
+                    "vizConfig": {
+                        "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24556818486",
+                        "spec": {
                             "options": {
                                 "cellHeight": "sm",
                                 "showHeader": true,
@@ -138,15 +431,79 @@
                                         "displayName": "Log Field Name"
                                     }
                                 ]
+                            },
+                            "fieldConfig": {
+                                "defaults": {
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "value": 0,
+                                                "color": "green"
+                                            },
+                                            {
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
+                                    "color": {
+                                        "mode": "thresholds"
+                                    },
+                                    "custom": {
+                                        "align": "auto",
+                                        "cellOptions": {
+                                            "type": "auto"
+                                        },
+                                        "filterable": true,
+                                        "footer": {
+                                            "reducers": [
+                                                "count"
+                                            ]
+                                        },
+                                        "inspect": false,
+                                        "wrapText": true
+                                    }
+                                },
+                                "overrides": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Log Field Name"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 161
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Data Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 116
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
-                        },
-                        "version": "12.4.0-19508498046"
-                    }
+                        }
+                    },
+                    "transparent": true
                 }
             },
             "panel-2": {
                 "kind": "Panel",
                 "spec": {
+                    "id": 2,
+                    "title": "",
+                    "description": "",
+                    "links": [],
                     "data": {
                         "kind": "QueryGroup",
                         "spec": {
@@ -154,10 +511,10 @@
                                 {
                                     "kind": "PanelQuery",
                                     "spec": {
-                                        "hidden": false,
                                         "query": {
-                                            "group": "yesoreyeram-infinity-datasource",
                                             "kind": "DataQuery",
+                                            "group": "yesoreyeram-infinity-datasource",
+                                            "version": "v0",
                                             "spec": {
                                                 "columns": [],
                                                 "filters": [],
@@ -167,24 +524,26 @@
                                                 "root_selector": "",
                                                 "source": "url",
                                                 "type": "csv",
-                                                "url": "https://raw.githubusercontent.com/dr4gon123/flasi/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_utm_7_6.csv",
+                                                "url": "https://raw.githubusercontent.com/dr4gon123/flores/refs/heads/main/7.6/fields/utm_fields.csv",
                                                 "url_options": {
                                                     "data": "",
                                                     "method": "GET"
                                                 }
                                             },
-                                            "version": "v0"
+                                            "labels": {
+                                                "grafana.app/export-label": "yesoreyeram-infinity-datasource-1"
+                                            }
                                         },
-                                        "refId": "A"
+                                        "refId": "A",
+                                        "hidden": false
                                     }
                                 }
                             ],
-                            "queryOptions": {},
                             "transformations": [
                                 {
-                                    "kind": "organize",
+                                    "kind": "Transformation",
+                                    "group": "organize",
                                     "spec": {
-                                        "id": "organize",
                                         "options": {
                                             "excludeByName": {},
                                             "includeByName": {},
@@ -196,20 +555,35 @@
                                         }
                                     }
                                 }
-                            ]
+                            ],
+                            "queryOptions": {}
                         }
                     },
-                    "description": "",
-                    "id": 2,
-                    "links": [],
-                    "title": "",
-                    "transparent": true,
                     "vizConfig": {
-                        "group": "table",
                         "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24556818486",
                         "spec": {
+                            "options": {
+                                "cellHeight": "sm",
+                                "showHeader": true,
+                                "sortBy": []
+                            },
                             "fieldConfig": {
                                 "defaults": {
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "value": 0,
+                                                "color": "green"
+                                            },
+                                            {
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
                                     "color": {
                                         "mode": "thresholds"
                                     },
@@ -224,42 +598,49 @@
                                                 "count"
                                             ]
                                         },
-                                        "inspect": false
+                                        "inspect": false,
+                                        "wrapText": true
+                                    }
+                                },
+                                "overrides": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Log Field Name"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 161
+                                            }
+                                        ]
                                     },
-                                    "thresholds": {
-                                        "mode": "absolute",
-                                        "steps": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Data Type"
+                                        },
+                                        "properties": [
                                             {
-                                                "color": "green",
-                                                "value": 0
-                                            },
-                                            {
-                                                "color": "red",
-                                                "value": 80
+                                                "id": "custom.width",
+                                                "value": 102
                                             }
                                         ]
                                     }
-                                },
-                                "overrides": []
-                            },
-                            "options": {
-                                "cellHeight": "sm",
-                                "showHeader": true,
-                                "sortBy": [
-                                    {
-                                        "desc": false,
-                                        "displayName": "Log Field Name"
-                                    }
                                 ]
                             }
-                        },
-                        "version": "12.4.0-19508498046"
-                    }
+                        }
+                    },
+                    "transparent": true
                 }
             },
-            "panel-3": {
+            "panel-5": {
                 "kind": "Panel",
                 "spec": {
+                    "id": 5,
+                    "title": "Action",
+                    "description": "",
+                    "links": [],
                     "data": {
                         "kind": "QueryGroup",
                         "spec": {
@@ -267,10 +648,10 @@
                                 {
                                     "kind": "PanelQuery",
                                     "spec": {
-                                        "hidden": false,
                                         "query": {
-                                            "group": "yesoreyeram-infinity-datasource",
                                             "kind": "DataQuery",
+                                            "group": "yesoreyeram-infinity-datasource",
+                                            "version": "v0",
                                             "spec": {
                                                 "columns": [],
                                                 "filters": [],
@@ -280,24 +661,26 @@
                                                 "root_selector": "",
                                                 "source": "url",
                                                 "type": "csv",
-                                                "url": "https://raw.githubusercontent.com/dr4gon123/flasi/refs/heads/main/datasets/Fortinet/Fortigate/7.6/unique_fields/unique_log_fields_data_types_event_7_6.csv",
+                                                "url": "https://raw.githubusercontent.com/dr4gon123/flores/refs/heads/main/7.6/fields/action_descriptions.csv",
                                                 "url_options": {
                                                     "data": "",
                                                     "method": "GET"
                                                 }
                                             },
-                                            "version": "v0"
+                                            "labels": {
+                                                "grafana.app/export-label": "yesoreyeram-infinity-datasource-1"
+                                            }
                                         },
-                                        "refId": "A"
+                                        "refId": "A",
+                                        "hidden": false
                                     }
                                 }
                             ],
-                            "queryOptions": {},
                             "transformations": [
                                 {
-                                    "kind": "organize",
+                                    "kind": "Transformation",
+                                    "group": "organize",
                                     "spec": {
-                                        "id": "organize",
                                         "options": {
                                             "excludeByName": {},
                                             "includeByName": {},
@@ -309,20 +692,161 @@
                                         }
                                     }
                                 }
-                            ]
+                            ],
+                            "queryOptions": {}
                         }
                     },
-                    "description": "",
-                    "id": 3,
-                    "links": [],
-                    "title": "",
-                    "transparent": true,
                     "vizConfig": {
-                        "group": "table",
                         "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24556818486",
                         "spec": {
+                            "options": {
+                                "cellHeight": "sm",
+                                "showHeader": true,
+                                "sortBy": [
+                                    {
+                                        "desc": true,
+                                        "displayName": "Description"
+                                    }
+                                ]
+                            },
                             "fieldConfig": {
                                 "defaults": {
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "value": 0,
+                                                "color": "green"
+                                            },
+                                            {
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
+                                    "color": {
+                                        "mode": "thresholds"
+                                    },
+                                    "custom": {
+                                        "align": "auto",
+                                        "cellOptions": {
+                                            "type": "auto"
+                                        },
+                                        "filterable": true,
+                                        "footer": {
+                                            "reducers": []
+                                        },
+                                        "inspect": false,
+                                        "wrapText": true
+                                    }
+                                },
+                                "overrides": []
+                            }
+                        }
+                    },
+                    "transparent": true
+                }
+            },
+            "panel-6": {
+                "kind": "Panel",
+                "spec": {
+                    "id": 6,
+                    "title": "",
+                    "description": "",
+                    "links": [],
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "query": {
+                                            "kind": "DataQuery",
+                                            "group": "yesoreyeram-infinity-datasource",
+                                            "version": "v0",
+                                            "spec": {
+                                                "columns": [],
+                                                "filters": [],
+                                                "format": "table",
+                                                "global_query_id": "",
+                                                "parser": "backend",
+                                                "root_selector": "",
+                                                "source": "url",
+                                                "type": "csv",
+                                                "url": "https://raw.githubusercontent.com/dr4gon123/flores/refs/heads/main/7.6/ECS/utm_ecs.csv",
+                                                "url_options": {
+                                                    "data": "",
+                                                    "method": "GET"
+                                                }
+                                            },
+                                            "labels": {
+                                                "grafana.app/export-label": "yesoreyeram-infinity-datasource-1"
+                                            }
+                                        },
+                                        "refId": "A",
+                                        "hidden": false
+                                    }
+                                }
+                            ],
+                            "transformations": [
+                                {
+                                    "kind": "Transformation",
+                                    "group": "organize",
+                                    "spec": {
+                                        "options": {
+                                            "excludeByName": {},
+                                            "includeByName": {},
+                                            "indexByName": {
+                                                "Data Type": 1,
+                                                "Description": 3,
+                                                "ECS Description": 7,
+                                                "ECS Field": 5,
+                                                "ECS Type": 6,
+                                                "Length": 2,
+                                                "Log Field Name": 0,
+                                                "Mapping Type": 4
+                                            },
+                                            "renameByName": {}
+                                        }
+                                    }
+                                }
+                            ],
+                            "queryOptions": {}
+                        }
+                    },
+                    "vizConfig": {
+                        "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24556818486",
+                        "spec": {
+                            "options": {
+                                "cellHeight": "sm",
+                                "showHeader": true,
+                                "sortBy": [
+                                    {
+                                        "desc": false,
+                                        "displayName": "Length"
+                                    }
+                                ]
+                            },
+                            "fieldConfig": {
+                                "defaults": {
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "value": 0,
+                                                "color": "green"
+                                            },
+                                            {
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
                                     "color": {
                                         "mode": "thresholds"
                                     },
@@ -337,37 +861,260 @@
                                                 "count"
                                             ]
                                         },
-                                        "inspect": false
+                                        "inspect": false,
+                                        "wrapText": true
+                                    }
+                                },
+                                "overrides": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Log Field Name"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 161
+                                            }
+                                        ]
                                     },
-                                    "thresholds": {
-                                        "mode": "absolute",
-                                        "steps": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Data Type"
+                                        },
+                                        "properties": [
                                             {
-                                                "color": "green",
-                                                "value": 0
-                                            },
+                                                "id": "custom.width",
+                                                "value": 102
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Length"
+                                        },
+                                        "properties": [
                                             {
-                                                "color": "red",
-                                                "value": 80
+                                                "id": "custom.width",
+                                                "value": 98
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Mapping Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 130
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "ECS Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 98
                                             }
                                         ]
                                     }
-                                },
-                                "overrides": []
-                            },
+                                ]
+                            }
+                        }
+                    },
+                    "transparent": true
+                }
+            },
+            "panel-9": {
+                "kind": "Panel",
+                "spec": {
+                    "id": 9,
+                    "title": "",
+                    "description": "",
+                    "links": [],
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "query": {
+                                            "kind": "DataQuery",
+                                            "group": "yesoreyeram-infinity-datasource",
+                                            "version": "v0",
+                                            "spec": {
+                                                "columns": [],
+                                                "filters": [],
+                                                "format": "table",
+                                                "global_query_id": "",
+                                                "parser": "backend",
+                                                "root_selector": "",
+                                                "source": "url",
+                                                "type": "csv",
+                                                "url": "https://raw.githubusercontent.com/dr4gon123/flores/refs/heads/main/7.6/ECS/traffic_ecs.csv",
+                                                "url_options": {
+                                                    "data": "",
+                                                    "method": "GET"
+                                                }
+                                            },
+                                            "labels": {
+                                                "grafana.app/export-label": "yesoreyeram-infinity-datasource-1"
+                                            }
+                                        },
+                                        "refId": "A",
+                                        "hidden": false
+                                    }
+                                }
+                            ],
+                            "transformations": [
+                                {
+                                    "kind": "Transformation",
+                                    "group": "organize",
+                                    "spec": {
+                                        "options": {
+                                            "excludeByName": {},
+                                            "includeByName": {},
+                                            "indexByName": {
+                                                "Data Type": 1,
+                                                "Description": 3,
+                                                "ECS Description": 7,
+                                                "ECS Field": 5,
+                                                "ECS Type": 6,
+                                                "Length": 2,
+                                                "Log Field Name": 0,
+                                                "Mapping Type": 4
+                                            },
+                                            "renameByName": {}
+                                        }
+                                    }
+                                }
+                            ],
+                            "queryOptions": {}
+                        }
+                    },
+                    "vizConfig": {
+                        "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24556818486",
+                        "spec": {
                             "options": {
                                 "cellHeight": "sm",
                                 "showHeader": true,
                                 "sortBy": [
                                     {
                                         "desc": false,
-                                        "displayName": "Log Field Name"
+                                        "displayName": "Length"
+                                    }
+                                ]
+                            },
+                            "fieldConfig": {
+                                "defaults": {
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "value": 0,
+                                                "color": "green"
+                                            },
+                                            {
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
+                                    "color": {
+                                        "mode": "thresholds"
+                                    },
+                                    "custom": {
+                                        "align": "auto",
+                                        "cellOptions": {
+                                            "type": "auto"
+                                        },
+                                        "filterable": true,
+                                        "footer": {
+                                            "reducers": [
+                                                "count"
+                                            ]
+                                        },
+                                        "inspect": false,
+                                        "wrapText": true
+                                    }
+                                },
+                                "overrides": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Log Field Name"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 161
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Data Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 102
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Length"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 98
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Mapping Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 130
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "ECS Type"
+                                        },
+                                        "properties": [
+                                            {
+                                                "id": "custom.width",
+                                                "value": 98
+                                            }
+                                        ]
                                     }
                                 ]
                             }
-                        },
-                        "version": "12.4.0-19508498046"
-                    }
+                        }
+                    },
+                    "transparent": true
                 }
             }
         },
@@ -378,79 +1125,222 @@
                     {
                         "kind": "TabsLayoutTab",
                         "spec": {
+                            "title": "traffic",
                             "layout": {
-                                "kind": "AutoGridLayout",
+                                "kind": "TabsLayout",
                                 "spec": {
-                                    "columnWidthMode": "standard",
-                                    "fillScreen": true,
-                                    "items": [
+                                    "tabs": [
                                         {
-                                            "kind": "AutoGridLayoutItem",
+                                            "kind": "TabsLayoutTab",
                                             "spec": {
-                                                "element": {
-                                                    "kind": "ElementReference",
-                                                    "name": "panel-1"
+                                                "title": "Log Fields",
+                                                "layout": {
+                                                    "kind": "AutoGridLayout",
+                                                    "spec": {
+                                                        "maxColumnCount": 1,
+                                                        "columnWidthMode": "standard",
+                                                        "rowHeightMode": "standard",
+                                                        "fillScreen": true,
+                                                        "items": [
+                                                            {
+                                                                "kind": "AutoGridLayoutItem",
+                                                                "spec": {
+                                                                    "element": {
+                                                                        "kind": "ElementReference",
+                                                                        "name": "panel-10"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "kind": "TabsLayoutTab",
+                                            "spec": {
+                                                "title": "-> ECS",
+                                                "layout": {
+                                                    "kind": "AutoGridLayout",
+                                                    "spec": {
+                                                        "maxColumnCount": 3,
+                                                        "columnWidthMode": "standard",
+                                                        "rowHeightMode": "standard",
+                                                        "fillScreen": true,
+                                                        "items": [
+                                                            {
+                                                                "kind": "AutoGridLayoutItem",
+                                                                "spec": {
+                                                                    "element": {
+                                                                        "kind": "ElementReference",
+                                                                        "name": "panel-9"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
-                                    ],
-                                    "maxColumnCount": 3,
-                                    "rowHeightMode": "tall"
+                                    ]
                                 }
-                            },
-                            "title": "traffic"
+                            }
                         }
                     },
                     {
                         "kind": "TabsLayoutTab",
                         "spec": {
+                            "title": "utm",
                             "layout": {
-                                "kind": "AutoGridLayout",
+                                "kind": "TabsLayout",
                                 "spec": {
-                                    "columnWidthMode": "standard",
-                                    "fillScreen": true,
-                                    "items": [
+                                    "tabs": [
                                         {
-                                            "kind": "AutoGridLayoutItem",
+                                            "kind": "TabsLayoutTab",
                                             "spec": {
-                                                "element": {
-                                                    "kind": "ElementReference",
-                                                    "name": "panel-2"
+                                                "title": "Log Fields",
+                                                "layout": {
+                                                    "kind": "AutoGridLayout",
+                                                    "spec": {
+                                                        "maxColumnCount": 1,
+                                                        "columnWidthMode": "standard",
+                                                        "rowHeightMode": "standard",
+                                                        "fillScreen": true,
+                                                        "items": [
+                                                            {
+                                                                "kind": "AutoGridLayoutItem",
+                                                                "spec": {
+                                                                    "element": {
+                                                                        "kind": "ElementReference",
+                                                                        "name": "panel-2"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "kind": "TabsLayoutTab",
+                                            "spec": {
+                                                "title": "Action",
+                                                "layout": {
+                                                    "kind": "AutoGridLayout",
+                                                    "spec": {
+                                                        "maxColumnCount": 3,
+                                                        "columnWidthMode": "standard",
+                                                        "rowHeightMode": "standard",
+                                                        "fillScreen": true,
+                                                        "items": [
+                                                            {
+                                                                "kind": "AutoGridLayoutItem",
+                                                                "spec": {
+                                                                    "element": {
+                                                                        "kind": "ElementReference",
+                                                                        "name": "panel-5"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "kind": "TabsLayoutTab",
+                                            "spec": {
+                                                "title": "-> ECS",
+                                                "layout": {
+                                                    "kind": "AutoGridLayout",
+                                                    "spec": {
+                                                        "maxColumnCount": 3,
+                                                        "columnWidthMode": "standard",
+                                                        "rowHeightMode": "standard",
+                                                        "fillScreen": true,
+                                                        "items": [
+                                                            {
+                                                                "kind": "AutoGridLayoutItem",
+                                                                "spec": {
+                                                                    "element": {
+                                                                        "kind": "ElementReference",
+                                                                        "name": "panel-6"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
-                                    ],
-                                    "maxColumnCount": 3,
-                                    "rowHeightMode": "standard"
+                                    ]
                                 }
-                            },
-                            "title": "utm"
+                            }
                         }
                     },
                     {
                         "kind": "TabsLayoutTab",
                         "spec": {
+                            "title": "event",
                             "layout": {
-                                "kind": "AutoGridLayout",
+                                "kind": "TabsLayout",
                                 "spec": {
-                                    "columnWidthMode": "standard",
-                                    "fillScreen": true,
-                                    "items": [
+                                    "tabs": [
                                         {
-                                            "kind": "AutoGridLayoutItem",
+                                            "kind": "TabsLayoutTab",
                                             "spec": {
-                                                "element": {
-                                                    "kind": "ElementReference",
-                                                    "name": "panel-3"
+                                                "title": "Log Fields",
+                                                "layout": {
+                                                    "kind": "AutoGridLayout",
+                                                    "spec": {
+                                                        "maxColumnCount": 1,
+                                                        "columnWidthMode": "standard",
+                                                        "rowHeightMode": "standard",
+                                                        "fillScreen": true,
+                                                        "items": [
+                                                            {
+                                                                "kind": "AutoGridLayoutItem",
+                                                                "spec": {
+                                                                    "element": {
+                                                                        "kind": "ElementReference",
+                                                                        "name": "panel-13"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "kind": "TabsLayoutTab",
+                                            "spec": {
+                                                "title": "-> ECS",
+                                                "layout": {
+                                                    "kind": "AutoGridLayout",
+                                                    "spec": {
+                                                        "maxColumnCount": 3,
+                                                        "columnWidthMode": "standard",
+                                                        "rowHeightMode": "standard",
+                                                        "fillScreen": true,
+                                                        "items": [
+                                                            {
+                                                                "kind": "AutoGridLayoutItem",
+                                                                "spec": {
+                                                                    "element": {
+                                                                        "kind": "ElementReference",
+                                                                        "name": "panel-12"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
-                                    ],
-                                    "maxColumnCount": 3,
-                                    "rowHeightMode": "standard"
+                                    ]
                                 }
-                            },
-                            "title": "event"
+                            }
                         }
                     }
                 ]
@@ -458,72 +1348,72 @@
         },
         "links": [
             {
-                "asDropdown": true,
+                "title": "Ingest",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "fortinet",
                     "fortigate",
                     "template",
                     "ingest"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "Ingest",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             },
             {
-                "asDropdown": true,
+                "title": "Traffic",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "traffic",
                     "fortinet",
                     "fortigate",
                     "template"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "Traffic",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             },
             {
-                "asDropdown": true,
+                "title": "UTM",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "utm",
                     "fortinet",
                     "fortigate",
                     "template"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "UTM",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             },
             {
-                "asDropdown": true,
+                "title": "Event",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "event",
                     "fortigate",
                     "fortinet",
                     "template"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "Event",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             }
         ],
         "liveNow": false,
@@ -535,6 +1425,9 @@
             "template"
         ],
         "timeSettings": {
+            "timezone": "America/Lima",
+            "from": "now-6h",
+            "to": "now",
             "autoRefresh": "",
             "autoRefreshIntervals": [
                 "5s",
@@ -548,14 +1441,10 @@
                 "2h",
                 "1d"
             ],
-            "fiscalYearStartMonth": 0,
-            "from": "now-24h",
             "hideTimepicker": false,
-            "timezone": "America/Lima",
-            "to": "now"
+            "fiscalYearStartMonth": 0
         },
         "title": "Log Fields [FortiOS]",
         "variables": []
-    },
-    "status": {}
+    }
 }

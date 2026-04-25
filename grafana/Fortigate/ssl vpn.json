@@ -1,9 +1,9 @@
 {
-  "apiVersion": "dashboard.grafana.app/v2beta1",
+  "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
     "name": "ma9cn4k",
-    "generation": 27,
+    "generation": 28,
     "creationTimestamp": "2025-06-14T01:22:21Z",
     "labels": {},
     "annotations": {}
@@ -13,17 +13,20 @@
       {
         "kind": "AnnotationQuery",
         "spec": {
-          "builtIn": true,
+          "query": {
+            "kind": "DataQuery",
+            "group": "grafana",
+            "version": "v0",
+            "spec": {},
+            "labels": {
+              "grafana.app/export-label": "grafana-1"
+            }
+          },
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
           "name": "Annotations & Alerts",
-          "query": {
-            "group": "grafana",
-            "kind": "DataQuery",
-            "spec": {},
-            "version": "v0"
-          }
+          "builtIn": true
         }
       }
     ],
@@ -33,6 +36,10 @@
       "panel-100": {
         "kind": "Panel",
         "spec": {
+          "id": 100,
+          "title": "total duration fgt.user",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -40,53 +47,97 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-down\"\n| stats by (fgt.user) sum(fgt.duration) results \n| sort by (results) desc \n| limit 10",
                         "legendFormat": "{{fgt.user}}",
                         "queryType": "stats"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
               "transformations": [
                 {
-                  "kind": "joinByLabels",
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
                   "spec": {
-                    "id": "joinByLabels",
                     "options": {
                       "value": "__name__"
                     }
                   }
                 }
-              ]
+              ],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 100,
-          "links": [],
-          "title": "total duration fgt.user",
-          "transparent": true,
           "vizConfig": {
-            "group": "barchart",
             "kind": "VizConfig",
+            "group": "barchart",
+            "version": "12.4.0-19174562009.patch3",
             "spec": {
+              "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": false
+                },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "normal",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                },
+                "xField": "fgt.user",
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "s",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                    },
+                    {
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                    }
+                  ],
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -107,32 +158,7 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "links": [
-                    {
-                      "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
-                    },
-                    {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "s"
+                  }
                 },
                 "overrides": [
                   {
@@ -207,38 +233,19 @@
                     ]
                   }
                 ]
-              },
-              "options": {
-                "barRadius": 0,
-                "barWidth": 0.97,
-                "fullHighlight": false,
-                "groupWidth": 0.7,
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "bottom",
-                  "showLegend": false
-                },
-                "orientation": "horizontal",
-                "showValue": "auto",
-                "stacking": "normal",
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                },
-                "xField": "fgt.user",
-                "xTickLabelRotation": 0,
-                "xTickLabelSpacing": 0
               }
-            },
-            "version": "12.4.0-19378664917"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-101": {
         "kind": "Panel",
         "spec": {
+          "id": 101,
+          "title": "",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -246,76 +253,44 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-up\"\n| NOT fgt.srccountry:Reserved \n| stats by (fgt.srccountry) count() results \n| sort by (results) desc \n| limit 10",
                         "legendFormat": "",
                         "queryType": "stats"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "srccountry"
+                    "refId": "srccountry",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
               "transformations": [
                 {
-                  "kind": "joinByLabels",
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
                   "spec": {
-                    "id": "joinByLabels",
                     "options": {
                       "value": "__name__"
                     }
                   }
                 }
-              ]
+              ],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 101,
-          "links": [],
-          "title": "",
           "vizConfig": {
-            "group": "geomap",
             "kind": "VizConfig",
+            "group": "geomap",
+            "version": "13.1.0-24601856692",
             "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "thresholds"
-                  },
-                  "custom": {
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
-                },
-                "overrides": []
-              },
               "options": {
                 "basemap": {
                   "config": {},
@@ -357,21 +332,54 @@
                 },
                 "view": {
                   "allLayers": true,
+                  "dashboardVariable": false,
                   "id": "zero",
                   "lat": 0,
                   "lon": 0,
                   "noRepeat": false,
                   "zoom": 1
                 }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    }
+                  }
+                },
+                "overrides": []
               }
-            },
-            "version": "12.4.0-19378664917"
+            }
           }
         }
       },
       "panel-102": {
         "kind": "Panel",
         "spec": {
+          "id": 102,
+          "title": "fgt.srscountry",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -379,53 +387,34 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-up\"\n| fgt.srccountry:* AND NOT fgt.srccountry:Reserved \n| stats by (fgt.srccountry) count() results \n| sort by (results) desc \n| limit 20",
                         "legendFormat": "{{fgt.srccountry}}",
                         "queryType": "stats"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "srccountry"
+                    "refId": "srccountry",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
-              "transformations": []
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 102,
-          "links": [],
-          "title": "fgt.srscountry",
           "vizConfig": {
-            "group": "piechart",
             "kind": "VizConfig",
+            "group": "piechart",
+            "version": "13.1.0-24601856692",
             "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    }
-                  },
-                  "unit": "sishort"
-                },
-                "overrides": []
-              },
               "options": {
                 "legend": {
                   "displayMode": "list",
@@ -446,67 +435,13 @@
                   "mode": "multi",
                   "sort": "desc"
                 }
-              }
-            },
-            "version": "12.4.0-19378664917"
-          }
-        }
-      },
-      "panel-103": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| NOT fgt.srccountry:Reserved \n| stats by (fgt.srccountry) count() results \n| sort by (results) desc \n| limit 10",
-                        "legendFormat": "",
-                        "queryType": "stats"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "srccountry"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": [
-                {
-                  "kind": "joinByLabels",
-                  "spec": {
-                    "id": "joinByLabels",
-                    "options": {
-                      "value": "__name__"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "description": "",
-          "id": 103,
-          "links": [],
-          "title": "",
-          "vizConfig": {
-            "group": "geomap",
-            "kind": "VizConfig",
-            "spec": {
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
                   "color": {
-                    "mode": "thresholds"
+                    "mode": "palette-classic",
+                    "fixedColor": "#73BF69"
                   },
                   "custom": {
                     "hideFrom": {
@@ -514,24 +449,66 @@
                       "tooltip": false,
                       "viz": false
                     }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": []
-              },
+              }
+            }
+          }
+        }
+      },
+      "panel-103": {
+        "kind": "Panel",
+        "spec": {
+          "id": 103,
+          "title": "",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| NOT fgt.srccountry:Reserved \n| stats by (fgt.srccountry) count() results \n| sort by (results) desc \n| limit 10",
+                        "legendFormat": "",
+                        "queryType": "stats"
+                      }
+                    },
+                    "refId": "srccountry",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "geomap",
+            "version": "12.4.0-19174562009.patch3",
+            "spec": {
               "options": {
                 "basemap": {
                   "config": {},
@@ -579,57 +556,25 @@
                   "noRepeat": false,
                   "zoom": 1
                 }
-              }
-            },
-            "version": "12.4.0-19174562009.patch3"
-          }
-        }
-      },
-      "panel-104": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| fgt.srccountry:* AND NOT fgt.srccountry:Reserved \n| stats by (fgt.srccountry) count() results \n| sort by (results) desc \n| limit 5",
-                        "legendFormat": "{{fgt.srccountry}}",
-                        "queryType": "stats"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "srccountry"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 104,
-          "links": [],
-          "title": "fgt.srscountry",
-          "vizConfig": {
-            "group": "piechart",
-            "kind": "VizConfig",
-            "spec": {
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
-                    "mode": "palette-classic"
+                    "mode": "thresholds"
                   },
                   "custom": {
                     "hideFrom": {
@@ -637,11 +582,56 @@
                       "tooltip": false,
                       "viz": false
                     }
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": []
-              },
+              }
+            }
+          }
+        }
+      },
+      "panel-104": {
+        "kind": "Panel",
+        "spec": {
+          "id": 104,
+          "title": "fgt.srscountry",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| fgt.srccountry:* AND NOT fgt.srccountry:Reserved \n| stats by (fgt.srccountry) count() results \n| sort by (results) desc \n| limit 5",
+                        "legendFormat": "{{fgt.srccountry}}",
+                        "queryType": "stats"
+                      }
+                    },
+                    "refId": "srccountry",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "piechart",
+            "version": "12.4.0-19174562009.patch3",
+            "spec": {
               "options": {
                 "legend": {
                   "displayMode": "list",
@@ -662,15 +652,34 @@
                   "mode": "multi",
                   "sort": "desc"
                 }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "sishort",
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    }
+                  }
+                },
+                "overrides": []
               }
-            },
-            "version": "12.4.0-19174562009.patch3"
+            }
           }
         }
       },
       "panel-80": {
         "kind": "Panel",
         "spec": {
+          "id": 80,
+          "title": "fgt.user",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -678,40 +687,63 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| fgt.user:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n  | fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n  | fgt.action:\"ssl-login-fail\"\n  | top 10 (fgt.user)\n  | keep fgt.user\n  )\n| by (fgt.user) count() results",
                         "legendFormat": "{{fgt.user}}",
                         "queryType": "statsRange"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
-              "transformations": []
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 80,
-          "links": [],
-          "title": "fgt.user",
-          "transparent": true,
           "vizConfig": {
-            "group": "timeseries",
             "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "12.4.0-19174562009.patch3",
             "spec": {
+              "options": {
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                }
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
@@ -748,45 +780,22 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": []
-              },
-              "options": {
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "right",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                }
               }
-            },
-            "version": "12.4.0-19174562009.patch3"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-88": {
         "kind": "Panel",
         "spec": {
+          "id": 88,
+          "title": "fgt.user",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -794,39 +803,38 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| stats by (fgt.user,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
               "transformations": [
                 {
-                  "kind": "joinByLabels",
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
                   "spec": {
-                    "id": "joinByLabels",
                     "options": {
                       "value": "__name__"
                     }
                   }
                 },
                 {
-                  "kind": "groupingToMatrix",
+                  "kind": "Transformation",
+                  "group": "groupingToMatrix",
                   "spec": {
-                    "id": "groupingToMatrix",
                     "options": {
                       "columnField": "fgt.logdesc",
                       "rowField": "fgt.user",
@@ -834,23 +842,67 @@
                     }
                   }
                 }
-              ]
+              ],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 88,
-          "links": [],
-          "title": "fgt.user",
-          "transparent": true,
           "vizConfig": {
-            "group": "barchart",
             "kind": "VizConfig",
+            "group": "barchart",
+            "version": "12.4.0-19174562009.patch3",
             "spec": {
+              "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "normal",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                },
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                    },
+                    {
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                    }
+                  ],
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -871,32 +923,7 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "links": [
-                    {
-                      "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
-                    },
-                    {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": [
                   {
@@ -971,7 +998,74 @@
                     ]
                   }
                 ]
-              },
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-89": {
+        "kind": "Panel",
+        "spec": {
+          "id": 89,
+          "title": "fgt.reason",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| stats by (fgt.reason,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
+                        "queryType": "stats"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "groupingToMatrix",
+                  "spec": {
+                    "options": {
+                      "columnField": "fgt.logdesc",
+                      "rowField": "fgt.reason",
+                      "valueField": "results"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "barchart",
+            "version": "12.4.0-19174562009.patch3",
+            "spec": {
               "options": {
                 "barRadius": 0,
                 "barWidth": 0.97,
@@ -993,79 +1087,37 @@
                 },
                 "xTickLabelRotation": 0,
                 "xTickLabelSpacing": 0
-              }
-            },
-            "version": "12.4.0-19174562009.patch3"
-          }
-        }
-      },
-      "panel-89": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"ssl-login-fail\"\n| stats by (fgt.reason,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
-                        "queryType": "stats"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": [
-                {
-                  "kind": "joinByLabels",
-                  "spec": {
-                    "id": "joinByLabels",
-                    "options": {
-                      "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "kind": "groupingToMatrix",
-                  "spec": {
-                    "id": "groupingToMatrix",
-                    "options": {
-                      "columnField": "fgt.logdesc",
-                      "rowField": "fgt.reason",
-                      "valueField": "results"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "description": "",
-          "id": 89,
-          "links": [],
-          "title": "fgt.reason",
-          "transparent": true,
-          "vizConfig": {
-            "group": "barchart",
-            "kind": "VizConfig",
-            "spec": {
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                    },
+                    {
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                    }
+                  ],
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -1086,32 +1138,7 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "links": [
-                    {
-                      "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
-                    },
-                    {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": [
                   {
@@ -1175,37 +1202,19 @@
                     ]
                   }
                 ]
-              },
-              "options": {
-                "barRadius": 0,
-                "barWidth": 0.97,
-                "fullHighlight": false,
-                "groupWidth": 0.7,
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "bottom",
-                  "showLegend": true
-                },
-                "orientation": "horizontal",
-                "showValue": "auto",
-                "stacking": "normal",
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                },
-                "xTickLabelRotation": 0,
-                "xTickLabelSpacing": 0
               }
-            },
-            "version": "12.4.0-19174562009.patch3"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-90": {
         "kind": "Panel",
         "spec": {
+          "id": 90,
+          "title": "fgt.logdesc",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -1213,40 +1222,67 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| stats by (fgt.logdesc) count() results",
                         "legendFormat": "{{fgt.logdesc}}",
                         "queryType": "statsRange"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
-              "transformations": []
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 90,
-          "links": [],
-          "title": "fgt.logdesc",
-          "transparent": true,
           "vizConfig": {
-            "group": "timeseries",
             "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0-24601856692",
             "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                }
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
@@ -1283,21 +1319,7 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": [
                   {
@@ -1361,28 +1383,19 @@
                     ]
                   }
                 ]
-              },
-              "options": {
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "right",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                }
               }
-            },
-            "version": "12.4.0-19378664917"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-91": {
         "kind": "Panel",
         "spec": {
+          "id": 91,
+          "title": "fgt.user",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -1390,39 +1403,38 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-up\"\n| stats by (fgt.user,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
               "transformations": [
                 {
-                  "kind": "joinByLabels",
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
                   "spec": {
-                    "id": "joinByLabels",
                     "options": {
                       "value": "__name__"
                     }
                   }
                 },
                 {
-                  "kind": "groupingToMatrix",
+                  "kind": "Transformation",
+                  "group": "groupingToMatrix",
                   "spec": {
-                    "id": "groupingToMatrix",
                     "options": {
                       "columnField": "fgt.logdesc",
                       "rowField": "fgt.user",
@@ -1430,133 +1442,15 @@
                     }
                   }
                 }
-              ]
+              ],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 91,
-          "links": [],
-          "title": "fgt.user",
-          "transparent": true,
           "vizConfig": {
-            "group": "barchart",
             "kind": "VizConfig",
+            "group": "barchart",
+            "version": "12.4.0-19174562009.patch3",
             "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisBorderShow": false,
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "fillOpacity": 80,
-                    "gradientMode": "none",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "lineWidth": 1,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  },
-                  "links": [
-                    {
-                      "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
-                    },
-                    {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
-                },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN tunnel up"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN login fail"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN tunnel down"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-orange",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN statistics"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-purple",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              },
               "options": {
                 "barRadius": 0,
                 "barWidth": 0.97,
@@ -1578,79 +1472,37 @@
                 },
                 "xTickLabelRotation": 0,
                 "xTickLabelSpacing": 0
-              }
-            },
-            "version": "12.4.0-19378664917"
-          }
-        }
-      },
-      "panel-92": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-up\"\n| stats by (fgt.remip,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
-                        "queryType": "stats"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": [
-                {
-                  "kind": "joinByLabels",
-                  "spec": {
-                    "id": "joinByLabels",
-                    "options": {
-                      "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "kind": "groupingToMatrix",
-                  "spec": {
-                    "id": "groupingToMatrix",
-                    "options": {
-                      "columnField": "fgt.logdesc",
-                      "rowField": "fgt.remip",
-                      "valueField": "results"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "description": "",
-          "id": 92,
-          "links": [],
-          "title": "fgt.remip",
-          "transparent": true,
-          "vizConfig": {
-            "group": "barchart",
-            "kind": "VizConfig",
-            "spec": {
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                    },
+                    {
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                    }
+                  ],
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -1671,6 +1523,178 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN tunnel up"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-blue",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN login fail"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-red",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN tunnel down"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-orange",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN statistics"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-purple",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-92": {
+        "kind": "Panel",
+        "spec": {
+          "id": 92,
+          "title": "fgt.remip",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-up\"\n| stats by (fgt.remip,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
+                        "queryType": "stats"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "groupingToMatrix",
+                  "spec": {
+                    "options": {
+                      "columnField": "fgt.logdesc",
+                      "rowField": "fgt.remip",
+                      "valueField": "results"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "barchart",
+            "version": "12.4.0-19174562009.patch3",
+            "spec": {
+              "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "normal",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                },
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
                   },
                   "links": [
                     {
@@ -1683,178 +1707,6 @@
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
-                },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN tunnel up"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN login fail"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN tunnel down"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-orange",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "SSL VPN statistics"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-purple",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              },
-              "options": {
-                "barRadius": 0,
-                "barWidth": 0.97,
-                "fullHighlight": false,
-                "groupWidth": 0.7,
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "bottom",
-                  "showLegend": true
-                },
-                "orientation": "horizontal",
-                "showValue": "auto",
-                "stacking": "normal",
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                },
-                "xTickLabelRotation": 0,
-                "xTickLabelSpacing": 0
-              }
-            },
-            "version": "12.4.0-19378664917"
-          }
-        }
-      },
-      "panel-93": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-down\"\n| stats by (fgt.reason,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
-                        "queryType": "stats"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": [
-                {
-                  "kind": "joinByLabels",
-                  "spec": {
-                    "id": "joinByLabels",
-                    "options": {
-                      "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "kind": "groupingToMatrix",
-                  "spec": {
-                    "id": "groupingToMatrix",
-                    "options": {
-                      "columnField": "fgt.logdesc",
-                      "rowField": "fgt.reason",
-                      "valueField": "results"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "description": "",
-          "id": 93,
-          "links": [],
-          "title": "fgt.reason for termination",
-          "transparent": true,
-          "vizConfig": {
-            "group": "barchart",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -1875,32 +1727,7 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "links": [
-                    {
-                      "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
-                    },
-                    {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
-                    }
-                  ],
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": [
                   {
@@ -1964,7 +1791,74 @@
                     ]
                   }
                 ]
-              },
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-93": {
+        "kind": "Panel",
+        "spec": {
+          "id": 93,
+          "title": "fgt.reason for termination",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-down\"\n| stats by (fgt.reason,fgt.logdesc) count() results \n| sort by (results) desc \n| limit 10",
+                        "queryType": "stats"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "joinByLabels",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "groupingToMatrix",
+                  "spec": {
+                    "options": {
+                      "columnField": "fgt.logdesc",
+                      "rowField": "fgt.reason",
+                      "valueField": "results"
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "barchart",
+            "version": "12.4.0-19174562009.patch3",
+            "spec": {
               "options": {
                 "barRadius": 0,
                 "barWidth": 0.97,
@@ -1986,15 +1880,134 @@
                 },
                 "xTickLabelRotation": 0,
                 "xTickLabelSpacing": 0
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                    },
+                    {
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                    }
+                  ],
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "fillOpacity": 80,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "lineWidth": 1,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN tunnel up"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-blue",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN login fail"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-red",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN tunnel down"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-orange",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSL VPN statistics"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-purple",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
-            },
-            "version": "12.4.0-19378664917"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-95": {
         "kind": "Panel",
         "spec": {
+          "id": 95,
+          "title": "Login Users",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -2002,40 +2015,67 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-up\"\n| fgt.user:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n  | fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n  | fgt.action:\"tunnel-up\"\n  | top 10 (fgt.user)\n  | keep fgt.user\n  )\n| by (fgt.user) count() results",
                         "legendFormat": "{{fgt.user}}",
                         "queryType": "statsRange"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
-              "transformations": []
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 95,
-          "links": [],
-          "title": "Login Users",
-          "transparent": true,
           "vizConfig": {
-            "group": "timeseries",
             "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0-24601856692",
             "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                }
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
@@ -2072,45 +2112,22 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": []
-              },
-              "options": {
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "right",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                }
               }
-            },
-            "version": "12.4.0-19378664917"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-96": {
         "kind": "Panel",
         "spec": {
+          "id": 96,
+          "title": "Active Users",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -2118,40 +2135,67 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| fgt.action:\"tunnel-stats\"\n| fgt.user:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n  | fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n  | fgt.action:\"tunnel-stats\"\n  | top 10 (fgt.user)\n  | keep fgt.user\n  )\n| by (fgt.user) count() results",
                         "legendFormat": "{{fgt.user}}",
                         "queryType": "statsRange"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
-              "transformations": []
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 96,
-          "links": [],
-          "title": "Active Users",
-          "transparent": true,
           "vizConfig": {
-            "group": "timeseries",
             "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.1.0-24601856692",
             "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                }
+              },
               "fieldConfig": {
                 "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
                   "color": {
                     "mode": "palette-classic"
                   },
@@ -2188,45 +2232,22 @@
                     "thresholdsStyle": {
                       "mode": "off"
                     }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
+                  }
                 },
                 "overrides": []
-              },
-              "options": {
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "right",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                }
               }
-            },
-            "version": "12.4.0-19378664917"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-97": {
         "kind": "Panel",
         "spec": {
+          "id": 97,
+          "title": "",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -2234,59 +2255,33 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw}\n| stats count() total_logs, count_uniq(fgt.user) unique_fgt.user, count_uniq(fgt.remip) unique_fgt.remip",
                         "queryType": "stats"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
-              "transformations": []
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 97,
-          "links": [],
-          "title": "",
-          "transparent": true,
           "vizConfig": {
-            "group": "stat",
             "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0-24601856692",
             "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "fixed"
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
-                },
-                "overrides": []
-              },
               "options": {
                 "colorMode": "none",
                 "graphMode": "area",
@@ -2303,15 +2298,41 @@
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed"
+                  }
+                },
+                "overrides": []
               }
-            },
-            "version": "12.4.0-19378664917"
-          }
+            }
+          },
+          "transparent": true
         }
       },
       "panel-99": {
         "kind": "Panel",
         "spec": {
+          "id": 99,
+          "title": "",
+          "description": "",
+          "links": [],
           "data": {
             "kind": "QueryGroup",
             "spec": {
@@ -2319,59 +2340,33 @@
                 {
                   "kind": "PanelQuery",
                   "spec": {
-                    "hidden": false,
                     "query": {
+                      "kind": "DataQuery",
+                      "group": "victoriametrics-logs-datasource",
+                      "version": "v0",
                       "datasource": {
                         "name": "${datasource}"
                       },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
                         "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote})}\n| fgt.tunneltype:in(${tunneltype:doublequote}) AND ${Logsql:raw} AND fgt.logdesc:\"SSL VPN tunnel up\"\n| count_uniq(fgt.user) successful_login_user",
                         "queryType": "stats"
-                      },
-                      "version": "v0"
+                      }
                     },
-                    "refId": "A"
+                    "refId": "A",
+                    "hidden": false
                   }
                 }
               ],
-              "queryOptions": {},
-              "transformations": []
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "description": "",
-          "id": 99,
-          "links": [],
-          "title": "",
-          "transparent": true,
           "vizConfig": {
-            "group": "stat",
             "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.1.0-24601856692",
             "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "fixed"
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
-                },
-                "overrides": []
-              },
               "options": {
                 "colorMode": "none",
                 "graphMode": "area",
@@ -2388,10 +2383,32 @@
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "sishort",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed"
+                  }
+                },
+                "overrides": []
               }
-            },
-            "version": "12.4.0-19378664917"
-          }
+            }
+          },
+          "transparent": true
         }
       }
     },
@@ -2402,11 +2419,15 @@
           {
             "kind": "RowsLayoutRow",
             "spec": {
+              "title": "Metrics",
               "collapse": false,
               "layout": {
                 "kind": "AutoGridLayout",
                 "spec": {
+                  "maxColumnCount": 2,
                   "columnWidthMode": "narrow",
+                  "rowHeightMode": "custom",
+                  "rowHeight": 100,
                   "items": [
                     {
                       "kind": "AutoGridLayoutItem",
@@ -2426,23 +2447,23 @@
                         }
                       }
                     }
-                  ],
-                  "maxColumnCount": 2,
-                  "rowHeight": 100,
-                  "rowHeightMode": "custom"
+                  ]
                 }
-              },
-              "title": "Metrics"
+              }
             }
           },
           {
             "kind": "RowsLayoutRow",
             "spec": {
+              "title": "General",
               "collapse": false,
               "layout": {
                 "kind": "AutoGridLayout",
                 "spec": {
+                  "maxColumnCount": 3,
                   "columnWidthMode": "standard",
+                  "rowHeightMode": "custom",
+                  "rowHeight": 240,
                   "items": [
                     {
                       "kind": "AutoGridLayoutItem",
@@ -2453,18 +2474,15 @@
                         }
                       }
                     }
-                  ],
-                  "maxColumnCount": 3,
-                  "rowHeight": 240,
-                  "rowHeightMode": "custom"
+                  ]
                 }
-              },
-              "title": "General"
+              }
             }
           },
           {
             "kind": "RowsLayoutRow",
             "spec": {
+              "title": "Success Login",
               "collapse": false,
               "layout": {
                 "kind": "RowsLayout",
@@ -2473,11 +2491,14 @@
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
+                        "title": "",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
                           "spec": {
+                            "maxColumnCount": 3,
                             "columnWidthMode": "standard",
+                            "rowHeightMode": "standard",
                             "items": [
                               {
                                 "kind": "AutoGridLayoutItem",
@@ -2497,22 +2518,23 @@
                                   }
                                 }
                               }
-                            ],
-                            "maxColumnCount": 3,
-                            "rowHeightMode": "standard"
+                            ]
                           }
-                        },
-                        "title": ""
+                        }
                       }
                     },
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
+                        "title": "",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
                           "spec": {
+                            "maxColumnCount": 3,
                             "columnWidthMode": "standard",
+                            "rowHeightMode": "custom",
+                            "rowHeight": 240,
                             "items": [
                               {
                                 "kind": "AutoGridLayoutItem",
@@ -2532,23 +2554,22 @@
                                   }
                                 }
                               }
-                            ],
-                            "maxColumnCount": 3,
-                            "rowHeight": 240,
-                            "rowHeightMode": "custom"
+                            ]
                           }
-                        },
-                        "title": ""
+                        }
                       }
                     },
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
+                        "title": "",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
                           "spec": {
+                            "maxColumnCount": 4,
                             "columnWidthMode": "narrow",
+                            "rowHeightMode": "standard",
                             "items": [
                               {
                                 "kind": "AutoGridLayoutItem",
@@ -2586,23 +2607,20 @@
                                   }
                                 }
                               }
-                            ],
-                            "maxColumnCount": 4,
-                            "rowHeightMode": "standard"
+                            ]
                           }
-                        },
-                        "title": ""
+                        }
                       }
                     }
                   ]
                 }
-              },
-              "title": "Success Login"
+              }
             }
           },
           {
             "kind": "RowsLayoutRow",
             "spec": {
+              "title": "Fail Login",
               "collapse": false,
               "layout": {
                 "kind": "RowsLayout",
@@ -2611,11 +2629,14 @@
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
+                        "title": "",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
                           "spec": {
+                            "maxColumnCount": 3,
                             "columnWidthMode": "standard",
+                            "rowHeightMode": "standard",
                             "items": [
                               {
                                 "kind": "AutoGridLayoutItem",
@@ -2635,22 +2656,23 @@
                                   }
                                 }
                               }
-                            ],
-                            "maxColumnCount": 3,
-                            "rowHeightMode": "standard"
+                            ]
                           }
-                        },
-                        "title": ""
+                        }
                       }
                     },
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
+                        "title": "",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
                           "spec": {
+                            "maxColumnCount": 3,
                             "columnWidthMode": "standard",
+                            "rowHeightMode": "custom",
+                            "rowHeight": 240,
                             "items": [
                               {
                                 "kind": "AutoGridLayoutItem",
@@ -2661,23 +2683,22 @@
                                   }
                                 }
                               }
-                            ],
-                            "maxColumnCount": 3,
-                            "rowHeight": 240,
-                            "rowHeightMode": "custom"
+                            ]
                           }
-                        },
-                        "title": ""
+                        }
                       }
                     },
                     {
                       "kind": "RowsLayoutRow",
                       "spec": {
+                        "title": "",
                         "collapse": false,
                         "layout": {
                           "kind": "AutoGridLayout",
                           "spec": {
+                            "maxColumnCount": 2,
                             "columnWidthMode": "standard",
+                            "rowHeightMode": "standard",
                             "items": [
                               {
                                 "kind": "AutoGridLayoutItem",
@@ -2697,18 +2718,14 @@
                                   }
                                 }
                               }
-                            ],
-                            "maxColumnCount": 2,
-                            "rowHeightMode": "standard"
+                            ]
                           }
-                        },
-                        "title": ""
+                        }
                       }
                     }
                   ]
                 }
-              },
-              "title": "Fail Login"
+              }
             }
           }
         ]
@@ -2716,72 +2733,72 @@
     },
     "links": [
       {
-        "asDropdown": true,
+        "title": "Ingest",
+        "type": "dashboards",
         "icon": "external link",
-        "includeVars": false,
-        "keepTime": true,
+        "tooltip": "",
+        "url": "",
         "tags": [
           "fortinet",
           "fortigate",
           "ingest",
           "template"
         ],
+        "asDropdown": true,
         "targetBlank": false,
-        "title": "Ingest",
-        "tooltip": "",
-        "type": "dashboards",
-        "url": ""
+        "includeVars": false,
+        "keepTime": true
       },
       {
-        "asDropdown": true,
+        "title": "Traffic",
+        "type": "dashboards",
         "icon": "external link",
-        "includeVars": false,
-        "keepTime": true,
+        "tooltip": "",
+        "url": "",
         "tags": [
           "traffic",
           "fortigate",
           "fortinet",
           "template"
         ],
+        "asDropdown": true,
         "targetBlank": false,
-        "title": "Traffic",
-        "tooltip": "",
-        "type": "dashboards",
-        "url": ""
+        "includeVars": false,
+        "keepTime": true
       },
       {
-        "asDropdown": true,
+        "title": "UTM",
+        "type": "dashboards",
         "icon": "external link",
-        "includeVars": false,
-        "keepTime": true,
+        "tooltip": "",
+        "url": "",
         "tags": [
           "utm",
           "fortinet",
           "fortigate",
           "template"
         ],
+        "asDropdown": true,
         "targetBlank": false,
-        "title": "UTM",
-        "tooltip": "",
-        "type": "dashboards",
-        "url": ""
+        "includeVars": false,
+        "keepTime": true
       },
       {
-        "asDropdown": true,
+        "title": "Event",
+        "type": "dashboards",
         "icon": "external link",
-        "includeVars": false,
-        "keepTime": true,
+        "tooltip": "",
+        "url": "",
         "tags": [
           "event",
           "fortigate",
           "fortinet",
           "template"
         ],
+        "asDropdown": true,
         "targetBlank": false,
-        "title": "Event",
-        "tooltip": "",
-        "type": "dashboards",
-        "url": ""
+        "includeVars": false,
+        "keepTime": true
       }
     ],
     "liveNow": false,
@@ -2793,6 +2810,9 @@
       "template"
     ],
     "timeSettings": {
+      "timezone": "America/Lima",
+      "from": "now-24h",
+      "to": "now",
       "autoRefresh": "",
       "autoRefreshIntervals": [
         "5s",
@@ -2806,133 +2826,130 @@
         "2h",
         "1d"
       ],
-      "fiscalYearStartMonth": 0,
-      "from": "now-24h",
       "hideTimepicker": false,
-      "timezone": "America/Lima",
-      "to": "now"
+      "fiscalYearStartMonth": 0
     },
     "title": "SSL VPN [FortiOS] v2",
     "variables": [
       {
         "kind": "DatasourceVariable",
         "spec": {
-          "allowCustomValue": true,
-          "current": {
-            "text": "",
-            "value": ""
-          },
-          "hide": "dontHide",
-          "includeAll": false,
-          "multi": false,
           "name": "datasource",
-          "options": [],
           "pluginId": "victoriametrics-logs-datasource",
           "refresh": "onDashboardLoad",
           "regex": "",
-          "skipUrlSync": false
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "allowCustomValue": true
         }
       },
       {
+        "kind": "AdhocVariable",
+        "group": "victoriametrics-logs-datasource",
         "datasource": {
           "name": "${datasource}"
         },
-        "group": "victoriametrics-logs-datasource",
-        "kind": "AdhocVariable",
         "spec": {
-          "allowCustomValue": true,
-          "baseFilters": [],
-          "defaultKeys": [],
-          "filters": [],
-          "hide": "dontHide",
           "name": "Filters",
-          "skipUrlSync": false
+          "baseFilters": [],
+          "filters": [],
+          "defaultKeys": [],
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "allowCustomValue": true,
+          "enableGroupBy": false
         }
       },
       {
         "kind": "QueryVariable",
         "spec": {
-          "allValue": "*",
-          "allowCustomValue": true,
+          "name": "firewall",
           "current": {
             "text": "",
             "value": ""
           },
-          "definition": "_stream: {fgt.type=$type}",
           "hide": "dontHide",
-          "includeAll": true,
-          "multi": true,
-          "name": "firewall",
-          "options": [],
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
           "query": {
+            "kind": "DataQuery",
+            "group": "victoriametrics-logs-datasource",
+            "version": "v0",
             "datasource": {
               "name": "${datasource}"
             },
-            "group": "victoriametrics-logs-datasource",
-            "kind": "DataQuery",
             "spec": {
               "field": "log.syslog.hostname",
-              "limit": 25,
+              "limit": 0,
               "query": "_stream: {fgt.type=$type}",
               "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
               "type": "fieldValue"
-            },
-            "version": "v0"
+            }
           },
-          "refresh": "onDashboardLoad",
           "regex": "",
-          "skipUrlSync": false,
-          "sort": "disabled"
+          "regexApplyTo": "value",
+          "sort": "disabled",
+          "definition": "_stream: {fgt.type=$type}",
+          "options": [],
+          "multi": true,
+          "includeAll": true,
+          "allValue": "*",
+          "allowCustomValue": true
         }
       },
       {
         "kind": "QueryVariable",
         "spec": {
-          "allValue": "*",
-          "allowCustomValue": true,
+          "name": "vdom",
           "current": {
             "text": "",
             "value": ""
           },
-          "definition": "_stream: {fgt.type=$type,log.syslog.hostname in ($firewall)}",
           "hide": "dontHide",
-          "includeAll": true,
-          "multi": true,
-          "name": "vdom",
-          "options": [],
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
           "query": {
+            "kind": "DataQuery",
+            "group": "victoriametrics-logs-datasource",
+            "version": "v0",
             "datasource": {
               "name": "${datasource}"
             },
-            "group": "victoriametrics-logs-datasource",
-            "kind": "DataQuery",
             "spec": {
               "field": "fgt.vd",
-              "limit": 25,
+              "limit": 0,
               "query": "_stream: {fgt.type=$type,log.syslog.hostname in ($firewall)}",
               "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
               "type": "fieldValue"
-            },
-            "version": "v0"
+            }
           },
-          "refresh": "onDashboardLoad",
           "regex": "",
-          "skipUrlSync": false,
-          "sort": "disabled"
+          "regexApplyTo": "value",
+          "sort": "disabled",
+          "definition": "_stream: {fgt.type=$type,log.syslog.hostname in ($firewall)}",
+          "options": [],
+          "multi": true,
+          "includeAll": true,
+          "allValue": "*",
+          "allowCustomValue": true
         }
       },
       {
         "kind": "CustomVariable",
         "spec": {
-          "allowCustomValue": true,
+          "name": "type",
+          "query": "event",
           "current": {
             "text": "event",
             "value": "event"
           },
-          "hide": "dontHide",
-          "includeAll": false,
-          "multi": false,
-          "name": "type",
           "options": [
             {
               "selected": true,
@@ -2940,22 +2957,23 @@
               "value": "event"
             }
           ],
-          "query": "event",
-          "skipUrlSync": false
+          "multi": false,
+          "includeAll": false,
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "allowCustomValue": true,
+          "valuesFormat": "csv"
         }
       },
       {
         "kind": "CustomVariable",
         "spec": {
-          "allowCustomValue": true,
+          "name": "subtype",
+          "query": "vpn",
           "current": {
             "text": "vpn",
             "value": "vpn"
           },
-          "hide": "dontHide",
-          "includeAll": false,
-          "multi": false,
-          "name": "subtype",
           "options": [
             {
               "selected": true,
@@ -2963,14 +2981,19 @@
               "value": "vpn"
             }
           ],
-          "query": "vpn",
-          "skipUrlSync": false
+          "multi": false,
+          "includeAll": false,
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "allowCustomValue": true,
+          "valuesFormat": "csv"
         }
       },
       {
         "kind": "CustomVariable",
         "spec": {
-          "allowCustomValue": true,
+          "name": "tunneltype",
+          "query": "ssl-web, ssl-tunnel",
           "current": {
             "text": [
               "ssl-web",
@@ -2981,10 +3004,6 @@
               "ssl-tunnel"
             ]
           },
-          "hide": "dontHide",
-          "includeAll": false,
-          "multi": true,
-          "name": "tunneltype",
           "options": [
             {
               "selected": true,
@@ -2997,25 +3016,28 @@
               "value": "ssl-tunnel"
             }
           ],
-          "query": "ssl-web, ssl-tunnel",
-          "skipUrlSync": false
+          "multi": true,
+          "includeAll": false,
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "allowCustomValue": true,
+          "valuesFormat": "csv"
         }
       },
       {
         "kind": "TextVariable",
         "spec": {
+          "name": "Logsql",
           "current": {
             "text": "*",
             "value": "*"
           },
-          "description": "Custom LogsQL filter attached to every query.\nSet to \"*\" to not filter.\nSee https://docs.victoriametrics.com/victorialogs/logsql/",
-          "hide": "dontHide",
-          "name": "Logsql",
           "query": "*",
-          "skipUrlSync": false
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "description": "Custom LogsQL filter attached to every query.\nSet to \"*\" to not filter.\nSee https://docs.victoriametrics.com/victorialogs/logsql/"
         }
       }
     ]
-  },
-  "status": {}
+  }
 }

@@ -1,9 +1,9 @@
 {
-    "apiVersion": "dashboard.grafana.app/v2beta1",
+    "apiVersion": "dashboard.grafana.app/v2",
     "kind": "Dashboard",
     "metadata": {
         "name": "mak52zx",
-        "generation": 5,
+        "generation": 14,
         "creationTimestamp": "2025-11-25T15:20:29Z",
         "labels": {},
         "annotations": {}
@@ -13,27 +13,30 @@
             {
                 "kind": "AnnotationQuery",
                 "spec": {
-                    "builtIn": true,
+                    "query": {
+                        "kind": "DataQuery",
+                        "group": "grafana",
+                        "version": "v0",
+                        "spec": {}
+                    },
                     "enable": true,
                     "hide": true,
                     "iconColor": "rgba(0, 211, 255, 1)",
                     "name": "Annotations & Alerts",
-                    "query": {
-                        "group": "grafana",
-                        "kind": "DataQuery",
-                        "spec": {},
-                        "version": "v0"
-                    }
+                    "builtIn": true
                 }
             }
         ],
         "cursorSync": "Off",
-        "description": "",
         "editable": true,
         "elements": {
             "panel-5": {
                 "kind": "Panel",
                 "spec": {
+                    "id": 5,
+                    "title": "",
+                    "description": "",
+                    "links": [],
                     "data": {
                         "kind": "QueryGroup",
                         "spec": {
@@ -41,36 +44,38 @@
                                 {
                                     "kind": "PanelQuery",
                                     "spec": {
-                                        "hidden": false,
                                         "query": {
-                                            "group": "victoriametrics-logs-datasource",
                                             "kind": "DataQuery",
+                                            "group": "victoriametrics-logs-datasource",
+                                            "version": "v0",
                                             "spec": {
                                                 "editorMode": "code",
                                                 "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| field_values _stream ",
                                                 "queryType": "instant"
                                             },
-                                            "version": "v0"
+                                            "labels": {
+                                                "grafana.app/export-label": "victoriametrics-logs-datasource-1"
+                                            }
                                         },
-                                        "refId": "A"
+                                        "refId": "A",
+                                        "hidden": false
                                     }
                                 }
                             ],
-                            "queryOptions": {},
                             "transformations": [
                                 {
-                                    "kind": "extractFields",
+                                    "kind": "Transformation",
+                                    "group": "extractFields",
                                     "spec": {
-                                        "id": "extractFields",
                                         "options": {
                                             "source": "labels"
                                         }
                                     }
                                 },
                                 {
-                                    "kind": "organize",
+                                    "kind": "Transformation",
+                                    "group": "organize",
                                     "spec": {
-                                        "id": "organize",
                                         "options": {
                                             "excludeByName": {},
                                             "includeByName": {
@@ -109,21 +114,61 @@
                                             "renameByName": {}
                                         }
                                     }
+                                },
+                                {
+                                    "kind": "Transformation",
+                                    "group": "reduce",
+                                    "spec": {
+                                        "options": {
+                                            "reducers": [
+                                                "uniqueValues"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "kind": "Transformation",
+                                    "group": "organize",
+                                    "spec": {
+                                        "options": {
+                                            "excludeByName": {},
+                                            "includeByName": {},
+                                            "indexByName": {},
+                                            "renameByName": {
+                                                "All unique values": "Stream Values",
+                                                "Field": "Stream Fields"
+                                            }
+                                        }
+                                    }
                                 }
-                            ]
+                            ],
+                            "queryOptions": {}
                         }
                     },
-                    "description": "",
-                    "id": 5,
-                    "links": [],
-                    "title": "",
-                    "transparent": true,
                     "vizConfig": {
-                        "group": "table",
                         "kind": "VizConfig",
+                        "group": "table",
+                        "version": "13.1.0-24601856692",
                         "spec": {
+                            "options": {
+                                "cellHeight": "sm",
+                                "showHeader": true
+                            },
                             "fieldConfig": {
                                 "defaults": {
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "value": 0,
+                                                "color": "green"
+                                            },
+                                            {
+                                                "value": 80,
+                                                "color": "red"
+                                            }
+                                        ]
+                                    },
                                     "custom": {
                                         "align": "auto",
                                         "cellOptions": {
@@ -131,35 +176,29 @@
                                         },
                                         "filterable": true,
                                         "footer": {
-                                            "reducers": [
-                                                "distinctCount"
-                                            ]
+                                            "reducers": []
                                         },
                                         "inspect": false
-                                    },
-                                    "thresholds": {
-                                        "mode": "absolute",
-                                        "steps": [
+                                    }
+                                },
+                                "overrides": [
+                                    {
+                                        "matcher": {
+                                            "id": "byName",
+                                            "options": "Field"
+                                        },
+                                        "properties": [
                                             {
-                                                "color": "green",
-                                                "value": 0
-                                            },
-                                            {
-                                                "color": "red",
-                                                "value": 80
+                                                "id": "custom.width",
+                                                "value": 152
                                             }
                                         ]
                                     }
-                                },
-                                "overrides": []
-                            },
-                            "options": {
-                                "cellHeight": "sm",
-                                "showHeader": true
+                                ]
                             }
-                        },
-                        "version": "12.4.0-19508498046"
-                    }
+                        }
+                    },
+                    "transparent": true
                 }
             }
         },
@@ -170,11 +209,19 @@
                     {
                         "kind": "RowsLayoutRow",
                         "spec": {
+                            "title": "$type streams",
                             "collapse": false,
+                            "fillScreen": true,
+                            "repeat": {
+                                "mode": "variable",
+                                "value": "type"
+                            },
                             "layout": {
                                 "kind": "AutoGridLayout",
                                 "spec": {
+                                    "maxColumnCount": 3,
                                     "columnWidthMode": "standard",
+                                    "rowHeightMode": "tall",
                                     "items": [
                                         {
                                             "kind": "AutoGridLayoutItem",
@@ -185,16 +232,9 @@
                                                 }
                                             }
                                         }
-                                    ],
-                                    "maxColumnCount": 3,
-                                    "rowHeightMode": "tall"
+                                    ]
                                 }
-                            },
-                            "repeat": {
-                                "mode": "variable",
-                                "value": "type"
-                            },
-                            "title": "$type streams"
+                            }
                         }
                     }
                 ]
@@ -202,72 +242,72 @@
         },
         "links": [
             {
-                "asDropdown": true,
+                "title": "Ingest",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "fortinet",
                     "fortigate",
                     "ingest",
                     "template"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "Ingest",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             },
             {
-                "asDropdown": true,
+                "title": "Traffic",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "traffic",
                     "fortinet",
                     "fortigate",
                     "template"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "Traffic",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             },
             {
-                "asDropdown": true,
+                "title": "UTM",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "fortinet",
                     "fortigate",
                     "utm",
                     "template"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "UTM",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             },
             {
-                "asDropdown": true,
+                "title": "Event",
+                "type": "dashboards",
                 "icon": "external link",
-                "includeVars": false,
-                "keepTime": true,
+                "tooltip": "",
+                "url": "",
                 "tags": [
                     "fortinet",
                     "fortigate",
                     "event",
                     "template"
                 ],
+                "asDropdown": true,
                 "targetBlank": false,
-                "title": "Event",
-                "tooltip": "",
-                "type": "dashboards",
-                "url": ""
+                "includeVars": false,
+                "keepTime": true
             }
         ],
         "liveNow": false,
@@ -279,6 +319,9 @@
             "template"
         ],
         "timeSettings": {
+            "timezone": "America/Lima",
+            "from": "now-24h",
+            "to": "now",
             "autoRefresh": "",
             "autoRefreshIntervals": [
                 "5s",
@@ -292,136 +335,132 @@
                 "2h",
                 "1d"
             ],
-            "fiscalYearStartMonth": 0,
-            "from": "now-24h",
             "hideTimepicker": false,
-            "timezone": "America/Lima",
-            "to": "now"
+            "fiscalYearStartMonth": 0
         },
         "title": "Streams [FortiOS]",
         "variables": [
             {
                 "kind": "DatasourceVariable",
                 "spec": {
-                    "allowCustomValue": true,
-                    "current": {
-                        "text": "",
-                        "value": ""
-                    },
-                    "hide": "dontHide",
-                    "includeAll": false,
-                    "multi": false,
                     "name": "datasource",
-                    "options": [],
                     "pluginId": "victoriametrics-logs-datasource",
                     "refresh": "onDashboardLoad",
                     "regex": "",
-                    "skipUrlSync": false
+                    "current": {
+                        "text": "",
+                        "value": ""
+                    },
+                    "options": [],
+                    "multi": false,
+                    "includeAll": false,
+                    "hide": "dontHide",
+                    "skipUrlSync": false,
+                    "allowCustomValue": true
                 }
             },
             {
+                "kind": "AdhocVariable",
+                "group": "victoriametrics-logs-datasource",
                 "datasource": {
                     "name": "${datasource}"
                 },
-                "group": "victoriametrics-logs-datasource",
-                "kind": "AdhocVariable",
                 "spec": {
-                    "allowCustomValue": true,
-                    "baseFilters": [],
-                    "defaultKeys": [],
-                    "filters": [],
-                    "hide": "dontHide",
                     "name": "Filters",
-                    "skipUrlSync": false
+                    "baseFilters": [],
+                    "filters": [],
+                    "defaultKeys": [],
+                    "hide": "dontHide",
+                    "skipUrlSync": false,
+                    "allowCustomValue": true,
+                    "enableGroupBy": false
                 }
             },
             {
                 "kind": "QueryVariable",
                 "spec": {
-                    "allValue": "*",
-                    "allowCustomValue": true,
+                    "name": "firewall",
                     "current": {
                         "text": "",
                         "value": ""
                     },
-                    "definition": "{observer.vendor=\"Fortinet\",observer.type=firewall,fgt.type in(*)}",
                     "hide": "dontHide",
-                    "includeAll": true,
-                    "multi": true,
-                    "name": "firewall",
-                    "options": [],
+                    "refresh": "onDashboardLoad",
+                    "skipUrlSync": false,
                     "query": {
+                        "kind": "DataQuery",
+                        "group": "victoriametrics-logs-datasource",
+                        "version": "v0",
                         "datasource": {
                             "name": "${datasource}"
                         },
-                        "group": "victoriametrics-logs-datasource",
-                        "kind": "DataQuery",
                         "spec": {
                             "field": "log.syslog.hostname",
-                            "limit": 25,
+                            "limit": 0,
                             "query": "{observer.vendor=\"Fortinet\",observer.type=firewall,fgt.type in(*)}",
                             "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
                             "type": "fieldValue"
-                        },
-                        "version": "v0"
+                        }
                     },
-                    "refresh": "onDashboardLoad",
                     "regex": "",
-                    "skipUrlSync": false,
-                    "sort": "disabled"
+                    "regexApplyTo": "value",
+                    "sort": "disabled",
+                    "definition": "{observer.vendor=\"Fortinet\",observer.type=firewall,fgt.type in(*)}",
+                    "options": [],
+                    "multi": true,
+                    "includeAll": true,
+                    "allValue": "*",
+                    "allowCustomValue": true
                 }
             },
             {
                 "kind": "QueryVariable",
                 "spec": {
-                    "allValue": "*",
-                    "allowCustomValue": true,
+                    "name": "vdom",
                     "current": {
                         "text": "",
                         "value": ""
                     },
-                    "definition": "_stream:{log.syslog.hostname in (${firewall:doublequote})}",
                     "hide": "dontHide",
-                    "includeAll": true,
-                    "multi": true,
-                    "name": "vdom",
-                    "options": [],
+                    "refresh": "onDashboardLoad",
+                    "skipUrlSync": false,
                     "query": {
+                        "kind": "DataQuery",
+                        "group": "victoriametrics-logs-datasource",
+                        "version": "v0",
                         "datasource": {
                             "name": "${datasource}"
                         },
-                        "group": "victoriametrics-logs-datasource",
-                        "kind": "DataQuery",
                         "spec": {
                             "field": "fgt.vd",
-                            "limit": 25,
+                            "limit": 0,
                             "query": "_stream:{log.syslog.hostname in (${firewall:doublequote})}",
                             "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
                             "type": "fieldValue"
-                        },
-                        "version": "v0"
+                        }
                     },
-                    "refresh": "onDashboardLoad",
                     "regex": "",
-                    "skipUrlSync": false,
-                    "sort": "disabled"
+                    "regexApplyTo": "value",
+                    "sort": "disabled",
+                    "definition": "_stream:{log.syslog.hostname in (${firewall:doublequote})}",
+                    "options": [],
+                    "multi": true,
+                    "includeAll": true,
+                    "allValue": "*",
+                    "allowCustomValue": true
                 }
             },
             {
                 "kind": "CustomVariable",
                 "spec": {
-                    "allValue": "*",
-                    "allowCustomValue": true,
+                    "name": "type",
+                    "query": "traffic,utm,event",
                     "current": {
                         "text": "All",
                         "value": [
                             "$__all"
                         ]
                     },
-                    "hide": "dontHide",
-                    "includeAll": true,
-                    "multi": true,
-                    "name": "type",
                     "options": [
                         {
                             "selected": false,
@@ -439,97 +478,103 @@
                             "value": "event"
                         }
                     ],
-                    "query": "traffic,utm,event",
-                    "skipUrlSync": false
+                    "multi": true,
+                    "includeAll": true,
+                    "allValue": "*",
+                    "hide": "dontHide",
+                    "skipUrlSync": false,
+                    "allowCustomValue": true,
+                    "valuesFormat": "csv"
                 }
             },
             {
                 "kind": "QueryVariable",
                 "spec": {
-                    "allValue": "*",
-                    "allowCustomValue": true,
+                    "name": "subtype",
                     "current": {
                         "text": "",
                         "value": ""
                     },
-                    "definition": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
                     "hide": "dontHide",
-                    "includeAll": true,
-                    "multi": true,
-                    "name": "subtype",
-                    "options": [],
+                    "refresh": "onDashboardLoad",
+                    "skipUrlSync": false,
                     "query": {
+                        "kind": "DataQuery",
+                        "group": "victoriametrics-logs-datasource",
+                        "version": "v0",
                         "datasource": {
                             "name": "${datasource}"
                         },
-                        "group": "victoriametrics-logs-datasource",
-                        "kind": "DataQuery",
                         "spec": {
                             "field": "fgt.subtype",
                             "limit": 25,
                             "query": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
                             "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
                             "type": "fieldValue"
-                        },
-                        "version": "v0"
+                        }
                     },
-                    "refresh": "onDashboardLoad",
                     "regex": "",
-                    "skipUrlSync": false,
-                    "sort": "disabled"
+                    "regexApplyTo": "value",
+                    "sort": "disabled",
+                    "definition": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
+                    "options": [],
+                    "multi": true,
+                    "includeAll": true,
+                    "allValue": "*",
+                    "allowCustomValue": true
                 }
             },
             {
                 "kind": "QueryVariable",
                 "spec": {
-                    "allValue": "*",
-                    "allowCustomValue": true,
+                    "name": "direction",
                     "current": {
                         "text": "",
                         "value": ""
                     },
-                    "definition": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
                     "hide": "dontHide",
-                    "includeAll": true,
-                    "multi": true,
-                    "name": "direction",
-                    "options": [],
+                    "refresh": "onDashboardLoad",
+                    "skipUrlSync": false,
                     "query": {
+                        "kind": "DataQuery",
+                        "group": "victoriametrics-logs-datasource",
+                        "version": "v0",
                         "datasource": {
                             "name": "${datasource}"
                         },
-                        "group": "victoriametrics-logs-datasource",
-                        "kind": "DataQuery",
                         "spec": {
                             "field": "network.direction",
                             "limit": 25,
                             "query": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
                             "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
                             "type": "fieldValue"
-                        },
-                        "version": "v0"
+                        }
                     },
-                    "refresh": "onDashboardLoad",
                     "regex": "",
-                    "skipUrlSync": false,
-                    "sort": "disabled"
+                    "regexApplyTo": "value",
+                    "sort": "disabled",
+                    "definition": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
+                    "options": [],
+                    "multi": true,
+                    "includeAll": true,
+                    "allValue": "*",
+                    "allowCustomValue": true
                 }
             },
             {
                 "kind": "TextVariable",
                 "spec": {
+                    "name": "Logsql",
                     "current": {
                         "text": "*",
                         "value": "*"
                     },
-                    "description": "Custom LogsQL filter attached to every query.\nSet to \"*\" to not filter.\nSee https://docs.victoriametrics.com/victorialogs/logsql/",
-                    "hide": "dontHide",
-                    "name": "Logsql",
                     "query": "*",
-                    "skipUrlSync": false
+                    "hide": "dontHide",
+                    "skipUrlSync": false,
+                    "description": "Custom LogsQL filter attached to every query.\nSet to \"*\" to not filter.\nSee https://docs.victoriametrics.com/victorialogs/logsql/"
                 }
             }
         ]
-    },
-    "status": {}
+    }
 }
