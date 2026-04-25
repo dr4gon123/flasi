@@ -99,7 +99,7 @@ python elasticsearch_mappings.py
 ### What it does
 
 1. Queries the flores GitHub API to discover all available version directories (`7.2`, `7.4`, `7.6`, …)
-2. For each version and log type (`traffic`, `event`, `utm`), fetches the corresponding `unique_log_fields_data_types_<type>_<ver>.csv`
+2. For each version and log type (`traffic`, `event`, `utm`), fetches the corresponding `<type>_fields.csv` from `<version>/fields/`
 3. Maps CSV data types to Elasticsearch types:
    - `string` → `keyword`
    - `ip` → `ip`
