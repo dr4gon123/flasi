@@ -4,3 +4,4 @@ site/
 CLAUDE.md
 ELK/ecs
 ELK/.env.worktrees/
+.worktrees/
