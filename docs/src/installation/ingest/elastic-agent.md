@@ -73,7 +73,7 @@ You should end up with something like:
 ```
 
 !!! warning "Ingest Pipelines"
-    Ingest Pipelines are not loaded by default with our [script](../storage/elasticsearch.md/#set-load)
+    Ingest Pipelines are not loaded by default with our [script](../storage/elasticsearch.md/#what-to-load)
     
     Make sure to set `LOAD_INGEST_PIPELINES` to `true`
 

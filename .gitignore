@@ -1,7 +1,9 @@
 ecs/
 site/
-.cache/
-CLAUDE.md
+docs/.cache/
+.claude.local.md
+**/.claude.local.md
 ELK/ecs
+ELK/.env
 ELK/.env.worktrees/
 .worktrees/

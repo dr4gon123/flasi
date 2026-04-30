@@ -5,14 +5,12 @@ on:
     branches: [main, master]
     paths:
       - "docs/**"
-      - "mkdocs.yml"
       - "requirements.txt"
       - ".github/workflows/docs.yml"
   pull_request:
     branches: [main, master]
     paths:
       - "docs/**"
-      - "mkdocs.yml"
       - "requirements.txt"
       - ".github/workflows/docs.yml"
   workflow_dispatch:
@@ -62,7 +60,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build with MkDocs
-        run: mkdocs build --clean --strict
+        run: mkdocs build --clean --strict -f docs/mkdocs.yml
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

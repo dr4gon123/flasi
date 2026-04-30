@@ -5,7 +5,10 @@ site_url: https://dr4gon123.github.io/flasi/
 
 repo_name: dr4gon123/flasi
 repo_url: https://github.com/dr4gon123/flasi
-edit_uri: edit/main/docs/
+edit_uri: edit/main/docs/src/
+
+docs_dir: src
+site_dir: ../site
 
 theme:
   name: material
