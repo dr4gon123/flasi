@@ -36630,6 +36630,18 @@
     },
     "links": [
       {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Fortigate/traffic-fortios.json"
+      },
+      {
         "asDropdown": true,
         "icon": "external link",
         "includeVars": false,
@@ -36726,7 +36738,7 @@
       "timezone": "America/Lima",
       "to": "now"
     },
-    "title": "Traffic [FortiOS] v2 Copy",
+    "title": "Traffic [FortiOS]",
     "variables": [
       {
         "kind": "DatasourceVariable",
