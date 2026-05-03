@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations \u0026 Alerts",
+          "name": "Annotations & Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -1557,7 +1557,8 @@
               }
             },
             "version": "13.1.0-24655759693"
-          }
+          },
+          "transparent": true
         }
       },
       "panel-30": {
@@ -1976,12 +1977,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2203,12 +2204,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2407,12 +2408,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2611,12 +2612,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out \ud83d\udd0d",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -3024,7 +3025,8 @@
               }
             },
             "version": "13.1.0-24655759693"
-          }
+          },
+          "transparent": true
         }
       },
       "panel-46": {
@@ -3155,7 +3157,8 @@
               }
             },
             "version": "13.1.0-24655759693"
-          }
+          },
+          "transparent": true
         }
       },
       "panel-8": {
@@ -3375,7 +3378,8 @@
                                       "rowHeightMode": "custom"
                                     }
                                   },
-                                  "title": ""
+                                  "title": "timeseries",
+                                  "hideHeader": true
                                 }
                               },
                               {
@@ -3428,7 +3432,8 @@
                                       "rowHeightMode": "standard"
                                     }
                                   },
-                                  "title": " "
+                                  "title": "absolute",
+                                  "hideHeader": true
                                 }
                               }
                             ]
@@ -3534,7 +3539,8 @@
                                       "rowHeightMode": "short"
                                     }
                                   },
-                                  "title": ""
+                                  "title": "timeseries",
+                                  "hideHeader": true
                                 }
                               },
                               {
@@ -3587,13 +3593,15 @@
                                       "rowHeightMode": "standard"
                                     }
                                   },
-                                  "title": ""
+                                  "title": "absolute",
+                                  "hideHeader": true
                                 }
                               }
                             ]
                           }
                         },
-                        "title": ""
+                        "title": "timeseries",
+                        "hideHeader": true
                       }
                     },
                     {
@@ -3637,7 +3645,8 @@
                                       "rowHeightMode": "custom"
                                     }
                                   },
-                                  "title": ""
+                                  "title": "timeseries",
+                                  "hideHeader": true
                                 }
                               },
                               {
@@ -3691,7 +3700,8 @@
                                       "rowHeightMode": "custom"
                                     }
                                   },
-                                  "title": ""
+                                  "title": "absolute",
+                                  "hideHeader": true
                                 }
                               }
                             ]
@@ -3719,7 +3729,7 @@
           "fortinet",
           "fortigate",
           "ingest",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Ingest",
@@ -3736,7 +3746,7 @@
           "fortinet",
           "fortigate",
           "traffic",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Traffic",
@@ -3753,7 +3763,7 @@
           "fortinet",
           "fortigate",
           "utm",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "UTM",
@@ -3770,7 +3780,7 @@
           "fortinet",
           "fortigate",
           "event",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Event",
@@ -3785,7 +3795,7 @@
       "fortinet",
       "fortigate",
       "event",
-      "template"
+      "dev"
     ],
     "timeSettings": {
       "autoRefresh": "",
@@ -3807,12 +3817,12 @@
       "timezone": "America/Lima",
       "to": "now"
     },
-    "title": "System [FortiOS] v2 Copy",
+    "title": "System [FortiOS]",
     "variables": [
       {
         "kind": "DatasourceVariable",
         "spec": {
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "victorialogs-alexim@aws",
             "value": "aekbqyqy4q0aod"
@@ -3835,7 +3845,7 @@
         "group": "victoriametrics-logs-datasource",
         "kind": "AdhocVariable",
         "spec": {
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "baseFilters": [],
           "defaultKeys": [],
           "enableGroupBy": false,
@@ -3891,7 +3901,7 @@
             "text": "All",
             "value": "$__all"
           },
-          "definition": "_stream: {fgt.type=$type,log.syslog.hostname in ($firewall)}",
+          "definition": "_stream: {fgt.type=$type,log.syslog.hostname in (${firewall:doublequote})}",
           "hide": "dontHide",
           "includeAll": true,
           "multi": true,
@@ -3906,7 +3916,7 @@
             "spec": {
               "field": "fgt.vd",
               "limit": 0,
-              "query": "_stream: {fgt.type=$type,log.syslog.hostname in ($firewall)}",
+              "query": "_stream: {fgt.type=$type,log.syslog.hostname in (${firewall:doublequote})}",
               "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
               "type": "fieldValue"
             },
@@ -3922,7 +3932,7 @@
       {
         "kind": "CustomVariable",
         "spec": {
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "event",
             "value": "event"
@@ -3940,7 +3950,7 @@
       {
         "kind": "CustomVariable",
         "spec": {
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "system",
             "value": "system"

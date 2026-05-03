@@ -104,9 +104,7 @@
                 "orientation": "vertical",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -1883,10 +1881,7 @@
                 "overrides": []
               },
               "options": {
-                "displayLabels": [
-                  "percent",
-                  "name"
-                ],
+                "displayLabels": ["percent", "name"],
                 "legend": {
                   "displayMode": "list",
                   "placement": "right",
@@ -1894,9 +1889,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -1970,10 +1963,7 @@
                 "overrides": []
               },
               "options": {
-                "displayLabels": [
-                  "name",
-                  "percent"
-                ],
+                "displayLabels": ["name", "percent"],
                 "legend": {
                   "displayMode": "list",
                   "placement": "right",
@@ -1982,9 +1972,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -2084,9 +2072,7 @@
                 "namePlacement": "auto",
                 "orientation": "horizontal",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -2183,9 +2169,7 @@
                 "namePlacement": "auto",
                 "orientation": "horizontal",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -2255,10 +2239,7 @@
                 "overrides": []
               },
               "options": {
-                "displayLabels": [
-                  "name",
-                  "percent"
-                ],
+                "displayLabels": ["name", "percent"],
                 "legend": {
                   "displayMode": "list",
                   "placement": "right",
@@ -2266,9 +2247,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -2368,9 +2347,7 @@
                 "namePlacement": "auto",
                 "orientation": "horizontal",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -2622,10 +2599,7 @@
                 "overrides": []
               },
               "options": {
-                "displayLabels": [
-                  "percent",
-                  "name"
-                ],
+                "displayLabels": ["percent", "name"],
                 "legend": {
                   "displayMode": "list",
                   "placement": "bottom",
@@ -2633,9 +2607,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -3560,11 +3532,7 @@
     "links": [],
     "liveNow": false,
     "preload": false,
-    "tags": [
-      "fortinet",
-      "fortimail",
-      "template"
-    ],
+    "tags": ["fortinet", "fortimail", "dev"],
     "timeSettings": {
       "autoRefresh": "",
       "autoRefreshIntervals": [
@@ -3585,7 +3553,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Statistics v2 Copy",
+    "title": "Statistics [FortiMail]",
     "variables": [
       {
         "kind": "DatasourceVariable",

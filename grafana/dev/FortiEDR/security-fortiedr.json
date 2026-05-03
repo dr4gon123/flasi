@@ -6188,7 +6188,7 @@
     "preload": false,
     "tags": [
       "fortinet",
-      "template",
+      "dev",
       "fortiedr",
       "security"
     ],
@@ -6212,7 +6212,7 @@
       "timezone": "America/Lima",
       "to": "now"
     },
-    "title": "Security [FortiEDR] v2 Copy",
+    "title": "Security [FortiEDR]",
     "variables": [
       {
         "kind": "DatasourceVariable",

@@ -104,9 +104,7 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -2643,11 +2641,7 @@
     "links": [],
     "liveNow": false,
     "preload": false,
-    "tags": [
-      "fortinet",
-      "fortiweb",
-      "template"
-    ],
+    "tags": ["fortinet", "fortiweb", "dev"],
     "timeSettings": {
       "autoRefresh": "",
       "autoRefreshIntervals": [
@@ -2668,7 +2662,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Attack [FortiwebCloud] v2 Copy",
+    "title": "Attack [FortiAppSec]",
     "variables": [
       {
         "kind": "DatasourceVariable",
@@ -2713,9 +2707,7 @@
           "allowCustomValue": true,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "{fwb.cat=attack}",
           "hide": "dontHide",
@@ -2752,9 +2744,7 @@
           "allowCustomValue": true,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "{fwb.cat=attack}",
           "hide": "dontHide",
@@ -2791,9 +2781,7 @@
           "allowCustomValue": true,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "{fwb.cat=attack}",
           "hide": "dontHide",
@@ -2830,9 +2818,7 @@
           "allowCustomValue": true,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "{fwb.cat=attack}",
           "hide": "dontHide",
@@ -2869,9 +2855,7 @@
           "allowCustomValue": true,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "{fwb.cat=attack}",
           "hide": "dontHide",

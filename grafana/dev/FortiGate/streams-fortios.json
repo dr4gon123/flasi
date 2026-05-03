@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations \u0026 Alerts",
+          "name": "Annotations & Alerts",
           "query": {
             "group": "grafana",
             "kind": "DataQuery",
@@ -247,7 +247,7 @@
           "fortinet",
           "fortigate",
           "ingest",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Ingest",
@@ -264,7 +264,7 @@
           "traffic",
           "fortinet",
           "fortigate",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Traffic",
@@ -281,7 +281,7 @@
           "fortinet",
           "fortigate",
           "utm",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "UTM",
@@ -298,7 +298,7 @@
           "fortinet",
           "fortigate",
           "event",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Event",
@@ -313,7 +313,7 @@
       "fortigate",
       "ingest",
       "fortinet",
-      "template"
+      "dev"
     ],
     "timeSettings": {
       "autoRefresh": "",
@@ -335,12 +335,12 @@
       "timezone": "America/Lima",
       "to": "now"
     },
-    "title": "Streams [FortiOS] Copy",
+    "title": "Streams [FortiOS]",
     "variables": [
       {
         "kind": "DatasourceVariable",
         "spec": {
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "victorialogs-cinternacional@on-prem",
             "value": "fer9fqnsqidq8a"
@@ -363,7 +363,7 @@
         "group": "victoriametrics-logs-datasource",
         "kind": "AdhocVariable",
         "spec": {
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "baseFilters": [],
           "defaultKeys": [],
           "enableGroupBy": false,
@@ -377,7 +377,7 @@
         "kind": "QueryVariable",
         "spec": {
           "allValue": "*",
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "All",
             "value": [
@@ -416,7 +416,7 @@
         "kind": "QueryVariable",
         "spec": {
           "allValue": "*",
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "All",
             "value": [
@@ -455,7 +455,7 @@
         "kind": "CustomVariable",
         "spec": {
           "allValue": "*",
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "All",
             "value": [
@@ -476,7 +476,7 @@
         "kind": "QueryVariable",
         "spec": {
           "allValue": "*",
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "All",
             "value": [
@@ -515,7 +515,7 @@
         "kind": "QueryVariable",
         "spec": {
           "allValue": "*",
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
             "text": "All",
             "value": [

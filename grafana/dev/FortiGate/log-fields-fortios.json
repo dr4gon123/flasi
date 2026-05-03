@@ -1352,7 +1352,7 @@
         "tags": [
           "fortinet",
           "fortigate",
-          "template",
+          "dev",
           "ingest"
         ],
         "targetBlank": false,
@@ -1370,7 +1370,7 @@
           "traffic",
           "fortinet",
           "fortigate",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Traffic",
@@ -1387,7 +1387,7 @@
           "utm",
           "fortinet",
           "fortigate",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "UTM",
@@ -1404,7 +1404,7 @@
           "event",
           "fortigate",
           "fortinet",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "Event",
@@ -1419,7 +1419,7 @@
       "fortinet",
       "fortigate",
       "ingest",
-      "template"
+      "dev"
     ],
     "timeSettings": {
       "autoRefresh": "",
@@ -1441,7 +1441,7 @@
       "timezone": "America/Lima",
       "to": "now"
     },
-    "title": "Log Fields [FortiOS] Copy",
+    "title": "Log Fields [FortiOS]",
     "variables": []
   }
 }
