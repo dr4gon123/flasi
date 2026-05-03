@@ -266,9 +266,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": true
                 },
@@ -1694,9 +1692,7 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -2794,9 +2790,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": true
                 },
@@ -2877,9 +2871,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": true
                 },
@@ -4374,9 +4366,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": true
                 },
@@ -8888,10 +8878,7 @@
                       },
                       "mode": "reduceRow",
                       "reduce": {
-                        "include": [
-                          "fgt.vwlid",
-                          "fgt.vwlname"
-                        ],
+                        "include": ["fgt.vwlid", "fgt.vwlname"],
                         "reducer": "allValues"
                       }
                     }
@@ -9222,10 +9209,7 @@
                       "alias": "id-name",
                       "mode": "reduceRow",
                       "reduce": {
-                        "include": [
-                          "fgt.vwlid",
-                          "fgt.vwlname"
-                        ],
+                        "include": ["fgt.vwlid", "fgt.vwlname"],
                         "reducer": "allValues"
                       }
                     }
@@ -9606,9 +9590,7 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -10414,10 +10396,7 @@
                       "alias": "id-name",
                       "mode": "reduceRow",
                       "reduce": {
-                        "include": [
-                          "fgt.vwlid",
-                          "fgt.vwlname"
-                        ],
+                        "include": ["fgt.vwlid", "fgt.vwlname"],
                         "reducer": "allValues"
                       }
                     }
@@ -10952,9 +10931,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": true
                 },
@@ -11035,9 +11012,7 @@
                 },
                 "pieType": "pie",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": true
                 },
@@ -33145,9 +33120,7 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
+                  "calcs": ["lastNotNull"],
                   "fields": "",
                   "values": false
                 },
@@ -36646,12 +36619,7 @@
         "icon": "external link",
         "includeVars": false,
         "keepTime": true,
-        "tags": [
-          "fortinet",
-          "fortigate",
-          "ingest",
-          "template"
-        ],
+        "tags": ["fortinet", "fortigate", "ingest", "dev"],
         "targetBlank": false,
         "title": "Ingest",
         "tooltip": "",
@@ -36663,12 +36631,7 @@
         "icon": "external link",
         "includeVars": false,
         "keepTime": true,
-        "tags": [
-          "traffic",
-          "fortigate",
-          "fortinet",
-          "template"
-        ],
+        "tags": ["traffic", "fortigate", "fortinet", "dev"],
         "targetBlank": false,
         "title": "Traffic",
         "tooltip": "",
@@ -36680,12 +36643,7 @@
         "icon": "external link",
         "includeVars": false,
         "keepTime": true,
-        "tags": [
-          "utm",
-          "fortinet",
-          "fortigate",
-          "template"
-        ],
+        "tags": ["utm", "fortinet", "fortigate", "dev"],
         "targetBlank": false,
         "title": "UTM",
         "tooltip": "",
@@ -36697,12 +36655,7 @@
         "icon": "external link",
         "includeVars": false,
         "keepTime": true,
-        "tags": [
-          "event",
-          "fortigate",
-          "fortinet",
-          "template"
-        ],
+        "tags": ["event", "fortigate", "fortinet", "dev"],
         "targetBlank": false,
         "title": "Event",
         "tooltip": "",
@@ -36712,12 +36665,7 @@
     ],
     "liveNow": false,
     "preload": false,
-    "tags": [
-      "traffic",
-      "fortigate",
-      "fortinet",
-      "dev"
-    ],
+    "tags": ["traffic", "fortigate", "fortinet", "dev"],
     "timeSettings": {
       "autoRefresh": "",
       "autoRefreshIntervals": [
@@ -36783,9 +36731,7 @@
           "allowCustomValue": false,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "_stream: {fgt.type=$type}",
           "hide": "dontHide",
@@ -36822,9 +36768,7 @@
           "allowCustomValue": false,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "_stream: {fgt.type=$type,log.syslog.hostname in (${firewall:doublequote})}",
           "hide": "dontHide",
@@ -36972,9 +36916,7 @@
           "allowCustomValue": false,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": ["$__all"]
           },
           "definition": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=$type,fgt.subtype=$subtype,fgt.policytype=$policytype,network.direction in (${direction:doublequote}),fgt.logid!=0000000020}",
           "hide": "dontHide",
