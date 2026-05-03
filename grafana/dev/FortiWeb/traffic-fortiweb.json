@@ -3501,7 +3501,7 @@
     "tags": [
       "fortinet",
       "fortiweb",
-      "template"
+      "dev"
     ],
     "timeSettings": {
       "autoRefresh": "",
@@ -3523,7 +3523,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Traffic [Fortiweb] v2 Copy",
+    "title": "Traffic [Fortiweb]",
     "variables": [
       {
         "kind": "DatasourceVariable",

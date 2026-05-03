@@ -2,7 +2,7 @@
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
-    "name": "dafkzfuhi1yd4wf"
+    "name": "dcfkzfjasfi03kd"
   },
   "spec": {
     "annotations": [
@@ -46,7 +46,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats count() total_logs, count_uniq(log.syslog.hostname) unique_firewall, count_uniq(fgt.vd) unique_vdom, count_uniq(fgt.type) unique_type, count_uniq(fgt.subtype) unique_subtype",
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats count() total_logs, count_uniq(panos.device_name) unique_panos.device_name, count_uniq(panos.vsys) unique_panos.vsys, count_uniq(panos.type) unique_panos.type, count_uniq(panos.subtype) unique_panos.subtype",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -131,9 +131,8 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n#| stats by (log.syslog.hostname) count() results\n|  by (log.syslog.hostname) rate()\n#| limit 20",
-                        "legendFormat": "{{log.syslog.hostname}}",
-                        "queryType": "statsRange"
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (panos.type,panos.subtype) count() results \n| sort by (results) desc ",
+                        "queryType": "stats"
                       },
                       "version": "v0"
                     },
@@ -142,16 +141,37 @@
                 }
               ],
               "queryOptions": {},
-              "transformations": []
+              "transformations": [
+                {
+                  "group": "joinByLabels",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                },
+                {
+                  "group": "groupingToMatrix",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "columnField": "panos.subtype",
+                      "rowField": "panos.type",
+                      "valueField": "results"
+                    }
+                  }
+                }
+              ]
             }
           },
           "description": "",
           "id": 71,
           "links": [],
-          "title": "log.syslog.hostname",
+          "title": "panos.type by panos.subtype",
           "transparent": true,
           "vizConfig": {
-            "group": "timeseries",
+            "group": "barchart",
             "kind": "VizConfig",
             "spec": {
               "fieldConfig": {
@@ -165,29 +185,16 @@
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "barWidthFactor": 0.6,
-                    "drawStyle": "bars",
-                    "fillOpacity": 0,
+                    "fillOpacity": 80,
                     "gradientMode": "none",
                     "hideFrom": {
                       "legend": false,
                       "tooltip": false,
                       "viz": false
                     },
-                    "insertNulls": false,
-                    "lineInterpolation": "linear",
                     "lineWidth": 1,
-                    "pointSize": 5,
                     "scaleDistribution": {
                       "type": "linear"
-                    },
-                    "showPoints": "auto",
-                    "showValues": false,
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "normal"
                     },
                     "thresholdsStyle": {
                       "mode": "off"
@@ -206,26 +213,31 @@
                       }
                     ]
                   },
-                  "unit": "si: logs/s"
+                  "unit": "sishort"
                 },
                 "overrides": []
               },
               "options": {
-                "annotations": {
-                  "clustering": -1,
-                  "multiLane": false
-                },
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
                   "placement": "right",
                   "showLegend": true
                 },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "normal",
                 "tooltip": {
                   "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
-                }
+                },
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
               }
             },
             "version": "13.1.0-24655759693"
@@ -251,9 +263,8 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (log.syslog.hostname) count() results\n#| limit 10",
-                        "legendFormat": "{{log.syslog.hostname}}",
-                        "queryType": "statsRange"
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (panos.device_name,network.direction) count() results \n| sort by (results) desc",
+                        "queryType": "stats"
                       },
                       "version": "v0"
                     },
@@ -262,16 +273,51 @@
                 }
               ],
               "queryOptions": {},
-              "transformations": []
+              "transformations": [
+                {
+                  "group": "joinByLabels",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                },
+                {
+                  "group": "groupingToMatrix",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "columnField": "network.direction",
+                      "rowField": "panos.device_name",
+                      "valueField": "results"
+                    }
+                  }
+                },
+                {
+                  "group": "organize",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {},
+                      "includeByName": {},
+                      "indexByName": {},
+                      "renameByName": {
+                        "Value": "no direction"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           },
           "description": "",
           "id": 72,
           "links": [],
-          "title": "log.syslog.hostname %",
+          "title": "panos.device_name by network.direction",
           "transparent": true,
           "vizConfig": {
-            "group": "timeseries",
+            "group": "barchart",
             "kind": "VizConfig",
             "spec": {
               "fieldConfig": {
@@ -285,29 +331,16 @@
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "barWidthFactor": 0.6,
-                    "drawStyle": "bars",
-                    "fillOpacity": 0,
+                    "fillOpacity": 80,
                     "gradientMode": "none",
                     "hideFrom": {
                       "legend": false,
                       "tooltip": false,
                       "viz": false
                     },
-                    "insertNulls": false,
-                    "lineInterpolation": "linear",
                     "lineWidth": 1,
-                    "pointSize": 5,
                     "scaleDistribution": {
                       "type": "linear"
-                    },
-                    "showPoints": "auto",
-                    "showValues": false,
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "percent"
                     },
                     "thresholdsStyle": {
                       "mode": "off"
@@ -325,26 +358,32 @@
                         "value": 80
                       }
                     ]
-                  }
+                  },
+                  "unit": "sishort"
                 },
                 "overrides": []
               },
               "options": {
-                "annotations": {
-                  "clustering": -1,
-                  "multiLane": false
-                },
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
                   "placement": "right",
                   "showLegend": true
                 },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "normal",
                 "tooltip": {
                   "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
-                }
+                },
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
               }
             },
             "version": "13.1.0-24655759693"
@@ -370,9 +409,8 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n#| stats by (fgt.type) count() results\n|  by (fgt.type) rate()",
-                        "legendFormat": "{{fgt.type}}",
-                        "queryType": "statsRange"
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (panos.device_name,panos.vsys) count() results \n| sort by (results) desc",
+                        "queryType": "stats"
                       },
                       "version": "v0"
                     },
@@ -381,16 +419,51 @@
                 }
               ],
               "queryOptions": {},
-              "transformations": []
+              "transformations": [
+                {
+                  "group": "joinByLabels",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                },
+                {
+                  "group": "groupingToMatrix",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "columnField": "panos.vsys",
+                      "rowField": "panos.device_name",
+                      "valueField": "results"
+                    }
+                  }
+                },
+                {
+                  "group": "organize",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {},
+                      "includeByName": {},
+                      "indexByName": {},
+                      "renameByName": {
+                        "Value": "global"
+                      }
+                    }
+                  }
+                }
+              ]
             }
           },
           "description": "",
           "id": 73,
           "links": [],
-          "title": "fgt.type",
+          "title": "panos.device_name by panos.vsys",
           "transparent": true,
           "vizConfig": {
-            "group": "timeseries",
+            "group": "barchart",
             "kind": "VizConfig",
             "spec": {
               "fieldConfig": {
@@ -404,29 +477,16 @@
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "barWidthFactor": 0.6,
-                    "drawStyle": "bars",
-                    "fillOpacity": 0,
+                    "fillOpacity": 80,
                     "gradientMode": "none",
                     "hideFrom": {
                       "legend": false,
                       "tooltip": false,
                       "viz": false
                     },
-                    "insertNulls": false,
-                    "lineInterpolation": "linear",
                     "lineWidth": 1,
-                    "pointSize": 5,
                     "scaleDistribution": {
                       "type": "linear"
-                    },
-                    "showPoints": "auto",
-                    "showValues": false,
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "normal"
                     },
                     "thresholdsStyle": {
                       "mode": "off"
@@ -445,26 +505,31 @@
                       }
                     ]
                   },
-                  "unit": "si: logs/s"
+                  "unit": "sishort"
                 },
                 "overrides": []
               },
               "options": {
-                "annotations": {
-                  "clustering": -1,
-                  "multiLane": false
-                },
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
                   "placement": "right",
                   "showLegend": true
                 },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "normal",
                 "tooltip": {
                   "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
-                }
+                },
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
               }
             },
             "version": "13.1.0-24655759693"
@@ -490,7 +555,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (fgt.type,fgt.subtype) count() results \n| sort by (results) desc \n",
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (panos.device_name,panos.type) count() results \n| sort by (results) desc",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -515,8 +580,8 @@
                   "kind": "Transformation",
                   "spec": {
                     "options": {
-                      "columnField": "fgt.subtype",
-                      "rowField": "fgt.type",
+                      "columnField": "panos.type",
+                      "rowField": "panos.device_name",
                       "valueField": "results"
                     }
                   }
@@ -527,7 +592,7 @@
           "description": "",
           "id": 74,
           "links": [],
-          "title": "fgt.type by fgt.subtype",
+          "title": "panos.device_name by panos.type",
           "transparent": true,
           "vizConfig": {
             "group": "barchart",
@@ -622,8 +687,9 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (log.syslog.hostname,network.direction) count() results \n| sort by (results) desc\n| limit 10",
-                        "queryType": "stats"
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n#| stats by (panos.type) count() results\n|  by (panos.type) rate()",
+                        "legendFormat": "{{panos.type}}",
+                        "queryType": "statsRange"
                       },
                       "version": "v0"
                     },
@@ -634,22 +700,14 @@
               "queryOptions": {},
               "transformations": [
                 {
-                  "group": "joinByLabels",
+                  "group": "filterFieldsByName",
                   "kind": "Transformation",
                   "spec": {
+                    "disabled": true,
                     "options": {
-                      "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "options": {
-                      "columnField": "network.direction",
-                      "rowField": "log.syslog.hostname",
-                      "valueField": "results"
+                      "include": {
+                        "pattern": "^(?!_stream).*"
+                      }
                     }
                   }
                 }
@@ -659,10 +717,10 @@
           "description": "",
           "id": 75,
           "links": [],
-          "title": "log.syslog.hostname by network.direction",
+          "title": "panos.type",
           "transparent": true,
           "vizConfig": {
-            "group": "barchart",
+            "group": "timeseries",
             "kind": "VizConfig",
             "spec": {
               "fieldConfig": {
@@ -676,16 +734,29 @@
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
-                    "fillOpacity": 80,
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "bars",
+                    "fillOpacity": 0,
                     "gradientMode": "none",
                     "hideFrom": {
                       "legend": false,
                       "tooltip": false,
                       "viz": false
                     },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
                     "lineWidth": 1,
+                    "pointSize": 5,
                     "scaleDistribution": {
                       "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "normal"
                     },
                     "thresholdsStyle": {
                       "mode": "off"
@@ -704,163 +775,26 @@
                       }
                     ]
                   },
-                  "unit": "sishort"
+                  "unit": "si: logs/s"
                 },
                 "overrides": []
               },
               "options": {
-                "barRadius": 0,
-                "barWidth": 0.97,
-                "fullHighlight": false,
-                "groupWidth": 0.7,
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "horizontal",
-                "showValue": "auto",
-                "stacking": "normal",
                 "tooltip": {
                   "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
-                },
-                "xTickLabelRotation": 0,
-                "xTickLabelSpacing": 0
-              }
-            },
-            "version": "13.1.0-24655759693"
-          }
-        }
-      },
-      "panel-76": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (log.syslog.hostname,fgt.vd) count() results \n| sort by (results) desc\n| limit 10",
-                        "queryType": "stats"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
                 }
-              ],
-              "queryOptions": {},
-              "transformations": [
-                {
-                  "group": "joinByLabels",
-                  "kind": "Transformation",
-                  "spec": {
-                    "options": {
-                      "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "options": {
-                      "columnField": "fgt.vd",
-                      "rowField": "log.syslog.hostname",
-                      "valueField": "results"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "description": "",
-          "id": 76,
-          "links": [],
-          "title": "log.syslog.hostname by fgt.vd",
-          "transparent": true,
-          "vizConfig": {
-            "group": "barchart",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisBorderShow": false,
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "fillOpacity": 80,
-                    "gradientMode": "none",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "lineWidth": 1,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "sishort"
-                },
-                "overrides": []
-              },
-              "options": {
-                "barRadius": 0,
-                "barWidth": 0.97,
-                "fullHighlight": false,
-                "groupWidth": 0.7,
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "right",
-                  "showLegend": true
-                },
-                "orientation": "horizontal",
-                "showValue": "auto",
-                "stacking": "normal",
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                },
-                "xTickLabelRotation": 0,
-                "xTickLabelSpacing": 0
               }
             },
             "version": "13.1.0-24655759693"
@@ -886,8 +820,9 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (log.syslog.hostname,fgt.type) count() results \n| sort by (results) desc\n| limit 10",
-                        "queryType": "stats"
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n#| stats by (panos.device_name) count(panos.device_name) results\n#| stats by (panos.device_name) rate()\n|  by (panos.device_name) rate()",
+                        "legendFormat": "{{panos.device_name}}",
+                        "queryType": "statsRange"
                       },
                       "version": "v0"
                     },
@@ -898,22 +833,14 @@
               "queryOptions": {},
               "transformations": [
                 {
-                  "group": "joinByLabels",
+                  "group": "filterFieldsByName",
                   "kind": "Transformation",
                   "spec": {
+                    "disabled": true,
                     "options": {
-                      "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "options": {
-                      "columnField": "fgt.type",
-                      "rowField": "log.syslog.hostname",
-                      "valueField": "results"
+                      "include": {
+                        "pattern": "^(?!_stream).*"
+                      }
                     }
                   }
                 }
@@ -923,10 +850,10 @@
           "description": "",
           "id": 77,
           "links": [],
-          "title": "log.syslog.hostname by fgt.type",
+          "title": "panos.device_name",
           "transparent": true,
           "vizConfig": {
-            "group": "barchart",
+            "group": "timeseries",
             "kind": "VizConfig",
             "spec": {
               "fieldConfig": {
@@ -940,16 +867,29 @@
                     "axisColorMode": "text",
                     "axisLabel": "",
                     "axisPlacement": "auto",
-                    "fillOpacity": 80,
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "bars",
+                    "fillOpacity": 0,
                     "gradientMode": "none",
                     "hideFrom": {
                       "legend": false,
                       "tooltip": false,
                       "viz": false
                     },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
                     "lineWidth": 1,
+                    "pointSize": 5,
                     "scaleDistribution": {
                       "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "normal"
                     },
                     "thresholdsStyle": {
                       "mode": "off"
@@ -968,31 +908,158 @@
                       }
                     ]
                   },
-                  "unit": "sishort"
+                  "unit": "si: logs/s"
                 },
                 "overrides": []
               },
               "options": {
-                "barRadius": 0,
-                "barWidth": 0.97,
-                "fullHighlight": false,
-                "groupWidth": 0.7,
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "horizontal",
-                "showValue": "auto",
-                "stacking": "normal",
                 "tooltip": {
                   "hideZeros": false,
                   "mode": "multi",
                   "sort": "desc"
+                }
+              }
+            },
+            "version": "13.1.0-24655759693"
+          }
+        }
+      },
+      "panel-78": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "group": "victoriametrics-logs-datasource",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream: {observer.vendor=\"Palo Alto\",observer.type=firewall,panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type in(${type:doublequote}),panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (panos.device_name) count() results",
+                        "legendFormat": "{{panos.device_name}}",
+                        "queryType": "statsRange"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": [
+                {
+                  "group": "filterFieldsByName",
+                  "kind": "Transformation",
+                  "spec": {
+                    "disabled": true,
+                    "options": {
+                      "include": {
+                        "pattern": "^(?!_stream).*"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "description": "",
+          "id": 78,
+          "links": [],
+          "title": "panos.device_name %",
+          "transparent": true,
+          "vizConfig": {
+            "group": "timeseries",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "bars",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "percent"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  }
                 },
-                "xTickLabelRotation": 0,
-                "xTickLabelSpacing": 0
+                "overrides": []
+              },
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                }
               }
             },
             "version": "13.1.0-24655759693"
@@ -1008,11 +1075,10 @@
             "kind": "RowsLayoutRow",
             "spec": {
               "collapse": false,
-              "hideHeader": false,
               "layout": {
                 "kind": "AutoGridLayout",
                 "spec": {
-                  "columnWidthMode": "standard",
+                  "columnWidthMode": "narrow",
                   "items": [
                     {
                       "kind": "AutoGridLayoutItem",
@@ -1024,12 +1090,12 @@
                       }
                     }
                   ],
-                  "maxColumnCount": 3,
+                  "maxColumnCount": 4,
                   "rowHeight": 100,
                   "rowHeightMode": "custom"
                 }
               },
-              "title": ""
+              "title": "Metrics"
             }
           },
           {
@@ -1046,17 +1112,17 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-71"
+                          "name": "panel-77"
                         }
                       }
                     }
                   ],
-                  "maxColumnCount": 3,
+                  "maxColumnCount": 1,
                   "rowHeight": 240,
                   "rowHeightMode": "custom"
                 }
               },
-              "title": ""
+              "title": "Firewall"
             }
           },
           {
@@ -1073,7 +1139,7 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-72"
+                          "name": "panel-78"
                         }
                       }
                     },
@@ -1082,7 +1148,7 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-73"
+                          "name": "panel-75"
                         }
                       }
                     }
@@ -1108,16 +1174,7 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-76"
-                        }
-                      }
-                    },
-                    {
-                      "kind": "AutoGridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-77"
+                          "name": "panel-73"
                         }
                       }
                     },
@@ -1135,7 +1192,16 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-75"
+                          "name": "panel-71"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "AutoGridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-72"
                         }
                       }
                     }
@@ -1157,13 +1223,13 @@
         "includeVars": false,
         "keepTime": true,
         "tags": [
-          "fortinet",
-          "fortigate",
-          "ingest",
-          "template"
+          "palo alto",
+          "panos",
+          "performance",
+          "dev"
         ],
         "targetBlank": false,
-        "title": "Ingest",
+        "title": "PERFORMANCE",
         "tooltip": "",
         "type": "dashboards",
         "url": ""
@@ -1175,12 +1241,12 @@
         "keepTime": true,
         "tags": [
           "traffic",
-          "fortinet",
-          "fortigate",
-          "template"
+          "palo alto",
+          "panos",
+          "dev"
         ],
         "targetBlank": false,
-        "title": "Traffic",
+        "title": "TRAFFIC",
         "tooltip": "",
         "type": "dashboards",
         "url": ""
@@ -1191,30 +1257,13 @@
         "includeVars": false,
         "keepTime": true,
         "tags": [
-          "fortinet",
-          "fortigate",
-          "utm",
-          "template"
+          "threat",
+          "palo alto",
+          "panos",
+          "dev"
         ],
         "targetBlank": false,
-        "title": "UTM",
-        "tooltip": "",
-        "type": "dashboards",
-        "url": ""
-      },
-      {
-        "asDropdown": true,
-        "icon": "external link",
-        "includeVars": false,
-        "keepTime": true,
-        "tags": [
-          "fortinet",
-          "fortigate",
-          "event",
-          "template"
-        ],
-        "targetBlank": false,
-        "title": "Event",
+        "title": "THREAT",
         "tooltip": "",
         "type": "dashboards",
         "url": ""
@@ -1223,10 +1272,10 @@
     "liveNow": false,
     "preload": false,
     "tags": [
-      "fortigate",
-      "ingest",
-      "fortinet",
-      "template"
+      "panos",
+      "palo alto",
+      "performance",
+      "dev"
     ],
     "timeSettings": {
       "autoRefresh": "",
@@ -1243,20 +1292,20 @@
         "1d"
       ],
       "fiscalYearStartMonth": 0,
-      "from": "now-24h",
+      "from": "now-5m",
       "hideTimepicker": false,
-      "timezone": "America/Lima",
+      "timezone": "browser",
       "to": "now"
     },
-    "title": "Ingest [FortiOS]",
+    "title": "Ingest [PAN-OS]",
     "variables": [
       {
         "kind": "DatasourceVariable",
         "spec": {
-          "allowCustomValue": false,
+          "allowCustomValue": true,
           "current": {
-            "text": "victorialogs-cinternacional@on-prem",
-            "value": "fer9fqnsqidq8a"
+            "text": "victorialogs-senati@on-prem",
+            "value": "eetqi1p6mdywwa"
           },
           "hide": "dontHide",
           "includeAll": false,
@@ -1290,14 +1339,12 @@
         "kind": "QueryVariable",
         "spec": {
           "allValue": "*",
-          "allowCustomValue": false,
+          "allowCustomValue": true,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": "$__all"
           },
-          "definition": "{observer.vendor=\"Fortinet\",observer.type=firewall,fgt.type in(*)}",
+          "definition": "",
           "hide": "dontHide",
           "includeAll": true,
           "multi": true,
@@ -1310,9 +1357,9 @@
             "group": "victoriametrics-logs-datasource",
             "kind": "DataQuery",
             "spec": {
-              "field": "log.syslog.hostname",
+              "field": "panos.device_name",
               "limit": 0,
-              "query": "{observer.vendor=\"Fortinet\",observer.type=firewall,fgt.type in(*)}",
+              "query": "",
               "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
               "type": "fieldValue"
             },
@@ -1332,15 +1379,13 @@
           "allowCustomValue": false,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": "$__all"
           },
-          "definition": "_stream:{log.syslog.hostname in (${firewall:doublequote})}",
+          "definition": "_stream: {panos.device_name in(${firewall:doublequote})}",
           "hide": "dontHide",
           "includeAll": true,
           "multi": true,
-          "name": "vdom",
+          "name": "vsys",
           "options": [],
           "query": {
             "datasource": {
@@ -1349,9 +1394,9 @@
             "group": "victoriametrics-logs-datasource",
             "kind": "DataQuery",
             "spec": {
-              "field": "fgt.vd",
+              "field": "panos.vsys",
               "limit": 0,
-              "query": "_stream:{log.syslog.hostname in (${firewall:doublequote})}",
+              "query": "_stream: {panos.device_name in(${firewall:doublequote})}",
               "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
               "type": "fieldValue"
             },
@@ -1365,24 +1410,40 @@
         }
       },
       {
-        "kind": "CustomVariable",
+        "kind": "QueryVariable",
         "spec": {
           "allValue": "*",
           "allowCustomValue": false,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": "$__all"
           },
+          "definition": "_stream: {panos.device_name in(${firewall:doublequote})}",
           "hide": "dontHide",
           "includeAll": true,
           "multi": true,
           "name": "type",
           "options": [],
-          "query": "traffic,utm,event",
+          "query": {
+            "datasource": {
+              "name": "${datasource}"
+            },
+            "group": "victoriametrics-logs-datasource",
+            "kind": "DataQuery",
+            "spec": {
+              "field": "panos.type",
+              "limit": 25,
+              "query": "_stream: {panos.device_name in(${firewall:doublequote})}",
+              "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
+              "type": "fieldValue"
+            },
+            "version": "v0"
+          },
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "regexApplyTo": "value",
           "skipUrlSync": false,
-          "valuesFormat": "csv"
+          "sort": "disabled"
         }
       },
       {
@@ -1392,13 +1453,12 @@
           "allowCustomValue": false,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": "$__all"
           },
-          "definition": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
+          "definition": "_stream: {panos.type in(${type:doublequote}),panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote})}",
           "hide": "dontHide",
           "includeAll": true,
+          "label": "",
           "multi": true,
           "name": "subtype",
           "options": [],
@@ -1409,9 +1469,9 @@
             "group": "victoriametrics-logs-datasource",
             "kind": "DataQuery",
             "spec": {
-              "field": "fgt.subtype",
+              "field": "panos.subtype",
               "limit": 25,
-              "query": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
+              "query": "_stream: {panos.type in(${type:doublequote}),panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote})}",
               "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
               "type": "fieldValue"
             },
@@ -1431,11 +1491,9 @@
           "allowCustomValue": false,
           "current": {
             "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "value": "$__all"
           },
-          "definition": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
+          "definition": "_stream: {panos.type in(${type:doublequote}),panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote})}",
           "hide": "dontHide",
           "includeAll": true,
           "multi": true,
@@ -1450,7 +1508,7 @@
             "spec": {
               "field": "network.direction",
               "limit": 25,
-              "query": "_stream: {fgt.type in(${type:doublequote}),log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote})}",
+              "query": "_stream: {panos.type in(${type:doublequote}),panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote})}",
               "refId": "VictoriaLogsVariableQueryEditor-VariableQuery",
               "type": "fieldValue"
             },

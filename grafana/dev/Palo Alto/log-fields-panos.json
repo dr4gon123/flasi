@@ -3345,7 +3345,7 @@
           "panos",
           "palo alto",
           "performance",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "PERFORMANCE",
@@ -3362,7 +3362,7 @@
           "palo alto",
           "panos",
           "traffic",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "TRAFFIC",
@@ -3379,7 +3379,7 @@
           "palo alto",
           "panos",
           "threat",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "THREAT",
@@ -3394,7 +3394,7 @@
       "panos",
       "palo alto",
       "performance",
-      "template"
+      "dev"
     ],
     "timeSettings": {
       "autoRefresh": "",
@@ -3416,7 +3416,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Log Fields [PAN-OS] v2 Copy",
+    "title": "Log Fields [PAN-OS]",
     "variables": [
       {
         "kind": "DatasourceVariable",

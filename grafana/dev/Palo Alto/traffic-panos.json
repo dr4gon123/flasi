@@ -22262,7 +22262,7 @@
           "palo alto",
           "panos",
           "performance",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "PERFORMANCE",
@@ -22279,7 +22279,7 @@
           "traffic",
           "palo alto",
           "panos",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "TRAFFIC",
@@ -22296,7 +22296,7 @@
           "threat",
           "palo alto",
           "panos",
-          "template"
+          "dev"
         ],
         "targetBlank": false,
         "title": "THREAT",
@@ -22311,7 +22311,7 @@
       "traffic",
       "palo alto",
       "panos",
-      "template"
+      "dev"
     ],
     "timeSettings": {
       "autoRefresh": "",
@@ -22333,7 +22333,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Traffic [PAN-OS] v2 Copy",
+    "title": "Traffic [PAN-OS]",
     "variables": [
       {
         "kind": "DatasourceVariable",
