@@ -5136,7 +5136,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -5256,7 +5256,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -5376,7 +5376,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -25789,6 +25789,187 @@
           }
         }
       },
+      "panel-247": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 247,
+          "links": [],
+          "title": "Subtype of threat log",
+          "transparent": true,
+          "vizConfig": {
+            "group": "text",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              },
+              "options": {
+                "code": {
+                  "language": "plaintext",
+                  "showLineNumbers": false,
+                  "showMiniMap": false
+                },
+                "content": "- **data** Data pattern matching a Data Filtering profile.\n- **file** File type matching a File Blocking profile.\n- **flood** Flood detected via a Zone Protection profile.\n- **packet** Packet-based attack protection triggered by a Zone Protection profile.\n- **scan** Scan detected via a Zone Protection profile.\n- **spyware** Spyware detected via an Anti-Spyware profile.\n- **url** URL filtering log.\n- **ml-virus** Virus detected by WildFire Inline ML via an Antivirus profile.\n- **virus** Virus detected via an Antivirus profile.\n- **vulnerability** Vulnerability exploit detected via a Vulnerability Protection profile.\n- **wildfire** A WildFire verdict generated when the firewall submits a file to WildFire per a WildFire Analysis profile and a verdict (malware, phishing, grayware, or benign, depending on what you are logging) is logged in the WildFire Submissions log.\n- **wildfire-virus** Virus detected via an Antivirus profile.",
+                "mode": "markdown"
+              }
+            },
+            "version": "13.1.0-24655759693"
+          }
+        }
+      },
+      "panel-248": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "group": "victoriametrics-logs-datasource",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats by (rule.name,panos.device_name) count() results \n| sort by (results) desc \n| limit 10",
+                        "queryType": "stats"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": [
+                {
+                  "group": "joinByLabels",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "value": "__name__"
+                    }
+                  }
+                },
+                {
+                  "group": "groupingToMatrix",
+                  "kind": "Transformation",
+                  "spec": {
+                    "options": {
+                      "columnField": "panos.device_name",
+                      "rowField": "rule.name",
+                      "valueField": "results"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "description": "",
+          "id": 248,
+          "links": [],
+          "title": "rule.name by panos.device_name",
+          "transparent": true,
+          "vizConfig": {
+            "group": "barchart",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "fillOpacity": 80,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "lineWidth": 1,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.name%7C%3D%7C${__data.fields[0]}"
+                    },
+                    {
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.name%7C%21%3D%7C${__data.fields[0]}"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "sishort"
+                },
+                "overrides": []
+              },
+              "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "orientation": "horizontal",
+                "showValue": "auto",
+                "stacking": "normal",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                },
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+              }
+            },
+            "version": "13.1.0-24655759693"
+          }
+        }
+      },
       "panel-95": {
         "kind": "Panel",
         "spec": {
@@ -25994,44 +26175,6 @@
           }
         }
       },
-      "panel-97": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 97,
-          "links": [],
-          "title": "Subtype of threat log",
-          "transparent": true,
-          "vizConfig": {
-            "group": "text",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "options": {
-                "code": {
-                  "language": "plaintext",
-                  "showLineNumbers": false,
-                  "showMiniMap": false
-                },
-                "content": "- **data** Data pattern matching a Data Filtering profile.\n- **file** File type matching a File Blocking profile.\n- **flood** Flood detected via a Zone Protection profile.\n- **packet** Packet-based attack protection triggered by a Zone Protection profile.\n- **scan** Scan detected via a Zone Protection profile.\n- **spyware** Spyware detected via an Anti-Spyware profile.\n- **url** URL filtering log.\n- **ml-virus** Virus detected by WildFire Inline ML via an Antivirus profile.\n- **virus** Virus detected via an Antivirus profile.\n- **vulnerability** Vulnerability exploit detected via a Vulnerability Protection profile.\n- **wildfire** A WildFire verdict generated when the firewall submits a file to WildFire per a WildFire Analysis profile and a verdict (malware, phishing, grayware, or benign, depending on what you are logging) is logged in the WildFire Submissions log.\n- **wildfire-virus** Virus detected via an Antivirus profile.",
-                "mode": "markdown"
-              }
-            },
-            "version": "13.1.0-24655759693"
-          }
-        }
-      },
       "panel-98": {
         "kind": "Panel",
         "spec": {
@@ -26224,6 +26367,7 @@
                                           "kind": "RowsLayoutRow",
                                           "spec": {
                                             "collapse": false,
+                                            "hideHeader": true,
                                             "layout": {
                                               "kind": "AutoGridLayout",
                                               "spec": {
@@ -26253,13 +26397,14 @@
                                                 "rowHeightMode": "custom"
                                               }
                                             },
-                                            "title": ""
+                                            "title": "subtype"
                                           }
                                         },
                                         {
                                           "kind": "RowsLayoutRow",
                                           "spec": {
                                             "collapse": false,
+                                            "hideHeader": true,
                                             "layout": {
                                               "kind": "AutoGridLayout",
                                               "spec": {
@@ -26270,10 +26415,38 @@
                                                     "spec": {
                                                       "element": {
                                                         "kind": "ElementReference",
-                                                        "name": "panel-97"
+                                                        "name": "panel-247"
                                                       }
                                                     }
                                                   },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-248"
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "maxColumnCount": 3,
+                                                "rowHeight": 240,
+                                                "rowHeightMode": "custom"
+                                              }
+                                            },
+                                            "title": " rule"
+                                          }
+                                        },
+                                        {
+                                          "kind": "RowsLayoutRow",
+                                          "spec": {
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
+                                              "spec": {
+                                                "columnWidthMode": "standard",
+                                                "items": [
                                                   {
                                                     "kind": "AutoGridLayoutItem",
                                                     "spec": {
@@ -26288,13 +26461,14 @@
                                                 "rowHeightMode": "standard"
                                               }
                                             },
-                                            "title": ""
+                                            "title": "action"
                                           }
                                         },
                                         {
                                           "kind": "RowsLayoutRow",
                                           "spec": {
                                             "collapse": false,
+                                            "hideHeader": true,
                                             "layout": {
                                               "kind": "AutoGridLayout",
                                               "spec": {
@@ -26332,7 +26506,7 @@
                                                 "rowHeightMode": "standard"
                                               }
                                             },
-                                            "title": ""
+                                            "title": "sev"
                                           }
                                         }
                                       ]
