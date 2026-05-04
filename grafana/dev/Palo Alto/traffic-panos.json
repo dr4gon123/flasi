@@ -855,7 +855,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -997,7 +997,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -1139,7 +1139,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -1281,7 +1281,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -1402,7 +1402,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -1551,7 +1551,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -1658,7 +1658,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -1765,7 +1765,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -1872,7 +1872,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -2046,7 +2046,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -2131,7 +2131,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -2216,7 +2216,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -7160,7 +7160,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -7302,7 +7302,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -7444,7 +7444,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -7586,7 +7586,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-24655759693"
           }
         }
       },
@@ -17430,7 +17430,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats count() total_logs, count_uniq(session.id) unique_session.id, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
+                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats count() total_logs, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -22253,6 +22253,18 @@
       }
     },
     "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/traffic-panos.json"
+      },
       {
         "asDropdown": true,
         "icon": "external link",
