@@ -2210,6 +2210,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -2224,7 +2235,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "normal",
                 "tooltip": {
@@ -2299,24 +2310,6 @@
                       "format": "regexp",
                       "regExp": "/(?<utm>^([^{]+))/",
                       "source": "Metric"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "countapp": true,
-                        "countweb": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
                     }
                   }
                 },
@@ -2426,6 +2419,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -3207,6 +3211,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -3382,6 +3397,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -3577,6 +3603,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -3770,6 +3807,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -3945,6 +3993,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -4140,6 +4199,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -4331,6 +4401,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -4609,6 +4690,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -5030,6 +5122,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -5221,6 +5324,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -5635,6 +5749,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -6223,6 +6348,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -6807,6 +6943,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -7395,6 +7542,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -7583,6 +7741,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -7769,6 +7938,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -8319,6 +8499,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -8505,6 +8696,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -8695,6 +8897,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -8881,6 +9094,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -29058,6 +29282,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -29642,6 +29877,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
@@ -30230,6 +30476,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -30816,6 +31073,17 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
+                      }
+                    ]
                   }
                 ]
               },
@@ -31201,6 +31469,17 @@
                           "fixedColor": "dark-red",
                           "mode": "fixed"
                         }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byType",
+                      "options": "string"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit"
                       }
                     ]
                   }
