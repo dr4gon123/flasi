@@ -5279,7 +5279,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}} panos.action:in(${action:doublequote}) AND ${Logsql:raw} panos.misc:*))\npanos.misc:in(\n    * | top 10 (panos.misc) | keep panos.misc\n)\n| stats by (panos.sevemiscrity) count() results",
+                        "expr": "options(global_filter=( _stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}} panos.action:in(${action:doublequote}) AND ${Logsql:raw} panos.misc:*))\npanos.misc:in(\n    * | top 10 (panos.misc) | keep panos.misc\n)\n| stats by (panos.misc) count() results",
                         "legendFormat": "{{panos.misc}}",
                         "queryType": "statsRange"
                       },
@@ -28585,8 +28585,8 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": "victorialogs-lap@on-prem",
-            "value": "dfchh0fqt6tj4e"
+            "text": "victorialogs-senati@on-prem",
+            "value": "eetqi1p6mdywwa"
           },
           "hide": "dontHide",
           "includeAll": false,
