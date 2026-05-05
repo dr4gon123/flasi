@@ -27202,68 +27202,102 @@
                                 "spec": {
                                   "collapse": false,
                                   "layout": {
-                                    "kind": "AutoGridLayout",
+                                    "kind": "RowsLayout",
                                     "spec": {
-                                      "columnWidthMode": "standard",
-                                      "items": [
+                                      "rows": [
                                         {
-                                          "kind": "AutoGridLayoutItem",
+                                          "kind": "RowsLayoutRow",
                                           "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-147"
-                                            }
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
+                                              "spec": {
+                                                "columnWidthMode": "standard",
+                                                "items": [
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-147"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-148"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-149"
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "maxColumnCount": 3,
+                                                "rowHeight": 240,
+                                                "rowHeightMode": "custom"
+                                              }
+                                            },
+                                            "title": "timeseries"
                                           }
                                         },
                                         {
-                                          "kind": "AutoGridLayoutItem",
+                                          "kind": "RowsLayoutRow",
                                           "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-148"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-149"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-198"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-199"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-200"
-                                            }
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
+                                              "spec": {
+                                                "columnWidthMode": "narrow",
+                                                "items": [
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-198"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-199"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-200"
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "maxColumnCount": 6,
+                                                "rowHeight": 260,
+                                                "rowHeightMode": "custom"
+                                              }
+                                            },
+                                            "title": "absolute"
                                           }
                                         }
-                                      ],
-                                      "maxColumnCount": 3,
-                                      "rowHeight": 260,
-                                      "rowHeightMode": "custom"
+                                      ]
                                     }
                                   },
                                   "title": "Thread ID | Threat Category | Severity"
@@ -27281,6 +27315,7 @@
                                           "kind": "RowsLayoutRow",
                                           "spec": {
                                             "collapse": false,
+                                            "hideHeader": true,
                                             "layout": {
                                               "kind": "AutoGridLayout",
                                               "spec": {
@@ -27310,13 +27345,14 @@
                                                 "rowHeightMode": "custom"
                                               }
                                             },
-                                            "title": ""
+                                            "title": "timeseries"
                                           }
                                         },
                                         {
                                           "kind": "RowsLayoutRow",
                                           "spec": {
                                             "collapse": false,
+                                            "hideHeader": true,
                                             "layout": {
                                               "kind": "AutoGridLayout",
                                               "spec": {
@@ -27436,7 +27472,7 @@
                                                 "rowHeightMode": "custom"
                                               }
                                             },
-                                            "title": ""
+                                            "title": "absolute"
                                           }
                                         }
                                       ]
@@ -27487,7 +27523,7 @@
                                                 "rowHeightMode": "custom"
                                               }
                                             },
-                                            "title": "timeline 1"
+                                            "title": "timeseries 1"
                                           }
                                         },
                                         {
@@ -27533,7 +27569,7 @@
                                                 "rowHeightMode": "custom"
                                               }
                                             },
-                                            "title": "timeline 2"
+                                            "title": "timeseries 2"
                                           }
                                         },
                                         {
@@ -27624,7 +27660,7 @@
                                                 "rowHeightMode": "custom"
                                               }
                                             },
-                                            "title": "aggregated 1"
+                                            "title": "absolute 1"
                                           }
                                         },
                                         {
@@ -27670,7 +27706,7 @@
                                                 "rowHeightMode": "custom"
                                               }
                                             },
-                                            "title": "aggregated 2"
+                                            "title": "absolute 2"
                                           }
                                         }
                                       ]
@@ -28491,8 +28527,8 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": "victorialogs-lap@on-prem",
-            "value": "dfchh0fqt6tj4e"
+            "text": "victorialogs-senati@on-prem",
+            "value": "eetqi1p6mdywwa"
           },
           "hide": "dontHide",
           "includeAll": false,
