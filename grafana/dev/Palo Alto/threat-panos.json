@@ -26309,10 +26309,10 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
-                  "placement": "bottom",
+                  "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "horizontal",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "normal",
                 "tooltip": {
@@ -26723,10 +26723,10 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
-                  "placement": "bottom",
+                  "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "horizontal",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "normal",
                 "tooltip": {
