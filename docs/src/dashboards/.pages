@@ -1,6 +1,8 @@
 arrange:
   - index.md
   - canvas.md
+  - datasets.md
   - values.md
   - usage.md
-  - datasets.md
+  - fortinet.md
+  - paloalto.md

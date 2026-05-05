@@ -6,9 +6,97 @@ They are intended for SOC analysts to use on threat hunting activities, fine-tun
 
 We tried to make dashboards look alike, not matter the vendor or dataset, so we provide a coherent user experience.
 
-- Top Metrics
-- [Main Fields](#action)
-- [Detailed Dimensions Information](#source-destination)
+## Dashboard Architecture
+
+Our dashboards follow a consistent **top-to-bottom** information hierarchy:
+
+```
+┌─────────────────────────────────────────┐
+│  TOP: General Metrics & Overview        │  ← High-level totals, trends
+├─────────────────────────────────────────┤
+│  MIDDLE: Main Field Analysis            │  ← Action breakdowns, key dimensions
+├─────────────────────────────────────────┤
+│  BOTTOM: Detailed Dimensions           │  ← Source/Dest, Service, User deep-dive
+└─────────────────────────────────────────┘
+```
+
+This structure allows analysts to quickly identify anomalies at the top, investigate at the middle, and drill down into specific entities at the bottom.
+
+## Variables & Filters
+
+All dashboard filters are exposed at the top of the page, allowing you to slice and dice the data as needed. Variables are ordered hierarchically — selecting a firewall narrows down VDOM options, which narrows down log types, and so on.
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| `datasource` | Datasource | Victoria Logs or Elasticsearch connection |
+| `Filters` | Ad-hoc | Apply custom filters to any field dynamically |
+| `firewall` | Query | Firewall hostname(s) — populated from available data |
+| `vdom` | Query | Virtual Domain (Fortinet) / VSYS (Palo Alto) |
+| `type` | Custom | Log type: `traffic`, `utm`, `event` (Fortinet) |
+| `subtype` | Query | Log subtype: `forward`, `local`, `multicast`, etc. |
+| `policytype` | Query | Policy type: `policy`, `interface`, `any` |
+| `direction` | Custom | Traffic direction: `outbound`, `inbound`, `internal`, `external` |
+| `action` | Query | Firewall action: `accept`, `drop`, `deny`, `close`, etc. |
+| `Logsql` | Text | Custom [LogsQL](https://docs.victoriametrics.com/victorialogs/logsql/) filter — set to `*` for no additional filtering |
+
+!!! tip "Advanced Filtering"
+    The `Logsql` variable lets you inject raw LogsQL into every query. Use it for complex filters that aren't covered by the standard variables, such as:
+    ```
+    fgt.srccountry!="United States" AND destination.port>1024
+    ```
+
+## Tab Structure
+
+Each dashboard is organized by **`network.direction`** — tabs across the top represent different traffic directions:
+
+- **Outbound** — Traffic initiated from internal networks going out
+- **Inbound** — Traffic coming from external networks into internal
+- **Internal** — Traffic between internal network segments
+- **External** — Traffic between external networks (rare but possible)
+
+Within each direction tab, metrics are further segmented by **one primary metric per tab**:
+
+- Sessions (connection count)
+- Bytes (volume transferred)
+- Risk Score (Fortinet only)
+
+This ensures each visualization focuses on a single metric without mixing aggregation types.
+
+![Header](../assets/dashboards/[Grafana] Fortigate Header.png)
+
+## Base Query Pattern
+
+All panels in a dashboard share a common **base query** that defines the dataset scope. This ensures consistency across visualizations:
+
+```plaintext
+_stream:{log.syslog.hostname in (${firewall}),fgt.vd in (${vdom}),fgt.type=${type},fgt.subtype=${subtype},fgt.policytype=${policytype},network.direction in (${direction})} | fgt.action:in(${action}) AND ${Logsql}
+```
+
+The query flows through variables in sequence:
+1. **Stream filter** — Defines the data stream (firewall, vdom, type, subtype, direction)
+2. **Action filter** — Filters by firewall action
+3. **Custom LogsQL** — Applies user-defined filters
+
+This pattern ensures that every panel respects the same filter context.
+
+## Layout Pattern
+
+Panels within each tab follow a consistent layout:
+
+| Row | Content | Example |
+|-----|---------|---------|
+| Top | Timeline visualizations | Time series of sessions over selected period |
+| Middle | Aggregated totals | Bar charts showing top sources/destinations |
+| Bottom | Detailed dimensions | Tables with drill-down capability |
+
+Upper panels focus on vendor-specific fields split by action (allow vs. block). Lower panels explore common network entities like `source.ip`, `destination.ip`, `service`, and `user`.
+
+## Vendor-Specific Documentation
+
+While the overall structure is consistent, each firewall vendor has unique fields, variables, and query patterns:
+
+- [FortiGate](fortinet.md) — Variables, fields, UTM engines, risk score
+- [Palo Alto](paloalto.md) — Variables, fields, threat types, session end reasons
 
 Let's go through our **Traffic Dashboard**
 

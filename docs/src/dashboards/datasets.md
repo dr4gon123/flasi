@@ -1,6 +1,6 @@
 # Datasets
 
-Field schema analysis for Fortinet and Palo Alto log sources has been migrated to two dedicated repositories.
+Analyzing firewall field datasets is a massive undertaking in itself. This work is dependent on firewall vendor version releases (e.g., FortiOS 7.2 → 7.4 → 7.6), each introducing new log fields, deprecated fields, and schema changes. Additionally, each firewall vendor has specific needs — FortiGate fields differ significantly from Palo Alto PAN-OS, and both require dedicated tooling to scrape, normalize, and maintain over time. As such, field schema analysis has been migrated to two dedicated repositories.
 
 ## [FLORES](https://github.com/dr4gon123/flores) — FortiGate Log Reference Scraper
 
