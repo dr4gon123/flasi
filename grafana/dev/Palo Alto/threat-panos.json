@@ -24,6 +24,7 @@
       }
     ],
     "cursorSync": "Off",
+    "description": "",
     "editable": true,
     "elements": {
       "panel-104": {
@@ -12894,7 +12895,7 @@
                   "showLegend": true
                 },
                 "orientation": "vertical",
-                "showValue": "always",
+                "showValue": "auto",
                 "stacking": "normal",
                 "tooltip": {
                   "hideZeros": false,
@@ -24043,7 +24044,7 @@
                   "showLegend": true
                 },
                 "orientation": "vertical",
-                "showValue": "always",
+                "showValue": "auto",
                 "stacking": "normal",
                 "tooltip": {
                   "hideZeros": false,
