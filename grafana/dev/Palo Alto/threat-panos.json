@@ -12739,7 +12739,7 @@
                       {
                         "id": "color",
                         "value": {
-                          "fixedColor": "gray",
+                          "fixedColor": "semi-dark-blue",
                           "mode": "fixed"
                         }
                       }
