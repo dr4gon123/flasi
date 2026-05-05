@@ -670,7 +670,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.virus:*\n| stats by (fgt.virus,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.virus:*\n| stats by (fgt.virus,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -1171,7 +1171,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.viruscat:*\n| stats by (fgt.viruscat,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.viruscat:*\n| stats by (fgt.viruscat,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -1672,7 +1672,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.quarskip:*\n| stats by (fgt.quarskip,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.quarskip:*\n| stats by (fgt.quarskip,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -2173,7 +2173,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.dtype:*\n| stats by (fgt.dtype,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.dtype:*\n| stats by (fgt.dtype,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -2914,7 +2914,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.attack:*\n| stats by (fgt.attack,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.attack:*\n| stats by (fgt.attack,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -3655,7 +3655,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND dns.resolved_ip:*\n| unroll dns.resolved_ip\n| stats by (dns.resolved_ip,fgt.action) count() results\n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| dns.resolved_ip:*\n| unroll dns.resolved_ip\n| stats by (dns.resolved_ip,fgt.action) count() results\n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -4156,7 +4156,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND dns.question.type:*\n| stats by (dns.question.type,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| dns.question.type:*\n| stats by (dns.question.type,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -4777,7 +4777,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (http.request.method,fgt.action) count(http.request.method) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| http.request.method:*\n| stats by (http.request.method,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -5278,7 +5278,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (url.registered_domain,fgt.action) count(url.registered_domain) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| url.registered_domain:*\n| stats by (url.registered_domain,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -5898,7 +5898,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.catdesc,fgt.action) count(fgt.catdesc) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.catdesc:*\n| stats by (fgt.catdesc,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -6519,7 +6519,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (url.registered_domain,fgt.action) count(url.registered_domain) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| url.registered_domain:*\n| stats by (url.registered_domain,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -7020,7 +7020,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.severity,fgt.action) count(fgt.severity) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.severity:*\n| stats by (fgt.severity,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -7641,7 +7641,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.matchfilename,fgt.action) count(fgt.matchfilename) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.matchfilename:*\n| stats by (fgt.matchfilename,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -8142,7 +8142,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.matchfiletype,fgt.action) count(fgt.matchfiletype) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.matchfiletype:*\n| stats by (fgt.matchfiletype,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -12811,7 +12811,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (dns.question.registered_domain,fgt.action) count(dns.question.registered_domain) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| dns.question.registered_domain:*\n| stats by (dns.question.registered_domain,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13312,7 +13312,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (dns.question.name,fgt.action) count(dns.question.name) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| dns.question.name:*\n| stats by (dns.question.name,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13813,7 +13813,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.catdesc,fgt.action) count(fgt.catdesc) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.catdesc:*\n| stats by (fgt.catdesc,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -14314,7 +14314,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.fsaverdict:*\n| stats by (fgt.fsaverdict,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.fsaverdict:*\n| stats by (fgt.fsaverdict,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -14815,7 +14815,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (source.ip:/24,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| source.ip:*\n| stats by (source.ip:/24,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -15305,7 +15305,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.eventsubtype,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.eventsubtype:*\n| stats by (fgt.eventsubtype,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16576,7 +16576,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.msg,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.msg:*\n| stats by (fgt.msg,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -17449,7 +17449,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (user_agent.original,fgt.action) count(user_agent.original) results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| user_agent.original:*\n| stats by (user_agent.original,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -18190,7 +18190,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (source.ip,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| source.ip:*\n| stats by (source.ip,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -18696,7 +18696,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (destination.ip,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| destination.ip:*\n| stats by (destination.ip,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19202,7 +19202,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (destination.ip:/24,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| destination.ip:*\n| stats by (destination.ip:/24,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -22088,7 +22088,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (network.application,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| network.application:*\n| stats by (network.application,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -22589,7 +22589,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.service,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.service:*\n| stats by (fgt.service,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -23090,7 +23090,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| stats by (fgt.appcat,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.appcat:*\n| stats by (fgt.appcat,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -23591,7 +23591,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.apprisk:*\n| stats by (fgt.apprisk,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
+                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.apprisk:*\n| stats by (fgt.apprisk,fgt.action) count() results \n| sort by (results) desc \n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
