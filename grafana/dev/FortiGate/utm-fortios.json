@@ -25571,50 +25571,84 @@
                                     }
                                   },
                                   "layout": {
-                                    "kind": "AutoGridLayout",
+                                    "kind": "RowsLayout",
                                     "spec": {
-                                      "columnWidthMode": "narrow",
-                                      "items": [
+                                      "rows": [
                                         {
-                                          "kind": "AutoGridLayoutItem",
+                                          "kind": "RowsLayoutRow",
                                           "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-130"
-                                            }
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
+                                              "spec": {
+                                                "columnWidthMode": "standard",
+                                                "items": [
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-130"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-134"
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "maxColumnCount": 3,
+                                                "rowHeight": 240,
+                                                "rowHeightMode": "custom"
+                                              }
+                                            },
+                                            "title": "timeseries"
                                           }
                                         },
                                         {
-                                          "kind": "AutoGridLayoutItem",
+                                          "kind": "RowsLayoutRow",
                                           "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-134"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-132"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-133"
-                                            }
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
+                                              "spec": {
+                                                "columnWidthMode": "narrow",
+                                                "items": [
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-132"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-133"
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "maxColumnCount": 4,
+                                                "rowHeight": 260,
+                                                "rowHeightMode": "custom"
+                                              }
+                                            },
+                                            "title": "absolute"
                                           }
                                         }
-                                      ],
-                                      "maxColumnCount": 2,
-                                      "rowHeight": 260,
-                                      "rowHeightMode": "custom"
+                                      ]
                                     }
                                   },
                                   "title": "matchfilename | matchfiletype"
