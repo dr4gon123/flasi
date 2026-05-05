@@ -26536,7 +26536,7 @@
           "description": "",
           "id": 265,
           "links": [],
-          "title": "panos.severity",
+          "title": "panos.severity by panos.action",
           "transparent": true,
           "vizConfig": {
             "group": "barchart",
