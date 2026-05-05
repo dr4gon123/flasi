@@ -5399,7 +5399,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats count() total_logs, count_uniq(session.id) unique_session.id, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
+                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats count() total_logs, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -26913,7 +26913,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats count() total_logs, count_uniq(session.id) unique_session.id, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
+                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats count() total_logs, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
                         "queryType": "stats"
                       },
                       "version": "v0"
