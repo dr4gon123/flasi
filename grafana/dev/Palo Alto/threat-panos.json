@@ -26600,6 +26600,126 @@
           }
         }
       },
+      "panel-257": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "${datasource}"
+                      },
+                      "group": "victoriametrics-logs-datasource",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats by (panos.subtype) count() results",
+                        "legendFormat": "{{panos.subtype}}",
+                        "queryType": "statsRange"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 257,
+          "links": [],
+          "title": "sessions by subtype",
+          "transparent": true,
+          "vizConfig": {
+            "group": "timeseries",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "bars",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "normal"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "sishort"
+                },
+                "overrides": []
+              },
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "desc"
+                }
+              }
+            },
+            "version": "13.1.0-25042293542"
+          }
+        }
+      },
       "panel-95": {
         "kind": "Panel",
         "spec": {
@@ -27607,6 +27727,34 @@
                                     "kind": "RowsLayout",
                                     "spec": {
                                       "rows": [
+                                        {
+                                          "kind": "RowsLayoutRow",
+                                          "spec": {
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
+                                              "spec": {
+                                                "columnWidthMode": "standard",
+                                                "items": [
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-257"
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "maxColumnCount": 1,
+                                                "rowHeight": 200,
+                                                "rowHeightMode": "custom"
+                                              }
+                                            },
+                                            "title": "subtype"
+                                          }
+                                        },
                                         {
                                           "kind": "RowsLayoutRow",
                                           "spec": {
