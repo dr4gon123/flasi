@@ -49,7 +49,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.viruscat:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | fgt.viruscat:*\n  | top 10 (fgt.viruscat)\n  | keep fgt.viruscat\n  )\n| by (fgt.viruscat) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.viruscat:*))\nfgt.viruscat:in(\n    * | top 10 (fgt.viruscat) | keep fgt.viruscat\n)\n| stats by (fgt.viruscat) count() results",
                         "legendFormat": "{{fgt.viruscat}}",
                         "queryType": "statsRange"
                       },
@@ -1339,7 +1339,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.attack:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  AND fgt.attack:*\n    | top 10 (fgt.attack)\n    | keep fgt.attack\n  )\n  | by (fgt.attack) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.attack:*))\nfgt.attack:in(\n    * | top 10 (fgt.attack) | keep fgt.attack\n)\n| stats by (fgt.attack) count() results",
                         "legendFormat": "{{fgt.attack}}",
                         "queryType": "statsRange"
                       },
@@ -1459,7 +1459,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.severity:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | fgt.severity:*\n  | top 10 (fgt.severity)\n  | keep fgt.severity\n  )\n| by (fgt.severity) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.severity:*))\nfgt.severity:in(\n    * | top 10 (fgt.severity) | keep fgt.severity\n)\n| stats by (fgt.severity) count() results",
                         "legendFormat": "{{fgt.severity}}",
                         "queryType": "statsRange"
                       },
@@ -1813,7 +1813,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND dns.resolved_ip:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | dns.resolved_ip:*\n  | top 10 (dns.resolved_ip)\n  | keep dns.resolved_ip\n  )\n| unroll dns.resolved_ip\n| by (dns.resolved_ip) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} dns.resolved_ip:*))\ndns.resolved_ip:in(\n    * | top 10 (dns.resolved_ip) | keep dns.resolved_ip\n)\n| unroll dns.resolved_ip\n| stats by (dns.resolved_ip) count() results",
                         "legendFormat": "{{dns.resolved_ip}}",
                         "queryType": "statsRange"
                       },
@@ -1933,7 +1933,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND dns.question.registered_domain:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n    | top 10 (dns.question.registered_domain)\n    | keep dns.question.registered_domain\n  )\n  | by (dns.question.registered_domain) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} dns.question.registered_domain:*))\ndns.question.registered_domain:in(\n    * | top 10 (dns.question.registered_domain) | keep dns.question.registered_domain\n)\n| stats by (dns.question.registered_domain) count() results",
                         "legendFormat": "{{dns.question.registered_domain}}",
                         "queryType": "statsRange"
                       },
@@ -2521,7 +2521,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND http.request.method:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  AND http.request.method:*\n    | top 10 (http.request.method)\n    | keep http.request.method\n  )\n  | by (http.request.method) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} http.request.method:*))\nhttp.request.method:in(\n    * | top 10 (http.request.method) | keep http.request.method\n)\n| stats by (http.request.method) count() results",
                         "legendFormat": "{{http.request.method}}",
                         "queryType": "statsRange"
                       },
@@ -3120,7 +3120,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND url.registered_domain:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | url.registered_domain:*\n  | top 10 (url.registered_domain)\n  | keep url.registered_domain\n  )\n| by (url.registered_domain) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} url.registered_domain:*))\nurl.registered_domain:in(\n    * | top 10 (url.registered_domain) | keep url.registered_domain\n)\n| stats by (url.registered_domain) count() results",
                         "legendFormat": "{{url.registered_domain}}",
                         "queryType": "statsRange"
                       },
@@ -3474,7 +3474,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND url.registered_domain:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | url.registered_domain:*\n  | top 10 (url.registered_domain)\n  | keep url.registered_domain\n  )\n| by (url.registered_domain) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} url.registered_domain:*))\nurl.registered_domain:in(\n    * | top 10 (url.registered_domain) | keep url.registered_domain\n)\n| stats by (url.registered_domain) count() results",
                         "legendFormat": "{{url.registered_domain}}",
                         "queryType": "statsRange"
                       },
@@ -4062,7 +4062,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.matchfilename:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | fgt.matchfilename:*\n  | top 10 (fgt.matchfilename)\n  | keep fgt.matchfilename\n  )\n| by (fgt.matchfilename) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.matchfilename:*))\nfgt.matchfilename:in(\n    * | top 10 (fgt.matchfilename) | keep fgt.matchfilename\n)\n| stats by (fgt.matchfilename) count() results",
                         "legendFormat": "{{fgt.matchfilename}}",
                         "queryType": "statsRange"
                       },
@@ -4650,7 +4650,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.matchfiletype:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | fgt.matchfiletype:*\n  | top 10 (fgt.matchfiletype)\n  | keep fgt.matchfiletype\n  )\n| by (fgt.matchfiletype) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.matchfiletype:*))\nfgt.matchfiletype:in(\n    * | top 10 (fgt.matchfiletype) | keep fgt.matchfiletype\n)\n| stats by (fgt.matchfiletype) count() results",
                         "legendFormat": "{{fgt.matchfiletype}}",
                         "queryType": "statsRange"
                       },
@@ -9211,7 +9211,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND user_agent.original:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  AND user_agent.original:*\n    | top 10 (user_agent.original)\n    | keep user_agent.original\n  )\n  | by (user_agent.original) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} user_agent.original:*))\nuser_agent.original:in(\n    * | top 10 (user_agent.original) | keep user_agent.original\n)\n| stats by (user_agent.original) count() results",
                         "legendFormat": "{{user_agent.original}}",
                         "queryType": "statsRange"
                       },
@@ -9331,7 +9331,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\nAND fgt.catdesc:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | fgt.catdesc:*\n  | top 10 (fgt.catdesc)\n  | keep fgt.catdesc\n  )\n| by (fgt.catdesc) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.catdesc:*))\nfgt.catdesc:in(\n    * | top 10 (fgt.catdesc) | keep fgt.catdesc\n)\n| stats by (fgt.catdesc) count() results",
                         "legendFormat": "{{fgt.catdesc}}",
                         "queryType": "statsRange"
                       },
@@ -11714,7 +11714,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| network.application:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | top 10 (network.application)\n  | keep network.application\n  )\n| by (network.application) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} network.application:*))\nnetwork.application:in(\n    * | top 10 (network.application) | keep network.application\n)\n| stats by (network.application) count() results",
                         "legendFormat": "{{network.application}}",
                         "queryType": "statsRange"
                       },
@@ -11834,7 +11834,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.appcat:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | top 10 (fgt.appcat)\n  | keep fgt.appcat\n  )\n| by (fgt.appcat) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.appcat:*))\nfgt.appcat:in(\n    * | top 10 (fgt.appcat) | keep fgt.appcat\n)\n| stats by (fgt.appcat) count() results",
                         "legendFormat": "{{fgt.appcat}}",
                         "queryType": "statsRange"
                       },
@@ -12890,7 +12890,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| file.name:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | file.name:*\n  | top 10 (file.name)\n  | keep file.name\n  )\n| by (file.name) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} file.name:*))\nfile.name:in(\n    * | top 10 (file.name) | keep file.name\n)\n| stats by (file.name) count() results",
                         "legendFormat": "{{file.name}}",
                         "queryType": "statsRange"
                       },
@@ -13010,7 +13010,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n| fgt.virus:in(\n  _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}\n  | fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}\n  | fgt.virus:*\n  | top 10 (fgt.virus)\n  | keep fgt.virus\n  )\n| by (fgt.virus) count() results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},network.direction in (${direction:doublequote})} fgt.action:in(${action:doublequote}) AND ${Logsql:raw} ${crscore:raw} fgt.virus:*))\nfgt.virus:in(\n    * | top 10 (fgt.virus) | keep fgt.virus\n)\n| stats by (fgt.virus) count() results",
                         "legendFormat": "{{fgt.virus}}",
                         "queryType": "statsRange"
                       },
