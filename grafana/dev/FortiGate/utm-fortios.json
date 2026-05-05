@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
+          "name": "Annotations \u0026 Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -241,12 +241,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=file.name%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=file.name%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=file.name%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=file.name%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -742,12 +742,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.virus%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.virus%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.virus%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.virus%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -1243,12 +1243,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.severity%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.severity%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.severity%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.severity%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -1744,12 +1744,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.quarskip%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.quarskip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.quarskip%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.quarskip%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2245,12 +2245,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dtype%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dtype%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2986,12 +2986,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.attack%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.attack%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.attack%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.attack%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -3727,12 +3727,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.resolved_ip%7C%3D~%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.resolved_ip%7C%3D~%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.resolved_ip%7C%21%3D~%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.resolved_ip%7C%21%3D~%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -4228,12 +4228,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.question.type%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.question.type%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.question.type%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.question.type%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -4849,12 +4849,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=http.request.method%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=http.request.method%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=http.request.method%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=http.request.method%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -5350,12 +5350,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=url.registered_domain%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=url.registered_domain%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=url.registered_domain%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=url.registered_domain%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -5970,12 +5970,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.catdesc%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.catdesc%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.catdesc%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.catdesc%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -6591,12 +6591,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=url.registered_domain%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=url.registered_domain%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=url.registered_domain%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=url.registered_domain%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -7092,12 +7092,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.severity%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.severity%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.severity%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.severity%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -7713,12 +7713,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.matchfilename%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.matchfilename%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.matchfilename%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.matchfilename%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -8214,12 +8214,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.matchfiletype%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.matchfiletype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.matchfiletype%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.matchfiletype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -8835,16 +8835,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -9341,16 +9341,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthuser%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthuser%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthuser%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -9847,16 +9847,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstuser%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstuser%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstuser%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -10353,16 +10353,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthuser%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthuser%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthuser%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -10859,16 +10859,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.authserver%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.authserver%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.authserver%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.authserver%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -11365,16 +11365,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthusersource%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthusersource%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthusersource%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthusersource%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -11871,16 +11871,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstauthserver%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstauthserver%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstauthserver%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstauthserver%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -12377,16 +12377,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthusersource%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthusersource%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthusersource%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthusersource%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -12883,12 +12883,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.question.registered_domain%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.question.registered_domain%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.question.registered_domain%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.question.registered_domain%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -13384,12 +13384,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.question.name%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.question.name%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=dns.question.name%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=dns.question.name%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -13885,12 +13885,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.catdesc%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.catdesc%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.catdesc%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.catdesc%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -14386,12 +14386,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.fsaverdict%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.fsaverdict%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.fsaverdict%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.fsaverdict%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -15377,12 +15377,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.eventsubtype%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.eventsubtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.eventsubtype%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.eventsubtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -16648,12 +16648,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.msg%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.msg%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.msg%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.msg%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -17521,12 +17521,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=user_agent.original%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=user_agent.original%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=user_agent.original%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=user_agent.original%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -18262,16 +18262,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -18768,16 +18768,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -19764,16 +19764,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -20270,16 +20270,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -20776,16 +20776,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -21282,16 +21282,16 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
-                      "title": "Virus Total \ud83e\udda0",
+                      "title": "Virus Total 🦠",
                       "url": "https://www.virustotal.com/gui/ip-address/${__data.fields[0]}"
                     }
                   ],
@@ -22160,12 +22160,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%3D%7C${__data.fields[0}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%3D%7C${__data.fields[0}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -22661,12 +22661,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -23162,12 +23162,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -23663,12 +23663,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.apprisk%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.apprisk%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.apprisk%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.apprisk%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
