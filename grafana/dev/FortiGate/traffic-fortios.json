@@ -11600,23 +11600,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "vmrange_start": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "groupingToMatrix",
                   "kind": "Transformation",
                   "spec": {
@@ -11706,7 +11689,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "none",
                 "tooltip": {
@@ -11816,23 +11799,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "vmrange_start": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "groupingToMatrix",
                   "kind": "Transformation",
                   "spec": {
@@ -11922,7 +11888,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "none",
                 "tooltip": {
@@ -11975,33 +11941,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -12074,38 +12013,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -12172,33 +12080,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -12253,38 +12134,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -12349,33 +12199,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -12448,38 +12271,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -12544,33 +12336,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -12643,38 +12408,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -12741,33 +12475,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -12822,38 +12529,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -12918,33 +12594,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -13017,38 +12666,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -13113,33 +12731,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -13212,38 +12803,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -13310,33 +12870,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -13391,38 +12924,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -13487,33 +12989,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -13586,38 +13061,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -13682,33 +13126,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -13781,38 +13198,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -13879,33 +13265,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -13960,38 +13319,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -14056,33 +13384,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -14155,38 +13456,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -14251,33 +13521,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -14417,33 +13660,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -14563,33 +13779,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -14729,33 +13918,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -14893,33 +14055,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -15039,33 +14174,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -15516,23 +14624,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "vmrange_start": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "groupingToMatrix",
                   "kind": "Transformation",
                   "spec": {
@@ -15622,7 +14713,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "none",
                 "tooltip": {
@@ -15732,23 +14823,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "vmrange_start": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "groupingToMatrix",
                   "kind": "Transformation",
                   "spec": {
@@ -15838,7 +14912,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "none",
                 "tooltip": {
@@ -15891,33 +14965,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -15990,38 +15037,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -16086,33 +15102,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -16185,38 +15174,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -16281,33 +15239,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -16380,38 +15311,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -16476,33 +15376,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -16575,38 +15448,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -16671,33 +15513,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -16770,38 +15585,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -16866,33 +15650,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -16965,38 +15722,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -17061,33 +15787,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -17160,38 +15859,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -17256,33 +15924,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -17355,38 +15996,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -17451,33 +16061,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -17550,38 +16133,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -17646,33 +16198,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -17745,38 +16270,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -17841,33 +16335,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -17940,38 +16407,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -18036,33 +16472,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -18135,38 +16544,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -18231,33 +16609,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -18397,33 +16748,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -18559,33 +16883,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -18725,33 +17022,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -18889,33 +17159,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -19051,33 +17294,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -19512,23 +17728,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "vmrange_start": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "groupingToMatrix",
                   "kind": "Transformation",
                   "spec": {
@@ -19618,7 +17817,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "none",
                 "tooltip": {
@@ -19728,23 +17927,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "vmrange_start": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "groupingToMatrix",
                   "kind": "Transformation",
                   "spec": {
@@ -19834,7 +18016,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "none",
                 "tooltip": {
@@ -19887,33 +18069,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -20048,33 +18203,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -20205,33 +18333,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -20366,33 +18467,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -20525,33 +18599,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -20617,38 +18664,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -20713,33 +18729,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -20807,38 +18796,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -21025,33 +18983,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -21117,38 +19048,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -21213,33 +19113,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -21307,38 +19180,7 @@
                   },
                   "unit": "decbytes"
                 },
-                "overrides": [
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "allow"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-blue",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "matcher": {
-                      "id": "byName",
-                      "options": "block"
-                    },
-                    "properties": [
-                      {
-                        "id": "color",
-                        "value": {
-                          "fixedColor": "dark-red",
-                          "mode": "fixed"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "overrides": []
               },
               "options": {
                 "barRadius": 0,
@@ -21403,33 +19245,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -21564,33 +19379,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -21723,33 +19511,6 @@
                       "value": "__name__"
                     }
                   }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
-                    }
-                  }
                 }
               ]
             }
@@ -21880,33 +19641,6 @@
                   "spec": {
                     "options": {
                       "value": "__name__"
-                    }
-                  }
-                },
-                {
-                  "group": "groupingToMatrix",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "columnField": "fgt.utmaction",
-                      "rowField": "source.ip",
-                      "valueField": "results"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "Value": "no utm"
-                      }
                     }
                   }
                 }
@@ -22216,23 +19950,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {
-                        "Metric": true,
-                        "Time": true,
-                        "vmrange_start": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "groupingToMatrix",
                   "kind": "Transformation",
                   "spec": {
@@ -22322,7 +20039,7 @@
                   "placement": "right",
                   "showLegend": true
                 },
-                "orientation": "auto",
+                "orientation": "vertical",
                 "showValue": "auto",
                 "stacking": "none",
                 "tooltip": {
