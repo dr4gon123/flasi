@@ -104,18 +104,11 @@
                   "spec": {
                     "options": {
                       "includeTimeField": false,
-                      "mode": "reduceFields",
+                      "mode": "seriesToRows",
                       "reducers": [
                         "uniqueValues"
                       ]
                     }
-                  }
-                },
-                {
-                  "group": "transpose",
-                  "kind": "Transformation",
-                  "spec": {
-                    "options": {}
                   }
                 },
                 {
@@ -202,7 +195,7 @@
                 ]
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       }
@@ -241,6 +234,18 @@
       }
     },
     "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/streams-panos.json"
+      },
       {
         "asDropdown": true,
         "icon": "external link",
