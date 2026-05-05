@@ -13673,6 +13673,23 @@
                                         {
                                           "kind": "AutoGridLayoutItem",
                                           "spec": {
+                                            "conditionalRendering": {
+                                              "kind": "ConditionalRenderingGroup",
+                                              "spec": {
+                                                "condition": "and",
+                                                "items": [
+                                                  {
+                                                    "kind": "ConditionalRenderingVariable",
+                                                    "spec": {
+                                                      "operator": "equals",
+                                                      "value": "app-ctrl",
+                                                      "variable": "subtype"
+                                                    }
+                                                  }
+                                                ],
+                                                "visibility": "hide"
+                                              }
+                                            },
                                             "element": {
                                               "kind": "ElementReference",
                                               "name": "panel-77"
@@ -13709,6 +13726,23 @@
                                         {
                                           "kind": "AutoGridLayoutItem",
                                           "spec": {
+                                            "conditionalRendering": {
+                                              "kind": "ConditionalRenderingGroup",
+                                              "spec": {
+                                                "condition": "and",
+                                                "items": [
+                                                  {
+                                                    "kind": "ConditionalRenderingVariable",
+                                                    "spec": {
+                                                      "operator": "equals",
+                                                      "value": "app-ctrl",
+                                                      "variable": "subtype"
+                                                    }
+                                                  }
+                                                ],
+                                                "visibility": "hide"
+                                              }
+                                            },
                                             "element": {
                                               "kind": "ElementReference",
                                               "name": "panel-125"
