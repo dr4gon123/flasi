@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
+          "name": "Annotations \u0026 Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -146,7 +146,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -269,7 +269,7 @@
                 ]
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -355,7 +355,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -487,7 +487,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -619,7 +619,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -751,7 +751,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -832,7 +832,7 @@
                 "mode": "markdown"
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -1025,7 +1025,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -1218,7 +1218,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -1434,7 +1434,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -1474,6 +1474,7 @@
           "id": 3,
           "links": [],
           "title": "mem",
+          "transparent": true,
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
@@ -1556,9 +1557,8 @@
                 }
               }
             },
-            "version": "13.1.0-24655759693"
-          },
-          "transparent": true
+            "version": "13.1.0-25042293542"
+          }
         }
       },
       "panel-30": {
@@ -1642,7 +1642,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -1762,7 +1762,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -1882,7 +1882,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -1977,12 +1977,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2109,7 +2109,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -2204,12 +2204,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2313,7 +2313,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -2408,12 +2408,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2517,7 +2517,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -2612,12 +2612,12 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
+                      "title": "Filter for 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out \ud83d\udd0d",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
+                      "title": "Filter out 🔍",
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2721,7 +2721,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -2902,7 +2902,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -2942,6 +2942,7 @@
           "id": 44,
           "links": [],
           "title": "cpu",
+          "transparent": true,
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
@@ -3024,9 +3025,8 @@
                 }
               }
             },
-            "version": "13.1.0-24655759693"
-          },
-          "transparent": true
+            "version": "13.1.0-25042293542"
+          }
         }
       },
       "panel-46": {
@@ -3065,6 +3065,7 @@
           "id": 46,
           "links": [],
           "title": "sessions",
+          "transparent": true,
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
@@ -3156,9 +3157,8 @@
                 }
               }
             },
-            "version": "13.1.0-24655759693"
-          },
-          "transparent": true
+            "version": "13.1.0-25042293542"
+          }
         }
       },
       "panel-8": {
@@ -3242,7 +3242,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.1.0-25042293542"
           }
         }
       }
@@ -3358,6 +3358,7 @@
                                 "kind": "RowsLayoutRow",
                                 "spec": {
                                   "collapse": false,
+                                  "hideHeader": true,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -3378,14 +3379,14 @@
                                       "rowHeightMode": "custom"
                                     }
                                   },
-                                  "title": "timeseries",
-                                  "hideHeader": true
+                                  "title": "timeseries"
                                 }
                               },
                               {
                                 "kind": "RowsLayoutRow",
                                 "spec": {
                                   "collapse": false,
+                                  "hideHeader": true,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -3432,8 +3433,7 @@
                                       "rowHeightMode": "standard"
                                     }
                                   },
-                                  "title": "absolute",
-                                  "hideHeader": true
+                                  "title": "absolute"
                                 }
                               }
                             ]
@@ -3512,6 +3512,7 @@
                       "kind": "RowsLayoutRow",
                       "spec": {
                         "collapse": false,
+                        "hideHeader": false,
                         "layout": {
                           "kind": "RowsLayout",
                           "spec": {
@@ -3520,6 +3521,7 @@
                                 "kind": "RowsLayoutRow",
                                 "spec": {
                                   "collapse": false,
+                                  "hideHeader": true,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -3539,14 +3541,14 @@
                                       "rowHeightMode": "short"
                                     }
                                   },
-                                  "title": "timeseries",
-                                  "hideHeader": true
+                                  "title": "timeseries"
                                 }
                               },
                               {
                                 "kind": "RowsLayoutRow",
                                 "spec": {
                                   "collapse": false,
+                                  "hideHeader": true,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -3593,15 +3595,13 @@
                                       "rowHeightMode": "standard"
                                     }
                                   },
-                                  "title": "absolute",
-                                  "hideHeader": true
+                                  "title": "absolute"
                                 }
                               }
                             ]
                           }
                         },
-                        "title": "timeseries",
-                        "hideHeader": true
+                        "title": "Log Description"
                       }
                     },
                     {
@@ -3616,6 +3616,7 @@
                                 "kind": "RowsLayoutRow",
                                 "spec": {
                                   "collapse": false,
+                                  "hideHeader": true,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -3645,14 +3646,14 @@
                                       "rowHeightMode": "custom"
                                     }
                                   },
-                                  "title": "timeseries",
-                                  "hideHeader": true
+                                  "title": "timeseries"
                                 }
                               },
                               {
                                 "kind": "RowsLayoutRow",
                                 "spec": {
                                   "collapse": false,
+                                  "hideHeader": true,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -3700,8 +3701,7 @@
                                       "rowHeightMode": "custom"
                                     }
                                   },
-                                  "title": "absolute",
-                                  "hideHeader": true
+                                  "title": "absolute"
                                 }
                               }
                             ]
@@ -3720,6 +3720,18 @@
       }
     },
     "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/system-fortios.json"
+      },
       {
         "asDropdown": true,
         "icon": "external link",
@@ -3812,7 +3824,7 @@
         "1d"
       ],
       "fiscalYearStartMonth": 0,
-      "from": "now-7d",
+      "from": "now-24h",
       "hideTimepicker": false,
       "timezone": "America/Lima",
       "to": "now"
