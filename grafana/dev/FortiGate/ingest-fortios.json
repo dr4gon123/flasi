@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
+          "name": "Annotations \u0026 Alerts",
           "query": {
             "group": "grafana",
             "kind": "DataQuery",
@@ -108,7 +108,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -228,126 +228,7 @@
                 }
               }
             },
-            "version": "13.1.0-24655759693"
-          }
-        }
-      },
-      "panel-72": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream: {observer.vendor=\"Fortinet\",observer.type=firewall,log.syslog.hostname in(${firewall:doublequote}),fgt.vd in(${vdom:doublequote}),fgt.type in(${type:doublequote}),fgt.subtype in(${subtype:doublequote}),network.direction in(${direction:doublequote})}\n| ${Logsql:raw}\n| stats by (log.syslog.hostname) count() results\n#| limit 10",
-                        "legendFormat": "{{log.syslog.hostname}}",
-                        "queryType": "statsRange"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 72,
-          "links": [],
-          "title": "log.syslog.hostname %",
-          "transparent": true,
-          "vizConfig": {
-            "group": "timeseries",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisBorderShow": false,
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "barWidthFactor": 0.6,
-                    "drawStyle": "bars",
-                    "fillOpacity": 0,
-                    "gradientMode": "none",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "insertNulls": false,
-                    "lineInterpolation": "linear",
-                    "lineWidth": 1,
-                    "pointSize": 5,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "showPoints": "auto",
-                    "showValues": false,
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "percent"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "annotations": {
-                  "clustering": -1,
-                  "multiLane": false
-                },
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "right",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                }
-              }
-            },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -467,7 +348,7 @@
                 }
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -599,7 +480,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -731,7 +612,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -863,7 +744,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -995,7 +876,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       }
@@ -1008,7 +889,7 @@
             "kind": "RowsLayoutRow",
             "spec": {
               "collapse": false,
-              "hideHeader": true,
+              "hideHeader": false,
               "layout": {
                 "kind": "AutoGridLayout",
                 "spec": {
@@ -1036,6 +917,7 @@
             "kind": "RowsLayoutRow",
             "spec": {
               "collapse": false,
+              "hideHeader": false,
               "layout": {
                 "kind": "AutoGridLayout",
                 "spec": {
@@ -1056,28 +938,19 @@
                   "rowHeightMode": "custom"
                 }
               },
-              "title": "timeseries",
-              "hideHeader": true
+              "title": "firewall"
             }
           },
           {
             "kind": "RowsLayoutRow",
             "spec": {
               "collapse": false,
+              "hideHeader": false,
               "layout": {
                 "kind": "AutoGridLayout",
                 "spec": {
                   "columnWidthMode": "standard",
                   "items": [
-                    {
-                      "kind": "AutoGridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-72"
-                        }
-                      }
-                    },
                     {
                       "kind": "AutoGridLayoutItem",
                       "spec": {
@@ -1089,17 +962,17 @@
                     }
                   ],
                   "maxColumnCount": 3,
-                  "rowHeightMode": "standard"
+                  "rowHeightMode": "short"
                 }
               },
-              "title": "timeseries",
-              "hideHeader": true
+              "title": "type"
             }
           },
           {
             "kind": "RowsLayoutRow",
             "spec": {
               "collapse": false,
+              "hideHeader": true,
               "layout": {
                 "kind": "AutoGridLayout",
                 "spec": {
@@ -1146,14 +1019,25 @@
                   "rowHeightMode": "standard"
                 }
               },
-              "title": "absolute",
-              "hideHeader": true
+              "title": "absolute"
             }
           }
         ]
       }
     },
     "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ingest-fortios.json"
+      },
       {
         "asDropdown": true,
         "icon": "external link",
