@@ -14710,23 +14710,15 @@
         }
       },
       {
-        "kind": "CustomVariable",
+        "kind": "SwitchVariable",
         "spec": {
-          "allowCustomValue": false,
-          "current": {
-            "text": "null",
-            "value": "*"
-          },
-          "description": "Client Risk Score",
+          "current": "*",
+          "disabledValue": "*",
+          "enabledValue": "fgt.crscore:*",
           "hide": "dontHide",
-          "includeAll": false,
           "label": "fgt.crscore",
-          "multi": false,
           "name": "crscore",
-          "options": [],
-          "query": "null : *,exists : fgt.crscore:*",
-          "skipUrlSync": false,
-          "valuesFormat": "csv"
+          "skipUrlSync": false
         }
       },
       {
