@@ -2262,7 +2262,7 @@
                 "sortBy": []
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -2298,7 +2298,7 @@
                         "source": "url",
                         "type": "csv",
                         "uql": "parse-csv",
-                        "url": "https://raw.githubusercontent.com/enotspe/palos/refs/heads/main/11.1%2B/panos_syslog_fields.csv",
+                        "url": "https://raw.githubusercontent.com/dr4gon123/palos/refs/heads/main/11.1%2B/consolidated/panos_syslog_fields.csv",
                         "url_options": {
                           "data": "",
                           "method": "GET"
@@ -2392,7 +2392,7 @@
                 "showHeader": true
               }
             },
-            "version": "13.0.0-23501141054"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -2537,7 +2537,7 @@
                 "showHeader": true
               }
             },
-            "version": "13.0.0-22478626928"
+            "version": "13.1.0-25042293542"
           }
         }
       },
@@ -3336,6 +3336,18 @@
       }
     },
     "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Source (GitHub)",
+        "tooltip": "View source file in repository",
+        "type": "link",
+        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/log-fields-panos.json"
+      },
       {
         "asDropdown": true,
         "icon": "external link",
