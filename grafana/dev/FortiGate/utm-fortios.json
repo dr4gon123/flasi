@@ -24363,7 +24363,7 @@
                                 "kind": "RowsLayoutRow",
                                 "spec": {
                                   "collapse": false,
-                                  "hideHeader": true,
+                                  "hideHeader": false,
                                   "layout": {
                                     "kind": "RowsLayout",
                                     "spec": {
@@ -24512,13 +24512,13 @@
                                       ]
                                     }
                                   },
-                                  "title": "timeseries"
+                                  "title": "General"
                                 }
                               },
                               {
                                 "kind": "RowsLayoutRow",
                                 "spec": {
-                                  "collapse": false,
+                                  "collapse": true,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -24817,7 +24817,7 @@
                                           "kind": "ConditionalRenderingVariable",
                                           "spec": {
                                             "operator": "equals",
-                                            "value": "webfilter",
+                                            "value": "app-ctrl",
                                             "variable": "subtype"
                                           }
                                         },
@@ -24825,7 +24825,7 @@
                                           "kind": "ConditionalRenderingVariable",
                                           "spec": {
                                             "operator": "equals",
-                                            "value": "app-ctrl",
+                                            "value": "webfilter",
                                             "variable": "subtype"
                                           }
                                         },
@@ -24850,120 +24850,154 @@
                                     }
                                   },
                                   "layout": {
-                                    "kind": "AutoGridLayout",
+                                    "kind": "RowsLayout",
                                     "spec": {
-                                      "columnWidthMode": "standard",
-                                      "items": [
+                                      "rows": [
                                         {
-                                          "kind": "AutoGridLayoutItem",
+                                          "kind": "RowsLayoutRow",
                                           "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-75"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-124"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "conditionalRendering": {
-                                              "kind": "ConditionalRenderingGroup",
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
                                               "spec": {
-                                                "condition": "and",
+                                                "columnWidthMode": "standard",
                                                 "items": [
                                                   {
-                                                    "kind": "ConditionalRenderingVariable",
+                                                    "kind": "AutoGridLayoutItem",
                                                     "spec": {
-                                                      "operator": "equals",
-                                                      "value": "app-ctrl",
-                                                      "variable": "subtype"
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-75"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-124"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "conditionalRendering": {
+                                                        "kind": "ConditionalRenderingGroup",
+                                                        "spec": {
+                                                          "condition": "and",
+                                                          "items": [
+                                                            {
+                                                              "kind": "ConditionalRenderingVariable",
+                                                              "spec": {
+                                                                "operator": "equals",
+                                                                "value": "app-ctrl",
+                                                                "variable": "subtype"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "visibility": "hide"
+                                                        }
+                                                      },
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-77"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-121"
+                                                      }
                                                     }
                                                   }
                                                 ],
-                                                "visibility": "hide"
+                                                "maxColumnCount": 4,
+                                                "rowHeight": 240,
+                                                "rowHeightMode": "custom"
                                               }
                                             },
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-77"
-                                            }
+                                            "title": "timeseries"
                                           }
                                         },
                                         {
-                                          "kind": "AutoGridLayoutItem",
+                                          "kind": "RowsLayoutRow",
                                           "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-121"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-78"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-123"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "conditionalRendering": {
-                                              "kind": "ConditionalRenderingGroup",
+                                            "collapse": false,
+                                            "hideHeader": true,
+                                            "layout": {
+                                              "kind": "AutoGridLayout",
                                               "spec": {
-                                                "condition": "and",
+                                                "columnWidthMode": "narrow",
                                                 "items": [
                                                   {
-                                                    "kind": "ConditionalRenderingVariable",
+                                                    "kind": "AutoGridLayoutItem",
                                                     "spec": {
-                                                      "operator": "equals",
-                                                      "value": "app-ctrl",
-                                                      "variable": "subtype"
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-78"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-123"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "conditionalRendering": {
+                                                        "kind": "ConditionalRenderingGroup",
+                                                        "spec": {
+                                                          "condition": "and",
+                                                          "items": [
+                                                            {
+                                                              "kind": "ConditionalRenderingVariable",
+                                                              "spec": {
+                                                                "operator": "equals",
+                                                                "value": "app-ctrl",
+                                                                "variable": "subtype"
+                                                              }
+                                                            }
+                                                          ],
+                                                          "visibility": "hide"
+                                                        }
+                                                      },
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-125"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "AutoGridLayoutItem",
+                                                    "spec": {
+                                                      "element": {
+                                                        "kind": "ElementReference",
+                                                        "name": "panel-122"
+                                                      }
                                                     }
                                                   }
                                                 ],
-                                                "visibility": "hide"
+                                                "maxColumnCount": 4,
+                                                "rowHeight": 260,
+                                                "rowHeightMode": "custom"
                                               }
                                             },
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-125"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "kind": "AutoGridLayoutItem",
-                                          "spec": {
-                                            "element": {
-                                              "kind": "ElementReference",
-                                              "name": "panel-122"
-                                            }
+                                            "title": "absolute"
                                           }
                                         }
-                                      ],
-                                      "maxColumnCount": 4,
-                                      "rowHeight": 260,
-                                      "rowHeightMode": "custom"
+                                      ]
                                     }
                                   },
                                   "title": "User Agent | URL | Category"
