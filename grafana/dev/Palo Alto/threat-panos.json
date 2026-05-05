@@ -25827,125 +25827,6 @@
           }
         }
       },
-      "panel-250": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "${datasource}"
-                      },
-                      "group": "victoriametrics-logs-datasource",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "_stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}\n| panos.action:in(${action:doublequote}) AND ${Logsql:raw}\n| stats by (panos.subtype) count() results",
-                        "legendFormat": "{{panos.subtype}}",
-                        "queryType": "statsRange"
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 250,
-          "links": [],
-          "title": "panos.subtype %",
-          "transparent": true,
-          "vizConfig": {
-            "group": "timeseries",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisBorderShow": false,
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "barWidthFactor": 0.6,
-                    "drawStyle": "bars",
-                    "fillOpacity": 0,
-                    "gradientMode": "none",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "insertNulls": false,
-                    "lineInterpolation": "linear",
-                    "lineWidth": 1,
-                    "pointSize": 5,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "showPoints": "auto",
-                    "showValues": false,
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "percent"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  }
-                },
-                "overrides": []
-              },
-              "options": {
-                "annotations": {
-                  "clustering": -1,
-                  "multiLane": false
-                },
-                "legend": {
-                  "calcs": [],
-                  "displayMode": "list",
-                  "placement": "right",
-                  "showLegend": true
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                }
-              }
-            },
-            "version": "13.1.0-25042293542"
-          }
-        }
-      },
       "panel-251": {
         "kind": "Panel",
         "spec": {
@@ -26382,15 +26263,6 @@
                                                     "spec": {
                                                       "element": {
                                                         "kind": "ElementReference",
-                                                        "name": "panel-250"
-                                                      }
-                                                    }
-                                                  },
-                                                  {
-                                                    "kind": "AutoGridLayoutItem",
-                                                    "spec": {
-                                                      "element": {
-                                                        "kind": "ElementReference",
                                                         "name": "panel-251"
                                                       }
                                                     }
@@ -26400,7 +26272,7 @@
                                                 "rowHeightMode": "short"
                                               }
                                             },
-                                            "title": "subtype %"
+                                            "title": "sev"
                                           }
                                         },
                                         {
@@ -27781,8 +27653,8 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": "victorialogs-senati@on-prem",
-            "value": "eetqi1p6mdywwa"
+            "text": "victorialogs-lap@on-prem",
+            "value": "dfchh0fqt6tj4e"
           },
           "hide": "dontHide",
           "includeAll": false,
