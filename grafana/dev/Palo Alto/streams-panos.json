@@ -321,7 +321,7 @@
         "1d"
       ],
       "fiscalYearStartMonth": 0,
-      "from": "now-6h",
+      "from": "now-5m",
       "hideTimepicker": false,
       "timezone": "browser",
       "to": "now"
@@ -333,8 +333,8 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": "victorialogs-losportales@on-prem",
-            "value": "dejx9plud4jcwd"
+            "text": "victorialogs-senati@on-prem",
+            "value": "eetqi1p6mdywwa"
           },
           "hide": "dontHide",
           "includeAll": false,
