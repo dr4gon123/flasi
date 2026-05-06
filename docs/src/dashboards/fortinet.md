@@ -1,4 +1,4 @@
-# FortiGate Dashboard Reference
+# FortiGate
 
 This page documents the specific variables, fields, and query patterns used in FortiGate dashboards.
 

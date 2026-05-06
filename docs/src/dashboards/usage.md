@@ -26,6 +26,7 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
 
 !!! note "FortiGate extras"
     FortiOS includes 2 additional dashboards related to **event** dataset.
+    
     - SSL VPN
     - System: convering Health, Configuration Changes and Logging Attempts
 
@@ -52,7 +53,11 @@ datasource → Filters → firewall → vdom / vsys → type → subtype → dir
 | `Logsql` | — | — | Raw [LogsQL](https://docs.victoriametrics.com/victorialogs/logsql/) injection |
 
 !!! note "FortiGate extras"
-    FortiGate Traffic dashboard have two additional variables not present in PAN-OS: `policytype` (filters by `fgt.policytype`) and `crscore`, a toggle unique to the UTM dashboard that applies a risk score threshold filter.
+    FortiGate Traffic dashboards have two additional variables not present in PAN-OS: 
+
+    `policytype` (filters by `fgt.policytype`)
+   
+    `crscore`, a toggle unique to the UTM dashboard that applies a risk score threshold filter.
 
 !!! tip "Advanced Filtering"
     The `Logsql` variable lets you inject raw LogsQL into every query. Use it for complex filters that aren't covered by the standard variables, such as:
@@ -175,7 +180,7 @@ In the Traffic dashboard, *action* has vendor-specific nuance — each vendor mo
 | | FortiGate | Palo Alto |
 |--|-----------|-----------|
 | **Policy action** | `fgt.action` — what the policy decided, or how the connection ended if allowed | `panos.action` — what the firewall policy decided |
-| **Security engine** | `fgt.utmaction` — action taken by the UTM engine (web filter, AV, IPS…) | looked up in the Threat dashboard when `panos.session_end_reason` = `threat` |
+| **Security engine** | `fgt.utmaction` — action taken by the UTM engine (web filter, AV, IPS…) | look up in the Threat dashboard when `panos.session_end_reason = threat` |
 | **Session termination** | (part of `fgt.action` for closed sessions) | `panos.session_end_reason` — why the session ended, separate from policy action |
 
 === "FortiGate"

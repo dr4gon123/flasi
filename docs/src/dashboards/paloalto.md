@@ -1,4 +1,4 @@
-# Palo Alto Dashboard Reference
+# Palo Alto
 
 This page documents the specific variables, fields, and query patterns used in Palo Alto PAN-OS dashboards.
 
