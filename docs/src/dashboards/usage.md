@@ -242,8 +242,15 @@ Application visibility depth differs significantly between vendors:
 | | FortiGate | Palo Alto |
 |-|-----------|-----------|
 | App name | `network.application` (from `fgt.app`) | `panos.app` |
-| App category | `fgt.appcat` | `panos.app_category` |
-| Deeper app properties | — | Multiple fields for sub-category, technology, risk level, and behavior characteristics |
+| Category | `fgt.appcat` | `panos.category_of_app` |
+| Sub-category | — | `panos.subcategory_of_app` |
+| Technology | — | `panos.technology_of_app` |
+| Risk level | — | `panos.risk_of_app` |
+| Characteristics | — | `panos.characteristic_of_app` |
+| Container app | — | `panos.container_of_app` |
+| Tunneled app | — | `panos.tunneled_app` |
+| SaaS | — | `panos.is_saas_of_app` |
+| Sanctioned | — | `panos.sanctioned_state_of_app` |
 
 Palo Alto's deep packet inspection engine classifies applications with much richer metadata, while FortiGate provides name and category only.
 

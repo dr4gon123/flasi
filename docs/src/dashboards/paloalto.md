@@ -126,7 +126,15 @@ Ingest rows:
 | `panos.srcuser` | Source user | Authenticated user |
 | `panos.rule` | Firewall rule name | Policy attribution |
 | `panos.app` | Application detected (deep inspection) | Application visibility |
-| `panos.app_category` | Application category | Category-based analysis |
+| `panos.category_of_app` | Application category | Category-based analysis |
+| `panos.subcategory_of_app` | Application sub-category | Granular app classification |
+| `panos.technology_of_app` | Underlying technology (browser-based, client-server, etc.) | App behavior analysis |
+| `panos.risk_of_app` | Risk level (1–5) | Risk prioritization |
+| `panos.characteristic_of_app` | Behavioral characteristics (evasive, transfers-files, etc.) | Threat hunting |
+| `panos.container_of_app` | Parent application when app runs inside another | Tunneled traffic analysis |
+| `panos.tunneled_app` | Application detected inside a tunnel | Tunnel inspection |
+| `panos.is_saas_of_app` | Whether the app is SaaS | SaaS visibility |
+| `panos.sanctioned_state_of_app` | Whether the app is sanctioned by the organization | Shadow IT detection |
 | `panos.from_zone` | Source security zone | Zone flow analysis (chord diagrams) |
 | `panos.to_zone` | Destination security zone | Zone flow analysis (chord diagrams) |
 | `panos.inbound_if` | Inbound interface | Interface flow analysis |
