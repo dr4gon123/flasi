@@ -28,16 +28,24 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
     FortiOS includes 2 additional dashboards related to **event** dataset.
     
     - SSL VPN
-    - System: convering Health, Configuration Changes and Logging Attempts
+    - System: convering *Health*, *Configuration Changes* and *Logging Attempts*
 
 ## Variables & Filters
 
 All dashboard filters are exposed at the top of the page, allowing you to slice and dice the data as needed. Variables are ordered hierarchically — selecting a firewall narrows down vdom/vsys options, which narrows down subtypes, and so on.
 
-Both vendors follow the same variable cascade:
+Both vendors follow the same variable cascade — each level is scoped by the one above:
 
 ```
-datasource → Filters → firewall → vdom / vsys → type → subtype → direction → action → Logsql
+datasource
+└─ Filters ·············· ad-hoc filter on any field
+   └─ firewall ·········· populated from data
+      └─ vdom / vsys ···· scoped to selected firewall
+         └─ type ········· hardcoded per dashboard
+            └─ subtype ··· scoped to type
+               └─ direction
+                  └─ action ········· scoped to all above
+                     └─ Logsql ······ free-form LogsQL injection
 ```
 
 | Variable | FortiGate field | Palo Alto field | Notes |
@@ -46,18 +54,17 @@ datasource → Filters → firewall → vdom / vsys → type → subtype → dir
 | `Filters` | — | — | Ad-hoc filter on any field |
 | `firewall` | `log.syslog.hostname` | `panos.device_name` | Multi-select |
 | `vdom` / `vsys` | `fgt.vd` | `panos.vsys` | Virtual domain / Virtual system |
-| `type` | `fgt.type` | `panos.type` | Hardcoded per dashboard (traffic, utm/threat…) |
+| `type` | `fgt.type` | `panos.type` | Hardcoded per dashboard (traffic, utm/threat, …) |
 | `subtype` | `fgt.subtype` | `panos.subtype` | Populated from data |
 | `direction` | `network.direction` | `network.direction` | outbound, inbound, internal, external |
 | `action` | `fgt.action` | `panos.action` | Populated from data |
-| `Logsql` | — | — | Raw [LogsQL](https://docs.victoriametrics.com/victorialogs/logsql/) injection |
+| `Logsql` | — | — | Raw [LogsQL](https://docs.victoriametrics.com/victorialogs/logsql/) injection — applied after all other filters |
 
 !!! note "FortiGate extras"
     FortiGate Traffic dashboards have two additional variables not present in PAN-OS: 
 
-    `policytype` (filters by `fgt.policytype`)
-   
-    `crscore`, a toggle unique to the UTM dashboard that applies a risk score threshold filter.
+    - `policytype` (filters by `fgt.policytype`)
+    - `crscore`, a toggle unique to the UTM dashboard that applies a risk score threshold filter.
 
 !!! tip "Advanced Filtering"
     The `Logsql` variable lets you inject raw LogsQL into every query. Use it for complex filters that aren't covered by the standard variables, such as:
@@ -67,16 +74,16 @@ datasource → Filters → firewall → vdom / vsys → type → subtype → dir
 
 ## Navigation
 
-We also have a navigation bar to move between the different dashboards of the dataset:
+Each dashboard includes a navigation bar that links to related dashboards within the same vendor dataset. Navigation links are **tag-based** — each link resolves dynamically to all dashboards sharing a specific set of Grafana tags, so new dashboards added with the right tags appear automatically.
 
 ![Navigation](../assets/dashboards/[Grafana] Fortigate Navigation Filters.png)
 
-| FortiGate | Palo Alto |
-|-----------|-----------|
-| Ingest | Performance |
-| Traffic | Traffic |
-| UTM | Threat |
-| Event | |
+| Nav Link | FortiGate dashboards | PAN-OS dashboards |
+|----------|---------------------|-------------------|
+| Ingest / Performance | Ingest [FortiOS], Streams [FortiOS], Log Fields [FortiOS] | Ingest [PAN-OS], Streams [PAN-OS], Log Fields [PAN-OS] |
+| Traffic | Traffic [FortiOS] | Traffic [PAN-OS] |
+| UTM / Threat | UTM [FortiOS] | Threat [PAN-OS] |
+| Event | System [FortiOS], SSL VPN [FortiOS] | — |
 
 ## Base Query Shell
 
@@ -88,9 +95,9 @@ _stream:{<stream filters>}
 | stats by (<field>) <aggregation>
 ```
 
-**Stream block** — scopes the dataset to a specific firewall, virtual domain, log type, subtype, and direction. This is evaluated at the index level and is the fastest filter.
+**Stream block** — narrows the search to a pre-defined [log stream](https://docs.victoriametrics.com/victorialogs/keyconcepts/#stream-fields). Streams are declared at ingestion time via `_stream_fields` in the Vector sink config — VictoriaLogs stores each stream separately, making the stream filter the fastest part of any query.
 
-**Filter block** — applies additional filters (mainly $action) and custom LogsQL filters on top of the stream result.
+**Filter block** — applies additional filters (mainly `$action`) and custom LogsQL filters on top of the stream result.
 
 **Stats block** — aggregates results, typically `count()` for sessions or `sum(bytes)` for volume.
 
@@ -116,7 +123,7 @@ _stream:{<stream filters>}
 
 ## Tab Structure
 
-### Direction Tabs
+### Top-level Tabs: Direction
 
 We segment the analysis by **`network.direction`** — tabs across the top represent different traffic directions:
 
@@ -129,7 +136,7 @@ The segmentation matters: an attack originating from the internet is completely 
 
 ![Header](../assets/dashboards/[Grafana] Fortigate Header.png)
 
-### Sub-tabs: Traffic Dashboard
+### Sub Tabs (Traffic Dashboard): Metrics
 
 Within each direction tab, the **Traffic** dashboard splits analysis by metric:
 
@@ -139,7 +146,7 @@ Within each direction tab, the **Traffic** dashboard splits analysis by metric:
 | Bytes | `sum(bytes)` | Total volume transferred |
 | Risk Score | `sum(fgt.crscore)` | Arbitrary puntation about the risk associated to an specific session. *Only FortiGate* |
 
-### Sub-tabs: UTM / Threat Dashboard
+### Sub Tabs (UTM / Threat Dashboard): Subtype
 
 The **UTM** (FortiGate) and **Threat** (Palo Alto) dashboards split by **subtype** — the category of security engine that generated the event.
 
@@ -161,9 +168,38 @@ Within each tab of the **Traffic** dashboard (both vendors), panels follow a con
 | Source \| Destination | IP analytics — top sources, destinations, unique counts |
 | Application | Service & app details — ports, protocols, detected applications |
 
-This structure lets analysts quickly identify anomalies at the top, investigate at the middle, and drill down into specific entities at the bottom.
+This structure lets analysts quickly identify anomalies at the top, investigate at the middle, and drill down into specific entities at the bottom — following the [top-to-bottom details philosophy](values.md).
 
-The **UTM/Threat** dashboard follows a similar structure but omits the Interfaces row and adds threat-specific rows (Subtype, Threat ID/Category).
+### UTM / Threat Dashboard Hierarchy
+
+The UTM (FortiGate) and Threat (PAN-OS) dashboards share the same top rows (Metrics, Action, Geo, Source|Destination, Application) but differ in the threat-specific rows.
+
+**FortiGate UTM** — rows are shown or hidden based on the active subtype:
+
+| Row | Always visible | Visible when `subtype` is… |
+|-----|:--------------:|---------------------------|
+| Metrics | ✓ | — |
+| General | ✓ | — |
+| Geo | ✓ | — |
+| Source \| Destination | ✓ | — |
+| User Agent \| URL \| Category | | `app-ctrl`, `webfilter`, `file-filter`, `ssl` |
+| Application \| Application Category | | `app-ctrl` |
+| File \| Virus \| Virus Category | | `virus` |
+| Attack \| Severity \| URL | | `ips` |
+| Resolved IP \| Question Name | | `dns` |
+| matchfilename \| matchfiletype | | `file-filter` |
+
+**PAN-OS Threat** — all rows are always visible; scope is driven by the `direction` and `subtype` tab selection rather than conditional rendering:
+
+| Row | Notes |
+|-----|-------|
+| Metrics | Always visible |
+| Subtype | Always visible |
+| Rule | Always visible (collapsed by default) |
+| Geo | Always visible |
+| Threat ID \| Threat Category \| Misc | Always visible |
+| Source \| Destination | Always visible |
+| Application | Always visible |
 
 ## Action
 
@@ -173,14 +209,12 @@ Understanding what **action** your firewall took for each connection is the most
 
 This is why **every bar chart across both Traffic and UTM/Threat dashboards is broken down by action** — whether a session was allowed or blocked is always the first dimension of any analysis.
 
-### Action in the Traffic Dashboard
-
-In the Traffic dashboard, *action* has vendor-specific nuance — each vendor models policy decisions, security engine outcomes, and session termination differently:
+For *Traffic* *action* has vendor-specific nuance — each vendor models policy decisions, security engine outcomes, and session termination differently:
 
 | | FortiGate | Palo Alto |
 |--|-----------|-----------|
 | **Policy action** | `fgt.action` — what the policy decided, or how the connection ended if allowed | `panos.action` — what the firewall policy decided |
-| **Security engine** | `fgt.utmaction` — action taken by the UTM engine (web filter, AV, IPS…) | look up in the Threat dashboard when `panos.session_end_reason = threat` |
+| **Security engine** | `fgt.utmaction` — action taken by the UTM engine (web filter, AV, IPS…) | look up in the *Threat* dashboard when `panos.session_end_reason = threat` |
 | **Session termination** | (part of `fgt.action` for closed sessions) | `panos.session_end_reason` — why the session ended, separate from policy action |
 
 === "FortiGate"
@@ -194,6 +228,37 @@ In the Traffic dashboard, *action* has vendor-specific nuance — each vendor mo
     We explore the relation between `panos.subtype`, `panos.action`, and `panos.session_end_reason` on a [Sankey Diagram](https://grafana.com/grafana/plugins/netsage-sankey-panel/).
 
     ![Action](../assets/dashboards/[Grafana] Palo Alto Action.png){data-gallery="action-gallery" data-title="Palo Alto Action"}
+
+### UTM / Threat Action Values
+
+Action values in security event logs are different from traffic logs — they reflect what the security engine did with the threat, not the firewall policy decision.
+
+=== "FortiGate UTM"
+
+    | Engine | `fgt.action` / `fgt.utmaction` values |
+    |--------|--------------------------------------|
+    | IPS | `detected`, `dropped`, `reset`, `reset_client`, `reset_server`, `drop_session`, `pass_session` |
+    | Antivirus | `blocked`, `passthrough`, `monitored`, `analytics` |
+    | Web Filter | `blocked`, `passthrough` |
+    | DLP | `log-only`, `block`, `exempt`, `ban`, `ban-sender`, `quarantine-ip`, `quarantine-interface` |
+
+=== "PAN-OS Threat"
+
+    | `panos.action` | Meaning |
+    |----------------|---------|
+    | `alert` | Threat detected, session not blocked |
+    | `allow` | Flood detection alert only |
+    | `deny` | Flood mechanism activated, traffic denied |
+    | `drop` | Threat detected — packets dropped, session kept |
+    | `reset-client` | TCP RST sent to client |
+    | `reset-server` | TCP RST sent to server |
+    | `reset-both` | TCP RST sent to both client and server |
+    | `block-url` | URL blocked by category |
+    | `block-ip` | Client IP blocked |
+    | `random-drop` | Flood detected, packet randomly dropped |
+    | `sinkhole` | DNS sinkhole activated |
+    | `block-continue` | Redirected to Continue page *(URL subtype only)* |
+    | `block` | File blocked, uploaded to WildFire *(WildFire subtype only)* |
 
 ## Source | Destination
 
@@ -238,7 +303,7 @@ To solve the `fgt.service` inconsistency and bridge the PAN-OS gap, we normalize
 network.transport_port = protocol + "/" + destination.port   →   e.g. tcp/443, udp/53
 ```
 
-This field is consistent across both vendors and is what the dashboards use for all service/port analysis.
+This field is computed at ingestion time in the Vector transform pipelines ([`vector/fortigate.yaml`](https://github.com/dr4gon123/flasi/blob/main/vector/fortigate.yaml), [`vector/panos.yaml`](https://github.com/dr4gon123/flasi/blob/main/vector/panos.yaml)) and is consistent across both vendors.
 
 ### Application
 
@@ -246,7 +311,7 @@ Application visibility depth differs significantly between vendors:
 
 | | FortiGate | Palo Alto |
 |-|-----------|-----------|
-| App name | `network.application` (from `fgt.app`) | `panos.app` |
+| App name | `fgt.app` (`network.application`) | `panos.app` (`network.application`) |
 | Category | `fgt.appcat` | `panos.category_of_app` |
 | Sub-category | — | `panos.subcategory_of_app` |
 | Technology | — | `panos.technology_of_app` |
