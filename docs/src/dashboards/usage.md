@@ -30,6 +30,19 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
     - SSL VPN
     - System: convering *Health*, *Configuration Changes* and *Logging Attempts*
 
+## Navigation
+
+Each dashboard includes a navigation bar that links to related dashboards within the same vendor dataset. Navigation links are **tag-based** — each link resolves dynamically to all dashboards sharing a specific set of Grafana tags, so new dashboards added with the right tags appear automatically.
+
+![Navigation](../assets/dashboards/[Grafana] Fortigate Navigation Filters.png)
+
+| Nav Link | FortiGate dashboards | PAN-OS dashboards |
+|----------|---------------------|-------------------|
+| Ingest / Performance | Ingest [FortiOS], Streams [FortiOS], Log Fields [FortiOS] | Ingest [PAN-OS], Streams [PAN-OS], Log Fields [PAN-OS] |
+| Traffic | Traffic [FortiOS] | Traffic [PAN-OS] |
+| UTM / Threat | UTM [FortiOS] | Threat [PAN-OS] |
+| Event | System [FortiOS], SSL VPN [FortiOS] | — |
+
 ## Variables & Filters
 
 All dashboard filters are exposed at the top of the page, allowing you to slice and dice the data as needed. Variables are ordered hierarchically — selecting a firewall narrows down vdom/vsys options, which narrows down subtypes, and so on.
@@ -71,19 +84,6 @@ datasource
     ```
     fgt.source.ip:ipv4_range("192.168.1.0/24") AND destination.port:>1024
     ```
-
-## Navigation
-
-Each dashboard includes a navigation bar that links to related dashboards within the same vendor dataset. Navigation links are **tag-based** — each link resolves dynamically to all dashboards sharing a specific set of Grafana tags, so new dashboards added with the right tags appear automatically.
-
-![Navigation](../assets/dashboards/[Grafana] Fortigate Navigation Filters.png)
-
-| Nav Link | FortiGate dashboards | PAN-OS dashboards |
-|----------|---------------------|-------------------|
-| Ingest / Performance | Ingest [FortiOS], Streams [FortiOS], Log Fields [FortiOS] | Ingest [PAN-OS], Streams [PAN-OS], Log Fields [PAN-OS] |
-| Traffic | Traffic [FortiOS] | Traffic [PAN-OS] |
-| UTM / Threat | UTM [FortiOS] | Threat [PAN-OS] |
-| Event | System [FortiOS], SSL VPN [FortiOS] | — |
 
 ## Base Query Shell
 

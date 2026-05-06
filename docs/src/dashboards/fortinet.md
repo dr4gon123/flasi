@@ -29,17 +29,18 @@ _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doub
 
 ## Traffic Dashboard
 
-The Traffic dashboard (`traffic-fortios.json`) is organized into direction tabs (outbound/inbound/internal/external), each with two metric sub-tabs:
+The Traffic dashboard (`traffic-fortios.json`) is organized into direction tabs (outbound/inbound/internal/external), each with three metric sub-tabs:
 
-| Sub-tab | Metric |
-|---------|--------|
-| Sessions | `count()` — one log ≈ one connection |
-| Bytes | `sum(bytes)` — total volume transferred |
+| Sub-tab | Aggregation | Notes |
+|---------|-------------|-------|
+| Sessions | `count()` | One log ≈ one connection |
+| Bytes | `sum(bytes)` | Total volume transferred |
+| Risk Score | `sum(fgt.crscore)` | Cumulative [Threat Weight](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/903511/threat-weight) score — FortiGate assigns points based on detected threats, UTM actions, IP reputation hits, and other risk factors. Unique to FortiGate; not available in PAN-OS |
 
 Within each sub-tab, rows follow the standard [panel hierarchy](usage.md#panel-hierarchy): Metrics → Action → Geo → Source\|Destination → Application → Rule.
 
 Notable Traffic panels:
-- **Sankey diagram** — Visualizes the flow from `fgt.action` to `fgt.utmaction`
+- **Sankey diagram** — Flow from `fgt.action` to `fgt.utmaction`, visualizing how policy decisions relate to UTM outcomes
 - **Geomap** — Source and destination country distribution
 - **Heatmap** — Session activity density over time
 
@@ -75,12 +76,6 @@ FortiGate dashboards break down UTM actions by engine:
 | Email Filter | `fgt.emailfilter` | Email filtering action |
 | DLP | `fgt.dlp` | Data Loss Prevention action |
 
-## Risk Score
-
-FortiGate dashboards include **Risk Score** analysis based on Fortinet's [Threat Weight](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/903511/threat-weight) configuration.
-
-This feature is unique to FortiGate and not available in Palo Alto dashboards.
-
 ## Key Fields
 
 | Field | Description | Dashboard Usage |
@@ -108,12 +103,25 @@ This feature is unique to FortiGate and not available in Palo Alto dashboards.
 
 ## Overrides
 
-The dashboards use Grafana field overrides for:
+### Action Colors
 
-- **Color thresholds** — Action-based coloring (green=accept, red=drop)
-- **Unit scaling** — Bytes displayed as KB/MB/GB automatically
-- **Hidden fields** — Internal fields excluded from tables
-- **Custom display** — IP addresses shown as clickable drill-down links
+Action values are color-coded consistently across all bar chart and timeseries panels. The convention is **blue = permissive, red = blocking**:
+
+| Color | Action values |
+|-------|--------------|
+| Blue | `allow`, `pass`, `passthrough`, `permit`, `exempt`, `pass_session`, `monitored`, `analytics`, `detected`, `log-only` |
+| Red | `block`, `blocked`, `dropped`, `reject`, `reset`, `reset_client`, `reset_server`, `drop_session`, `deny` |
+| Red | `ban`, `ban-sender`, `quarantine-ip`, `quarantine-interface` |
+
+### Unit Scaling
+
+Fields are auto-scaled based on their name pattern:
+
+| Pattern | Unit |
+|---------|------|
+| `*bytes` | Decimal bytes — auto-scales to KB, MB, GB |
+| `*packets` | SI short — auto-scales to K, M, G |
+| `*duration` | Duration format (s, m, h) |
 
 ## Dashboard Files
 

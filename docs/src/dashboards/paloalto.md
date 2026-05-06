@@ -27,6 +27,19 @@ _stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doub
 | limit 10
 ```
 
+## Action vs. Session End Reason
+
+Palo Alto separates the concept of **action** (what the firewall decided to do) from **session_end_reason** (why the session ended). This is different from FortiGate's approach where both concepts collapse into `fgt.action`.
+
+| Scenario | `panos.action` | `panos.session_end_reason` |
+|----------|----------------|---------------------------|
+| Normal allow | `allow` | `aged-out` or `reset` |
+| Blocked by rule | `deny` | `rule-denied` |
+| Dropped by threat | `drop` | `threat-detected` |
+| Client reset | `reset-client` | `client-rst` |
+
+This distinction matters in Traffic analysis: `panos.action` tells you what the policy decided, while `panos.session_end_reason` tells you what actually terminated the session — which can differ when a threat is detected mid-session on an otherwise allowed flow.
+
 ## Traffic Dashboard
 
 The Traffic dashboard (`traffic-panos.json`) is organized into direction tabs (outbound/inbound/internal/external), each with two metric sub-tabs:
@@ -46,13 +59,6 @@ The Traffic dashboard includes **chord diagrams** (`esnet-chord-panel`) in the I
 - **Interface-to-interface** — physical/logical interface pair flows
 
 These are particularly useful for understanding traffic routing and zone policy coverage.
-
-### Notable Traffic Panels
-
-- **Chord diagrams** — Zone and interface flow visualization
-- **Geomap** — Source and destination country distribution (`panos.srcloc`, `panos.dstloc`)
-- **Sankey diagram** — Traffic flow relationship
-- **Heatmap** — Session activity density over time
 
 ## Threat Dashboard
 
@@ -83,27 +89,6 @@ panos.threat/content_type → panos.action → panos.session_end_reason
 ```
 
 This is the primary way to answer "when a threat was detected, what did the firewall actually do, and how did the session end?"
-
-## Action vs. Session End Reason
-
-Palo Alto separates the concept of **action** (what the firewall decided to do) from **session_end_reason** (why the session ended). This is different from FortiGate's approach where both concepts collapse into `fgt.action`.
-
-| Scenario | `panos.action` | `panos.session_end_reason` |
-|----------|----------------|---------------------------|
-| Normal allow | `allow` | `aged-out` or `reset` |
-| Blocked by rule | `deny` | `rule-denied` |
-| Dropped by threat | `drop` | `threat-detected` |
-| Client reset | `reset-client` | `client-rst` |
-
-## Ingest Dashboard
-
-The Ingest dashboard (`ingest-panos.json`) is structurally identical to the FortiGate ingest dashboard, with one key difference: the `type` variable is a **query variable** (not custom) because PAN-OS produces more log types than FortiGate and the set varies by deployment. Available types are discovered dynamically from the data.
-
-Ingest rows:
-- **Metrics** — total logs, unique device count, unique vsys, unique type, unique subtype
-- **Firewall** — per-device timeseries and bar charts
-- **Type** — log type breakdown
-- Cross-dimensional matrix: type×subtype, device×direction, device×vsys, device×type
 
 ## Key Fields
 
@@ -142,12 +127,59 @@ Ingest rows:
 
 ## Overrides
 
-Palo Alto dashboards use Grafana field overrides for:
+### Action Colors (Traffic)
 
-- **Color thresholds** — Action-based coloring (green=allow, red=deny/drop)
-- **Unit scaling** — Bytes displayed as KB/MB/GB automatically
-- **Custom display** — IPs and users shown as drill-down links
-- **Geo visualization** — Country codes mapped to world map
+Traffic action values use a color scale that reflects severity of intervention — blue for permissive, shades of orange/red for resets, solid red for hard blocks, gray for silent drops:
+
+| Color | Action values |
+|-------|--------------|
+| Dark blue | `allow` |
+| Dark red | `block`, `deny` |
+| Gray | `drop`, `drop-ICMP` — silent drop, no RST sent |
+| Orange | `reset-both` |
+| Dark orange | `reset-client` |
+| Light orange | `reset-server` |
+
+### Action Colors (Threat)
+
+Threat action values use a finer-grained scale reflecting both the threat response and the URL/WildFire-specific actions:
+
+| Color | Action values |
+|-------|--------------|
+| Blue | `allow`, `continue` |
+| Dark blue | `override` |
+| Light orange | `alert`, `block-continue` |
+| Orange | `reset-client`, `syncookie-sent` |
+| Semi-dark orange | `reset-server` |
+| Dark orange | `reset-both` |
+| Red | `block-ip` |
+| Semi-dark red | `drop` |
+| Dark red | `deny`, `block-url`, `block` |
+| Super-light red | `random-drop` |
+| Purple | `block-override` |
+| Dark purple | `sinkhole`, `override-lockout` |
+
+### Severity Colors
+
+Severity fields (`panos.severity`) use a traffic-light scale across both Traffic and Threat dashboards:
+
+| Color | Severity |
+|-------|---------|
+| Gray / Semi-dark blue | `informational` |
+| Green | `low` |
+| Orange | `medium` |
+| Red | `high` |
+| Dark red | `critical` |
+
+### Unit Scaling
+
+Fields are auto-scaled based on their name pattern — identical to FortiGate dashboards:
+
+| Pattern | Unit |
+|---------|------|
+| `*bytes` | Decimal bytes — auto-scales to KB, MB, GB |
+| `*packets` | SI short — auto-scales to K, M, G |
+| `*duration` | Duration format (s, m, h) |
 
 ## Dashboard Files
 
@@ -155,6 +187,6 @@ Palo Alto dashboards use Grafana field overrides for:
 |-----------|------|-------------|
 | Traffic | `traffic-panos.json` | Session/connection analysis |
 | Threat | `threat-panos.json` | Security event analysis (virus, spyware, IPS, URL) |
-| Ingest | `ingest-panos.json` | Ingestion health and throughput |
+| Ingest | `ingest-panos.json` | Ingestion health and throughput. The `type` variable is query-based (not custom) — PAN-OS log types vary by deployment and are discovered dynamically |
 | Log Fields | `log-fields-panos.json` | Raw field explorer |
 | Streams | `streams-panos.json` | Data stream statistics |
