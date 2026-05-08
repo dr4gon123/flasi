@@ -1,20 +1,13 @@
-<div align="center">
-  <img src="docs/src/assets/logos/logo.jpeg" alt="FLASI Logo" />
+![FLASI Logo](docs/src/assets/logos/logo.jpeg)
 
-  <h1>FLASI — Firewall Log Analytics for Security Insights</h1>
-  <h2><strong>The Best Analytics Platform for Firewall Logs</strong></h2>
+# FLASI — Firewall Log Analytics for Security Insights
+## **The Best Analytics Platform for Firewall Logs**
 
-  <h3>
-    <a href="https://dr4gon123.github.io/flasi/">📚 Full Documentation</a> •
-    <a href="https://dr4gon123.github.io/flasi/installation/">🚀 Installation</a> •
-    <a href="https://dr4gon123.github.io/flasi/roadmap/">🛣️ Roadmap</a>
-  </h3>
-  
-  [![Discord](https://img.shields.io/discord/753104553846505552?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/phKD42uFUH)
-  [![GitHub stars](https://img.shields.io/github/stars/dr4gon123/flasi?style=social)](https://github.com/dr4gon123/flasi/stargazers)
-  [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
-  
-</div>
+[📚 Full Documentation](https://dr4gon123.github.io/flasi/) • [🚀 Installation](https://dr4gon123.github.io/flasi/installation/) • [🛣️ Roadmap](https://dr4gon123.github.io/flasi/roadmap/)
+
+[![Discord](https://img.shields.io/discord/753104553846505552?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/phKD42uFUH)
+[![GitHub stars](https://img.shields.io/github/stars/dr4gon123/flasi?style=social)](https://github.com/dr4gon123/flasi/stargazers)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
 
 ---
 
