@@ -92,14 +92,8 @@ We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, 
 
 ### UTM
 
-Action values in security event logs reflect what the security engine did with the threat, not the firewall policy decision:
-
-| Engine | `fgt.action` / `fgt.utmaction` values |
-|--------|--------------------------------------|
-| IPS | `detected`, `dropped`, `reset`, `reset_client`, `reset_server`, `drop_session`, `pass_session` |
-| Antivirus | `blocked`, `passthrough`, `monitored`, `analytics` |
-| Web Filter | `blocked`, `passthrough` |
-| DLP | `log-only`, `block`, `exempt`, `ban`, `ban-sender`, `quarantine-ip`, `quarantine-interface` |
+[Action]( https://github.com/dr4gon123/flores/blob/main/8.0/fields/action_descriptions.csv) values in security event logs reflect what the security engine did with the threat, not the firewall policy decision.
+ 
 
 ## Source | Destination
 
@@ -119,31 +113,6 @@ Action values in security event logs reflect what the security engine did with t
 This inconsistency makes `fgt.service` unreliable for aggregation: the same port can appear under three different values depending on how the policy is configured. Use [`network.transport_port`](index.md#networktransport_port) instead.
 
 ![Service](../../assets/dashboards/guide/[Grafana] Fortigate Service Application.png){data-gallery="service-application-gallery" data-title="Fortigate Service Application"}
-
-## Key Fields
-
-| Field | Description | Dashboard Usage |
-|-------|-------------|-----------------|
-| `fgt.action` | Action taken by firewall policy | Primary action breakdown |
-| `fgt.utmaction` | Action taken by UTM engine when triggered | Secondary action analysis |
-| `fgt.vd` | Virtual Domain | Per-VDOM filtering |
-| `fgt.logid` | Log ID identifying the event type | Exclude duplicates (`!=0000000020`), categorize |
-| `fgt.srccountry` | Source country (GeoIP) | Geographic analysis |
-| `fgt.dstcountry` | Destination country (GeoIP) | Geographic analysis |
-| `fgt.srcreputation` | [IP Reputation](https://docs.fortinet.com/document/fortigate/7.6.4/administration-guide/68937/ip-reputation-filtering) category | Threat intelligence |
-| `fgt.dstreputation` | Destination IP reputation | Threat intelligence |
-| `fgt.service` | Policy-defined service or Internet Service | Service analysis |
-| `network.transport_port` | Normalized port (protocol:port) | Port-based analysis |
-| `fgt.appcat` | Application category | Application visibility |
-| `network.application` | Detected application | Application details |
-| `fgt.user` | Authenticated user | User tracking |
-| `fgt.srcname` | Source device name | Device visibility |
-| `fgt.dstname` | Destination hostname | Destination identification |
-| `rule.id_name` | Firewall policy name | Policy attribution |
-| `fgt.virus` | Virus/malware name (UTM) | Threat analysis |
-| `fgt.viruscat` | Virus category (UTM) | Threat categorization |
-| `fgt.attack` | IPS attack name (UTM) | IPS analysis |
-| `fgt.severity` | Severity level (UTM) | Risk prioritization |
 
 ## Overrides
 
@@ -165,8 +134,7 @@ Full UTM action value descriptions are documented in the [action_descriptions.cs
 | Color | Action values |
 |-------|--------------|
 | Blue | `allow`, `pass`, `passthrough`, `permit`, `exempt`, `pass_session`, `monitored`, `analytics`, `detected`, `log-only` |
-| Red | `block`, `blocked`, `dropped`, `reject`, `reset`, `reset_client`, `reset_server`, `drop_session`, `deny` |
-| Red | `ban`, `ban-sender`, `quarantine-ip`, `quarantine-interface` |
+| Red | `block`, `blocked`, `dropped`, `reject`, `reset`, `reset_client`, `reset_server`, `drop_session`, `deny`, `ban`, `ban-sender`, `quarantine-ip`, `quarantine-interface` |
 
 ### Unit Scaling
 
