@@ -75,7 +75,6 @@ This is the primary way to answer "when a threat was detected, what did the fire
 
 ## Action
 
-### Traffic
 
 Palo Alto separates the concept of **action** (what the firewall decided to do) from **session_end_reason** (why the session ended). This is different from FortiGate's approach where both concepts collapse into `fgt.action`.
 
@@ -83,29 +82,11 @@ This distinction matters in Traffic analysis: `panos.action` tells you what the 
 
 We explore the relation between `panos.subtype`, `panos.action`, and `panos.session_end_reason` on a [Sankey Diagram](https://grafana.com/grafana/plugins/netsage-sankey-panel/).
 
-Field reference: [Traffic Log Fields](https://docs.paloaltonetworks.com/ngfw/administration/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/traffic-log-fields) — key fields: `action`, `session_end_reason`, `flags`.
+Traffic Field reference: [Traffic Log Fields](https://docs.paloaltonetworks.com/ngfw/administration/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/traffic-log-fields) — key fields: `action`, `session_end_reason`, `flags`.
+
+Threat Field reference: [Threat Log Fields](https://docs.paloaltonetworks.com/ngfw/administration/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields) — key fields: `action`, `flags`.
 
 ![Action](../../assets/dashboards/guide/[Grafana] Palo Alto Action.png){data-gallery="action-gallery" data-title="Palo Alto Action"}
-
-### Threat
-
-Field reference: [Threat Log Fields](https://docs.paloaltonetworks.com/ngfw/administration/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields) — key fields: `action`, `flags`.
-
-| `panos.action` | Meaning |
-|----------------|---------|
-| `alert` | Threat detected, session not blocked |
-| `allow` | Flood detection alert only |
-| `deny` | Flood mechanism activated, traffic denied |
-| `drop` | Threat detected — packets dropped, session kept |
-| `reset-client` | TCP RST sent to client |
-| `reset-server` | TCP RST sent to server |
-| `reset-both` | TCP RST sent to both client and server |
-| `block-url` | URL blocked by category |
-| `block-ip` | Client IP blocked |
-| `random-drop` | Flood detected, packet randomly dropped |
-| `sinkhole` | DNS sinkhole activated |
-| `block-continue` | Redirected to Continue page *(URL subtype only)* |
-| `block` | File blocked, uploaded to WildFire *(WildFire subtype only)* |
 
 ## Source | Destination
 
