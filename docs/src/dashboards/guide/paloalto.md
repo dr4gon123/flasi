@@ -12,8 +12,6 @@
 | `action` | Query | From `panos.action` — `allow`, `deny`, `drop`, `reset-both`, etc. |
 | `Logsql` | Text | Custom filter, default `*` |
 
-!!! note "No policytype"
-    PAN-OS dashboards do not have a `policytype` variable. FortiGate's `fgt.policytype` distinguishes between policy types (policy, interface, any) but PAN-OS does not produce an equivalent field in its logs.
 
 ## Base Query
 
@@ -34,7 +32,7 @@ The Traffic dashboard (`traffic-panos.json`) is organized into direction tabs (o
 | Sessions | `count()` — one log ≈ one connection |
 | Bytes | `sum(bytes)` — total volume transferred |
 
-Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-hierarchy): Metrics → Action → Geo → Source\|Destination → Application → Rule.
+Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-hierarchy).
 
 ### Zone & Interface Chord Diagrams
 
@@ -77,22 +75,21 @@ This is the primary way to answer "when a threat was detected, what did the fire
 
 ## Action
 
+### Traffic
+
 Palo Alto separates the concept of **action** (what the firewall decided to do) from **session_end_reason** (why the session ended). This is different from FortiGate's approach where both concepts collapse into `fgt.action`.
 
-| Scenario | `panos.action` | `panos.session_end_reason` |
-|----------|----------------|---------------------------|
-| Normal allow | `allow` | `aged-out` or `reset` |
-| Blocked by rule | `deny` | `rule-denied` |
-| Dropped by threat | `drop` | `threat-detected` |
-| Client reset | `reset-client` | `client-rst` |
-
-This distinction matters in Traffic analysis: `panos.action` tells you what the policy decided, while `panos.session_end_reason` tells you what actually terminated the session — which can differ when a threat is detected mid-session on an otherwise allowed flow.
+This distinction matters in Traffic analysis: `panos.action` tells you what the policy decided, while `panos.session_end_reason` tells you what actually terminated the session — which can differ when a threat is detected mid-session on an otherwise allowed flow. `panos.flags` encodes session properties (symmetric return, decrypted, captive portal, etc.) that provide additional context.
 
 We explore the relation between `panos.subtype`, `panos.action`, and `panos.session_end_reason` on a [Sankey Diagram](https://grafana.com/grafana/plugins/netsage-sankey-panel/).
 
+Field reference: [Traffic Log Fields](https://docs.paloaltonetworks.com/ngfw/administration/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/traffic-log-fields) — key fields: `action`, `session_end_reason`, `flags`.
+
 ![Action](../../assets/dashboards/guide/[Grafana] Palo Alto Action.png){data-gallery="action-gallery" data-title="Palo Alto Action"}
 
-### Threat Action Values
+### Threat
+
+Field reference: [Threat Log Fields](https://docs.paloaltonetworks.com/ngfw/administration/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields) — key fields: `action`, `flags`.
 
 | `panos.action` | Meaning |
 |----------------|---------|
@@ -117,41 +114,6 @@ We explore the relation between `panos.subtype`, `panos.action`, and `panos.sess
 ## Service | Application
 
 ![Service](../../assets/dashboards/guide/[Grafana] Palo Alto Service Application.png){data-gallery="service-application-gallery" data-title="Palo Alto Service Application"}
-
-## Key Fields
-
-| Field | Description | Dashboard Usage |
-|-------|-------------|-----------------|
-| `panos.action` | Action taken by firewall policy | Primary action breakdown |
-| `panos.threat/content_type` | Security engine classification | Threat/UTM classification |
-| `panos.session_end_reason` | Why the session ended | Connection termination analysis |
-| `panos.vsys` | Virtual System | Per-VSYS filtering |
-| `panos.srcloc` | Source country (GeoIP) | Geographic analysis |
-| `panos.dstloc` | Destination country (GeoIP) | Geographic analysis |
-| `panos.subtype` | Log subtype | Threat category (virus, spyware, vulnerability…) |
-| `panos.threatid` | Threat signature ID | Threat identification |
-| `panos.threat_category` | Threat category | Threat classification |
-| `panos.severity` | Severity level | Risk prioritization |
-| `network.transport_port` | Normalized port (protocol:port) | Port-based analysis |
-| `panos.nat.src` | Source NAT translation | NAT analysis |
-| `panos.nat.dst` | Destination NAT translation | NAT analysis |
-| `panos.user` | User identity | User tracking |
-| `panos.srcuser` | Source user | Authenticated user |
-| `panos.rule` | Firewall rule name | Policy attribution |
-| `panos.app` | Application detected (deep inspection) | Application visibility |
-| `panos.category_of_app` | Application category | Category-based analysis |
-| `panos.subcategory_of_app` | Application sub-category | Granular app classification |
-| `panos.technology_of_app` | Underlying technology (browser-based, client-server, etc.) | App behavior analysis |
-| `panos.risk_of_app` | Risk level (1–5) | Risk prioritization |
-| `panos.characteristic_of_app` | Behavioral characteristics (evasive, transfers-files, etc.) | Threat hunting |
-| `panos.container_of_app` | Parent application when app runs inside another | Tunneled traffic analysis |
-| `panos.tunneled_app` | Application detected inside a tunnel | Tunnel inspection |
-| `panos.is_saas_of_app` | Whether the app is SaaS | SaaS visibility |
-| `panos.sanctioned_state_of_app` | Whether the app is sanctioned by the organization | Shadow IT detection |
-| `panos.from_zone` | Source security zone | Zone flow analysis (chord diagrams) |
-| `panos.to_zone` | Destination security zone | Zone flow analysis (chord diagrams) |
-| `panos.inbound_if` | Inbound interface | Interface flow analysis |
-| `panos.outbound_if` | Outbound interface | Interface flow analysis |
 
 ## Overrides
 

@@ -8,12 +8,14 @@
 | `vdom` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall})}` | Virtual Domain from `fgt.vd` |
 | `type` | Custom | Default: `traffic` (options: `traffic`, `utm`, `event`) |
 | `subtype` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall}), fgt.vd in (${vdom})}` | From `fgt.subtype` — typically `forward`, `local`, `multicast` |
-| `policytype` | Same as subtype | From `fgt.policytype` — typically `policy`. **FortiGate-only**, no equivalent in PAN-OS |
+| `policytype` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall}), fgt.vd in (${vdom})}` | From `fgt.policytype` — typically `policy`. **Traffic-only**, no equivalent in UTM |
 | `direction` | Custom | Options: `outbound`, `inbound`, `internal`, `external` |
 | `action` | Base stream query | From `fgt.action` — `accept`, `drop`, `deny`, `close`, etc. |
 | `Logsql` | Text | Custom filter, default `*` |
 
-## Base Query
+## Traffic 
+
+### Base Query
 
 ```plaintext
 _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}
@@ -25,7 +27,7 @@ _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doub
 !!! note "Log ID Exclusion"
     The query filters out `fgt.logid!=0000000020` to avoid duplicate traffic close-session events that inflate counts. These events duplicate aggregation counts from the initial session open.
 
-## Traffic Dashboard
+### Metrics
 
 The Traffic dashboard (`traffic-fortios.json`) is organized into direction tabs (outbound/inbound/internal/external), each with three metric sub-tabs:
 
@@ -35,13 +37,7 @@ The Traffic dashboard (`traffic-fortios.json`) is organized into direction tabs 
 | Bytes | `sum(bytes)` | Total volume transferred |
 | Risk Score | `sum(fgt.crscore)` | Cumulative [Threat Weight](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/903511/threat-weight) score — FortiGate assigns points based on detected threats, UTM actions, IP reputation hits, and other risk factors. Unique to FortiGate; not available in PAN-OS |
 
-Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-hierarchy): Metrics → Action → Geo → Source\|Destination → Application → Rule.
-
-Notable Traffic panels:
-
-- **Sankey diagram** — Flow from `fgt.action` to `fgt.utmaction`, visualizing how policy decisions relate to UTM outcomes
-- **Geomap** — Source and destination country distribution
-- **Heatmap** — Session activity density over time
+Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-hierarchy).
 
 ## UTM Dashboard
 
@@ -51,7 +47,7 @@ The UTM dashboard (`utm-fortios.json`) focuses on security engine events. It has
 
 The UTM dashboard adds a unique `crscore` **switch variable** that applies a risk score threshold filter when enabled. This allows toggling between "all UTM events" and "high-risk UTM events only" without modifying the base query.
 
-### UTM Base Query
+### Base Query
 
 ```plaintext
 _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}
@@ -64,16 +60,20 @@ _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.sys
 
 ### UTM Engines
 
-FortiGate dashboards break down UTM actions by engine:
+**FortiGate UTM** — rows are shown or hidden based on the active subtype:
 
-| Engine | Key Fields | Description |
-|--------|------------|-------------|
-| Web Filter | `fgt.webfilter`, `fgt.catdesc` | URL category and filter action |
-| Application Control | `fgt.appcapapp`, `fgt.appcat` | Application control signature |
-| Antivirus | `fgt.virus`, `fgt.viruscat` | Virus name and category matched |
-| IPS | `fgt.attack`, `fgt.severity` | IPS signature matched |
-| Email Filter | `fgt.emailfilter` | Email filtering action |
-| DLP | `fgt.dlp` | Data Loss Prevention action |
+| Row | Always visible | Visible when `subtype` is… |
+|-----|:--------------:|---------------------------|
+| Metrics | ✓ | — |
+| General | ✓ | — |
+| Geo | ✓ | — |
+| Source \| Destination | ✓ | — |
+| User Agent \| URL \| Category | | `app-ctrl`, `webfilter`, `file-filter`, `ssl` |
+| Application \| Application Category | | `app-ctrl` |
+| File \| Virus \| Virus Category | | `virus` |
+| Attack \| Severity \| URL | | `ips` |
+| Resolved IP \| Question Name | | `dns` |
+| matchfilename \| matchfiletype | | `file-filter` |
 
 ## Event Dashboards
 
@@ -84,11 +84,13 @@ FortiOS includes two additional dashboards that cover the `event` log type:
 
 ## Action
 
+### Traffic
+
 We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, percentage, and absolute fashion. The UTM dashboard further breaks down details by UTM engine (web filter, antivirus, IPS, etc.).
 
 ![Action](../../assets/dashboards/guide/[Grafana] Fortigate Action.png){data-gallery="action-gallery" data-title="Fortigate Action"}
 
-### UTM / Threat Action Values
+### UTM
 
 Action values in security event logs reflect what the security engine did with the threat, not the firewall policy decision:
 
@@ -147,7 +149,18 @@ This inconsistency makes `fgt.service` unreliable for aggregation: the same port
 
 ### Action Colors
 
-Action values are color-coded consistently across all bar chart and timeseries panels. The convention is **blue = permissive, red = blocking**:
+Action values are color-coded consistently across all bar chart and timeseries panels. The convention is **blue = permissive, red = blocking**.
+
+#### Traffic
+
+| Color | Action values |
+|-------|--------------|
+| Blue | `allow` |
+| Red | `block` |
+
+#### UTM
+
+Full UTM action value descriptions are documented in the [action_descriptions.csv](https://github.com/dr4gon123/flores/blob/main/8.0/fields/action_descriptions.csv).
 
 | Color | Action values |
 |-------|--------------|

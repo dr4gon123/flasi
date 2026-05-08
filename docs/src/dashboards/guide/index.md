@@ -128,7 +128,7 @@ The segmentation matters: an attack originating from the internet is completely 
 
 ![Header](../../assets/dashboards/guide/[Grafana] Fortigate Header.png)
 
-### Sub Tabs (Traffic Dashboard): Metrics
+### Sub Tabs — Traffic Dashboard: Metrics
 
 Within each direction tab, the **Traffic** dashboard splits analysis by metric:
 
@@ -138,7 +138,7 @@ Within each direction tab, the **Traffic** dashboard splits analysis by metric:
 | Bytes | `sum(bytes)` | Total volume transferred |
 | Risk Score | `sum(fgt.crscore)` | Arbitrary score about the risk associated to a specific session. *Only FortiGate* |
 
-### Sub Tabs (UTM / Threat Dashboard): Subtype
+### Sub Tabs — UTM | Threat Dashboard: Subtype
 
 The **UTM** (FortiGate) and **Threat** (Palo Alto) dashboards split by **subtype** — the category of security engine that generated the event.
 
@@ -146,6 +146,8 @@ The **UTM** (FortiGate) and **Threat** (Palo Alto) dashboards split by **subtype
 - A **dynamic per-subtype** tab — automatically adapts to whatever subtypes are present in your data
 
 ## Panel Hierarchy
+
+### Traffic
 
 Within each tab of the **Traffic** dashboard (both vendors), panels follow a consistent top-to-bottom layout:
 
@@ -161,7 +163,7 @@ Within each tab of the **Traffic** dashboard (both vendors), panels follow a con
 
 This structure lets analysts quickly identify anomalies at the top, investigate at the middle, and drill down into specific entities at the bottom — following the [top-to-bottom details philosophy](../values.md).
 
-### UTM / Threat Dashboard Hierarchy
+### UTM / Threat
 
 The UTM (FortiGate) and Threat (PAN-OS) dashboards share the same top rows (Metrics, Action, Geo, Source|Destination, Application) but differ in the threat-specific rows.
 
