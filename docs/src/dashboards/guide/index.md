@@ -233,8 +233,9 @@ Raw service fields differ between vendors and are not reliable for cross-vendor 
 ### network.transport_port
 
 ```
-network.transport_port = protocol + "/" + destination.port   →   e.g. tcp/443, udp/53
+network.transport_port = protocol + "/" + destination.port
 ```
+E.g. `tcp/443`, `udp/53`
 
 This field is computed at ingestion time in the Vector transform pipelines ([`vector/fortigate.yaml`](https://github.com/dr4gon123/flasi/blob/main/vector/fortigate.yaml), [`vector/panos.yaml`](https://github.com/dr4gon123/flasi/blob/main/vector/panos.yaml)) and is consistent across both vendors.
 
