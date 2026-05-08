@@ -24,7 +24,7 @@ You also need to answer the most important question to yourself.
 
 *What questions are you trying yo answer?*
 
-*What is the [usage](usage.md) you want to have for your data?*
+*What is the [usage](guide/index.md) you want to have for your data?*
 
 Finally, you need some core [values](values.md) to guide you through the process.
 

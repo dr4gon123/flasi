@@ -1,7 +1,5 @@
 # Palo Alto
 
-This page documents the specific variables, fields, and query patterns used in Palo Alto PAN-OS dashboards.
-
 ## Variables
 
 | Variable | Query Source | Notes |
@@ -27,19 +25,6 @@ _stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doub
 | limit 10
 ```
 
-## Action vs. Session End Reason
-
-Palo Alto separates the concept of **action** (what the firewall decided to do) from **session_end_reason** (why the session ended). This is different from FortiGate's approach where both concepts collapse into `fgt.action`.
-
-| Scenario | `panos.action` | `panos.session_end_reason` |
-|----------|----------------|---------------------------|
-| Normal allow | `allow` | `aged-out` or `reset` |
-| Blocked by rule | `deny` | `rule-denied` |
-| Dropped by threat | `drop` | `threat-detected` |
-| Client reset | `reset-client` | `client-rst` |
-
-This distinction matters in Traffic analysis: `panos.action` tells you what the policy decided, while `panos.session_end_reason` tells you what actually terminated the session — which can differ when a threat is detected mid-session on an otherwise allowed flow.
-
 ## Traffic Dashboard
 
 The Traffic dashboard (`traffic-panos.json`) is organized into direction tabs (outbound/inbound/internal/external), each with two metric sub-tabs:
@@ -49,7 +34,7 @@ The Traffic dashboard (`traffic-panos.json`) is organized into direction tabs (o
 | Sessions | `count()` — one log ≈ one connection |
 | Bytes | `sum(bytes)` — total volume transferred |
 
-Within each sub-tab, rows follow the standard [panel hierarchy](usage.md#panel-hierarchy): Metrics → Action → Geo → Source\|Destination → Application → Rule.
+Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-hierarchy): Metrics → Action → Geo → Source\|Destination → Application → Rule.
 
 ### Zone & Interface Chord Diagrams
 
@@ -89,6 +74,49 @@ panos.threat/content_type → panos.action → panos.session_end_reason
 ```
 
 This is the primary way to answer "when a threat was detected, what did the firewall actually do, and how did the session end?"
+
+## Action
+
+Palo Alto separates the concept of **action** (what the firewall decided to do) from **session_end_reason** (why the session ended). This is different from FortiGate's approach where both concepts collapse into `fgt.action`.
+
+| Scenario | `panos.action` | `panos.session_end_reason` |
+|----------|----------------|---------------------------|
+| Normal allow | `allow` | `aged-out` or `reset` |
+| Blocked by rule | `deny` | `rule-denied` |
+| Dropped by threat | `drop` | `threat-detected` |
+| Client reset | `reset-client` | `client-rst` |
+
+This distinction matters in Traffic analysis: `panos.action` tells you what the policy decided, while `panos.session_end_reason` tells you what actually terminated the session — which can differ when a threat is detected mid-session on an otherwise allowed flow.
+
+We explore the relation between `panos.subtype`, `panos.action`, and `panos.session_end_reason` on a [Sankey Diagram](https://grafana.com/grafana/plugins/netsage-sankey-panel/).
+
+![Action](../../assets/dashboards/guide/[Grafana] Palo Alto Action.png){data-gallery="action-gallery" data-title="Palo Alto Action"}
+
+### Threat Action Values
+
+| `panos.action` | Meaning |
+|----------------|---------|
+| `alert` | Threat detected, session not blocked |
+| `allow` | Flood detection alert only |
+| `deny` | Flood mechanism activated, traffic denied |
+| `drop` | Threat detected — packets dropped, session kept |
+| `reset-client` | TCP RST sent to client |
+| `reset-server` | TCP RST sent to server |
+| `reset-both` | TCP RST sent to both client and server |
+| `block-url` | URL blocked by category |
+| `block-ip` | Client IP blocked |
+| `random-drop` | Flood detected, packet randomly dropped |
+| `sinkhole` | DNS sinkhole activated |
+| `block-continue` | Redirected to Continue page *(URL subtype only)* |
+| `block` | File blocked, uploaded to WildFire *(WildFire subtype only)* |
+
+## Source | Destination
+
+![Source](../../assets/dashboards/guide/[Grafana] Palo Alto Source Destination.png){data-gallery="source-destination-gallery" data-title="Palo Alto Source Destination"}
+
+## Service | Application
+
+![Service](../../assets/dashboards/guide/[Grafana] Palo Alto Service Application.png){data-gallery="service-application-gallery" data-title="Palo Alto Service Application"}
 
 ## Key Fields
 
