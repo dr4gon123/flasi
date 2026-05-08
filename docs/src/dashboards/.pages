@@ -3,6 +3,4 @@ arrange:
   - canvas.md
   - datasets.md
   - values.md
-  - usage.md
-  - fortinet.md
-  - paloalto.md
+  - guide

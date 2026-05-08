@@ -19,20 +19,20 @@ The rest is just details.
 
 <div class="carousel-wrapper">
   <div class="main-image-container">
-    <img id="mainImage" src="../../assets/making_of/draft1.jpeg" alt="Main draft">
+    <img id="mainImage" src="../../assets/dashboards/making_of/draft1.jpeg" alt="Main draft">
     <button class="nav-btn prev" onclick="navigate(-1)">❮</button>
     <button class="nav-btn next" onclick="navigate(1)">❯</button>
   </div>
   
   <div class="thumbnails">
-    <img src="../../assets/making_of/draft1.jpeg" class="thumb active" onclick="showImage(0)">
-    <img src="../../assets/making_of/draft2.jpeg" class="thumb" onclick="showImage(1)">
-    <img src="../../assets/making_of/draft3.jpeg" class="thumb" onclick="showImage(2)">
-    <img src="../../assets/making_of/draft4.jpeg" class="thumb" onclick="showImage(3)">
-    <img src="../../assets/making_of/draft5.jpeg" class="thumb" onclick="showImage(4)">
-    <img src="../../assets/making_of/draft6.jpeg" class="thumb" onclick="showImage(5)">
-    <img src="../../assets/making_of/draft7.jpeg" class="thumb" onclick="showImage(6)">
-    <img src="../../assets/making_of/draft8.jpeg" class="thumb" onclick="showImage(7)">
+    <img src="../../assets/dashboards/making_of/draft1.jpeg" class="thumb active" onclick="showImage(0)">
+    <img src="../../assets/dashboards/making_of/draft2.jpeg" class="thumb" onclick="showImage(1)">
+    <img src="../../assets/dashboards/making_of/draft3.jpeg" class="thumb" onclick="showImage(2)">
+    <img src="../../assets/dashboards/making_of/draft4.jpeg" class="thumb" onclick="showImage(3)">
+    <img src="../../assets/dashboards/making_of/draft5.jpeg" class="thumb" onclick="showImage(4)">
+    <img src="../../assets/dashboards/making_of/draft6.jpeg" class="thumb" onclick="showImage(5)">
+    <img src="../../assets/dashboards/making_of/draft7.jpeg" class="thumb" onclick="showImage(6)">
+    <img src="../../assets/dashboards/making_of/draft8.jpeg" class="thumb" onclick="showImage(7)">
   </div>
 </div>
 
@@ -106,14 +106,14 @@ The rest is just details.
 
 <script>
 const images = [
-  '../../assets/making_of/draft1.jpeg',
-  '../../assets/making_of/draft2.jpeg',
-  '../../assets/making_of/draft3.jpeg',
-  '../../assets/making_of/draft4.jpeg',
-  '../../assets/making_of/draft5.jpeg',
-  '../../assets/making_of/draft6.jpeg',
-  '../../assets/making_of/draft7.jpeg',
-  '../../assets/making_of/draft8.jpeg'
+  '../../assets/dashboards/making_of/draft1.jpeg',
+  '../../assets/dashboards/making_of/draft2.jpeg',
+  '../../assets/dashboards/making_of/draft3.jpeg',
+  '../../assets/dashboards/making_of/draft4.jpeg',
+  '../../assets/dashboards/making_of/draft5.jpeg',
+  '../../assets/dashboards/making_of/draft6.jpeg',
+  '../../assets/dashboards/making_of/draft7.jpeg',
+  '../../assets/dashboards/making_of/draft8.jpeg'
 ];
 
 let currentIndex = 0;

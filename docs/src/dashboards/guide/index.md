@@ -1,12 +1,4 @@
-# Usage
-
-Hopefully, our dashboards are very [intuitive](values.md) to use.
-
-They are intended for SOC analysts to use on threat hunting activities, fine-tuning firewall policies, or any other activity that requires going deep into your data.
-
-We tried to make dashboards look alike, no matter the vendor or dataset, so we provide a coherent user experience across FortiGate and Palo Alto deployments.
-
-## Dashboard Suite
+# Dashboard Guide
 
 Both vendors share the same set of dashboards, each with a distinct purpose:
 
@@ -22,19 +14,19 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
 
 **Ingest** and **Streams** are operational dashboards for understanding what data you have and how it's flowing in.
 
-**Log Fields** are a reference guide showing raw datasets, original log field names and their meanings, and translated ECS fields mappiong.
+**Log Fields** are a reference guide showing raw datasets, original log field names and their meanings, and translated ECS fields mapping.
 
 !!! note "FortiGate extras"
-    FortiOS includes 2 additional dashboards related to **event** dataset.
-    
+    FortiOS includes 2 additional dashboards related to the **event** dataset.
+
     - SSL VPN
-    - System: convering *Health*, *Configuration Changes* and *Logging Attempts*
+    - System: covering *Health*, *Configuration Changes* and *Logging Attempts*
 
 ## Navigation
 
 Each dashboard includes a navigation bar that links to related dashboards within the same vendor dataset. Navigation links are **tag-based** — each link resolves dynamically to all dashboards sharing a specific set of Grafana tags, so new dashboards added with the right tags appear automatically.
 
-![Navigation](../assets/dashboards/[Grafana] Fortigate Navigation Filters.png)
+![Navigation](../../assets/dashboards/guide/[Grafana] Fortigate Navigation Filters.png)
 
 | Nav Link | FortiGate dashboards | PAN-OS dashboards |
 |----------|---------------------|-------------------|
@@ -74,7 +66,7 @@ datasource
 | `Logsql` | — | — | Raw [LogsQL](https://docs.victoriametrics.com/victorialogs/logsql/) injection — applied after all other filters |
 
 !!! note "FortiGate extras"
-    FortiGate Traffic dashboards have two additional variables not present in PAN-OS: 
+    FortiGate Traffic dashboards have two additional variables not present in PAN-OS:
 
     - `policytype` (filters by `fgt.policytype`)
     - `crscore`, a toggle unique to the UTM dashboard that applies a risk score threshold filter.
@@ -134,7 +126,7 @@ We segment the analysis by **`network.direction`** — tabs across the top repre
 
 The segmentation matters: an attack originating from the internet is completely different from an internal host generating suspicious traffic.
 
-![Header](../assets/dashboards/[Grafana] Fortigate Header.png)
+![Header](../../assets/dashboards/guide/[Grafana] Fortigate Header.png)
 
 ### Sub Tabs (Traffic Dashboard): Metrics
 
@@ -144,7 +136,7 @@ Within each direction tab, the **Traffic** dashboard splits analysis by metric:
 |---------|-------------|-------|
 | Sessions | `count()` | 1 log ≈ 1 connection. Not 100% accurate but cheap to calculate. For exact counts, `count_uniq(session.id)` is resource-intensive |
 | Bytes | `sum(bytes)` | Total volume transferred |
-| Risk Score | `sum(fgt.crscore)` | Arbitrary puntation about the risk associated to an specific session. *Only FortiGate* |
+| Risk Score | `sum(fgt.crscore)` | Arbitrary score about the risk associated to a specific session. *Only FortiGate* |
 
 ### Sub Tabs (UTM / Threat Dashboard): Subtype
 
@@ -152,7 +144,6 @@ The **UTM** (FortiGate) and **Threat** (Palo Alto) dashboards split by **subtype
 
 - A **summary** tab — aggregated view across all subtypes. *Only Palo Alto*
 - A **dynamic per-subtype** tab — automatically adapts to whatever subtypes are present in your data
-
 
 ## Panel Hierarchy
 
@@ -168,7 +159,7 @@ Within each tab of the **Traffic** dashboard (both vendors), panels follow a con
 | Source \| Destination | IP analytics — top sources, destinations, unique counts |
 | Application | Service & app details — ports, protocols, detected applications |
 
-This structure lets analysts quickly identify anomalies at the top, investigate at the middle, and drill down into specific entities at the bottom — following the [top-to-bottom details philosophy](values.md).
+This structure lets analysts quickly identify anomalies at the top, investigate at the middle, and drill down into specific entities at the bottom — following the [top-to-bottom details philosophy](../values.md).
 
 ### UTM / Threat Dashboard Hierarchy
 
@@ -209,7 +200,7 @@ Understanding what **action** your firewall took for each connection is the most
 
 This is why **every bar chart across both Traffic and UTM/Threat dashboards is broken down by action** — whether a session was allowed or blocked is always the first dimension of any analysis.
 
-For *Traffic* *action* has vendor-specific nuance — each vendor models policy decisions, security engine outcomes, and session termination differently:
+For *Traffic*, action has vendor-specific nuance — each vendor models policy decisions, security engine outcomes, and session termination differently:
 
 | | FortiGate | Palo Alto |
 |--|-----------|-----------|
@@ -217,48 +208,7 @@ For *Traffic* *action* has vendor-specific nuance — each vendor models policy 
 | **Security engine** | `fgt.utmaction` — action taken by the UTM engine (web filter, AV, IPS…) | look up in the *Threat* dashboard when `panos.session_end_reason = threat` |
 | **Session termination** | (part of `fgt.action` for closed sessions) | `panos.session_end_reason` — why the session ended, separate from policy action |
 
-=== "FortiGate"
-
-    We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, percentage, and absolute fashion. The UTM dashboard further breaks down details by UTM engine (web filter, antivirus, IPS, etc.).
-
-    ![Action](../assets/dashboards/[Grafana] Fortigate Action.png){data-gallery="action-gallery" data-title="Fortigate Action"}
-
-=== "Palo Alto"
-
-    We explore the relation between `panos.subtype`, `panos.action`, and `panos.session_end_reason` on a [Sankey Diagram](https://grafana.com/grafana/plugins/netsage-sankey-panel/).
-
-    ![Action](../assets/dashboards/[Grafana] Palo Alto Action.png){data-gallery="action-gallery" data-title="Palo Alto Action"}
-
-### UTM / Threat Action Values
-
-Action values in security event logs are different from traffic logs — they reflect what the security engine did with the threat, not the firewall policy decision.
-
-=== "FortiGate UTM"
-
-    | Engine | `fgt.action` / `fgt.utmaction` values |
-    |--------|--------------------------------------|
-    | IPS | `detected`, `dropped`, `reset`, `reset_client`, `reset_server`, `drop_session`, `pass_session` |
-    | Antivirus | `blocked`, `passthrough`, `monitored`, `analytics` |
-    | Web Filter | `blocked`, `passthrough` |
-    | DLP | `log-only`, `block`, `exempt`, `ban`, `ban-sender`, `quarantine-ip`, `quarantine-interface` |
-
-=== "PAN-OS Threat"
-
-    | `panos.action` | Meaning |
-    |----------------|---------|
-    | `alert` | Threat detected, session not blocked |
-    | `allow` | Flood detection alert only |
-    | `deny` | Flood mechanism activated, traffic denied |
-    | `drop` | Threat detected — packets dropped, session kept |
-    | `reset-client` | TCP RST sent to client |
-    | `reset-server` | TCP RST sent to server |
-    | `reset-both` | TCP RST sent to both client and server |
-    | `block-url` | URL blocked by category |
-    | `block-ip` | Client IP blocked |
-    | `random-drop` | Flood detected, packet randomly dropped |
-    | `sinkhole` | DNS sinkhole activated |
-    | `block-continue` | Redirected to Continue page *(URL subtype only)* |
-    | `block` | File blocked, uploaded to WildFire *(WildFire subtype only)* |
+For vendor-specific action visualizations, action values, and color coding: [FortiGate](fortigate.md#action) · [Palo Alto](paloalto.md#action)
 
 ## Source | Destination
 
@@ -270,34 +220,15 @@ We explore its broadest dimensions: IP, User, Device.
 - **Middle row** — total aggregated values: `count of logs over the whole time window`
 - **Bottom row** — advanced metrics: `unique count of destination IP per source IP`
 
-=== "FortiGate"
-
-    ![Source](../assets/dashboards/[Grafana] Fortigate Source Destination.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - IP"}
-    ![Source2](../assets/dashboards/[Grafana] Fortigate Source Destination 2.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - User"}
-
-=== "Palo Alto"
-
-    ![Source](../assets/dashboards/[Grafana] Palo Alto Source Destination.png){data-gallery="source-destination-gallery" data-title="Palo Alto Source Destination"}
+For vendor-specific views: [FortiGate](fortigate.md#source-destination) · [Palo Alto](paloalto.md#source-destination)
 
 ## Service | Application
 
 `service` is the combination of `protocol` + `destination port`, like `https` = `tcp/443`.
 
-### Service Field
-
-FortiGate's `fgt.service` field can hold three different values depending on what matched:
-
-1. An **Internet Service** name (e.g. `Google-DNS`) — if the destination matched a Fortinet Internet Service database entry
-2. A **configured service object** name (e.g. `HTTPS`, `CUSTOM-APP`) — if the session matched a policy service object
-3. A **protocol/port notation** (e.g. `tcp/443`) — if no service object matched
-
-This inconsistency makes `fgt.service` unreliable for aggregation: the same port can appear under three different values depending on how the policy is configured.
-
-PAN-OS does **not** produce an equivalent service field.
+Raw service fields differ between vendors and are not reliable for cross-vendor aggregation — see [FortiGate](fortigate.md#service-application) for the detail on `fgt.service`. We normalize both vendors into a single computed field:
 
 ### network.transport_port
-
-To solve the `fgt.service` inconsistency and bridge the PAN-OS gap, we normalize both vendors into a single computed field:
 
 ```
 network.transport_port = protocol + "/" + destination.port   →   e.g. tcp/443, udp/53
@@ -324,18 +255,4 @@ Application visibility depth differs significantly between vendors:
 
 Palo Alto's deep packet inspection engine classifies applications with much richer metadata, while FortiGate provides name and category only.
 
-=== "FortiGate"
-
-    ![Service](../assets/dashboards/[Grafana] Fortigate Service Application.png){data-gallery="service-application-gallery" data-title="Fortigate Service Application"}
-
-=== "Palo Alto"
-
-    ![Service](../assets/dashboards/[Grafana] Palo Alto Service Application.png){data-gallery="service-application-gallery" data-title="Palo Alto Service Application"}
-
-
-## Vendor-Specific Documentation
-
-While the overall structure is consistent, each firewall vendor has unique fields, variables, and query patterns:
-
-- [FortiGate](fortinet.md) — Variables, fields, UTM engines, risk score, logid filtering
-- [Palo Alto](paloalto.md) — Variables, fields, threat types, session end reasons, zone/interface chord diagrams
+For vendor-specific visualizations: [FortiGate](fortigate.md#service-application) · [Palo Alto](paloalto.md#service-application)

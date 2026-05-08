@@ -1,7 +1,5 @@
 # FortiGate
 
-This page documents the specific variables, fields, and query patterns used in FortiGate dashboards.
-
 ## Variables
 
 | Variable | Query Source | Notes |
@@ -37,9 +35,10 @@ The Traffic dashboard (`traffic-fortios.json`) is organized into direction tabs 
 | Bytes | `sum(bytes)` | Total volume transferred |
 | Risk Score | `sum(fgt.crscore)` | Cumulative [Threat Weight](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/903511/threat-weight) score — FortiGate assigns points based on detected threats, UTM actions, IP reputation hits, and other risk factors. Unique to FortiGate; not available in PAN-OS |
 
-Within each sub-tab, rows follow the standard [panel hierarchy](usage.md#panel-hierarchy): Metrics → Action → Geo → Source\|Destination → Application → Rule.
+Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-hierarchy): Metrics → Action → Geo → Source\|Destination → Application → Rule.
 
 Notable Traffic panels:
+
 - **Sankey diagram** — Flow from `fgt.action` to `fgt.utmaction`, visualizing how policy decisions relate to UTM outcomes
 - **Geomap** — Source and destination country distribution
 - **Heatmap** — Session activity density over time
@@ -75,6 +74,49 @@ FortiGate dashboards break down UTM actions by engine:
 | IPS | `fgt.attack`, `fgt.severity` | IPS signature matched |
 | Email Filter | `fgt.emailfilter` | Email filtering action |
 | DLP | `fgt.dlp` | Data Loss Prevention action |
+
+## Event Dashboards
+
+FortiOS includes two additional dashboards that cover the `event` log type:
+
+- **System** (`system-fortios.json`) — Health metrics, configuration changes, and login/logout attempts
+- **SSL VPN** (`ssl-vpn-fortios.json`) — VPN session analysis: tunnel establishment, user connections, duration, and traffic
+
+## Action
+
+We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, percentage, and absolute fashion. The UTM dashboard further breaks down details by UTM engine (web filter, antivirus, IPS, etc.).
+
+![Action](../../assets/dashboards/guide/[Grafana] Fortigate Action.png){data-gallery="action-gallery" data-title="Fortigate Action"}
+
+### UTM / Threat Action Values
+
+Action values in security event logs reflect what the security engine did with the threat, not the firewall policy decision:
+
+| Engine | `fgt.action` / `fgt.utmaction` values |
+|--------|--------------------------------------|
+| IPS | `detected`, `dropped`, `reset`, `reset_client`, `reset_server`, `drop_session`, `pass_session` |
+| Antivirus | `blocked`, `passthrough`, `monitored`, `analytics` |
+| Web Filter | `blocked`, `passthrough` |
+| DLP | `log-only`, `block`, `exempt`, `ban`, `ban-sender`, `quarantine-ip`, `quarantine-interface` |
+
+## Source | Destination
+
+![Source](../../assets/dashboards/guide/[Grafana] Fortigate Source Destination.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - IP"}
+![Source2](../../assets/dashboards/guide/[Grafana] Fortigate Source Destination 2.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - User"}
+
+## Service | Application
+
+### Service Field
+
+`fgt.service` can hold three different values depending on what matched:
+
+1. An **Internet Service** name (e.g. `Google-DNS`) — if the destination matched a Fortinet Internet Service database entry
+2. A **configured service object** name (e.g. `HTTPS`, `CUSTOM-APP`) — if the session matched a policy service object
+3. A **protocol/port notation** (e.g. `tcp/443`) — if no service object matched
+
+This inconsistency makes `fgt.service` unreliable for aggregation: the same port can appear under three different values depending on how the policy is configured. Use [`network.transport_port`](index.md#networktransport_port) instead.
+
+![Service](../../assets/dashboards/guide/[Grafana] Fortigate Service Application.png){data-gallery="service-application-gallery" data-title="Fortigate Service Application"}
 
 ## Key Fields
 

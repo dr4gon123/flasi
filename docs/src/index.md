@@ -129,7 +129,7 @@ That's when the real work began.
 
 It's difficult to explain what "deep visibility" or "in-depth analysis" actually mean until you see it. We could list features like "comprehensive dashboards" or "real-time monitoring," but those are just marketing buzzwords that every vendor claims.
 
-**The truth?** You'll understand it once you use our [dashboards](dashboards/usage.md).
+**The truth?** You'll understand it once you use our [dashboards](dashboards/guide/index.md).
 
 We're not a generic SIEM that happens to support firewall logs. We're a firewall log analytics platform that happens to be better than any SIEM. No other paid or free tool has such in-depth analysis of firewall logs. 
 
