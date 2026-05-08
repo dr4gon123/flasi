@@ -25,6 +25,8 @@ _stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doub
 
 ## Traffic Dashboard
 
+### Tab Structure
+
 The Traffic dashboard (`traffic-panos.json`) is organized into direction tabs (outbound/inbound/internal/external), each with two metric sub-tabs:
 
 | Sub-tab | Metric |
@@ -63,15 +65,6 @@ Each tab contains rows for: Metrics, Action, Geo, Source\|Destination, Applicati
 - **Subtype row** — breakdown by `panos.subtype` (virus, spyware, vulnerability, url, file, wildfire…)
 - **Threat ID | Threat Category | Misc** row — `panos.threatid`, `panos.threat_category`, severity
 
-### Sankey Diagram
-
-The Threat dashboard uses a Sankey diagram to visualize the relationship between:
-
-```
-panos.threat/content_type → panos.action → panos.session_end_reason
-```
-
-This is the primary way to answer "when a threat was detected, what did the firewall actually do, and how did the session end?"
 
 ## Action
 
@@ -88,6 +81,16 @@ Threat Field reference: [Threat Log Fields](https://docs.paloaltonetworks.com/ng
 
 ![Action](../../assets/dashboards/guide/[Grafana] Palo Alto Action.png){data-gallery="action-gallery" data-title="Palo Alto Action"}
 
+### Sankey Diagram
+
+Both Traffic and Threat dashboards use a Sankey diagram to visualize the relationship between:
+
+```
+panos.subtype → panos.action → panos.session_end_reason
+```
+
+This is the primary way to answer "when a threat was detected, what did the firewall actually do, and how did the session end?"
+
 ## Source | Destination
 
 ![Source](../../assets/dashboards/guide/[Grafana] Palo Alto Source Destination.png){data-gallery="source-destination-gallery" data-title="Palo Alto Source Destination"}
@@ -98,7 +101,7 @@ Threat Field reference: [Threat Log Fields](https://docs.paloaltonetworks.com/ng
 
 ## Overrides
 
-### Action Colors (Traffic)
+### Action Colors — Traffic
 
 Traffic action values use a color scale that reflects severity of intervention — blue for permissive, shades of orange/red for resets, solid red for hard blocks, gray for silent drops:
 
@@ -111,7 +114,7 @@ Traffic action values use a color scale that reflects severity of intervention �
 | Dark orange | `reset-client` |
 | Light orange | `reset-server` |
 
-### Action Colors (Threat)
+### Action Colors — Threat
 
 Threat action values use a finer-grained scale reflecting both the threat response and the URL/WildFire-specific actions:
 
