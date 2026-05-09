@@ -36,9 +36,9 @@ def promote_file(src: str) -> str:
     with open(src) as f:
         d = json.load(f)
 
-    if os.path.basename(src) == "_folder.json":
-        d["metadata"]["name"] = _prod_uid(d["metadata"]["name"])
-    else:
+    d["metadata"]["name"] = _prod_uid(d["metadata"]["name"])
+
+    if os.path.basename(src) != "_folder.json":
         spec = d.get("spec", {})
         spec["tags"] = ["prod" if t == "dev" else t for t in spec.get("tags", [])]
         for link in spec.get("links", []):
