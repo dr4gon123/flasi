@@ -1,0 +1,10 @@
+{
+  "kind": "Folder",
+  "apiVersion": "folder.grafana.app/v1beta1",
+  "metadata": {
+    "name": "04f76617bd91b5"
+  },
+  "spec": {
+    "title": "Cortex"
+  }
+}

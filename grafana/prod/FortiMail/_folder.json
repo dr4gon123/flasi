@@ -1,0 +1,10 @@
+{
+  "kind": "Folder",
+  "apiVersion": "folder.grafana.app/v1beta1",
+  "metadata": {
+    "name": "024aa44c2fd585"
+  },
+  "spec": {
+    "title": "FortiMail"
+  }
+}

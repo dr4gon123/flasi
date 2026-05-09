@@ -8,6 +8,7 @@ Usage:
 """
 import argparse
 import glob
+import hashlib
 import json
 import os
 import sys
@@ -15,6 +16,11 @@ import sys
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEV_BASE = os.path.join(REPO_ROOT, "grafana", "dev")
 PROD_BASE = os.path.join(REPO_ROOT, "grafana", "prod")
+
+
+def _prod_uid(dev_uid: str) -> str:
+    h = hashlib.sha256(f"{dev_uid}:prod".encode()).hexdigest()
+    return h[:len(dev_uid)]
 
 
 def promote_file(src: str) -> str:
@@ -30,11 +36,14 @@ def promote_file(src: str) -> str:
     with open(src) as f:
         d = json.load(f)
 
-    spec = d.get("spec", {})
-    spec["tags"] = ["prod" if t == "dev" else t for t in spec.get("tags", [])]
-    for link in spec.get("links", []):
-        if "tags" in link:
-            link["tags"] = ["prod" if t == "dev" else t for t in link["tags"]]
+    if os.path.basename(src) == "_folder.json":
+        d["metadata"]["name"] = _prod_uid(d["metadata"]["name"])
+    else:
+        spec = d.get("spec", {})
+        spec["tags"] = ["prod" if t == "dev" else t for t in spec.get("tags", [])]
+        for link in spec.get("links", []):
+            if "tags" in link:
+                link["tags"] = ["prod" if t == "dev" else t for t in link["tags"]]
 
     with open(dest, "w") as f:
         json.dump(d, f, indent=2, ensure_ascii=False)
@@ -46,7 +55,7 @@ def promote_file(src: str) -> str:
 def warn_unpromoted(vendor_dir: str, promoted: set[str]) -> None:
     siblings = {
         f for f in glob.glob(os.path.join(vendor_dir, "*.json"))
-        if os.path.basename(f) != "_folder.json"
+        if os.path.basename(f) != "_folder.json"  # _folder.json is not a dashboard
     }
     unpromoted = siblings - promoted
     if unpromoted:
@@ -76,10 +85,7 @@ def main() -> None:
         if not os.path.isdir(vendor_dir):
             print(f"error: vendor directory not found: {vendor_dir}", file=sys.stderr)
             sys.exit(1)
-        sources = sorted(
-            f for f in glob.glob(os.path.join(vendor_dir, "*.json"))
-            if os.path.basename(f) != "_folder.json"
-        )
+        sources = sorted(glob.glob(os.path.join(vendor_dir, "*.json")))
 
     if args.file:
         sources.append(os.path.join(REPO_ROOT, args.file) if not os.path.isabs(args.file) else args.file)

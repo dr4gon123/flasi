@@ -1,0 +1,10 @@
+{
+  "kind": "Folder",
+  "apiVersion": "folder.grafana.app/v1beta1",
+  "metadata": {
+    "name": "19c420a69a7a32"
+  },
+  "spec": {
+    "title": "FortiEDR"
+  }
+}

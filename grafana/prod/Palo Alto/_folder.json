@@ -1,0 +1,10 @@
+{
+  "kind": "Folder",
+  "apiVersion": "folder.grafana.app/v1beta1",
+  "metadata": {
+    "name": "5bd90fab3c8853"
+  },
+  "spec": {
+    "title": "Palo Alto"
+  }
+}
