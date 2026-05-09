@@ -98,8 +98,63 @@ We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, 
 
 ## Source | Destination
 
+Three subtabs break down traffic by different identity dimensions:
+
+### IP
+
+IP-level analysis — the most granular view of who is talking to whom.
+
+| Field | Description |
+|-------|-------------|
+| `source.ip` / `source.ip/24` | Top source IPs and /24 subnets by session count |
+| `destination.ip` / `destination.ip/24` | Top destination IPs and /24 subnets |
+| `source.nat.ip` / `destination.nat.ip` | NAT-translated addresses — useful for identifying NAT pools and translated destinations |
+| `unique destination.ip by source.ip` | Fanout metric — how many distinct destinations each source is reaching |
+| `unique source.ip by destination.ip` | Reverse fanout — how many sources are hitting each destination |
+| `unique network.transport_port by source.ip` | Port diversity per source — high values suggest scanning or broad service use |
+| `unique network.transport_port by destination.ip` | Port diversity per destination |
+| `fgt.dstreputation` | FortiGuard IP reputation category of the destination |
+
+The **bytes** metric sub-tab adds volume breakdowns (`sum`, `avg`, histogram) and duration percentiles (`p90`, `avg`) per IP.
+
 ![Source](../../assets/dashboards/guide/[Grafana] Fortigate Source Destination.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - IP"}
+
+### User
+
+FortiGate collects user identity from authentication sessions (FSSO, RSSO, local auth) and maps it to traffic.
+
+| Field | Description |
+|-------|-------------|
+| `fgt.user` | Authenticated source user |
+| `fgt.unauthuser` | Unauthenticated source user (identity known but not authenticated) |
+| `fgt.unauthusersource` | Method that identified the unauthenticated user |
+| `fgt.dstuser` | Authenticated destination user |
+| `fgt.dstunauthuser` | Unauthenticated destination user |
+| `fgt.dstunauthusersource` | Method that identified the unauthenticated destination user |
+| `fgt.dstname` | DNS name of the destination host |
+| `fgt.dstgroup` | Destination user group |
+| `fgt.dstauthserver` | Authentication server that verified the destination user |
+
 ![Source2](../../assets/dashboards/guide/[Grafana] Fortigate Source Destination 2.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - User"}
+
+### Device
+
+Device fingerprinting for both source and destination, populated when FortiGate identifies the device via DHCP, FSSO, or traffic inspection.
+
+| Field | Description |
+|-------|-------------|
+| `fgt.srcname` | Source device hostname |
+| `fgt.devtype` | Source device category (PC, Phone, Printer, etc.) |
+| `fgt.osname` | Source OS name |
+| `fgt.srcswversion` | Source OS version |
+| `fgt.srchwvendor` | Source hardware vendor |
+| `fgt.srcfamily` | Source device family |
+| `fgt.dstname` | Destination device hostname |
+| `fgt.dstdevtype` | Destination device category |
+| `fgt.dstosname` | Destination OS name |
+| `fgt.dstswversion` | Destination OS version |
+| `fgt.dsthwvendor` | Destination hardware vendor |
+| `fgt.dstfamily` | Destination device family |
 
 ## Service | Application
 

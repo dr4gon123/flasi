@@ -93,7 +93,39 @@ This is the primary way to answer "when a threat was detected, what did the fire
 
 ## Source | Destination
 
+Two subtabs break down traffic by identity dimension:
+
+### IP
+
+| Field | Description |
+|-------|-------------|
+| `source.ip` / `source.ip/24` | Top source IPs and /24 subnets by session count |
+| `destination.ip` / `destination.ip/24` | Top destination IPs and /24 subnets |
+| `source.nat.ip` / `destination.nat.ip` | NAT-translated addresses |
+| `unique destination.ip by source.ip` | Fanout — how many distinct destinations each source reaches |
+| `unique source.ip by destination.ip` | Reverse fanout — how many sources hit each destination |
+| `unique network.transport_port by source.ip` | Port diversity per source |
+| `unique network.transport_port by destination.ip` | Port diversity per destination |
+| `unique network.application by source.ip` | Application diversity per source |
+| `unique network.application by destination.ip` | Application diversity per destination |
+
+The **bytes** sub-tab adds `sum`, `avg`, and histogram breakdowns plus elapsed-time percentiles (`p90`, `avg`) per IP.
+
 ![Source](../../assets/dashboards/guide/[Grafana] Palo Alto Source Destination.png){data-gallery="source-destination-gallery" data-title="Palo Alto Source Destination"}
+
+### User | Host
+
+Palo Alto combines user identity and device fingerprinting (from User-ID and GlobalProtect) into a single tab.
+
+| Field | Description |
+|-------|-------------|
+| `source.user.name` | Authenticated source user (from User-ID) |
+| `destination.user.name` | Authenticated destination user |
+| `panos.src_host` / `panos.dst_host` | Hostname of source / destination device |
+| `panos.src_osfamily` / `panos.dst_osfamily` | OS family (Windows, macOS, Android…) |
+| `panos.src_osversion` / `panos.dst_osversion` | OS version |
+| `panos.src_vendor` / `panos.dst_vendor` | Device hardware vendor |
+| `panos.src_category` / `panos.dst_category` | Device category (laptop, phone, printer…) |
 
 ## Service | Application
 
