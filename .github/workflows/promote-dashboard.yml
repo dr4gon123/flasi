@@ -1,0 +1,54 @@
+name: Promote Dashboard to Prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: "Dashboard file path (e.g. grafana/dev/FortiGate/traffic-fortios.json)"
+        required: false
+      vendor:
+        description: "Vendor folder — promotes all dashboards (e.g. FortiGate, Palo Alto)"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate inputs
+        run: |
+          if [ -z "${{ inputs.file }}" ] && [ -z "${{ inputs.vendor }}" ]; then
+            echo "error: provide at least one of 'file' or 'vendor'" >&2
+            exit 1
+          fi
+
+      - name: Run promotion script
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.file }}" ]; then
+            ARGS="$ARGS --file ${{ inputs.file }}"
+          fi
+          if [ -n "${{ inputs.vendor }}" ]; then
+            ARGS="$ARGS --vendor ${{ inputs.vendor }}"
+          fi
+          python3 grafana/promote.py $ARGS
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: promote/${{ inputs.vendor != '' && inputs.vendor || 'dashboard' }}-${{ github.run_number }}
+          title: "Promote [${{ inputs.vendor != '' && inputs.vendor || inputs.file }}] to prod"
+          body: |
+            Promotes dashboard(s) from `grafana/dev/` to `grafana/prod/`.
+
+            - Swaps `dev` tag → `prod` in `spec.tags` and `spec.links[].tags`
+            - Source: `${{ inputs.file != '' && inputs.file || format('grafana/dev/{0}/', inputs.vendor) }}`
+
+            > **Note**: if promoting a single dashboard, nav link dropdowns may show incomplete results until all sibling dashboards are promoted.
+          labels: promotion
+          commit-message: "Promote [${{ inputs.vendor != '' && inputs.vendor || inputs.file }}] to prod"
