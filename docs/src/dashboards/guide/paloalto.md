@@ -6,7 +6,7 @@
 |----------|--------------|-------|
 | `firewall` | `_stream: {panos.type=$type}` | Populated from `panos.device_name` |
 | `vsys` | `_stream: {panos.type=$type, panos.device_name in (${firewall})}` | Virtual System from `panos.vsys`. Equivalent to FortiGate's `vdom` |
-| `type` | Custom (hardcoded per dashboard) | `"TRAFFIC"` in Traffic dashboard, `"THREAT"` in Threat dashboard. No `policytype` equivalent |
+| `type` | Custom (hardcoded per dashboard) | `"TRAFFIC"` in **Traffic** dashboard, `"THREAT"` in **Threat** dashboard. No `policytype` equivalent |
 | `subtype` | Query | From `panos.subtype` — varies by log type |
 | `direction` | Custom | Options: `outbound`, `inbound`, `internal`, `external` |
 | `action` | Query | From `panos.action` — `allow`, `deny`, `drop`, `reset-both`, etc. |
@@ -27,7 +27,7 @@ _stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doub
 
 ### Tab Structure
 
-The Traffic dashboard (`traffic-panos.json`) is organized into direction tabs (outbound/inbound/internal/external), each with two metric sub-tabs:
+The **Traffic** dashboard (`traffic-panos.json`) is organized into direction tabs (outbound/inbound/internal/external), each with two metric sub-tabs:
 
 | Sub-tab | Metric |
 |---------|--------|
@@ -38,7 +38,7 @@ Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-h
 
 ### Zone & Interface Chord Diagrams
 
-The Traffic dashboard includes **chord diagrams** (`esnet-chord-panel`) in the Interfaces/Zones row — a visualization unique to Palo Alto that has no FortiGate equivalent. These show traffic flow relationships:
+The **Traffic** dashboard includes **chord diagrams** (`esnet-chord-panel`) in the Interfaces/Zones row — a visualization unique to Palo Alto that has no FortiGate equivalent. These show traffic flow relationships:
 
 - **Zone-to-zone** — volumes of sessions flowing between security zones (e.g., untrust → trust)
 - **Interface-to-interface** — physical/logical interface pair flows
@@ -47,7 +47,7 @@ These are particularly useful for understanding traffic routing and zone policy 
 
 ## Threat Dashboard
 
-The Threat dashboard (`threat-panos.json`) focuses on security engine events (virus, spyware, IPS, URL filtering, file blocking). It has a different tab structure from Traffic:
+The **Threat** dashboard (`threat-panos.json`) focuses on security engine events (virus, spyware, IPS, URL filtering, file blocking). It has a different tab structure from Traffic:
 
 ### Tab Structure
 
@@ -83,7 +83,7 @@ Threat Field reference: [Threat Log Fields](https://docs.paloaltonetworks.com/ng
 
 ### Sankey Diagram
 
-Both Traffic and Threat dashboards use a Sankey diagram to visualize the relationship between:
+Both **Traffic** and **Threat** dashboards use a Sankey diagram to visualize the relationship between:
 
 ```
 panos.subtype → panos.action → panos.session_end_reason
@@ -135,7 +135,7 @@ Threat action values use a finer-grained scale reflecting both the threat respon
 
 ### Severity Colors
 
-Severity fields (`panos.severity`) use a traffic-light scale across both Traffic and Threat dashboards:
+Severity fields (`panos.severity`) use a traffic-light scale across both **Traffic** and **Threat** dashboards:
 
 | Color | Severity |
 |-------|---------|
@@ -159,8 +159,8 @@ Fields are auto-scaled based on their name pattern — identical to FortiGate da
 
 | Dashboard | File | Description |
 |-----------|------|-------------|
-| Traffic | `traffic-panos.json` | Session/connection analysis |
-| Threat | `threat-panos.json` | Security event analysis (virus, spyware, IPS, URL) |
-| Ingest | `ingest-panos.json` | Ingestion health and throughput. The `type` variable is query-based (not custom) — PAN-OS log types vary by deployment and are discovered dynamically |
-| Log Fields | `log-fields-panos.json` | Raw field explorer |
-| Streams | `streams-panos.json` | Data stream statistics |
+| **Traffic** | [`traffic-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/traffic-panos.json) | Session/connection analysis |
+| **Threat** | [`threat-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/threat-panos.json) | Security event analysis (virus, spyware, IPS, URL) |
+| **Ingest** | [`ingest-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/ingest-panos.json) | Ingestion health and throughput. The `type` variable is query-based (not custom) — PAN-OS log types vary by deployment and are discovered dynamically |
+| **Log Fields** | [`log-fields-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/log-fields-panos.json) | Raw field explorer |
+| **Streams** | [`streams-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/streams-panos.json) | Data stream statistics |

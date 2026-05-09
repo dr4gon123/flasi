@@ -10,7 +10,7 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
 | Stream schema explorer | Streams [FortiOS] | Streams [PAN-OS] |
 | Full Dataset & ECS Mapping | Log Fields [FortiOS] | Log Fields [PAN-OS] |
 
-**Traffic** and **UTM/Threat** dashboards are the primary analysis tools.
+**Traffic** and **UTM / Threat** dashboards are the primary analysis tools.
 
 **Ingest** and **Streams** are operational dashboards for understanding what data you have and how it's flowing in.
 
@@ -19,8 +19,8 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
 !!! note "FortiGate extras"
     FortiOS includes 2 additional dashboards related to the **event** dataset.
 
-    - SSL VPN
-    - System: covering *Health*, *Configuration Changes* and *Logging Attempts*
+    - **SSL VPN**
+    - **System**: covering *Health*, *Configuration Changes* and *Logging Attempts*
 
 ## Navigation
 
@@ -66,10 +66,10 @@ datasource
 | `Logsql` | — | — | Raw [LogsQL](https://docs.victoriametrics.com/victorialogs/logsql/) injection — applied after all other filters |
 
 !!! note "FortiGate extras"
-    FortiGate Traffic dashboards have two additional variables not present in PAN-OS:
+    FortiGate **Traffic** dashboards have two additional variables not present in PAN-OS:
 
     - `policytype` (filters by `fgt.policytype`)
-    - `crscore`, a toggle unique to the UTM dashboard that applies a risk score threshold filter.
+    - `crscore`, a toggle unique to the **UTM** dashboard that applies a risk score threshold filter.
 
 !!! tip "Advanced Filtering"
     The `Logsql` variable lets you inject raw LogsQL into every query. Use it for complex filters that aren't covered by the standard variables, such as:
@@ -138,7 +138,7 @@ Within each direction tab, the **Traffic** dashboard splits analysis by metric:
 | Bytes | `sum(bytes)` | Total volume transferred |
 | Risk Score | `sum(fgt.crscore)` | Arbitrary score about the risk associated to a specific session. *Only FortiGate* |
 
-### Sub Tabs — UTM | Threat Dashboard: Subtype
+### Sub Tabs — UTM / Threat Dashboard: Subtype
 
 The **UTM** (FortiGate) and **Threat** (Palo Alto) dashboards split by **subtype** — the category of security engine that generated the event.
 
@@ -200,7 +200,7 @@ Why do you buy a firewall in the first place??? **To block!**
 
 Understanding what **action** your firewall took for each connection is the most relevant piece of information for security analysis. Every investigation starts here: "What did the firewall do?"
 
-This is why **every bar chart across both Traffic and UTM/Threat dashboards is broken down by action** — whether a session was allowed or blocked is always the first dimension of any analysis.
+This is why **every bar chart across both Traffic and UTM / Threat dashboards is broken down by action** — whether a session was allowed or blocked is always the first dimension of any analysis.
 
 For *Traffic*, action has vendor-specific nuance — each vendor models policy decisions, security engine outcomes, and session termination differently:
 

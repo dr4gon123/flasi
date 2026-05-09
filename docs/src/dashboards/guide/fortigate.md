@@ -6,12 +6,13 @@
 |----------|--------------|-------|
 | `firewall` | `_stream: {fgt.type=$type}` | Populated from `log.syslog.hostname` |
 | `vdom` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall})}` | Virtual Domain from `fgt.vd` |
-| `type` | Custom | Default: `traffic` (options: `traffic`, `utm`, `event`) |
+| `type` | Custom | `traffic`, `utm`, `event` |
 | `subtype` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall}), fgt.vd in (${vdom})}` | From `fgt.subtype` — typically `forward`, `local`, `multicast` |
 | `policytype` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall}), fgt.vd in (${vdom})}` | From `fgt.policytype` — typically `policy`. **Traffic-only**, no equivalent in UTM |
 | `direction` | Custom | Options: `outbound`, `inbound`, `internal`, `external` |
 | `action` | Base stream query | From `fgt.action` — `accept`, `drop`, `deny`, `close`, etc. |
 | `Logsql` | Text | Custom filter, default `*` |
+| `crscore` | switch | applies a risk score threshold filter when enabled, default `*` (off) *UTM-only** |
 
 ## Traffic 
 
@@ -25,11 +26,11 @@ _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doub
 ```
 
 !!! note "Log ID Exclusion"
-    The query filters out `fgt.logid!=0000000020` to avoid duplicate traffic close-session events that inflate counts. These events duplicate aggregation counts from the initial session open.
+    The query filters out `fgt.logid!=0000000020` to avoid duplicate traffic close-session events that inflate counts.
 
 ### Metrics
 
-The Traffic dashboard (`traffic-fortios.json`) is organized into direction tabs (outbound/inbound/internal/external), each with three metric sub-tabs:
+The **Traffic** dashboard (`traffic-fortios.json`) is organized into direction tabs (outbound/inbound/internal/external), each with three metric sub-tabs:
 
 | Sub-tab | Aggregation | Notes |
 |---------|-------------|-------|
@@ -41,11 +42,11 @@ Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-h
 
 ## UTM Dashboard
 
-The UTM dashboard (`utm-fortios.json`) focuses on security engine events. It has the same direction-based tab structure as Traffic.
+The **UTM** dashboard (`utm-fortios.json`) focuses on security engine events. It has the same direction-based tab structure as Traffic.
 
 ### crscore Variable
 
-The UTM dashboard adds a unique `crscore` **switch variable** that applies a risk score threshold filter when enabled. This allows toggling between "all UTM events" and "high-risk UTM events only" without modifying the base query.
+The **UTM** dashboard adds a unique `crscore` **switch variable** that applies a risk score threshold filter when enabled. This allows toggling between "all UTM events" and "high-risk UTM events only" without modifying the base query.
 
 ### Base Query
 
@@ -86,7 +87,7 @@ FortiOS includes two additional dashboards that cover the `event` log type:
 
 ### Traffic
 
-We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, percentage, and absolute fashion. The UTM dashboard further breaks down details by UTM engine (web filter, antivirus, IPS, etc.).
+We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, percentage, and absolute fashion. The **UTM** dashboard further breaks down details by UTM engine (web filter, antivirus, IPS, etc.).
 
 ![Action](../../assets/dashboards/guide/[Grafana] Fortigate Action.png){data-gallery="action-gallery" data-title="Fortigate Action"}
 
@@ -150,10 +151,10 @@ Fields are auto-scaled based on their name pattern:
 
 | Dashboard | File | Description |
 |-----------|------|-------------|
-| Traffic | `traffic-fortios.json` | Session/connection analysis |
-| UTM | `utm-fortios.json` | Web filter, AV, IPS analysis |
-| Event | `system-fortios.json` | System events and configuration changes |
-| SSL VPN | `ssl-vpn-fortios.json` | VPN session analysis |
-| Ingest | `ingest-fortios.json` | Ingestion health and throughput |
-| Log Fields | `log-fields-fortios.json` | Raw field explorer |
-| Streams | `streams-fortios.json` | Data stream statistics |
+| **Traffic** | [`traffic-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/traffic-fortios.json) | Session/connection analysis |
+| **UTM** | [`utm-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/utm-fortios.json) | Web filter, AV, IPS analysis |
+| **System** | [`system-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/system-fortios.json) | System events and configuration changes |
+| **SSL VPN** | [`ssl-vpn-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ssl-vpn-fortios.json) | VPN session analysis |
+| **Ingest** | [`ingest-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ingest-fortios.json) | Ingestion health and throughput |
+| **Log Fields** | [`log-fields-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/log-fields-fortios.json) | Raw field explorer |
+| **Streams** | [`streams-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/streams-fortios.json) | Data stream statistics |
