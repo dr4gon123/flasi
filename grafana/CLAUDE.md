@@ -61,7 +61,7 @@ python3 grafana/promote.py --vendor "Palo Alto"
 
 `promote.py` copies the file to the mirrored `prod/` path and swaps the `"dev"` tag to `"prod"` in both `spec.tags` and `spec.links[].tags`. The dev source is never modified.
 
-A GitHub Actions workflow (`promote-dashboard.yml`) does the same via `workflow_dispatch` and opens a PR.
+A GitHub Actions workflow (`promote-dashboard.yml`) does the same via `workflow_dispatch` and opens a PR. It is preferable to promote dashboards via this workflow rather than directly modifying `prod/` files.
 
 **Nav link consistency**: each dashboard's nav dropdowns filter peers by tag. Promoting a single dashboard while leaving siblings in dev means those dropdowns show incomplete results until all siblings are promoted.
 
@@ -87,23 +87,3 @@ curl -X POST http://grafana:3000/api/dashboards/import \
 ## Nav Links
 
 Every dashboard carries a nav link bar linking to sibling dashboards within the same vendor. Links filter by tag — the tag set must match the dashboard's own `spec.tags`. When adding a new dashboard, give it the correct vendor + environment tags so it appears in the nav dropdowns of its peers.
-
-## Dashboard Philosophy
-
-Dashboards follow FortiGate's Logs & Report structure — 3-layer hierarchy:
-
-1. **Top Level**: Log type (traffic, UTM, event) — header navigation
-2. **Middle Level**: Traffic direction (Outbound, Inbound, LAN-to-LAN)
-3. **Bottom Level**: Metric type (session count, bytes sum/average)
-
-**Layout pattern**:
-- Upper panels: datasource-specific fields, split by action (allow/block)
-- Lower panels: common entities (source.ip, destination.ip, network.protocol)
-- Dashboard controls: filters for quick data slicing
-
-## Key Security Indicators (KSIs)
-
-Dashboards surface entity-behavior analytics — not just raw logs, but patterns like:
-- Top talkers by bytes and sessions over time
-- Allowed vs blocked traffic ratio per source
-- Unusual ports or protocols per entity
