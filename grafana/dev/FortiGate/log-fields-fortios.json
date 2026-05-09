@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations \u0026 Alerts",
+          "name": "Annotations & Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -1175,7 +1175,7 @@
                             "rowHeightMode": "standard"
                           }
                         },
-                        "title": "-\u003e ECS"
+                        "title": "-> ECS"
                       }
                     }
                   ]
@@ -1266,7 +1266,7 @@
                             "rowHeightMode": "standard"
                           }
                         },
-                        "title": "-\u003e ECS"
+                        "title": "-> ECS"
                       }
                     }
                   ]
@@ -1331,7 +1331,7 @@
                             "rowHeightMode": "standard"
                           }
                         },
-                        "title": "-\u003e ECS"
+                        "title": "-> ECS"
                       }
                     }
                   ]
@@ -1353,10 +1353,10 @@
           "fortinet",
           "fortigate",
           "dev",
-          "ingest"
+          "data"
         ],
         "targetBlank": false,
-        "title": "Ingest",
+        "title": "Data",
         "tooltip": "",
         "type": "dashboards",
         "url": ""
@@ -1418,7 +1418,7 @@
     "tags": [
       "fortinet",
       "fortigate",
-      "ingest",
+      "data",
       "dev"
     ],
     "timeSettings": {

@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations \u0026 Alerts",
+          "name": "Annotations & Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -254,11 +254,11 @@
         "tags": [
           "panos",
           "palo alto",
-          "performance",
+          "data",
           "dev"
         ],
         "targetBlank": false,
-        "title": "PERFORMANCE",
+        "title": "DATA",
         "tooltip": "",
         "type": "dashboards",
         "url": ""
@@ -303,7 +303,7 @@
     "tags": [
       "panos",
       "palo alto",
-      "performance",
+      "data",
       "dev"
     ],
     "timeSettings": {

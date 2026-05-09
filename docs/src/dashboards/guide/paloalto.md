@@ -193,6 +193,6 @@ Fields are auto-scaled based on their name pattern — identical to FortiGate da
 |-----------|------|-------------|
 | **Traffic** | [`traffic-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/traffic-panos.json) | Session/connection analysis |
 | **Threat** | [`threat-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/threat-panos.json) | Security event analysis (virus, spyware, IPS, URL) |
-| **Ingest** | [`ingest-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/ingest-panos.json) | Ingestion health and throughput. The `type` variable is query-based (not custom) — PAN-OS log types vary by deployment and are discovered dynamically |
+| **Data** | [`ingest-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/ingest-panos.json) | Ingestion health and throughput. The `type` variable is query-based (not custom) — PAN-OS log types vary by deployment and are discovered dynamically |
 | **Log Fields** | [`log-fields-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/log-fields-panos.json) | Raw field explorer |
 | **Streams** | [`streams-panos.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/streams-panos.json) | Data stream statistics |

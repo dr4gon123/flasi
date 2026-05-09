@@ -30,7 +30,7 @@ Each dashboard includes a navigation bar that links to related dashboards within
 
 | Nav Link | FortiGate dashboards | PAN-OS dashboards |
 |----------|---------------------|-------------------|
-| Ingest / Performance | Ingest [FortiOS], Streams [FortiOS], Log Fields [FortiOS] | Ingest [PAN-OS], Streams [PAN-OS], Log Fields [PAN-OS] |
+| Data | Ingest [FortiOS], Streams [FortiOS], Log Fields [FortiOS] | Ingest [PAN-OS], Streams [PAN-OS], Log Fields [PAN-OS] |
 | Traffic | Traffic [FortiOS] | Traffic [PAN-OS] |
 | UTM / Threat | UTM [FortiOS] | Threat [PAN-OS] |
 | Event | System [FortiOS], SSL VPN [FortiOS] | — |

@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations \u0026 Alerts",
+          "name": "Annotations & Alerts",
           "query": {
             "group": "grafana",
             "kind": "DataQuery",
@@ -392,11 +392,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -591,11 +591,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -929,7 +929,7 @@
                     "options": {
                       "delimiter": "|",
                       "format": "regexp",
-                      "regExp": "/(?\u003cutm\u003e^([^{]+))/",
+                      "regExp": "/(?<utm>^([^{]+))/",
                       "source": "Metric"
                     }
                   }
@@ -965,7 +965,7 @@
           "description": "",
           "id": 107,
           "links": [],
-          "title": "count\u003cutm\u003e by fgt.utmaction",
+          "title": "count<utm> by fgt.utmaction",
           "transparent": true,
           "vizConfig": {
             "group": "barchart",
@@ -1175,11 +1175,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.id_name%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=rule.id_name%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.id_name%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=rule.id_name%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -2308,7 +2308,7 @@
                     "options": {
                       "delimiter": "|",
                       "format": "regexp",
-                      "regExp": "/(?\u003cutm\u003e^([^{]+))/",
+                      "regExp": "/(?<utm>^([^{]+))/",
                       "source": "Metric"
                     }
                   }
@@ -2344,7 +2344,7 @@
           "description": "",
           "id": 185,
           "links": [],
-          "title": "count\u003cutm\u003e by fgt.utmaction",
+          "title": "count<utm> by fgt.utmaction",
           "transparent": true,
           "vizConfig": {
             "group": "barchart",
@@ -2554,11 +2554,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.id_name%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=rule.id_name%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.id_name%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=rule.id_name%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -3154,11 +3154,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -3546,11 +3546,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -3750,11 +3750,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -4142,11 +4142,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -4346,11 +4346,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -4635,11 +4635,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -4839,11 +4839,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcreputation%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcreputation%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcreputation%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcreputation%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -5065,11 +5065,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -5269,11 +5269,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -5473,11 +5473,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstreputation%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstreputation%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstreputation%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstreputation%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -5699,11 +5699,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -5898,11 +5898,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -6097,11 +6097,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthuser%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthuser%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthuser%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -6296,11 +6296,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -6495,11 +6495,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstuser%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstuser%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstuser%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -6694,11 +6694,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthuser%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthuser%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthuser%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -6893,11 +6893,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.devtype%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.devtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.devtype%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.devtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -7092,11 +7092,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.authserver%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.authserver%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.authserver%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.authserver%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -7291,11 +7291,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthusersource%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthusersource%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthusersource%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthusersource%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -7490,11 +7490,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstdevtype%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstdevtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstdevtype%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstdevtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -7689,11 +7689,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstauthserver%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstauthserver%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstauthserver%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstauthserver%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -7888,11 +7888,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthusersource%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthusersource%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthusersource%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthusersource%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -8447,11 +8447,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -8646,11 +8646,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -8845,11 +8845,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -9044,11 +9044,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -10126,7 +10126,7 @@
                     "options": {
                       "delimiter": ",",
                       "format": "regexp",
-                      "regExp": "/vmrange=\"(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+?)\"/",
+                      "regExp": "/vmrange=\"(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+?)\"/",
                       "source": "Metric"
                     }
                   }
@@ -10208,7 +10208,7 @@
                   "color": "rgba(255,0,255,0.7)"
                 },
                 "filterValues": {
-                  "le": 1e-9
+                  "le": 1e-09
                 },
                 "legend": {
                   "show": true
@@ -10279,7 +10279,7 @@
                     "options": {
                       "delimiter": ",",
                       "format": "regexp",
-                      "regExp": "/vmrange=\"(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+?)\"/",
+                      "regExp": "/vmrange=\"(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+?)\"/",
                       "source": "Metric"
                     }
                   }
@@ -10361,7 +10361,7 @@
                   "color": "rgba(255,0,255,0.7)"
                 },
                 "filterValues": {
-                  "le": 1e-9
+                  "le": 1e-09
                 },
                 "legend": {
                   "show": true
@@ -10432,7 +10432,7 @@
                     "options": {
                       "delimiter": ",",
                       "format": "regexp",
-                      "regExp": "/vmrange=\"(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+?)\"/",
+                      "regExp": "/vmrange=\"(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+?)\"/",
                       "source": "Metric"
                     }
                   }
@@ -10514,7 +10514,7 @@
                   "color": "rgba(255,0,255,0.7)"
                 },
                 "filterValues": {
-                  "le": 1e-9
+                  "le": 1e-09
                 },
                 "legend": {
                   "show": true
@@ -10630,11 +10630,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.id_name%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=rule.id_name%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=rule.id_name%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=rule.id_name%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -10805,11 +10805,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.vwlname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.vwlname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.vwlname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.vwlname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -10980,11 +10980,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.shapingpolicyname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.shapingpolicyname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.shapingpolicyname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.shapingpolicyname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -11680,11 +11680,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -11784,7 +11784,7 @@
                       "delimiter": ",",
                       "format": "regexp",
                       "keepTime": false,
-                      "regExp": "/^(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+)$/",
+                      "regExp": "/^(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+)$/",
                       "replace": false,
                       "source": "vmrange"
                     }
@@ -11983,7 +11983,7 @@
                       "delimiter": ",",
                       "format": "regexp",
                       "keepTime": false,
-                      "regExp": "/^(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+)$/",
+                      "regExp": "/^(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+)$/",
                       "replace": false,
                       "source": "vmrange"
                     }
@@ -12210,11 +12210,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -12468,11 +12468,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -12605,11 +12605,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -12863,11 +12863,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -13000,11 +13000,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -13258,11 +13258,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -13395,11 +13395,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -13653,11 +13653,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -13790,11 +13790,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -14048,11 +14048,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -14185,11 +14185,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -14443,11 +14443,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -14704,11 +14704,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -14808,7 +14808,7 @@
                       "delimiter": ",",
                       "format": "regexp",
                       "keepTime": false,
-                      "regExp": "/^(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+)$/",
+                      "regExp": "/^(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+)$/",
                       "replace": false,
                       "source": "vmrange"
                     }
@@ -15007,7 +15007,7 @@
                       "delimiter": ",",
                       "format": "regexp",
                       "keepTime": false,
-                      "regExp": "/^(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+)$/",
+                      "regExp": "/^(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+)$/",
                       "replace": false,
                       "source": "vmrange"
                     }
@@ -15234,11 +15234,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -15371,11 +15371,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -15508,11 +15508,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -15645,11 +15645,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -15782,11 +15782,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -15919,11 +15919,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -16056,11 +16056,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -16193,11 +16193,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -16330,11 +16330,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -16467,11 +16467,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -16604,11 +16604,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -16741,11 +16741,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -16878,11 +16878,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -17015,11 +17015,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -17152,11 +17152,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -17289,11 +17289,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -17426,11 +17426,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -17563,11 +17563,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -17912,7 +17912,7 @@
                       "delimiter": ",",
                       "format": "regexp",
                       "keepTime": false,
-                      "regExp": "/^(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+)$/",
+                      "regExp": "/^(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+)$/",
                       "replace": false,
                       "source": "vmrange"
                     }
@@ -18111,7 +18111,7 @@
                       "delimiter": ",",
                       "format": "regexp",
                       "keepTime": false,
-                      "regExp": "/^(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+)$/",
+                      "regExp": "/^(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+)$/",
                       "replace": false,
                       "source": "vmrange"
                     }
@@ -18338,11 +18338,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -18470,11 +18470,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -18602,11 +18602,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -18734,11 +18734,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -18866,11 +18866,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -18998,11 +18998,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -19250,11 +19250,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -19382,11 +19382,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -19514,11 +19514,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -19646,11 +19646,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -19778,11 +19778,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.application%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -19910,11 +19910,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.appcat%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -20134,7 +20134,7 @@
                       "delimiter": ",",
                       "format": "regexp",
                       "keepTime": false,
-                      "regExp": "/^(?\u003cvmrange_start\u003e.+?)\\.\\.\\.(?\u003cvmrange_end\u003e.+)$/",
+                      "regExp": "/^(?<vmrange_start>.+?)\\.\\.\\.(?<vmrange_end>.+)$/",
                       "replace": false,
                       "source": "vmrange"
                     }
@@ -20485,11 +20485,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -20642,11 +20642,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -21034,11 +21034,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -21238,11 +21238,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -21630,11 +21630,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.nat.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -21954,11 +21954,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -22158,11 +22158,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=source.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -22362,11 +22362,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcreputation%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcreputation%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcreputation%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcreputation%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -22588,11 +22588,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -22792,11 +22792,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -22996,11 +22996,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstreputation%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstreputation%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstreputation%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstreputation%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -23441,11 +23441,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -23598,11 +23598,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -23797,11 +23797,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -23996,11 +23996,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthuser%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthuser%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthuser%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -24195,11 +24195,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -24394,11 +24394,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstuser%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstuser%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstuser%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -24593,11 +24593,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthuser%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthuser%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthuser%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthuser%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -24792,11 +24792,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.group%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.group%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.group%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.group%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -24991,11 +24991,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.authserver%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.authserver%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.authserver%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.authserver%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -25190,11 +25190,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthusersource%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthusersource%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.unauthusersource%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.unauthusersource%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -25389,11 +25389,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstgroup%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstgroup%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstgroup%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstgroup%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -25588,11 +25588,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstauthserver%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstauthserver%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstauthserver%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstauthserver%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -25787,11 +25787,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthusersource%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthusersource%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstunauthusersource%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstunauthusersource%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -26106,11 +26106,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -26305,11 +26305,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.osname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.osname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.osname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.osname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -26504,11 +26504,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srchwvendor%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srchwvendor%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srchwvendor%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srchwvendor%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -26703,11 +26703,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -26902,11 +26902,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstosname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstosname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstosname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstosname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -27101,11 +27101,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dsthwvendor%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dsthwvendor%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dsthwvendor%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dsthwvendor%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -27300,11 +27300,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.devtype%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.devtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.devtype%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.devtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -27499,11 +27499,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcswversion%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcswversion%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcswversion%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcswversion%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -27698,11 +27698,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcfamily%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcfamily%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcfamily%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcfamily%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -27897,11 +27897,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstdevtype%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstdevtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstdevtype%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstdevtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -28096,11 +28096,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstswversion%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstswversion%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstswversion%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstswversion%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -28295,11 +28295,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstfamily%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstfamily%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstfamily%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstfamily%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -29073,11 +29073,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=destination.ip%7C%21%3D%7C${__data.fields[0]}"
                     },
                     {
                       "targetBlank": true,
@@ -29230,11 +29230,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -29429,11 +29429,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.osname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.osname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.osname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.osname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -29628,11 +29628,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srchwvendor%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srchwvendor%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srchwvendor%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srchwvendor%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -29827,11 +29827,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -30026,11 +30026,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstosname%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstosname%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstosname%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstosname%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -30225,11 +30225,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dsthwvendor%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dsthwvendor%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dsthwvendor%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dsthwvendor%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -30424,11 +30424,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.devtype%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.devtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.devtype%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.devtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -30623,11 +30623,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcswversion%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcswversion%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcswversion%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcswversion%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -30822,11 +30822,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcfamily%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcfamily%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.srcfamily%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.srcfamily%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -31021,11 +31021,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstdevtype%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstdevtype%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstdevtype%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstdevtype%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -31220,11 +31220,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstswversion%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstswversion%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstswversion%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstswversion%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -31419,11 +31419,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstfamily%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstfamily%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.dstfamily%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.dstfamily%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -31805,11 +31805,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=network.transport_port%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -32004,11 +32004,11 @@
                     {
                       "targetBlank": false,
                       "title": "Filter for 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%3D%7C${__data.fields[0]}"
                     },
                     {
                       "title": "Filter out 🔍",
-                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}\u0026var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
+                      "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.service%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
                   "thresholds": {
@@ -35111,11 +35111,11 @@
         "tags": [
           "fortinet",
           "fortigate",
-          "ingest",
+          "data",
           "dev"
         ],
         "targetBlank": false,
-        "title": "Ingest",
+        "title": "Data",
         "tooltip": "",
         "type": "dashboards",
         "url": ""

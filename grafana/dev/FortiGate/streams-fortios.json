@@ -246,11 +246,11 @@
         "tags": [
           "fortinet",
           "fortigate",
-          "ingest",
+          "data",
           "dev"
         ],
         "targetBlank": false,
-        "title": "Ingest",
+        "title": "Data",
         "tooltip": "",
         "type": "dashboards",
         "url": ""
@@ -311,7 +311,7 @@
     "preload": false,
     "tags": [
       "fortigate",
-      "ingest",
+      "data",
       "fortinet",
       "dev"
     ],
