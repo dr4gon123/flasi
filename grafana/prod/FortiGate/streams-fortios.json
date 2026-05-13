@@ -363,7 +363,7 @@
         "group": "victoriametrics-logs-datasource",
         "kind": "AdhocVariable",
         "spec": {
-          "allowCustomValue": false,
+          "allowCustomValue": true,
           "baseFilters": [],
           "defaultKeys": [],
           "enableGroupBy": false,
