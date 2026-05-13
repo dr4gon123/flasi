@@ -111,11 +111,11 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
+                      "title": "Filter for \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
+                      "title": "Filter out \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
@@ -887,11 +887,11 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
+                      "title": "Filter for \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
+                      "title": "Filter out \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
@@ -1102,11 +1102,11 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
+                      "title": "Filter for \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
+                      "title": "Filter out \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
@@ -1487,11 +1487,11 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
+                      "title": "Filter for \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
+                      "title": "Filter out \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
@@ -1691,11 +1691,11 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
+                      "title": "Filter for \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
+                      "title": "Filter out \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.ui%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
@@ -1895,11 +1895,11 @@
                   "links": [
                     {
                       "targetBlank": false,
-                      "title": "Filter for 🔍",
+                      "title": "Filter for \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%3D%7C${__data.fields[0]}"
                     },
                     {
-                      "title": "Filter out 🔍",
+                      "title": "Filter out \ud83d\udd0d",
                       "url": "/d/${__dashboard.uid}/${__dashboard.slug}?${__all_variables}&var-Filters=fgt.user%7C%21%3D%7C${__data.fields[0]}"
                     }
                   ],
@@ -2870,7 +2870,7 @@
         "group": "victoriametrics-logs-datasource",
         "kind": "AdhocVariable",
         "spec": {
-          "allowCustomValue": false,
+          "allowCustomValue": true,
           "baseFilters": [],
           "defaultKeys": [],
           "enableGroupBy": false,
