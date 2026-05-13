@@ -9949,7 +9949,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats count() sessions, sum(source.bytes) source.bytes, sum(destination.bytes) destination.bytes",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n#| network.bytes:*\n| stats count() sessions, sum(source.bytes) source.bytes, sum(destination.bytes) destination.bytes",
                         "queryType": "statsRange"
                       },
                       "version": "v0"
@@ -35195,7 +35195,7 @@
         "1d"
       ],
       "fiscalYearStartMonth": 0,
-      "from": "now-1h",
+      "from": "now-7d",
       "hideTimepicker": false,
       "timezone": "America/Lima",
       "to": "now"
