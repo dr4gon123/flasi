@@ -1681,7 +1681,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats sum(fgt.crscore) total_logs, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.crscore:*\n| stats sum(fgt.crscore) total_logs, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -1963,7 +1963,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.action) sum(fgt.crscore) results",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.crscore:*\n| stats by (fgt.action) sum(fgt.crscore) results",
                         "legendFormat": "{{fgt.action}}",
                         "queryType": "statsRange"
                       },
@@ -35195,7 +35195,7 @@
         "1d"
       ],
       "fiscalYearStartMonth": 0,
-      "from": "now-7d",
+      "from": "now-1h",
       "hideTimepicker": false,
       "timezone": "America/Lima",
       "to": "now"
@@ -35483,7 +35483,7 @@
       {
         "kind": "SwitchVariable",
         "spec": {
-          "current": "",
+          "current": "fgt.crscore:*",
           "description": "Threat Weight score\nhttps://docs.fortinet.com/document/fortigate/8.0.0/administration-guide/250999/log-settings-and-targets#ThreatWeight",
           "disabledValue": "",
           "enabledValue": "fgt.crscore:*",
