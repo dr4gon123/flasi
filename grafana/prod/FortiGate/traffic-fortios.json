@@ -1681,7 +1681,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats sum(fgt.crscore) total_logs, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats sum(fgt.crscore) total_logs, count_uniq(source.ip) unique_source.ip, count_uniq(destination.ip) unique_destination.ip, count_uniq(network.transport_port) unique_service, count_uniq(network.application) unique_application",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -1766,7 +1766,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| format if (fgt.utmaction:'') \"no utm\" as fgt.utmaction\n| stats by (fgt.utmaction) sum(fgt.crscore) results",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| format if (fgt.utmaction:'') \"no utm\" as fgt.utmaction\n| stats by (fgt.utmaction) sum(fgt.crscore) results",
                         "legendFormat": "{{fgt.utmaction}}",
                         "queryType": "statsRange"
                       },
@@ -1963,7 +1963,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.action) sum(fgt.crscore) results",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (fgt.action) sum(fgt.crscore) results",
                         "legendFormat": "{{fgt.action}}",
                         "queryType": "statsRange"
                       },
@@ -2082,7 +2082,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.action,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (fgt.action,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -2270,7 +2270,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.utmaction)\nsum(fgt.crscore) switch(\ncase (fgt.countweb:*) as countweb,\ncase (fgt.countapp:*) as countapp,\ncase (fgt.countssl:*) as countssl,\ncase (fgt.countips:*) as countips,\ncase (fgt.countav:*) as countav,\ncase (fgt.countwaf:*) as countwaf,\ncase (fgt.countvpatch:*) as countvpatch,\ncase (fgt.countssh:*) as countssh,\ncase (fgt.countsctpf:*) as countsctpf,\ncase (fgt.counticap:*) as counticap,\ncase (fgt.countff:*) as countff,\ncase (fgt.countemail:*) as countemail,\ncase (fgt.countdns:*) as countdns,\ncase (fgt.countdlp:*) as countdlp\n)",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (fgt.utmaction)\nsum(fgt.crscore) switch(\ncase (fgt.countweb:*) as countweb,\ncase (fgt.countapp:*) as countapp,\ncase (fgt.countssl:*) as countssl,\ncase (fgt.countips:*) as countips,\ncase (fgt.countav:*) as countav,\ncase (fgt.countwaf:*) as countwaf,\ncase (fgt.countvpatch:*) as countvpatch,\ncase (fgt.countssh:*) as countssh,\ncase (fgt.countsctpf:*) as countsctpf,\ncase (fgt.counticap:*) as counticap,\ncase (fgt.countff:*) as countff,\ncase (fgt.countemail:*) as countemail,\ncase (fgt.countdns:*) as countdns,\ncase (fgt.countdlp:*) as countdlp\n)",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -2481,7 +2481,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (rule.id_name,log.syslog.hostname) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (rule.id_name,log.syslog.hostname) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -2624,7 +2624,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.srccountry:Reserved\n| stats by (fgt.srccountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| NOT fgt.srccountry:Reserved\n| stats by (fgt.srccountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
                         "legendFormat": "",
                         "queryType": "stats"
                       },
@@ -2645,7 +2645,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.dstcountry:Reserved\n| stats by (fgt.dstcountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| NOT fgt.dstcountry:Reserved\n| stats by (fgt.dstcountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
                         "legendFormat": "",
                         "queryType": "stats"
                       },
@@ -2797,7 +2797,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.srccountry:Reserved\n| stats by (fgt.srccountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 5",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| NOT fgt.srccountry:Reserved\n| stats by (fgt.srccountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 5",
                         "legendFormat": "{{fgt.srccountry}}",
                         "queryType": "stats"
                       },
@@ -2881,7 +2881,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.dstcountry:Reserved\n| stats by (fgt.dstcountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 5",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| NOT fgt.dstcountry:Reserved\n| stats by (fgt.dstcountry) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 5",
                         "legendFormat": "{{fgt.dstcountry}}",
                         "queryType": "stats"
                       },
@@ -2965,7 +2965,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.srcintf,fgt.dstintf) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (fgt.srcintf,fgt.dstintf) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -3067,7 +3067,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (source.ip,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -3271,7 +3271,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip:/24,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (source.ip:/24,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -3459,7 +3459,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| source.nat.ip:*\n| stats by (source.nat.ip,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| source.nat.ip:*\n| stats by (source.nat.ip,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -3663,7 +3663,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (destination.ip,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -3867,7 +3867,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip:/24,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (destination.ip:/24,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -4055,7 +4055,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| destination.nat.ip:*\n| stats by (destination.nat.ip,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| destination.nat.ip:*\n| stats by (destination.nat.ip,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -4259,7 +4259,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip,fgt.utmaction) count_uniq(destination.ip) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (source.ip,fgt.utmaction) count_uniq(destination.ip) results\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -4548,7 +4548,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip,fgt.utmaction) count_uniq(network.transport_port) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (source.ip,fgt.utmaction) count_uniq(network.transport_port) results\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -4752,7 +4752,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srcreputation:*\n| stats by (fgt.srcreputation,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.srcreputation:*\n| stats by (fgt.srcreputation,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -4978,7 +4978,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip,fgt.utmaction) count_uniq(source.ip) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (destination.ip,fgt.utmaction) count_uniq(source.ip) results\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -5182,7 +5182,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip,fgt.utmaction) count_uniq(network.transport_port) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (destination.ip,fgt.utmaction) count_uniq(network.transport_port) results\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -5386,7 +5386,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstreputation:*\n| stats by (fgt.dstreputation,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstreputation:*\n| stats by (fgt.dstreputation,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -5612,7 +5612,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srcname:*\n| stats by (fgt.srcname,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.srcname:*\n| stats by (fgt.srcname,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -5811,7 +5811,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.user:*\n| stats by (fgt.user,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.user:*\n| stats by (fgt.user,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -6010,7 +6010,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -6209,7 +6209,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstname:*\n| stats by (fgt.dstname,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstname:*\n| stats by (fgt.dstname,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -6408,7 +6408,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstuser:*\n| stats by (fgt.dstuser,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstuser:*\n| stats by (fgt.dstuser,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -6607,7 +6607,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -6806,7 +6806,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.devtype:*\n| stats by (fgt.devtype,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.devtype:*\n| stats by (fgt.devtype,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -7005,7 +7005,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.authserver:*\n| stats by (fgt.authserver,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.authserver:*\n| stats by (fgt.authserver,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -7204,7 +7204,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.unauthusersource:*\n| stats by (fgt.unauthusersource,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.unauthusersource:*\n| stats by (fgt.unauthusersource,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -7403,7 +7403,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstdevtype:*\n| stats by (fgt.dstdevtype,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstdevtype:*\n| stats by (fgt.dstdevtype,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -7602,7 +7602,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstauthserver:*\n| stats by (fgt.dstauthserver,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstauthserver:*\n| stats by (fgt.dstauthserver,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -7801,7 +7801,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstunauthusersource:*\n| stats by (fgt.dstunauthusersource,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstunauthusersource:*\n| stats by (fgt.dstunauthusersource,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -8000,7 +8000,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nnetwork.transport_port:in(\n    * | stats by (network.transport_port) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep network.transport_port\n)\n| stats by (network.transport_port) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* ))\nnetwork.transport_port:in(\n    * | stats by (network.transport_port) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep network.transport_port\n)\n| stats by (network.transport_port) sum(fgt.crscore) results",
                         "legendFormat": "{{network.transport_port}}",
                         "queryType": "statsRange"
                       },
@@ -8120,7 +8120,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nfgt.service:in(\n    * | stats by (fgt.service) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep fgt.service\n)\n| stats by (fgt.service) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* ))\nfgt.service:in(\n    * | stats by (fgt.service) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.service\n)\n| stats by (fgt.service) sum(fgt.crscore) results",
                         "legendFormat": "{{fgt.service}}",
                         "queryType": "statsRange"
                       },
@@ -8240,7 +8240,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} network.application:* ))\nnetwork.application:in(\n    * | stats by (network.application) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep network.application\n)\n| stats by (network.application) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* network.application:* ))\nnetwork.application:in(\n    * | stats by (network.application) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep network.application\n)\n| stats by (network.application) sum(fgt.crscore) results",
                         "legendFormat": "{{network.application}}",
                         "queryType": "statsRange"
                       },
@@ -8360,7 +8360,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.transport_port:*\n| stats by (network.transport_port,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| network.transport_port:*\n| stats by (network.transport_port,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -8559,7 +8559,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.service,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| stats by (fgt.service,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -8758,7 +8758,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.application:*\n| stats by (network.application,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| network.application:*\n| stats by (network.application,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -8957,7 +8957,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.application:*\n| stats by (fgt.appcat,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| network.application:*\n| stats by (fgt.appcat,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -9500,7 +9500,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.vwlid:*\n| stats by (fgt.vwlid,fgt.vwlname,log.syslog.hostname) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.vwlid:*\n| stats by (fgt.vwlid,fgt.vwlname,log.syslog.hostname) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -9664,7 +9664,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.shapingpolicyid:*\n| stats by (fgt.shapingpolicyid,fgt.shapingpolicyname,log.syslog.hostname) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.shapingpolicyid:*\n| stats by (fgt.shapingpolicyid,fgt.shapingpolicyname,log.syslog.hostname) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -9949,7 +9949,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats count() sessions, sum(source.bytes) source.bytes, sum(destination.bytes) destination.bytes",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n#| network.bytes:*\n| stats count() sessions, sum(source.bytes) source.bytes, sum(destination.bytes) destination.bytes",
                         "queryType": "statsRange"
                       },
                       "version": "v0"
@@ -10098,7 +10098,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n#| stats by (fgt.utmaction) sum(network.bytes) results\n| stats histogram(network.bytes)",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats histogram(network.bytes)",
                         "legendFormat": "",
                         "queryType": "statsRange"
                       },
@@ -10251,7 +10251,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.packets:*\n| stats histogram(network.packets)",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats histogram(network.packets)",
                         "legendFormat": "",
                         "queryType": "statsRange"
                       },
@@ -10404,7 +10404,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats histogram(fgt.duration)",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats histogram(fgt.duration)",
                         "legendFormat": "",
                         "queryType": "statsRange"
                       },
@@ -10557,7 +10557,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (rule.id_name,log.syslog.hostname) sum(network.bytes) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (rule.id_name,log.syslog.hostname) sum(network.bytes) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -10700,7 +10700,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.vwlid:*\n| stats by (fgt.vwlid,fgt.vwlname,log.syslog.hostname) sum(network.bytes) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.vwlid:*\n| stats by (fgt.vwlid,fgt.vwlname,log.syslog.hostname) sum(network.bytes) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -10875,7 +10875,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.shapingpolicyid:*\n| stats by (fgt.shapingpolicyid,fgt.shapingpolicyname,log.syslog.hostname) sum(network.bytes) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.shapingpolicyid:*\n| stats by (fgt.shapingpolicyid,fgt.shapingpolicyname,log.syslog.hostname) sum(network.bytes) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -11494,7 +11494,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nsource.ip:in(\n    * | stats by (source.ip) sum(network.bytes) results | sort by (results) desc | limit 10 | keep source.ip\n)\n| stats by (source.ip) sum(network.bytes) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nsource.ip:in(\n    * | stats by (source.ip) sum(network.bytes) results | filter -results:NaN | sort by (results) desc | limit 10 | keep source.ip\n)\n| stats by (source.ip) sum(network.bytes) results",
                         "legendFormat": "{{source.ip}}",
                         "queryType": "statsRange"
                       },
@@ -11614,7 +11614,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\ndestination.ip:in(\n    * | stats by (destination.ip) sum(network.bytes) results | sort by (results) desc | limit 10 | keep destination.ip\n)\n| stats by (destination.ip) sum(network.bytes) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\ndestination.ip:in(\n    * | stats by (destination.ip) sum(network.bytes) results | filter -results:NaN | sort by (results) desc | limit 10 | keep destination.ip\n)\n| stats by (destination.ip) sum(network.bytes) results",
                         "legendFormat": "{{destination.ip}}",
                         "queryType": "statsRange"
                       },
@@ -12148,7 +12148,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (source.ip) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -12285,7 +12285,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (source.ip:/24) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip:/24) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -12406,7 +12406,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| source.nat.ip:*\n| stats by (source.nat.ip) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| source.nat.ip:*\n| stats by (source.nat.ip) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -12543,7 +12543,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (destination.ip) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -12680,7 +12680,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (destination.ip:/24) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip:/24) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -12801,7 +12801,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| destination.nat.ip:*\n| stats by (destination.nat.ip) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| destination.nat.ip:*\n| stats by (destination.nat.ip) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -12938,7 +12938,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (source.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13052,7 +13052,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13075,7 +13075,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (source.ip:/24) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip:/24) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13173,7 +13173,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13196,7 +13196,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| source.nat.ip:*\n| stats by (source.nat.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| source.nat.ip:*\n| stats by (source.nat.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13310,7 +13310,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13333,7 +13333,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (destination.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13447,7 +13447,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13470,7 +13470,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (destination.ip:/24) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip:/24) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13568,7 +13568,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13591,7 +13591,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| destination.nat.ip:*\n| stats by (destination.nat.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| destination.nat.ip:*\n| stats by (destination.nat.ip) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13705,7 +13705,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13728,7 +13728,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats by (source.ip)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13842,7 +13842,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13865,7 +13865,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats by (source.ip:/24)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (source.ip:/24)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -13963,7 +13963,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -13986,7 +13986,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| source.nat.ip:*\n| stats by (source.nat.ip) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| source.nat.ip:*\n| stats by (source.nat.ip) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -14100,7 +14100,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -14123,7 +14123,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats by (destination.ip)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -14237,7 +14237,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -14260,7 +14260,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats by (destination.ip:/24)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (destination.ip:/24)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -14358,7 +14358,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -14381,7 +14381,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| destination.nat.ip:*\n| stats by (destination.nat.ip)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| destination.nat.ip:*\n| stats by (destination.nat.ip)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -14495,7 +14495,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "12.4.0-20781422371"
+            "version": "13.1.0-25668120414"
           }
         }
       },
@@ -14518,7 +14518,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.user:* ))\nfgt.user:in(\n    * | stats by (fgt.user) sum(network.bytes) results | sort by (results) desc | limit 10 | keep fgt.user\n)\n| stats by (fgt.user) sum(network.bytes) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.user:* ))\nfgt.user:in(\n    * | stats by (fgt.user) sum(network.bytes) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.user\n)\n| stats by (fgt.user) sum(network.bytes) results",
                         "legendFormat": "{{fgt.user}}",
                         "queryType": "statsRange"
                       },
@@ -14638,7 +14638,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.dstuser:* ))\nfgt.dstuser:in(\n    * | stats by (fgt.dstuser) sum(network.bytes) results | sort by (results) desc | limit 10 | keep fgt.dstuser\n)\n| stats by (fgt.dstuser) sum(network.bytes) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.dstuser:* ))\nfgt.dstuser:in(\n    * | stats by (fgt.dstuser) sum(network.bytes) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.dstuser\n)\n| stats by (fgt.dstuser) sum(network.bytes) results",
                         "legendFormat": "{{fgt.dstuser}}",
                         "queryType": "statsRange"
                       },
@@ -15172,7 +15172,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.user:*\n| stats by (fgt.user) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.user:*\n| stats by (fgt.user) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -15309,7 +15309,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser:/24) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser:/24) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -15446,7 +15446,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.group:*\n| stats by (fgt.group) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.group:*\n| stats by (fgt.group) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -15583,7 +15583,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.dstuser:*\n| stats by (fgt.dstuser) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstuser:*\n| stats by (fgt.dstuser) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -15720,7 +15720,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -15857,7 +15857,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.dstgroup:*\n| stats by (fgt.dstgroup) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstgroup:*\n| stats by (fgt.dstgroup) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -15994,7 +15994,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.user:*\n| stats by (fgt.user) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.user:*\n| stats by (fgt.user) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16131,7 +16131,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16268,7 +16268,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.group:*\n| stats by (fgt.group) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.group:*\n| stats by (fgt.group) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16405,7 +16405,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.dstuser:*\n| stats by (fgt.dstuser) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstuser:*\n| stats by (fgt.dstuser) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16542,7 +16542,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16679,7 +16679,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| fgt.dstgroup:*\n| stats by (fgt.dstgroup) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstgroup:*\n| stats by (fgt.dstgroup) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16816,7 +16816,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| fgt.user:*\n| stats by (fgt.user) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.user:*\n| stats by (fgt.user) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -16953,7 +16953,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.unauthuser:*\n| stats by (fgt.unauthuser) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -17090,7 +17090,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| fgt.group:*\n| stats by (fgt.group) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.group:*\n| stats by (fgt.group) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -17227,7 +17227,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| fgt.dstuser:*\n| stats by (fgt.dstuser) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstuser:*\n| stats by (fgt.dstuser) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -17364,7 +17364,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstunauthuser:*\n| stats by (fgt.dstunauthuser) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -17501,7 +17501,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| fgt.dstgroup:*\n| stats by (fgt.dstgroup) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstgroup:*\n| stats by (fgt.dstgroup) quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -17638,7 +17638,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nnetwork.transport_port:in(\n    * | stats by (network.transport_port) sum(network.bytes) results | sort by (results) desc | limit 10 | keep network.transport_port\n)\n| stats by (network.transport_port) sum(network.bytes) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nnetwork.transport_port:in(\n    * | stats by (network.transport_port) sum(network.bytes) results | filter -results:NaN | sort by (results) desc | limit 10 | keep network.transport_port\n)\n| stats by (network.transport_port) sum(network.bytes) results",
                         "legendFormat": "{{network.transport_port}}",
                         "queryType": "statsRange"
                       },
@@ -17758,7 +17758,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} network.application:* ))\nnetwork.application:in(\n    * | stats by (network.application) sum(network.bytes) results | sort by (results) desc | limit 10 | keep network.application\n)\n| stats by (network.application) sum(network.bytes) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} network.application:* ))\nnetwork.application:in(\n    * | stats by (network.application) sum(network.bytes) results | filter -results:NaN | sort by (results) desc | limit 10 | keep network.application\n)\n| stats by (network.application) sum(network.bytes) results",
                         "legendFormat": "{{network.application}}",
                         "queryType": "statsRange"
                       },
@@ -18276,7 +18276,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (network.transport_port) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (network.transport_port) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -18408,7 +18408,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (fgt.service) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.service) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -18540,7 +18540,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| network.application:*\n| stats by (network.application) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.application:*\n| stats by (network.application) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -18672,7 +18672,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (fgt.appcat) sum(network.bytes) sum\n| sort by (sum) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.appcat) sum(network.bytes) sum\n| filter -sum:NaN\n| sort by (sum) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -18804,7 +18804,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (network.transport_port) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (network.transport_port) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -18936,7 +18936,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (fgt.service) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.service) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19188,7 +19188,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| network.application:*\n| stats by (network.application) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.application:*\n| stats by (network.application) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19320,7 +19320,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.bytes:*\n| stats by (fgt.appcat) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.appcat) quantile(0.9,network.bytes) p90, avg(network.bytes) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19452,7 +19452,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats by (network.transport_port)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (network.transport_port)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19584,7 +19584,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats by (fgt.service)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.service)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19716,7 +19716,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| network.application:*\n| stats by (network.application)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| network.application:*\n| stats by (network.application)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19848,7 +19848,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.duration:*\n| stats by (fgt.appcat)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| sort by (avg) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| stats by (fgt.appcat)  quantile(0.9,fgt.duration) p90, avg(fgt.duration) avg\n| filter -avg:NaN\n| sort by (avg) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -19980,7 +19980,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nfgt.service:in(\n    * | stats by (fgt.service) sum(network.bytes) results | sort by (results) desc | limit 10 | keep fgt.service\n)\n| stats by (fgt.service) sum(network.bytes) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nfgt.service:in(\n    * | stats by (fgt.service) sum(network.bytes) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.service\n)\n| stats by (fgt.service) sum(network.bytes) results",
                         "legendFormat": "{{fgt.service}}",
                         "queryType": "statsRange"
                       },
@@ -28407,7 +28407,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\nsource.ip:in(\n    * | stats by (source.ip) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep source.ip\n)\n| stats by (source.ip) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* ))\nsource.ip:in(\n    * | stats by (source.ip) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep source.ip\n)\n| stats by (source.ip) sum(fgt.crscore) results",
                         "legendFormat": "{{source.ip}}",
                         "queryType": "statsRange"
                       },
@@ -28527,7 +28527,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} ))\ndestination.ip:in(\n    * | stats by (destination.ip) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep destination.ip\n)\n| stats by (destination.ip) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* ))\ndestination.ip:in(\n    * | stats by (destination.ip) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep destination.ip\n)\n| stats by (destination.ip) sum(fgt.crscore) results",
                         "legendFormat": "{{destination.ip}}",
                         "queryType": "statsRange"
                       },
@@ -28647,7 +28647,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.user:* ))\nfgt.user:in(\n    * | stats by (fgt.user) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep fgt.user\n)\n| stats by (fgt.user) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* fgt.user:* ))\nfgt.user:in(\n    * | stats by (fgt.user) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.user\n)\n| stats by (fgt.user) sum(fgt.crscore) results",
                         "legendFormat": "{{fgt.user}}",
                         "queryType": "statsRange"
                       },
@@ -28767,7 +28767,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.dstuser:* ))\nfgt.dstuser:in(\n    * | stats by (fgt.dstuser) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep fgt.dstuser\n)\n| stats by (fgt.dstuser) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* fgt.dstuser:* ))\nfgt.dstuser:in(\n    * | stats by (fgt.dstuser) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.dstuser\n)\n| stats by (fgt.dstuser) sum(fgt.crscore) results",
                         "legendFormat": "{{fgt.dstuser}}",
                         "queryType": "statsRange"
                       },
@@ -28887,7 +28887,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.srcname:* ))\nfgt.srcname:in(\n    * | stats by (fgt.srcname) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep fgt.srcname\n)\n| stats by (fgt.srcname) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* fgt.srcname:* ))\nfgt.srcname:in(\n    * | stats by (fgt.srcname) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.srcname\n)\n| stats by (fgt.srcname) sum(fgt.crscore) results",
                         "legendFormat": "{{fgt.srcname}}",
                         "queryType": "statsRange"
                       },
@@ -29007,7 +29007,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.dstname:* ))\nfgt.dstname:in(\n    * | stats by (fgt.dstname) sum(fgt.crscore) results | sort by (results) desc | limit 10 | keep fgt.dstname\n)\n| stats by (fgt.dstname) sum(fgt.crscore) results",
+                        "expr": "options(global_filter=( _stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020} fgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw} fgt.crscore:* fgt.dstname:* ))\nfgt.dstname:in(\n    * | stats by (fgt.dstname) sum(fgt.crscore) results | filter -results:NaN | sort by (results) desc | limit 10 | keep fgt.dstname\n)\n| stats by (fgt.dstname) sum(fgt.crscore) results",
                         "legendFormat": "{{destination.ip}}",
                         "queryType": "statsRange"
                       },
@@ -29143,7 +29143,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srcname:*\n| stats by (fgt.srcname,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.srcname:*\n| stats by (fgt.srcname,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -29342,7 +29342,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.osname:*\n| stats by (fgt.osname,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.osname:*\n| stats by (fgt.osname,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -29541,7 +29541,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srchwvendor:*\n| stats by (fgt.srchwvendor,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.srchwvendor:*\n| stats by (fgt.srchwvendor,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -29740,7 +29740,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstname:*\n| stats by (fgt.dstname,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstname:*\n| stats by (fgt.dstname,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -29939,7 +29939,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstosname:*\n| stats by (fgt.dstosname,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstosname:*\n| stats by (fgt.dstosname,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -30138,7 +30138,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dsthwvendor:*\n| stats by (fgt.dsthwvendor,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dsthwvendor:*\n| stats by (fgt.dsthwvendor,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -30337,7 +30337,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.devtype:*\n| stats by (fgt.devtype,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.devtype:*\n| stats by (fgt.devtype,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -30536,7 +30536,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srcswversion:*\n| stats by (fgt.srcswversion,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.srcswversion:*\n| stats by (fgt.srcswversion,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -30735,7 +30735,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srcfamily:*\n| stats by (fgt.srcfamily,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.srcfamily:*\n| stats by (fgt.srcfamily,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -30934,7 +30934,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstdevtype:*\n| stats by (fgt.dstdevtype,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstdevtype:*\n| stats by (fgt.dstdevtype,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -31133,7 +31133,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstswversion:*\n| stats by (fgt.dstswversion,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstswversion:*\n| stats by (fgt.dstswversion,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
@@ -31332,7 +31332,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstfamily:*\n| stats by (fgt.dstfamily,fgt.utmaction) sum(fgt.crscore) results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\nfgt.crscore:*\n| fgt.dstfamily:*\n| stats by (fgt.dstfamily,fgt.utmaction) sum(fgt.crscore) results\n| filter -results:NaN\n| sort by (results) desc\n| limit 10",
                         "queryType": "stats"
                       },
                       "version": "v0"
