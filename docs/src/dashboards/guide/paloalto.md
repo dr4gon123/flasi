@@ -79,7 +79,7 @@ Traffic Field reference: [Traffic Log Fields](https://docs.paloaltonetworks.com/
 
 Threat Field reference: [Threat Log Fields](https://docs.paloaltonetworks.com/ngfw/administration/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields) — key fields: `action`, `flags`.
 
-![Action](../../assets/dashboards/guide/[Grafana] Palo Alto Action.png){data-gallery="action-gallery" data-title="Palo Alto Action"}
+![Action](../../assets/dashboards/guide/[Grafana] PANOS Action.png){data-gallery="action-gallery" data-title="PAN-OS Action"}
 
 ### Sankey Diagram
 
@@ -111,7 +111,7 @@ Two subtabs break down traffic by identity dimension:
 
 The **bytes** sub-tab adds `sum`, `avg`, and histogram breakdowns plus elapsed-time percentiles (`p90`, `avg`) per IP.
 
-![Source](../../assets/dashboards/guide/[Grafana] Palo Alto Source Destination.png){data-gallery="source-destination-gallery" data-title="Palo Alto Source Destination"}
+![Source](../../assets/dashboards/guide/[Grafana] PANOS Source Destination.png){data-gallery="source-destination-gallery" data-title="PAN-OS Source Destination"}
 
 ### User | Host
 
@@ -129,7 +129,7 @@ Palo Alto combines user identity and device fingerprinting (from User-ID and Glo
 
 ## Service | Application
 
-![Service](../../assets/dashboards/guide/[Grafana] Palo Alto Service Application.png){data-gallery="service-application-gallery" data-title="Palo Alto Service Application"}
+![Service](../../assets/dashboards/guide/[Grafana] PANOS Application.png){data-gallery="service-application-gallery" data-title="PAN-OS Service Application"}
 
 ## Overrides
 

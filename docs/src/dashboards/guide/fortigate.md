@@ -168,7 +168,7 @@ Device fingerprinting for both source and destination, populated when FortiGate 
 
 This inconsistency makes `fgt.service` unreliable for aggregation: the same port can appear under three different values depending on how the policy is configured. Use [`network.transport_port`](index.md#networktransport_port) instead.
 
-![Service](../../assets/dashboards/guide/[Grafana] Fortigate Service Application.png){data-gallery="service-application-gallery" data-title="Fortigate Service Application"}
+![Service](../../assets/dashboards/guide/[Grafana] Fortigate Application.png){data-gallery="service-application-gallery" data-title="Fortigate Service Application"}
 
 ## Overrides
 
