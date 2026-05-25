@@ -1,3 +1,7 @@
+---
+status: deprecated
+---
+
 # Elastic Agent
 
 !!! warning "DEPRECATED"

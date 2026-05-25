@@ -1,4 +1,4 @@
-![FLASI Logo](docs/src/assets/logos/logo.jpeg)
+![FLASI Logo](docs/src/assets/logos/logo_small.jpeg)
 
 # FLASI — Firewall Log Analytics for Security Insights
 ## **The Best Analytics Platform for Firewall Logs**

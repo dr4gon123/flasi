@@ -20,19 +20,21 @@ The rest is just details.
 <div class="carousel-wrapper">
   <div class="main-image-container">
     <img id="mainImage" src="../../assets/dashboards/making_of/draft1.jpeg" alt="Main draft">
-    <button class="nav-btn prev" onclick="navigate(-1)">❮</button>
-    <button class="nav-btn next" onclick="navigate(1)">❯</button>
   </div>
-  
-  <div class="thumbnails">
-    <img src="../../assets/dashboards/making_of/draft1.jpeg" class="thumb active" onclick="showImage(0)">
-    <img src="../../assets/dashboards/making_of/draft2.jpeg" class="thumb" onclick="showImage(1)">
-    <img src="../../assets/dashboards/making_of/draft3.jpeg" class="thumb" onclick="showImage(2)">
-    <img src="../../assets/dashboards/making_of/draft4.jpeg" class="thumb" onclick="showImage(3)">
-    <img src="../../assets/dashboards/making_of/draft5.jpeg" class="thumb" onclick="showImage(4)">
-    <img src="../../assets/dashboards/making_of/draft6.jpeg" class="thumb" onclick="showImage(5)">
-    <img src="../../assets/dashboards/making_of/draft7.jpeg" class="thumb" onclick="showImage(6)">
-    <img src="../../assets/dashboards/making_of/draft8.jpeg" class="thumb" onclick="showImage(7)">
+
+  <div class="filmstrip">
+    <button class="nav-btn" onclick="navigate(-1)">❮</button>
+    <div class="thumb-track" id="thumbTrack">
+      <img src="../../assets/dashboards/making_of/draft1.jpeg" class="thumb active" onclick="showImage(0)">
+      <img src="../../assets/dashboards/making_of/draft2.jpeg" class="thumb" onclick="showImage(1)">
+      <img src="../../assets/dashboards/making_of/draft3.jpeg" class="thumb" onclick="showImage(2)">
+      <img src="../../assets/dashboards/making_of/draft4.jpeg" class="thumb" onclick="showImage(3)">
+      <img src="../../assets/dashboards/making_of/draft5.jpeg" class="thumb" onclick="showImage(4)">
+      <img src="../../assets/dashboards/making_of/draft6.jpeg" class="thumb" onclick="showImage(5)">
+      <img src="../../assets/dashboards/making_of/draft7.jpeg" class="thumb" onclick="showImage(6)">
+      <img src="../../assets/dashboards/making_of/draft8.jpeg" class="thumb" onclick="showImage(7)">
+    </div>
+    <button class="nav-btn" onclick="navigate(1)">❯</button>
   </div>
 </div>
 
@@ -43,7 +45,6 @@ The rest is just details.
 }
 
 .main-image-container {
-  position: relative;
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -55,10 +56,14 @@ The rest is just details.
   border-radius: 8px;
 }
 
+.filmstrip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
   background: rgba(0, 0, 0, 0.6);
   color: white;
   border: none;
@@ -73,23 +78,23 @@ The rest is just details.
   background: rgba(0, 0, 0, 0.9);
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
-
-.thumbnails {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+.thumb-track {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
   gap: 10px;
+  scroll-behavior: smooth;
 }
 
 .thumb {
-  width: 100%;
-  height: 80px;
+  flex-shrink: 0;
+  width: 100px;
+  height: 70px;
   object-fit: cover;
   cursor: pointer;
   border-radius: 4px;
   opacity: 0.6;
-  transition: opacity 0.3s, transform 0.2s;
+  transition: opacity 0.3s, transform 0.2s, border-color 0.2s;
   border: 3px solid transparent;
 }
 
@@ -121,20 +126,22 @@ let currentIndex = 0;
 function showImage(index) {
   currentIndex = index;
   document.getElementById('mainImage').src = images[index];
-  
-  document.querySelectorAll('.thumb').forEach((thumb, i) => {
-    thumb.classList.toggle('active', i === index);
-  });
+
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach((thumb, i) => thumb.classList.toggle('active', i === index));
+
+  const track = document.getElementById('thumbTrack');
+  const active = thumbs[index];
+  if (active) {
+    const scrollTarget = active.offsetLeft - (track.offsetWidth / 2) + (active.offsetWidth / 2);
+    track.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+  }
 }
 
 function navigate(direction) {
-  currentIndex += direction;
-  if (currentIndex < 0) currentIndex = images.length - 1;
-  if (currentIndex >= images.length) currentIndex = 0;
-  showImage(currentIndex);
+  showImage((currentIndex + direction + images.length) % images.length);
 }
 
-// Keyboard navigation
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') navigate(-1);
   if (e.key === 'ArrowRight') navigate(1);

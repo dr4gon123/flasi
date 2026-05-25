@@ -26,7 +26,7 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
 
 Each dashboard includes a navigation bar that links to related dashboards within the same vendor dataset. Navigation links are **tag-based** — each link resolves dynamically to all dashboards sharing a specific set of Grafana tags, so new dashboards added with the right tags appear automatically.
 
-![Navigation](../../assets/dashboards/guide/[Grafana] Fortigate Navigation Filters.png)
+![Navigation](../../assets/dashboards/guide/[Grafana] Navigation.png)
 
 | Nav Link | FortiGate dashboards | PAN-OS dashboards |
 |----------|---------------------|-------------------|
@@ -36,6 +36,8 @@ Each dashboard includes a navigation bar that links to related dashboards within
 | Event | System [FortiOS], SSL VPN [FortiOS] | — |
 
 ## Variables & Filters
+
+![Navigation](../../assets/dashboards/guide/[Grafana] Filters.png)
 
 All dashboard filters are exposed at the top of the page, allowing you to slice and dice the data as needed. Variables are ordered hierarchically — selecting a firewall narrows down vdom/vsys options, which narrows down subtypes, and so on.
 
@@ -65,11 +67,12 @@ datasource
 | `action` | `fgt.action` | `panos.action` | Populated from data |
 | `Logsql` | — | — | Raw [LogsQL](https://docs.victoriametrics.com/victorialogs/logsql/) injection — applied after all other filters |
 
+
 !!! note "FortiGate extras"
     FortiGate **Traffic** dashboards have two additional variables not present in PAN-OS:
 
     - `policytype` (filters by `fgt.policytype`)
-    - `crscore`, a toggle unique to the **UTM** dashboard that applies a risk score threshold filter.
+    - `crscore`, a toggle that applies a risk score threshold filter.
 
 !!! tip "Advanced Filtering"
     The `Logsql` variable lets you inject raw LogsQL into every query. Use it for complex filters that aren't covered by the standard variables, such as:
@@ -78,6 +81,8 @@ datasource
     ```
 
 ## Base Query Shell
+
+![Base Query Shell](../../assets/dashboards/guide/[Grafana] Filters & Base Query.png)
 
 All panels in a dashboard share a common base query structure. It always has three parts:
 
@@ -117,6 +122,8 @@ _stream:{<stream filters>}
 
 ### Top-level Tabs: Direction
 
+![Header](../../assets/dashboards/guide/[Grafana] Fortigate Tabs.png)
+
 We segment the analysis by **`network.direction`** — tabs across the top represent different traffic directions:
 
 - **Outbound** — Traffic initiated from internal networks going out
@@ -125,8 +132,6 @@ We segment the analysis by **`network.direction`** — tabs across the top repre
 - **External** — Traffic between external networks (rare but possible)
 
 The segmentation matters: an attack originating from the internet is completely different from an internal host generating suspicious traffic.
-
-![Header](../../assets/dashboards/guide/[Grafana] Fortigate Header.png)
 
 ### Sub Tabs — Traffic Dashboard: Metrics
 
@@ -144,6 +149,14 @@ The **UTM** (FortiGate) and **Threat** (Palo Alto) dashboards split by **subtype
 
 - A **summary** tab — aggregated view across all subtypes. *Only Palo Alto*
 - A **dynamic per-subtype** tab — automatically adapts to whatever subtypes are present in your data
+
+=== "FortiGate"
+
+    ![UTM Subtabs](../../assets/dashboards/guide/[Grafana] UTM Subtabs.png)
+
+=== "PAN-OS"
+
+    ![Threat Subtabs](../../assets/dashboards/guide/[Grafana] Threat Subtabs.png)
 
 ## Panel Hierarchy
 
@@ -188,7 +201,7 @@ The UTM (FortiGate) and Threat (PAN-OS) dashboards share the same top rows (Metr
 |-----|-------|
 | Metrics | Always visible |
 | Subtype | Always visible |
-| Rule | Always visible (collapsed by default) |
+| Rule | Always visible |
 | Geo | Always visible |
 | Threat ID \| Threat Category \| Misc | Always visible |
 | Source \| Destination | Always visible |
@@ -212,6 +225,14 @@ For *Traffic*, action has vendor-specific nuance — each vendor models policy d
 
 For vendor-specific action visualizations, action values, and color coding: [FortiGate](fortigate.md#action) · [Palo Alto](paloalto.md#action)
 
+=== "FortiGate"
+
+    ![Action](../../assets/dashboards/guide/[Grafana] Fortigate Action.png)
+
+=== "PAN-OS"
+
+    ![Action](../../assets/dashboards/guide/[Grafana] PANOS Action.png)
+
 ## Source | Destination
 
 We dig further into the most elemental dimensions of a network connection: Source and Destination.
@@ -223,6 +244,14 @@ We explore its broadest dimensions: IP, User, Device.
 - **Bottom row** — advanced metrics: `unique count of destination IP per source IP`
 
 For vendor-specific views: [FortiGate](fortigate.md#source-destination) · [Palo Alto](paloalto.md#source-destination)
+
+=== "FortiGate"
+
+    ![Source Destination](../../assets/dashboards/guide/[Grafana] Fortigate Source Destination.png)
+
+=== "PAN-OS"
+
+    ![Source Destination](../../assets/dashboards/guide/[Grafana] PANOS Source Destination.png)
 
 ## Service | Application
 
@@ -259,3 +288,11 @@ Application visibility depth differs significantly between vendors:
 Palo Alto's deep packet inspection engine classifies applications with much richer metadata, while FortiGate provides name and category only.
 
 For vendor-specific visualizations: [FortiGate](fortigate.md#service-application) · [Palo Alto](paloalto.md#service-application)
+
+=== "FortiGate"
+
+    ![Application](../../assets/dashboards/guide/[Grafana] Fortigate Application.png)
+
+=== "PAN-OS"
+
+    ![Application](../../assets/dashboards/guide/[Grafana] PANOS Application.png)

@@ -1,3 +1,7 @@
+---
+status: deprecated
+---
+
 # Logstash
 
 !!! warning "DEPRECATED"
