@@ -44,7 +44,7 @@ As we discussed previously on [The Challenge](index.md#the-challenge), we need t
 ## Dimensional Data Modeling
 
 
-### **The new ~~5~~ 4-tupple**
+### **The new 5-tupple**
 
 Firewall [datasets](https://github.com/dr4gon123/flasi/tree/main/datasets/Fortinet/Fortigate/7.6/unique_fields) contain over 200 fields. We can't pivot on all of them.
 
@@ -52,11 +52,12 @@ We need to choose **core anchors** that become the foundation for our analysis.
 
 These are our **dimensions**:
 
-![new 4 tupple](assets/4tupple.png)
+![new 5 tupple](assets/5tupple.png)
 
 - **Source IP** 
 - **Destination IP** 
-- **Service** (Protocol/Destination Port)
+- **Protocol**
+- **Destination Port**
 - **Application** 
 
 Every query, every visualization, every anomaly detection model — they all orbit around these core entities.
