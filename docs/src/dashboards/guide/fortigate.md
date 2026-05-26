@@ -6,13 +6,13 @@ FortiGate-specific dashboard details. For shared concepts — variables, base qu
 
 | Dashboard | File | Description |
 |-----------|------|-------------|
-| **Traffic** | [`traffic-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/traffic-fortios.json) | Session/connection analysis |
-| **UTM** | [`utm-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/utm-fortios.json) | UTM engines analysis |
-| **System** | [`system-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/system-fortios.json) | Health metrics, configuration changes, and login/logout attempts |
-| **SSL VPN** | [`ssl-vpn-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ssl-vpn-fortios.json) | VPN session analysis: tunnel establishment, user connections, duration, and traffic |
-| **Data** | [`ingest-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ingest-fortios.json) | Ingestion health and throughput |
-| **Log Fields** | [`log-fields-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/log-fields-fortios.json) | Raw field explorer |
-| **Streams** | [`streams-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/streams-fortios.json) | Data stream explorer |
+| **Traffic** | [`traffic-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/traffic-fortios.json) | Session/connection analysis |
+| **UTM** | [`utm-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/utm-fortios.json) | UTM engines analysis |
+| **System** | [`system-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/system-fortios.json) | Health metrics, configuration changes, and login/logout attempts |
+| **SSL VPN** | [`ssl-vpn-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/ssl-vpn-fortios.json) | VPN session analysis: tunnel establishment, user connections, duration, and traffic |
+| **Data** | [`ingest-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/ingest-fortios.json) | Ingestion health and throughput |
+| **Log Fields** | [`log-fields-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/log-fields-fortios.json) | Raw field explorer |
+| **Streams** | [`streams-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/streams-fortios.json) | Data stream explorer |
 
 ## Variables
 
@@ -25,7 +25,7 @@ All common variables are documented in the [Dashboard Guide](index.md#variables-
 
 ## Traffic Dashboard
 
-The [Traffic dashboard](grafana/prod/FortiGate/traffic-fortios.json) organizes analysis across two dimensions: direction (outer tabs) and metric type (inner sub-tabs).
+The [Traffic dashboard](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/traffic-fortios.json) organizes analysis across two dimensions: direction (outer tabs) and metric type (inner sub-tabs).
 
 ### Metric Sub-tabs
 
@@ -154,7 +154,7 @@ The SD-WAN and shaping panels are only populated on deployments using those feat
 
 ## UTM Dashboard
 
-The [UTM dashboard](grafana/prod/FortiGate/utm-fortios.json) focuses on security engine events. It uses the same direction-based outer tab as Traffic, with a dynamic `$subtype` inner tab that repeats per active subtype in the data.
+The [UTM dashboard](https://github.com/dr4gon123/flasi/blob/main/grafana/prod/FortiGate/utm-fortios.json) focuses on security engine events. It uses the same direction-based outer tab as Traffic, with a dynamic `$subtype` inner tab that repeats per active subtype in the data.
 
 ### crscore Variable
 
