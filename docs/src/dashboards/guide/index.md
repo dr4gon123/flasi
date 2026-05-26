@@ -241,7 +241,7 @@ We explore its broadest dimensions: IP, User, Device.
 - **Middle row** — total aggregated values: `count of logs over the whole time window`
 - **Bottom row** — advanced metrics: `unique count of destination IP per source IP`
 
-For vendor-specific views: [FortiGate](fortigate.md#source-destination) · [Palo Alto](paloalto.md#source-destination)
+For vendor-specific views: [FortiGate](fortigate.md) · [Palo Alto](paloalto.md)
 
 === "FortiGate"
 
