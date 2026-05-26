@@ -1,67 +1,168 @@
 # FortiGate
 
+FortiGate-specific dashboard details. For shared concepts — variables, base query structure, direction tabs, action analysis — see the [Dashboard Guide](index.md).
+
+## Dashboards
+
+| Dashboard | File | Description |
+|-----------|------|-------------|
+| **Traffic** | [`traffic-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/traffic-fortios.json) | Session/connection analysis |
+| **UTM** | [`utm-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/utm-fortios.json) | UTM engines analysis |
+| **System** | [`system-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/system-fortios.json) | Health metrics, configuration changes, and login/logout attempts |
+| **SSL VPN** | [`ssl-vpn-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ssl-vpn-fortios.json) | VPN session analysis: tunnel establishment, user connections, duration, and traffic |
+| **Data** | [`ingest-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ingest-fortios.json) | Ingestion health and throughput |
+| **Log Fields** | [`log-fields-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/log-fields-fortios.json) | Raw field explorer |
+| **Streams** | [`streams-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/streams-fortios.json) | Data stream explorer |
+
 ## Variables
 
-| Variable | Query Source | Notes |
-|----------|--------------|-------|
-| `firewall` | `_stream: {fgt.type=$type}` | Populated from `log.syslog.hostname` |
-| `vdom` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall})}` | Virtual Domain from `fgt.vd` |
-| `type` | Custom | `traffic`, `utm`, `event` |
-| `subtype` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall}), fgt.vd in (${vdom})}` | From `fgt.subtype` — typically `forward`, `local`, `multicast` |
-| `policytype` | `_stream: {fgt.type=$type, log.syslog.hostname in (${firewall}), fgt.vd in (${vdom})}` | From `fgt.policytype` — typically `policy`. **Traffic-only**, no equivalent in UTM |
-| `direction` | Custom | Options: `outbound`, `inbound`, `internal`, `external` |
-| `action` | Base stream query | From `fgt.action` — `accept`, `drop`, `deny`, `close`, etc. |
-| `Logsql` | Text | Custom filter, default `*` |
-| `crscore` | switch | applies a risk score threshold filter when enabled, default `*` (off) *UTM-only** |
+All common variables are documented in the [Dashboard Guide](index.md#variables-filters). FortiGate adds two variables not present in PAN-OS:
 
-## Traffic 
+| Variable | Notes |
+|----------|-------|
+| `policytype` | From `fgt.policytype` — typically `policy`. **Traffic-only**, no UTM equivalent |
+| `crscore` | Switch variable — applies a risk score threshold filter when enabled. **Traffic and UTM only** |
 
-### Base Query
+## Traffic Dashboard
 
-```plaintext
-_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}
-| fgt.action:in(${action:doublequote}) AND ${Logsql:raw}
-| NOT fgt.srccountry:Reserved
-| stats by (fgt.srccountry) count() results
-```
+The [Traffic dashboard](grafana/prod/FortiGate/traffic-fortios.json) organizes analysis across two dimensions: direction (outer tabs) and metric type (inner sub-tabs).
 
-!!! note "Log ID Exclusion"
-    The query filters out `fgt.logid!=0000000020` to avoid duplicate traffic close-session events that inflate counts.
+### Metric Sub-tabs
 
-### Metrics
+![Traffic Sub-tabs](../../assets/dashboards/guide/[Grafana] Fortigate Traffic Subtabs.png)
 
-The **Traffic** dashboard (`traffic-fortios.json`) is organized into direction tabs (outbound/inbound/internal/external), each with three metric sub-tabs:
+Within each direction tab, three sub-tabs slice the same traffic data by a different primary metric:
 
-| Sub-tab | Aggregation | Notes |
-|---------|-------------|-------|
-| Sessions | `count()` | One log ≈ one connection |
-| Bytes | `sum(bytes)` | Total volume transferred |
-| Risk Score | `sum(fgt.crscore)` | Cumulative [Threat Weight](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/903511/threat-weight) score — FortiGate assigns points based on detected threats, UTM actions, IP reputation hits, and other risk factors. Unique to FortiGate; not available in PAN-OS |
+| Sub-tab | Primary aggregation | Source\|Destination tabs |
+|---------|--------------------|-|
+| **Sessions** | `count()` — one log ≈ one connection | IP · User · Device |
+| **Bytes** | `sum`, `avg`, `p90`, `histogram` for `network.bytes`, `network.packets`, `fgt.duration` | IP · User |
+| **Risk Score** | `sum(fgt.crscore)` — cumulative [Threat Weight](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/903511/threat-weight) | IP · User · Device |
 
-Within each sub-tab, rows follow the standard [panel hierarchy](index.md#panel-hierarchy).
+
+### Sessions Tab
+
+Follows the [standard panel hierarchy](index.md#panel-hierarchy). FortiGate-specific panels within each row:
+
+#### Source | Destination — IP
+
+| Source | Destination | Description |
+|--------|-------------|-------------|
+| `source.ip` | `destination.ip` | Top IPs by session count |
+| `source.ip/24` | `destination.ip/24` | Top /24 subnets by session count |
+| `source.nat.ip` | `destination.nat.ip` | NAT-translated addresses — useful for identifying NAT pools |
+| `unique destination.ip by source.ip` | `unique source.ip by destination.ip` | Fanout — distinct IPs reached / reaching each endpoint |
+| `unique network.transport_port by source.ip` | `unique network.transport_port by destination.ip` | Port diversity — high values suggest scanning |
+| `fgt.srcreputation` | `fgt.dstreputation` | FortiGuard IP reputation score |
+
+#### Source | Destination — User
+
+FortiGate collects user identity from authentication sessions (FSSO, RSSO, local auth) and maps it to traffic.
+
+| Source | Destination | Description |
+|--------|-------------|-------------|
+| `fgt.user` | `fgt.dstuser` | Authenticated user |
+| `fgt.unauthuser` | `fgt.dstunauthuser` | Unauthenticated user (identity known, not authenticated) |
+| `fgt.unauthusersource` | `fgt.dstunauthusersource` | Method used to identify the unauthenticated user |
+| `fgt.group` | `fgt.dstgroup` | User group |
+| `fgt.authserver` | `fgt.dstauthserver` | Authentication server |
+| `fgt.srcname` | `fgt.dstname` | Device hostname |
+
+#### Source | Destination — Device
+
+Device fingerprinting for both source and destination, populated when FortiGate identifies the device via DHCP, FSSO, or traffic inspection.
+
+| Source | Destination | Description |
+|--------|-------------|-------------|
+| `fgt.srcname` | `fgt.dstname` | Device hostname |
+| `fgt.devtype` | `fgt.dstdevtype` | Device category (PC, Phone, Printer, etc.) |
+| `fgt.osname` | `fgt.dstosname` | OS name |
+| `fgt.srcswversion` | `fgt.dstswversion` | OS version |
+| `fgt.srchwvendor` | `fgt.dsthwvendor` | Hardware vendor |
+| `fgt.srcfamily` | `fgt.dstfamily` | Device family |
+
+### Bytes Tab
+
+![Bytes Metrics](../../assets/dashboards/guide/[Grafana] Fortigate Bytes Metrics.png)
+
+The Bytes tab replaces session counts with volume and duration metrics. It adds a dedicated **Bytes | Packets | Duration** row that sits above the standard Geo / Interfaces / Rule rows.
+
+#### Bytes | Packets | Duration Row
+
+| Sub-row | Panels |
+|---------|--------|
+| `sum` | `sum(network.bytes)` and `sum(network.packets)` timeseries |
+| `histogram` | Distribution histograms for `bytes`, `packets`, and `fgt.duration` |
+
+The histograms show the *shape* of the distribution — useful for spotting bimodal patterns (e.g. small keep-alive packets mixed with large file transfers) that averages would hide.
+
+#### Source | Destination — IP (Bytes)
+
+Each panel group has **Sum** and **Avg** inner tabs:
+
+| Panel group | Fields |
+|-------------|--------|
+| Bytes by address | `bytes source.ip` · `bytes source.ip/24` · `bytes source.nat.ip` · `bytes destination.ip` · `bytes destination.ip/24` · `bytes destination.nat.ip` |
+| Duration by address | `duration source.ip` · `duration source.ip/24` · `duration source.nat.ip` · `duration destination.ip` · `duration destination.ip/24` · `duration destination.nat.ip` |
+
+#### Source | Destination — User (Bytes)
+
+| Panel group | Fields |
+|-------------|--------|
+| Bytes by user | `bytes fgt.user` · `bytes fgt.unauthuser` · `bytes fgt.group` · `bytes fgt.dstuser` · `bytes fgt.dstunauthuser` · `bytes fgt.dstgroup` |
+| Duration by user | `duration fgt.user` · `duration fgt.unauthuser` · `duration fgt.group` · `duration fgt.dstuser` · `duration fgt.dstunauthuser` · `duration fgt.dstgroup` |
+
+#### Application (Bytes)
+
+Each panel has **Sum** and **Histogram** inner tabs:
+
+| Panel | Description |
+|-------|-------------|
+| `bytes network.transport_port` | Bytes by `protocol/port` (e.g. `tcp/443`) |
+| `bytes fgt.service` | Bytes by service name (see [service field caveat](#service-field)) |
+| `bytes network.application` | Bytes by detected application |
+| `bytes fgt.appcat` | Bytes by application category |
+
+### Risk Score Tab
+
+![Risk Score](../../assets/dashboards/guide/[Grafana] Fortigate Risk Score.png)
+
+Mirrors the Sessions tab structure — same rows (Metrics, Action, Rule, Geo, Interfaces, Source|Destination with IP/User/Device, Application) — but aggregates `sum(fgt.crscore)` instead of `count()`.
+
+Key panels specific to this tab:
+
+| Panel | Description |
+|-------|-------------|
+| `sum risk` | Total cumulative Threat Weight score over time |
+| `risk by fgt.action %` | Risk score distribution across action values |
+
+Use this tab to surface which sources or destinations accumulate the most risk weight, even when their session counts are low. A single high-scoring session may not appear in the Sessions top-10 but will dominate the Risk Score view.
+
+### Interfaces Row
+
+![Interfaces](../../assets/dashboards/guide/[Grafana] Fortigate Interfaces.png)
+
+Present in all three sub-tabs. Maps traffic to network topology:
+
+| Panel | Field | Use case |
+|-------|-------|----------|
+| Interface pair | `fgt.srcintf by fgt.dstintf` | Traffic volume between interface pairs |
+| SD-WAN rule | `vwlid-vwlname by log.syslog.hostname` | SD-WAN rule attribution per firewall |
+| Shaping policy | `shapingpolicyid-shapingpolicyname by log.syslog.hostname` | Traffic shaping / QoS policy matches |
+
+The SD-WAN and shaping panels are only populated on deployments using those features.
 
 ## UTM Dashboard
 
-The **UTM** dashboard (`utm-fortios.json`) focuses on security engine events. It has the same direction-based tab structure as Traffic.
+The [UTM dashboard](grafana/prod/FortiGate/utm-fortios.json) focuses on security engine events. It uses the same direction-based outer tab as Traffic, with a dynamic `$subtype` inner tab that repeats per active subtype in the data.
 
 ### crscore Variable
 
-The **UTM** dashboard adds a unique `crscore` **switch variable** that applies a risk score threshold filter when enabled. This allows toggling between "all UTM events" and "high-risk UTM events only" without modifying the base query.
-
-### Base Query
-
-```plaintext
-_stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),network.direction in (${direction:doublequote})}
-| fgt.action:in(${action:doublequote}) AND ${Logsql:raw} AND ${crscore:raw}
-| fgt.virus:*
-| stats by (fgt.virus,fgt.action) count() results
-| sort by (results) desc
-| limit 10
-```
+A **switch variable** unique to this dashboard. When enabled, it injects a risk score threshold filter into the base query — toggling between "all UTM events" and "high-risk UTM events only" without modifying queries manually.
 
 ### UTM Engines
 
-**FortiGate UTM** — rows are shown or hidden based on the active subtype:
+Rows are conditionally shown or hidden based on the active subtype. This is a deliberate design decision: each UTM engine produces different fields, so showing all rows at once would leave most panels empty. The dashboard renders only the rows relevant to the selected subtype:
 
 | Row | Always visible | Visible when `subtype` is… |
 |-----|:--------------:|---------------------------|
@@ -76,85 +177,54 @@ _stream:{fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},log.sys
 | Resolved IP \| Question Name | | `dns` |
 | matchfilename \| matchfiletype | | `file-filter` |
 
-## Event Dashboards
+### Action
 
-FortiOS includes two additional dashboards that cover the `event` log type:
+[Action](https://github.com/dr4gon123/flores/blob/main/8.0/fields/action_descriptions.csv) values in security event logs reflect what the security engine did with the threat, not the firewall policy decision.
 
-- **System** (`system-fortios.json`) — Health metrics, configuration changes, and login/logout attempts
-- **SSL VPN** (`ssl-vpn-fortios.json`) — VPN session analysis: tunnel establishment, user connections, duration, and traffic
+## System Dashboard
 
-## Action
+![System Config Changes](../../assets/dashboards/guide/[Grafana] System Config Changes.png)
 
-### Traffic
+Three top-level tabs covering different `event` subtypes:
 
-We combine the analysis of both `fgt.action` and `fgt.utmaction` in a timeline, percentage, and absolute fashion. The **UTM** dashboard further breaks down details by UTM engine (web filter, antivirus, IPS, etc.).
+### Health
 
-![Action](../../assets/dashboards/guide/[Grafana] Fortigate Action.png){data-gallery="action-gallery" data-title="Fortigate Action"}
+Per-firewall health metrics. The row repeats for each selected `$firewall`, showing system resource utilization over time.
 
-### UTM
+### Config Changes
 
-[Action]( https://github.com/dr4gon123/flores/blob/main/8.0/fields/action_descriptions.csv) values in security event logs reflect what the security engine did with the threat, not the firewall policy decision.
- 
+Covers `fgt.subtype=config` events — administrative changes to the firewall configuration.
 
-## Source | Destination
+| Row | Content |
+|-----|---------|
+| Metrics | Total config change count |
+| Action | Timeseries and absolute breakdown by `fgt.action` (add, edit, delete) |
+| Logs | Raw log table for investigation |
 
-Three subtabs break down traffic by different identity dimensions:
+### Login Attempts
 
-### IP
+Covers admin login events (`fgt.subtype=login`).
 
-IP-level analysis — the most granular view of who is talking to whom.
+| Row | Content |
+|-----|---------|
+| Metrics | Total login event count |
+| Log Description | Breakdown by `fgt.logdesc` — login success, login failed, etc. |
+| Users | Top users by login attempt count — timeseries and absolute |
 
-| Field | Description |
-|-------|-------------|
-| `source.ip` / `source.ip/24` | Top source IPs and /24 subnets by session count |
-| `destination.ip` / `destination.ip/24` | Top destination IPs and /24 subnets |
-| `source.nat.ip` / `destination.nat.ip` | NAT-translated addresses — useful for identifying NAT pools and translated destinations |
-| `unique destination.ip by source.ip` | Fanout metric — how many distinct destinations each source is reaching |
-| `unique source.ip by destination.ip` | Reverse fanout — how many sources are hitting each destination |
-| `unique network.transport_port by source.ip` | Port diversity per source — high values suggest scanning or broad service use |
-| `unique network.transport_port by destination.ip` | Port diversity per destination |
-| `fgt.dstreputation` | FortiGuard IP reputation category of the destination |
+## SSL VPN Dashboard
 
-The **bytes** metric sub-tab adds volume breakdowns (`sum`, `avg`, histogram) and duration percentiles (`p90`, `avg`) per IP.
+![SSL VPN](../../assets/dashboards/guide/[Grafana] SSL VPN Overview.png)
 
-![Source](../../assets/dashboards/guide/[Grafana] Fortigate Source Destination.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - IP"}
+No direction tabs — SSL VPN sessions are always inbound by nature. Four rows:
 
-### User
+| Row | Content |
+|-----|---------|
+| Metrics | Active users, login users, total connection duration |
+| General | `fgt.user` · `fgt.reason` · `fgt.logdesc` summary panels |
+| **Success Login** | Geo map + timeseries + absolute: top users, remote IPs (`fgt.remip`), countries |
+| **Fail Login** | Same structure filtered to failed events; includes `fgt.reason for termination` |
 
-FortiGate collects user identity from authentication sessions (FSSO, RSSO, local auth) and maps it to traffic.
-
-| Field | Description |
-|-------|-------------|
-| `fgt.user` | Authenticated source user |
-| `fgt.unauthuser` | Unauthenticated source user (identity known but not authenticated) |
-| `fgt.unauthusersource` | Method that identified the unauthenticated user |
-| `fgt.dstuser` | Authenticated destination user |
-| `fgt.dstunauthuser` | Unauthenticated destination user |
-| `fgt.dstunauthusersource` | Method that identified the unauthenticated destination user |
-| `fgt.dstname` | DNS name of the destination host |
-| `fgt.dstgroup` | Destination user group |
-| `fgt.dstauthserver` | Authentication server that verified the destination user |
-
-![Source2](../../assets/dashboards/guide/[Grafana] Fortigate Source Destination 2.png){data-gallery="source-destination-gallery" data-title="Fortigate Source Destination - User"}
-
-### Device
-
-Device fingerprinting for both source and destination, populated when FortiGate identifies the device via DHCP, FSSO, or traffic inspection.
-
-| Field | Description |
-|-------|-------------|
-| `fgt.srcname` | Source device hostname |
-| `fgt.devtype` | Source device category (PC, Phone, Printer, etc.) |
-| `fgt.osname` | Source OS name |
-| `fgt.srcswversion` | Source OS version |
-| `fgt.srchwvendor` | Source hardware vendor |
-| `fgt.srcfamily` | Source device family |
-| `fgt.dstname` | Destination device hostname |
-| `fgt.dstdevtype` | Destination device category |
-| `fgt.dstosname` | Destination OS name |
-| `fgt.dstswversion` | Destination OS version |
-| `fgt.dsthwvendor` | Destination hardware vendor |
-| `fgt.dstfamily` | Destination device family |
+The Success / Fail split makes it easy to spot brute-force patterns (high fail count from a single remote IP) vs legitimate usage.
 
 ## Service | Application
 
@@ -167,8 +237,6 @@ Device fingerprinting for both source and destination, populated when FortiGate 
 3. A **protocol/port notation** (e.g. `tcp/443`) — if no service object matched
 
 This inconsistency makes `fgt.service` unreliable for aggregation: the same port can appear under three different values depending on how the policy is configured. Use [`network.transport_port`](index.md#networktransport_port) instead.
-
-![Service](../../assets/dashboards/guide/[Grafana] Fortigate Application.png){data-gallery="service-application-gallery" data-title="Fortigate Service Application"}
 
 ## Overrides
 
@@ -201,15 +269,3 @@ Fields are auto-scaled based on their name pattern:
 | `*bytes` | Decimal bytes — auto-scales to KB, MB, GB |
 | `*packets` | SI short — auto-scales to K, M, G |
 | `*duration` | Duration format (s, m, h) |
-
-## Dashboard Files
-
-| Dashboard | File | Description |
-|-----------|------|-------------|
-| **Traffic** | [`traffic-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/traffic-fortios.json) | Session/connection analysis |
-| **UTM** | [`utm-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/utm-fortios.json) | Web filter, AV, IPS analysis |
-| **System** | [`system-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/system-fortios.json) | System events and configuration changes |
-| **SSL VPN** | [`ssl-vpn-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ssl-vpn-fortios.json) | VPN session analysis |
-| **Data** | [`ingest-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/ingest-fortios.json) | Ingestion health and throughput |
-| **Log Fields** | [`log-fields-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/log-fields-fortios.json) | Raw field explorer |
-| **Streams** | [`streams-fortios.json`](https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/streams-fortios.json) | Data stream statistics |

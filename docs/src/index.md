@@ -1,7 +1,7 @@
 # Home
 
 <div align="center">
-    <img src="assets/logos/logo_small.jpg" alt="FLASI" />
+    <img src="assets/logos/logo_small.jpeg" alt="FLASI" />
 </div>
 
 Welcome to **FLASI**! 

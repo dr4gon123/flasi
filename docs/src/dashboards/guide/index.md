@@ -24,9 +24,9 @@ Both vendors share the same set of dashboards, each with a distinct purpose:
 
 ## Navigation
 
-Each dashboard includes a navigation bar that links to related dashboards within the same vendor dataset. Navigation links are **tag-based** — each link resolves dynamically to all dashboards sharing a specific set of Grafana tags, so new dashboards added with the right tags appear automatically.
-
 ![Navigation](../../assets/dashboards/guide/[Grafana] Navigation.png)
+
+Each dashboard includes a navigation bar that links to related dashboards within the same vendor dataset. Navigation links are **tag-based** — each link resolves dynamically to all dashboards sharing a specific set of Grafana tags, so new dashboards added with the right tags appear automatically.
 
 | Nav Link | FortiGate dashboards | PAN-OS dashboards |
 |----------|---------------------|-------------------|
@@ -82,8 +82,6 @@ datasource
 
 ## Base Query Shell
 
-![Base Query Shell](../../assets/dashboards/guide/[Grafana] Filters & Base Query.png)
-
 All panels in a dashboard share a common base query structure. It always has three parts:
 
 ```
@@ -108,7 +106,7 @@ _stream:{<stream filters>}
     | limit 10
     ```
 
-=== "Palo Alto"
+=== "PAN-OS"
 
     ```plaintext
     _stream:{panos.device_name in(${firewall:doublequote}),panos.vsys in(${vsys:doublequote}),panos.type=${type:doublequote},panos.subtype in(${subtype:doublequote}),network.direction=${direction:doublequote}}
@@ -140,7 +138,7 @@ Within each direction tab, the **Traffic** dashboard splits analysis by metric:
 | Sub-tab | Aggregation | Notes |
 |---------|-------------|-------|
 | Sessions | `count()` | 1 log ≈ 1 connection. Not 100% accurate but cheap to calculate. For exact counts, `count_uniq(session.id)` is resource-intensive |
-| Bytes | `sum(bytes)` | Total volume transferred |
+| Bytes | `sum`, `avg`, `p90`,`histogram` for `network.bytes` and `avg`, `p90`,`histogram` for `duration` | Total volume transferred |
 | Risk Score | `sum(fgt.crscore)` | Arbitrary score about the risk associated to a specific session. *Only FortiGate* |
 
 ### Sub Tabs — UTM / Threat Dashboard: Subtype
@@ -253,13 +251,11 @@ For vendor-specific views: [FortiGate](fortigate.md#source-destination) · [Palo
 
     ![Source Destination](../../assets/dashboards/guide/[Grafana] PANOS Source Destination.png)
 
-## Service | Application
-
-`service` is the combination of `protocol` + `destination port`, like `https` = `tcp/443`.
-
-Raw service fields differ between vendors and are not reliable for cross-vendor aggregation — see [FortiGate](fortigate.md#service-application) for the detail on `fgt.service`. We normalize both vendors into a single computed field:
+## Application
 
 ### network.transport_port
+
+We normalize both vendors into a single computed field:
 
 ```
 network.transport_port = protocol + "/" + destination.port
@@ -268,7 +264,7 @@ E.g. `tcp/443`, `udp/53`
 
 This field is computed at ingestion time in the Vector transform pipelines ([`vector/fortigate.yaml`](https://github.com/dr4gon123/flasi/blob/main/vector/fortigate.yaml), [`vector/panos.yaml`](https://github.com/dr4gon123/flasi/blob/main/vector/panos.yaml)) and is consistent across both vendors.
 
-### Application
+### Application Metadata
 
 Application visibility depth differs significantly between vendors:
 
