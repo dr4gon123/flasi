@@ -124,6 +124,9 @@ sudo vim /etc/default/vector
 Add environment variables:
 
 ```bash
+# https://vector.dev/highlights/2026-07-14-0-57-0-upgrade-guide/#env-var-interpolation
+VECTOR_DANGEROUSLY_ALLOW_ENV_VAR_INTERPOLATION=true
+
 ### Sources ###
 #FORTIGATE_SYSLOG_UDP_PORT=5140
 #FORTIGATE_SYSLOG_TCP_PORT=5140
@@ -136,7 +139,7 @@ Add environment variables:
 #FORTIAPPSEC_SYSLOG_UDP_PORT=5161
 
 #FORTIEDR_SYSLOG_UDP_PORT=5180
-
+#CORTEX_SYSLOG_UDP_PORT=5191
 
 ### Sinks ###
 #VICTORIA_LOGS_ENDPOINT="http://localhost:9428"
