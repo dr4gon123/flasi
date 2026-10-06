@@ -39,7 +39,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "fer9fqnsqidq8a"
+                        "name": "${datasource}"
                       },
                       "group": "victoriametrics-logs-datasource",
                       "kind": "DataQuery",
