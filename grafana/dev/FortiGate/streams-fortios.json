@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
+          "name": "Annotations \u0026 Alerts",
           "query": {
             "group": "grafana",
             "kind": "DataQuery",
@@ -24,7 +24,6 @@
       }
     ],
     "cursorSync": "Off",
-    "description": "",
     "editable": true,
     "elements": {
       "panel-5": {
@@ -61,8 +60,11 @@
                   "group": "extractFields",
                   "kind": "Transformation",
                   "spec": {
+                    "disabled": false,
                     "options": {
-                      "source": "labels"
+                      "delimiter": ",",
+                      "replace": true,
+                      "source": "streams"
                     }
                   }
                 },
@@ -70,6 +72,7 @@
                   "group": "organize",
                   "kind": "Transformation",
                   "spec": {
+                    "disabled": true,
                     "options": {
                       "excludeByName": {},
                       "includeByName": {
@@ -85,7 +88,8 @@
                         "observer.name": true,
                         "observer.product": true,
                         "observer.type": true,
-                        "observer.vendor": true
+                        "observer.vendor": true,
+                        "streams": true
                       },
                       "indexByName": {
                         "Line": 1,
@@ -113,6 +117,7 @@
                   "group": "reduce",
                   "kind": "Transformation",
                   "spec": {
+                    "disabled": false,
                     "options": {
                       "reducers": [
                         "uniqueValues"
@@ -124,6 +129,7 @@
                   "group": "organize",
                   "kind": "Transformation",
                   "spec": {
+                    "disabled": false,
                     "options": {
                       "excludeByName": {},
                       "includeByName": {},
@@ -191,10 +197,11 @@
               },
               "options": {
                 "cellHeight": "sm",
-                "showHeader": true
+                "showHeader": true,
+                "zebraStriping": false
               }
             },
-            "version": "13.1.0-24655759693"
+            "version": "13.3.0-36978054224"
           }
         }
       }
