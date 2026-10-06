@@ -69,51 +69,6 @@
                   }
                 },
                 {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": true,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {
-                        "Line": false,
-                        "Time": false,
-                        "fgt.logid": true,
-                        "fgt.policytype": true,
-                        "fgt.subtype": true,
-                        "fgt.type": true,
-                        "fgt.vd": true,
-                        "log.syslog.hostname": true,
-                        "network.direction": true,
-                        "observer.name": true,
-                        "observer.product": true,
-                        "observer.type": true,
-                        "observer.vendor": true,
-                        "streams": true
-                      },
-                      "indexByName": {
-                        "Line": 1,
-                        "Time": 0,
-                        "detected_level": 14,
-                        "fgt.logid": 11,
-                        "fgt.policytype": 10,
-                        "fgt.subtype": 9,
-                        "fgt.type": 8,
-                        "fgt.vd": 7,
-                        "hits": 15,
-                        "labels": 13,
-                        "log.syslog.hostname": 6,
-                        "network.direction": 12,
-                        "observer.name": 5,
-                        "observer.product": 4,
-                        "observer.type": 2,
-                        "observer.vendor": 3
-                      },
-                      "renameByName": {}
-                    }
-                  }
-                },
-                {
                   "group": "reduce",
                   "kind": "Transformation",
                   "spec": {
@@ -122,22 +77,6 @@
                       "reducers": [
                         "uniqueValues"
                       ]
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "disabled": false,
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "All unique values": "Stream Values",
-                        "Field": "Stream Fields"
-                      }
                     }
                   }
                 }
