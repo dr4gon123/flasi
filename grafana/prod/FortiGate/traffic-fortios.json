@@ -46,7 +46,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.srccountry:Reserved\n| stats by (fgt.srccountry) count() results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srccountry:!Reserved\n| stats by (fgt.srccountry) count() results\n| sort by (results) desc\n| limit 10",
                         "legendFormat": "",
                         "queryType": "stats"
                       },
@@ -67,7 +67,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.dstcountry:Reserved\n| stats by (fgt.dstcountry) count() results\n| sort by (results) desc\n| limit 10",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstcountry:!Reserved\n| stats by (fgt.dstcountry) count() results\n| sort by (results) desc\n| limit 10",
                         "legendFormat": "",
                         "queryType": "stats"
                       },
@@ -197,7 +197,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -220,7 +220,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.srccountry:Reserved\n| stats by (fgt.srccountry) count() results\n| sort by (results) desc\n| limit 5",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.srccountry:!Reserved\n| stats by (fgt.srccountry) count() results\n| sort by (results) desc\n| limit 5",
                         "legendFormat": "{{fgt.srccountry}}",
                         "queryType": "stats"
                       },
@@ -263,6 +263,7 @@
               "options": {
                 "legend": {
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -282,7 +283,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -466,6 +467,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -481,7 +483,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -665,6 +667,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -680,7 +683,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -853,6 +856,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -868,7 +872,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -1064,6 +1068,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1079,7 +1084,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -1207,6 +1212,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -1222,7 +1228,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -1371,6 +1377,8 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1381,7 +1389,7 @@
                 }
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -1419,7 +1427,7 @@
                 "mode": "markdown"
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -1528,6 +1536,8 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1538,7 +1548,7 @@
                 }
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -1648,6 +1658,8 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -1658,7 +1670,7 @@
                 }
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -4463,7 +4475,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| NOT fgt.dstcountry:Reserved\n| stats by (fgt.dstcountry) count() results\n| sort by (results) desc\n| limit 5",
+                        "expr": "_stream:{log.syslog.hostname in (${firewall:doublequote}),fgt.vd in (${vdom:doublequote}),fgt.type=${type:doublequote},fgt.subtype=${subtype:doublequote},fgt.policytype=${policytype:doublequote},network.direction in (${direction:doublequote}),fgt.logid!=0000000020}\nfgt.action:in(${action:doublequote}) ${Logsql:raw} ${crscore:raw}\n| fgt.dstcountry:!Reserved\n| stats by (fgt.dstcountry) count() results\n| sort by (results) desc\n| limit 5",
                         "legendFormat": "{{fgt.dstcountry}}",
                         "queryType": "stats"
                       },
@@ -4506,6 +4518,7 @@
               "options": {
                 "legend": {
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -4525,7 +4538,7 @@
                 }
               }
             },
-            "version": "13.1.0-24601856692"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -9290,6 +9303,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -9305,7 +9319,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -9462,6 +9476,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -9477,7 +9492,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -19155,6 +19170,8 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -19165,7 +19182,7 @@
                 }
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -20386,6 +20403,8 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -20396,7 +20415,7 @@
                 }
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -20522,6 +20541,8 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -20532,7 +20553,7 @@
                 }
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -20721,6 +20742,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -20736,7 +20758,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -20909,6 +20931,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -20924,7 +20947,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -21113,6 +21136,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -21128,7 +21152,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -21317,6 +21341,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -21332,7 +21357,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -21505,6 +21530,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -21520,7 +21546,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -21709,6 +21735,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -21724,7 +21751,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -21834,6 +21861,8 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "right",
                   "showLegend": true
                 },
@@ -21844,7 +21873,7 @@
                 }
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -22033,6 +22062,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -22048,7 +22078,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -22237,6 +22267,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -22252,7 +22283,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -22463,6 +22494,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -22478,7 +22510,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -22667,6 +22699,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -22682,7 +22715,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -22871,6 +22904,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -22886,7 +22920,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -23097,6 +23131,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -23112,7 +23147,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -31593,7 +31628,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -31879,6 +31914,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -31894,7 +31930,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       },
@@ -32078,6 +32114,7 @@
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -32093,7 +32130,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.1.0-25668120414"
+            "version": "13.2.0-28852654685"
           }
         }
       }
@@ -32286,7 +32323,7 @@
                               {
                                 "kind": "RowsLayoutRow",
                                 "spec": {
-                                  "collapse": true,
+                                  "collapse": false,
                                   "layout": {
                                     "kind": "AutoGridLayout",
                                     "spec": {
@@ -35207,8 +35244,8 @@
         "spec": {
           "allowCustomValue": false,
           "current": {
-            "text": "victorialogs-senati@on-prem",
-            "value": "eetqi1p6mdywwa"
+            "text": "victorialogs-lap@on-prem",
+            "value": "dfchh0fqt6tj4e"
           },
           "hide": "dontHide",
           "includeAll": false,
