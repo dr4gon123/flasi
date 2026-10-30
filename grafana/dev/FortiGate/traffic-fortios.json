@@ -35520,10 +35520,10 @@
       {
         "kind": "SwitchVariable",
         "spec": {
-          "current": "",
+          "current": "fgt.logid!=0000000020",
           "description": "",
-          "disabledValue": "",
-          "enabledValue": "fgt.logid!=0000000020",
+          "disabledValue": "fgt.logid!=0000000020",
+          "enabledValue": "",
           "hide": "dontHide",
           "label": "logid_20",
           "name": "logid_20",
