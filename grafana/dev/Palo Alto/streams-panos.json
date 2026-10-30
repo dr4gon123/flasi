@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
+          "name": "Annotations \u0026 Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -27,7 +27,6 @@
       }
     ],
     "cursorSync": "Off",
-    "description": "",
     "editable": true,
     "elements": {
       "panel-2": {
@@ -68,33 +67,7 @@
                       "delimiter": ",",
                       "keepTime": false,
                       "replace": true,
-                      "source": "labels"
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "options": {
-                      "excludeByName": {
-                        "hits": true
-                      },
-                      "includeByName": {},
-                      "indexByName": {
-                        "hits": 0,
-                        "log.syslog.hostname": 5,
-                        "network.direction": 10,
-                        "observer.name": 4,
-                        "observer.product": 3,
-                        "observer.type": 1,
-                        "observer.vendor": 2,
-                        "panos.device_name": 6,
-                        "panos.subtype": 9,
-                        "panos.type": 8,
-                        "panos.vsys": 7
-                      },
-                      "renameByName": {}
+                      "source": "streams"
                     }
                   }
                 },
@@ -108,21 +81,6 @@
                       "reducers": [
                         "uniqueValues"
                       ]
-                    }
-                  }
-                },
-                {
-                  "group": "organize",
-                  "kind": "Transformation",
-                  "spec": {
-                    "options": {
-                      "excludeByName": {},
-                      "includeByName": {},
-                      "indexByName": {},
-                      "renameByName": {
-                        "1": "Stream Values",
-                        "Field": "Stream Fields"
-                      }
                     }
                   }
                 }
@@ -192,10 +150,11 @@
                     "desc": false,
                     "displayName": "Stream Values"
                   }
-                ]
+                ],
+                "zebraStriping": false
               }
             },
-            "version": "13.1.0-25042293542"
+            "version": "13.3.0-40609721817"
           }
         }
       }
@@ -234,18 +193,6 @@
       }
     },
     "links": [
-      {
-        "asDropdown": false,
-        "icon": "external link",
-        "includeVars": false,
-        "keepTime": false,
-        "tags": [],
-        "targetBlank": true,
-        "title": "Source (GitHub)",
-        "tooltip": "View source file in repository",
-        "type": "link",
-        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/Palo%20Alto/streams-panos.json"
-      },
       {
         "asDropdown": true,
         "icon": "external link",
