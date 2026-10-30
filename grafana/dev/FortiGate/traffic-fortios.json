@@ -24,7 +24,6 @@
       }
     ],
     "cursorSync": "Tooltip",
-    "description": "",
     "editable": true,
     "elements": {
       "panel-0": {
@@ -197,7 +196,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -283,7 +282,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -483,7 +482,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -683,7 +682,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -872,7 +871,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -1084,7 +1083,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -1228,7 +1227,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -1389,7 +1388,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -1427,7 +1426,7 @@
                 "mode": "markdown"
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -1548,7 +1547,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -1670,7 +1669,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -4538,7 +4537,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -9319,7 +9318,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -9492,7 +9491,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -19182,7 +19181,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -20415,7 +20414,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -20553,7 +20552,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -20758,7 +20757,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -20947,7 +20946,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -21152,7 +21151,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -21357,7 +21356,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -21546,7 +21545,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -21751,7 +21750,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -21873,7 +21872,7 @@
                 }
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -22078,7 +22077,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -22283,7 +22282,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -22510,7 +22509,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -22715,7 +22714,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -22920,7 +22919,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -23147,7 +23146,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -31628,7 +31627,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -31930,7 +31929,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       },
@@ -32130,7 +32129,7 @@
                 "xTickLabelSpacing": 0
               }
             },
-            "version": "13.2.0-28852654685"
+            "version": "13.3.0-40609721817"
           }
         }
       }
@@ -35129,18 +35128,6 @@
     },
     "links": [
       {
-        "asDropdown": false,
-        "icon": "external link",
-        "includeVars": false,
-        "keepTime": false,
-        "tags": [],
-        "targetBlank": true,
-        "title": "Source (GitHub)",
-        "tooltip": "View source file in repository",
-        "type": "link",
-        "url": "https://github.com/dr4gon123/flasi/blob/main/grafana/dev/FortiGate/traffic-fortios.json"
-      },
-      {
         "asDropdown": true,
         "icon": "external link",
         "includeVars": false,
@@ -35527,6 +35514,19 @@
           "hide": "dontHide",
           "label": "crscore",
           "name": "crscore",
+          "skipUrlSync": false
+        }
+      },
+      {
+        "kind": "SwitchVariable",
+        "spec": {
+          "current": "fgt.logid!:20",
+          "description": "",
+          "disabledValue": "fgt.logid!:20",
+          "enabledValue": "fgt.crscore:*",
+          "hide": "dontHide",
+          "label": "logid_20",
+          "name": "logid_20",
           "skipUrlSync": false
         }
       }
